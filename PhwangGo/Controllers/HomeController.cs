@@ -34,7 +34,7 @@ namespace PhwangGo.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-        public ActionResult HomeRoot()
+        public IActionResult HomeRoot()
         {
             ViewBag.HomeRoot = "HomeRoot";
             return View();
