@@ -12,5 +12,21 @@ namespace PhwangGo.Controllers
         {
             return View();
         }
+ 
+        // GET: Go
+        public IActionResult GoRoot()
+        {
+            return View();
+        }
+
+        public IActionResult GoPlay()
+        {
+            return View();
+        }
+
+        public IActionResult GoSetup()
+        {
+            return View();
+        }
     }
 }
