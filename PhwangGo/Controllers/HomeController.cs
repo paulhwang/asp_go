@@ -12,6 +12,7 @@ namespace PhwangGo.Controllers
     {
         public IActionResult Index()
         {
+            ViewBag.phwang = "phwang";
             return View();
         }
 
@@ -32,6 +33,11 @@ namespace PhwangGo.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+        public ActionResult HomeRoot()
+        {
+            ViewBag.HomeRoot = "HomeRoot";
+            return View();
         }
     }
 }
