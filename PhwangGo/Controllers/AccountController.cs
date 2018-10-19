@@ -35,9 +35,9 @@ namespace PhwangGo.Controllers
                 Debug.WriteLine("null data");
             else
             {
- ///               NameValueCollection header = Request.Headers;
- ///               String data = header.Get("phwangajaxrequest");
-///                Debug.WriteLine(data);
+                //NameValueCollection header = Request.Headers;
+                String data = Request.Headers["phwangajaxrequest"];
+                Debug.WriteLine(data);
             }
             return View();
         }
