@@ -20,7 +20,7 @@ namespace PhwangGo.Fabric
         }
 
         [DataContract]
-        private class SetupLinkResponseFormat
+        private class SetupLinkResponseFormatClass
         {
             [DataMember]
             public string my_name { get; set; }
@@ -31,25 +31,27 @@ namespace PhwangGo.Fabric
 
         public string EncodeLinkSetupResponse(int link_id_var, string my_name_var)
         {
-            SetupLinkResponseFormat stu = new SetupLinkResponseFormat { my_name = my_name_var, link_id = link_id_var };
+            SetupLinkResponseFormatClass raw_data = new SetupLinkResponseFormatClass { my_name = my_name_var, link_id = link_id_var };
 
             Debug.WriteLine("in AccountSignInReq()");
-            DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(SetupLinkResponseFormat));
+            DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(SetupLinkResponseFormatClass));
             MemoryStream msObj = new MemoryStream();
-            //將序列化之後的Json格式資料寫入流中
-            js.WriteObject(msObj, stu);
+
+            js.WriteObject(msObj, raw_data);
             msObj.Position = 0;
-            //從0這個位置開始讀取流中的資料
-            StreamReader sr = new StreamReader(msObj, Encoding.UTF8);
-            string raw_output_data = sr.ReadToEnd();
+
+           StreamReader sr = new StreamReader(msObj, Encoding.UTF8);
+            string data = sr.ReadToEnd();
             sr.Close();
             msObj.Close();
-            Debug.WriteLine(raw_output_data);
-            return raw_output_data;
+            Debug.WriteLine(data);
+
+            string response_data = this.EncodeResponse("setup_link", data);
+            return response_data;
         }
 
         [DataContract]
-        private class ResponseFormat
+        private class ResponseFormatClass
         {
             [DataMember]
             public string command { get; set; }
@@ -58,11 +60,11 @@ namespace PhwangGo.Fabric
             public string data { get; set; }
         }
 
-        public string EncodeResponse(string command_var, string data_var)
+        private string EncodeResponse(string command_var, string data_var)
         {
-            ResponseFormat data1 = new ResponseFormat { command = command_var, data = data_var };
+            ResponseFormatClass data1 = new ResponseFormatClass { command = command_var, data = data_var };
 
-            DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(ResponseFormat));
+            DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(ResponseFormatClass));
             MemoryStream msObj = new MemoryStream();
             //將序列化之後的Json格式資料寫入流中
             js.WriteObject(msObj, data1);

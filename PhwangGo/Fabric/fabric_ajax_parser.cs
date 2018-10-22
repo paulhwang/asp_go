@@ -21,15 +21,19 @@ namespace PhwangGo.Fabric
             this.jsonEncodeObject = new FabricJsonEncodeClass(this);
         }
 
-        public string parseAjaxPacket (string input_data_var)
+        public string parseAjaxPacket(string input_data_var)
         {
             if (input_data_var == null)
             {
                 return "null input data";
             }
- 
-            string output_data = this.jsonEncodeObject.EncodeLinkSetupResponse(123, "phwang");
-            string response_data = this.jsonEncodeObject.EncodeResponse("setup_link", output_data);
+
+            return this.processSetupLinkRequest();
+        }
+
+        private string processSetupLinkRequest ()
+        {
+            string response_data = this.jsonEncodeObject.EncodeLinkSetupResponse(123, "phwang");
             return response_data;
         }
     }
