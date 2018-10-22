@@ -14,8 +14,10 @@ namespace PhwangGo.Controllers
 {
     public class AccountController : Controller
     {
+
         public IActionResult Index()
         {
+
             return View();
         }
 
@@ -71,6 +73,11 @@ namespace PhwangGo.Controllers
         [HttpGet]
         public string AccountSignInReq()
         {
+            Fabric.FabricRootClass go_root = Fabric.GlobalVariableClass.getGoRoot();
+            if (go_root == null)
+            {
+                return "junk";
+            }
             string input_data = null;
             string raw_output_data = null;
             string output_data = null;
