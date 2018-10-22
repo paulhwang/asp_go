@@ -27,46 +27,10 @@ namespace PhwangGo.Fabric
             {
                 return "null input data";
             }
-            Fabric.FabricRootClass go_root = Fabric.GlobalVariableClass.getGoRoot();
-            if (go_root == null)
-            {
-                return "junk";
-            }
-            string input_data = null;
-            string raw_output_data = null;
-            string output_data = null;
-            SetupLinkResponse stu = new SetupLinkResponse { my_name = "paul9", link_id = 123 };
-
-            Debug.WriteLine("in AccountSignInReq()");
-            {
-                input_data = input_data_var;
-
-                DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(SetupLinkResponse));
-                MemoryStream msObj = new MemoryStream();
-                //將序列化之後的Json格式資料寫入流中
-                js.WriteObject(msObj, stu);
-                msObj.Position = 0;
-                //從0這個位置開始讀取流中的資料
-                StreamReader sr = new StreamReader(msObj, Encoding.UTF8);
-                raw_output_data = sr.ReadToEnd();
-                sr.Close();
-                msObj.Close();
-            }
-
-            Debug.WriteLine(raw_output_data);
-
-            output_data = this.jsonEncodeObject.EncodeResponse("setup_link", raw_output_data);
-            return output_data;
-        }
-
-        [DataContract]
-        private class SetupLinkResponse
-        {
-            [DataMember]
-            public string my_name { get; set; }
-
-            [DataMember]
-            public int link_id { get; set; }
+ 
+            string output_data = this.jsonEncodeObject.EncodeLinkSetupResponse(123, "phwang");
+            string response_data = this.jsonEncodeObject.EncodeResponse("setup_link", output_data);
+            return response_data;
         }
     }
 }
