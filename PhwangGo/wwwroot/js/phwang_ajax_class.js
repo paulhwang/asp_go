@@ -17,7 +17,9 @@ function PhwangAjaxClass(phwang_object_val) {
         this.debug(false, "init__", "");
     };
     this.parseAndSwitchAjaxResponse = function (json_response_val) {
+        this.debug(true, "parseAndSwitchAjaxResponse, json_response_val=", json_response_val);
         var response = JSON.parse(json_response_val);
+        this.debug(true, "parseAndSwitchAjaxResponse, json_response=", response);
 
         if (response.command !== this.phwangAjaxProtocolObject().GET_LINK_DATA_COMMAND()) {
             this.debug(true, "parseAndSwitchAjaxResponse", "command=" + response.command + " data=" + response.data);
@@ -28,7 +30,9 @@ function PhwangAjaxClass(phwang_object_val) {
             return;
         }
 
+        this.debug(true, "parseAndSwitchAjaxResponse, data=", data);
         var data = JSON.parse(response.data);
+        this.debug(true, "parseAndSwitchAjaxResponse, data=", data);
         if (!data) {
             return;
         }
