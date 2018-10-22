@@ -21,6 +21,10 @@ namespace PhwangGo.Fabric
 
         public string parseAjaxPacket (string input_data_var)
         {
+            if (input_data_var == null)
+            {
+                return "null input data";
+            }
             Fabric.FabricRootClass go_root = Fabric.GlobalVariableClass.getGoRoot();
             if (go_root == null)
             {

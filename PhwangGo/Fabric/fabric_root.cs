@@ -7,7 +7,7 @@ namespace PhwangGo.Fabric
 {
     public class FabricRootClass
     {
-        AjaxWebServiceClass ajaxFabricServiceObject { get; }
+        public AjaxWebServiceClass ajaxFabricServiceObject { get; }
 
         public FabricRootClass ()
         {
