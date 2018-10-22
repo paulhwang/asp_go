@@ -12,11 +12,13 @@ namespace PhwangGo.Fabric
 {
     public class AjaxWebServiceClass
     {
-        FabricRootClass rootObject { get; }
+        private FabricRootClass rootObject { get; }
+        private FabricJsonEncodeClass jsonEncodeObject { get; }
 
         public AjaxWebServiceClass (FabricRootClass root_object_val)
         {
-            //this.rootObject = root_object_val;
+            this.rootObject = root_object_val;
+            this.jsonEncodeObject = new FabricJsonEncodeClass(this);
         }
 
         public string parseAjaxPacket (string input_data_var)
@@ -53,45 +55,18 @@ namespace PhwangGo.Fabric
 
             Debug.WriteLine(raw_output_data);
 
-            output_data = AddJsonOuter("setup_link", raw_output_data);
+            output_data = this.jsonEncodeObject.EncodeResponse("setup_link", raw_output_data);
             return output_data;
         }
 
         [DataContract]
-        public class SetupLinkResponse
+        private class SetupLinkResponse
         {
             [DataMember]
             public string my_name { get; set; }
 
             [DataMember]
             public int link_id { get; set; }
-        }
-
-        [DataContract]
-        public class JsonOuter
-        {
-            [DataMember]
-            public string command { get; set; }
-
-            [DataMember]
-            public string data { get; set; }
-        }
-
-        public string AddJsonOuter(string command_var, string data_var)
-        {
-            JsonOuter data1 = new JsonOuter { command = command_var, data = data_var };
-
-            DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(JsonOuter));
-            MemoryStream msObj = new MemoryStream();
-            //將序列化之後的Json格式資料寫入流中
-            js.WriteObject(msObj, data1);
-            msObj.Position = 0;
-            //從0這個位置開始讀取流中的資料
-            StreamReader sr = new StreamReader(msObj, Encoding.UTF8);
-            string data = sr.ReadToEnd();
-            sr.Close();
-            msObj.Close();
-            return data;
         }
     }
 }
