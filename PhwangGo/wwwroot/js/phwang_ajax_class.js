@@ -66,9 +66,10 @@ function PhwangAjaxClass(phwang_object_val) {
     this.setupLink = function (link_val, password_val) {
         var output = JSON.stringify({
             command: this.phwangAjaxProtocolObject().SETUP_LINK_COMMAND(),
-            packet_id: this.ajaxPacketId(),
+            data: "data",
+            //packet_id: this.ajaxPacketId(),
             my_name: link_val.myName(),
-            password: password_val,
+            //password: password_val,
         });
         this.debug(true, "setupLink", "output=" + output);
         this.transmitAjaxRequest(output);

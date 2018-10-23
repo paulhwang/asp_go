@@ -33,7 +33,7 @@ namespace PhwangGo.Fabric
         {
             SetupLinkResponseFormatClass raw_data = new SetupLinkResponseFormatClass { my_name = my_name_var, link_id = link_id_var };
 
-            Debug.WriteLine("in AccountSignInReq()");
+            Debug.WriteLine("in EncodeLinkSetupResponse()");
             DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(SetupLinkResponseFormatClass));
             MemoryStream msObj = new MemoryStream();
 

@@ -12,6 +12,8 @@ namespace PhwangGo.Fabric
 {
     public class AjaxWebServiceClass
     {
+        private object debug;
+
         private FabricRootClass rootObject { get; }
         private FabricJsonEncodeClass jsonEncodeObject { get; }
 
@@ -25,9 +27,32 @@ namespace PhwangGo.Fabric
         {
             return this.ParseAjaxPacket(input_data_var);
         }
+        [DataContract]
+        public class AjaxFabricRequestFormat
+        {
+            [DataMember]
+            public string command { get; set; }
+
+            [DataMember]
+            public string data { get; set; }
+
+            [DataMember]
+            public string my_name { get; set; }
+        }
 
         private string ParseAjaxPacket(string input_data_var)
         {
+            string toDes = input_data_var;
+            using (var ms = new MemoryStream(Encoding.Unicode.GetBytes(toDes)))
+            {
+                DataContractJsonSerializer deseralizer = new DataContractJsonSerializer(typeof(AjaxFabricRequestFormat));
+                AjaxFabricRequestFormat model = (AjaxFabricRequestFormat)deseralizer.ReadObject(ms);// //反序列化ReadObject
+                Debug.WriteLine("input_data_var = " + input_data_var);
+                Debug.WriteLine("command = " + model.command);
+                Debug.WriteLine("data = " + model.data);
+                Debug.WriteLine("my_name = " + model.my_name);
+            }
+
             return this.processSetupLinkRequest();
         }
 
