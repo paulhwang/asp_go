@@ -341,7 +341,7 @@ function PhwangAjaxClass(phwang_object_val) {
 }
 function PhwangAjaxEngineClass(phwang_ajax_object_val) {
     "use strict";
-    this.ajaxRoute = function () { return "/Account/AccountSignInReq/"; };
+    this.ajaxRoute = function () { return "/Ajax/AjaxGetRequest/"; };
     this.jsonContext = function () { return "application/json; charset=utf-8"; }
     this.plainTextContext = function () { return "text/plain; charset=utf-8"; }
     this.init__ = function (phwang_ajax_object_val) {
