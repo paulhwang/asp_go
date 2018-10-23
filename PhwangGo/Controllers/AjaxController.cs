@@ -9,41 +9,48 @@ namespace PhwangGo.Controllers
 {
     public class AjaxController : Controller
     {
-        [HttpGet]
-        public string AjaxGetRequest(string var)
+        private Fabric.FabricRootClass FabricRoot { get; }
+
+        public AjaxController()
         {
-            return AjaxCommonFunction(var);
+            this.FabricRoot = Fabric.GlobalVariableClass.getGoRoot();
+        }
+
+        [HttpGet]
+        public string AjaxGetRequest()
+        {
+            return AjaxCommonFunction();
         }
 
         [HttpPost]
-        public string AjaxPostRequest(string var)
+        public string AjaxPostRequest()
         {
-            return AjaxCommonFunction(var);
+            return AjaxCommonFunction();
         }
 
         [HttpPut]
-        public string AjaxPutRequest(string var)
+        public string AjaxPutRequest()
         {
-            return AjaxCommonFunction(var);
+            return AjaxCommonFunction();
         }
 
-        private string AjaxCommonFunction(string var)
-        { 
-            Fabric.FabricRootClass fabric_root = Fabric.GlobalVariableClass.getGoRoot();
-            if (fabric_root == null)
-            {
-                return "junk";
-            }
-
-            Debug.WriteLine("in AccountSignInReq()");
+        private string AjaxCommonFunction()
+        {
             if (Request == null)
             {
-                Debug.WriteLine("null data");
-                return "null request";
+                Debug.WriteLine("null Ajax request");
+                return "null Ajax request";
             }
 
             string input_data = Request.Headers["phwangajaxrequest"];
-            return fabric_root.ajaxFabricServiceObject.parseAjaxPacket(input_data);
+            if (input_data == null)
+            {
+                Debug.WriteLine("null Ajax input_data");
+                return "null Ajax input_data";
+
+            }
+
+            return this.FabricRoot.ajaxFabricServiceObject.ProcessAjaxInput(input_data);
         }
     }
 }

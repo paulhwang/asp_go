@@ -21,13 +21,13 @@ namespace PhwangGo.Fabric
             this.jsonEncodeObject = new FabricJsonEncodeClass(this);
         }
 
-        public string parseAjaxPacket(string input_data_var)
+        public string ProcessAjaxInput(string input_data_var)
         {
-            if (input_data_var == null)
-            {
-                return "null input data";
-            }
+            return this.ParseAjaxPacket(input_data_var);
+        }
 
+        private string ParseAjaxPacket(string input_data_var)
+        {
             return this.processSetupLinkRequest();
         }
 
