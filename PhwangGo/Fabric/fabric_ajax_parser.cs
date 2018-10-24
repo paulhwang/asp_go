@@ -10,14 +10,14 @@ using System.Diagnostics;
 
 namespace PhwangGo.Fabric
 {
-    public class AjaxWebServiceClass
+    public class FabricAjaxParserClass
     {
         private object debug;
 
         private FabricRootClass rootObject { get; }
         private FabricJsonEncodeClass jsonEncodeObject { get; }
 
-        public AjaxWebServiceClass (FabricRootClass root_object_val)
+        public FabricAjaxParserClass(FabricRootClass root_object_val)
         {
             this.rootObject = root_object_val;
             this.jsonEncodeObject = new FabricJsonEncodeClass(this);

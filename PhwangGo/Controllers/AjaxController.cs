@@ -50,7 +50,7 @@ namespace PhwangGo.Controllers
 
             }
 
-            return this.FabricRoot.ajaxFabricServiceObject.ProcessAjaxInput(input_data);
+            return this.FabricRoot.FabricAjaxParserObject.ProcessAjaxInput(input_data);
         }
     }
 }
