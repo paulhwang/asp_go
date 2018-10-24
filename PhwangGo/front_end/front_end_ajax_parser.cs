@@ -8,7 +8,7 @@ using System.IO;
 using System.Text;
 using System.Diagnostics;
 
-namespace PhwangGo.Fabric
+namespace PhwangGo.FrontEnd
 {
     public class FabricAjaxParserClass
     {

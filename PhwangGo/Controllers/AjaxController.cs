@@ -9,11 +9,11 @@ namespace PhwangGo.Controllers
 {
     public class AjaxController : Controller
     {
-        private Fabric.FabricRootClass FabricRoot { get; }
+        private FrontEnd.FabricRootClass FabricRoot { get; }
 
         public AjaxController()
         {
-            this.FabricRoot = Fabric.GlobalVariableClass.getGoRoot();
+            this.FabricRoot = FrontEnd.GlobalVariableClass.getGoRoot();
         }
 
         [HttpGet]
