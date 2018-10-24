@@ -56,7 +56,7 @@ namespace PhwangGo.Fabric
             public int link_id { get; set; }
         }
 
-        public string EncodeLinkSetupResponse(int link_id_var, string my_name_var)
+        public string GenerateSetupLinkResponse(int link_id_var, string my_name_var)
         {
             SetupLinkResponseFormatClass raw_data = new SetupLinkResponseFormatClass { my_name = my_name_var, link_id = link_id_var };
 
@@ -87,7 +87,7 @@ namespace PhwangGo.Fabric
             public int link_id { get; set; }
         }
 
-        public string EncodeGetLinkDataResponse(int link_id_var, string my_name_var)
+        public string GenerateGetLinkDataResponse(int link_id_var, string my_name_var)
         {
             GetLinkDataResponseFormatClass raw_data = new GetLinkDataResponseFormatClass { my_name = my_name_var, link_id = link_id_var };
 

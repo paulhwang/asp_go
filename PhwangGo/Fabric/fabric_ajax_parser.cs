@@ -29,7 +29,7 @@ namespace PhwangGo.Fabric
         }
 
         [DataContract]
-        public class AjaxFabricRequestFormat
+        public class AjaxFabricRequestFormatClass
         {
             [DataMember]
             public string command { get; set; }
@@ -44,11 +44,11 @@ namespace PhwangGo.Fabric
         private string ParseAjaxPacket(string input_data_var)
         {
             string toDes = input_data_var;
-            AjaxFabricRequestFormat ajax_fabric_request;
+            AjaxFabricRequestFormatClass ajax_fabric_request;
             using (var ms = new MemoryStream(Encoding.Unicode.GetBytes(toDes)))
             {
-                DataContractJsonSerializer deseralizer = new DataContractJsonSerializer(typeof(AjaxFabricRequestFormat));
-                ajax_fabric_request = (AjaxFabricRequestFormat)deseralizer.ReadObject(ms);// //反序列化ReadObject
+                DataContractJsonSerializer deseralizer = new DataContractJsonSerializer(typeof(AjaxFabricRequestFormatClass));
+                ajax_fabric_request = (AjaxFabricRequestFormatClass)deseralizer.ReadObject(ms);// //反序列化ReadObject
                 Debug.WriteLine("input_data_var = " + input_data_var);
                 Debug.WriteLine("command = " + ajax_fabric_request.command);
                 Debug.WriteLine("packet_id = " + ajax_fabric_request.packet_id);
@@ -67,7 +67,7 @@ namespace PhwangGo.Fabric
         }
 
         [DataContract]
-        public class SetupLinkRequestFormat
+        public class SetupLinkRequestFormatClass
         {
             [DataMember]
             public string my_name { get; set; }
@@ -79,15 +79,16 @@ namespace PhwangGo.Fabric
         private string processSetupLinkRequest (string input_data_var)
         {
             Debug.WriteLine("input_data_var = " + input_data_var);
-            SetupLinkRequestFormat format_data;
+            SetupLinkRequestFormatClass format_data;
             using (var ms = new MemoryStream(Encoding.Unicode.GetBytes(input_data_var)))
             {
-                DataContractJsonSerializer deseralizer = new DataContractJsonSerializer(typeof(SetupLinkRequestFormat));
-                format_data = (SetupLinkRequestFormat)deseralizer.ReadObject(ms);// //反序列化ReadObject
+                DataContractJsonSerializer deseralizer = new DataContractJsonSerializer(typeof(SetupLinkRequestFormatClass));
+                format_data = (SetupLinkRequestFormatClass)deseralizer.ReadObject(ms);// //反序列化ReadObject
                 Debug.WriteLine("my_name = " + format_data.my_name);
                 Debug.WriteLine("password = " + format_data.password);
            }
-            string response_data = this.jsonEncodeObject.EncodeLinkSetupResponse(123, "phwang");
+
+            string response_data = this.jsonEncodeObject.GenerateSetupLinkResponse(123, "phwang");
             return response_data;
         }
 
@@ -108,7 +109,8 @@ namespace PhwangGo.Fabric
                 format_data = (GetLinkDataRequestFormat)deseralizer.ReadObject(ms);// //反序列化ReadObject
                 Debug.WriteLine("link_id = " + format_data.link_id);
             }
-            string response_data = this.jsonEncodeObject.EncodeGetLinkDataResponse(123, "phwang");
+
+            string response_data = this.jsonEncodeObject.GenerateGetLinkDataResponse(123, "phwang");
             return response_data;
         }
     }
