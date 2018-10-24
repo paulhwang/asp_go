@@ -22,13 +22,15 @@ namespace Phwang.Fabric
     {
         private string ObjectName = "FabricRootClass";
 
-        private PhwangUtils.PhwangApiClass PhwangApiObject { get; }
+        private UFabricClass UFabricObject { get; }
+        private DFabricClass DFabricObject { get; }
         private PhwangUtils.ListMgrClass ListMgrObject { get; }
 
         public FabricRootClass()
         {
-             this.PhwangApiObject = new PhwangUtils.PhwangApiClass();
-
+            this.UFabricObject = new UFabricClass(this);
+            this.DFabricObject = new DFabricClass(this);
+            //this->theNameListObject = new NameListClass(this);
             this.ListMgrObject = new PhwangUtils.ListMgrClass("LINK", FabricProtocalClass.LINK_MGR_PROTOCOL_LINK_ID_SIZE, FabricProtocalClass.LINK_MGR_PROTOCOL_LINK_INDEX_SIZE, 100);
             //this->theGroupListMgrObject = phwangListMgrMalloc("GROUP", GROUP_MGR_PROTOCOL_GROUP_ID_SIZE, GROUP_MGR_PROTOCOL_GROUP_INDEX_SIZE, 500);
             //this->startWatchDogThread();
