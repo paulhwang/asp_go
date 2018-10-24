@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PhwangGo.Phwang.ListMgr
+namespace PhwangGo.PhwangUtils.ListMgr
 {
     public class ListMgrClass
     {
@@ -61,11 +61,17 @@ namespace PhwangGo.Phwang.ListMgr
 
         private void logit(string str0_val, string str1_val)
         {
+            //char s[LOGIT_BUF_SIZE];
+            //sprintf(s, "%s(%s)::%s", this->objectName(), this->theCallerName, str0_val);
+            //phwangLogit(s, str1_val);
 
         }
 
         private void abend(string str0_val, string str1_val)
         {
+            //char s[LOGIT_BUF_SIZE];
+            //sprintf(s, "%s(%s)::%s", this->objectName(), this->theCallerName, str0_val);
+            //phwangAbend(s, str1_val);
 
         }
     }
