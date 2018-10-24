@@ -11,6 +11,7 @@ namespace Phwang.Fabric
         private string ObjectName = "DFabricClass";
 
         private FabricRootClass FabricRootObject { get; }
+        PhwangUtils.TpServerClass TpServerObject { get; }
 
         public DFabricClass(FabricRootClass fabric_root_class_val)
         {
@@ -18,6 +19,12 @@ namespace Phwang.Fabric
             //this.startNetServer();
             this.debug(true, "UFabricClass", "init");
         }
+
+        void startNetServer()
+        {
+            //this.TpServerObject = phwangMallocTpServer(this, PortProtocolClass.LINK_MGR_PROTOCOL_TRANSPORT_PORT_NUMBER, dFabricTpServerAcceptFunction, this, dFabricTpReceiveDataFunction, this, this.ObjectName);
+        }
+
         private void debug(bool on_off_val, string str0_val, string str1_val)
         {
             if (on_off_val)
