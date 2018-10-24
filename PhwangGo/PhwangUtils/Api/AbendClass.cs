@@ -6,17 +6,16 @@ using System.Threading.Tasks;
 
 namespace Phwang.PhwangUtils
 {
-    public class PhwangApiClass
+    static public class AbendClass
     {
-        public void phwangLogit(string str0_val, string str1_val)
+        static public void phwangLogit(string str0_val, string str1_val)
         {
             Debug.WriteLine(str0_val + " " + str1_val);
         }
 
-        public void phwangAbend(string str0_val, string str1_val)
+        static public void phwangAbend(string str0_val, string str1_val)
         {
             Debug.WriteLine(str0_val + " " + str1_val);
         }
-
     }
 }
