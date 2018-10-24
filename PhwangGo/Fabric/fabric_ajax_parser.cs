@@ -59,6 +59,10 @@ namespace PhwangGo.Fabric
             {
                 return this.processSetupLinkRequest(ajax_fabric_request.data);
             }
+            if (ajax_fabric_request.command == "get_link_data")
+            {
+                return this.processGetLinkDataRequest(ajax_fabric_request.data);
+            }
             return "command " + ajax_fabric_request.command + " not supported";
         }
 
@@ -75,16 +79,36 @@ namespace PhwangGo.Fabric
         private string processSetupLinkRequest (string input_data_var)
         {
             Debug.WriteLine("input_data_var = " + input_data_var);
-            SetupLinkRequestFormat setup_link_request;
-            string toDes = input_data_var;
-            using (var ms = new MemoryStream(Encoding.Unicode.GetBytes(toDes)))
+            SetupLinkRequestFormat format_data;
+            using (var ms = new MemoryStream(Encoding.Unicode.GetBytes(input_data_var)))
             {
                 DataContractJsonSerializer deseralizer = new DataContractJsonSerializer(typeof(SetupLinkRequestFormat));
-                setup_link_request = (SetupLinkRequestFormat)deseralizer.ReadObject(ms);// //反序列化ReadObject
-                Debug.WriteLine("my_name = " + setup_link_request.my_name);
-                Debug.WriteLine("password = " + setup_link_request.password);
+                format_data = (SetupLinkRequestFormat)deseralizer.ReadObject(ms);// //反序列化ReadObject
+                Debug.WriteLine("my_name = " + format_data.my_name);
+                Debug.WriteLine("password = " + format_data.password);
            }
             string response_data = this.jsonEncodeObject.EncodeLinkSetupResponse(123, "phwang");
+            return response_data;
+        }
+
+        [DataContract]
+        public class GetLinkDataRequestFormat
+        {
+            [DataMember]
+            public int link_id { get; set; }
+        }
+
+        private string processGetLinkDataRequest(string input_data_var)
+        {
+            Debug.WriteLine("input_data_var = " + input_data_var);
+            GetLinkDataRequestFormat format_data;
+            using (var ms = new MemoryStream(Encoding.Unicode.GetBytes(input_data_var)))
+            {
+                DataContractJsonSerializer deseralizer = new DataContractJsonSerializer(typeof(GetLinkDataRequestFormat));
+                format_data = (GetLinkDataRequestFormat)deseralizer.ReadObject(ms);// //反序列化ReadObject
+                Debug.WriteLine("link_id = " + format_data.link_id);
+            }
+            string response_data = this.jsonEncodeObject.EncodeGetLinkDataResponse(123, "phwang");
             return response_data;
         }
     }
