@@ -7,9 +7,10 @@ namespace Phwang.PhwangUtils
 {
     public class ListMgrClass
     {
-        private int LIST_MGR_ID_INDEX_ARRAY_SIZE { get; }
-        private int LIST_MGR_MAX_GLOBAL_LIST_ID { get; }
-        private string ObjectName { get; }
+        private const int LIST_MGR_MAX_GLOBAL_LIST_ID = 9999;
+        private const int LIST_MGR_ID_INDEX_ARRAY_SIZE = 1000;
+        private string ObjectName = "ListMgrClass";
+
         private string theCallerName { get; }
         private int IdSize { get; }
         private int IndexSize { get; }
@@ -23,10 +24,6 @@ namespace Phwang.PhwangUtils
 
         public ListMgrClass(string caller_name_val, int id_size_val, int index_size_val, int global_entry_id_val)
         {
-            this.LIST_MGR_MAX_GLOBAL_LIST_ID = 9999;
-            this.LIST_MGR_ID_INDEX_ARRAY_SIZE = 1000;
-            this.ObjectName = "ListMgrClass";
-
             this.theCallerName = caller_name_val;
             this.IdSize = id_size_val;
             this.IndexSize = index_size_val;
@@ -42,8 +39,8 @@ namespace Phwang.PhwangUtils
                 //this->abend("ListMgrClass", "pthread_mutex_init fail");
             }
 
-            this.EntryTableArray = new ListEntryClass[this.LIST_MGR_ID_INDEX_ARRAY_SIZE];
-            for (int i = 0; i < this.LIST_MGR_ID_INDEX_ARRAY_SIZE; i++)
+            this.EntryTableArray = new ListEntryClass[LIST_MGR_ID_INDEX_ARRAY_SIZE];
+            for (int i = 0; i < LIST_MGR_ID_INDEX_ARRAY_SIZE; i++)
             {
                 EntryTableArray[i] = null;
             }
@@ -53,7 +50,7 @@ namespace Phwang.PhwangUtils
 
         private int AllocEntryId()
         {
-            if (this.GlobalEntryId >= this.LIST_MGR_MAX_GLOBAL_LIST_ID)
+            if (this.GlobalEntryId >= LIST_MGR_MAX_GLOBAL_LIST_ID)
             {
                 this.GlobalEntryId = 0;
             }
@@ -63,7 +60,7 @@ namespace Phwang.PhwangUtils
 
         private int AllocEntryIndex()
         {
-            for (int i = 0; i < this.LIST_MGR_ID_INDEX_ARRAY_SIZE; i++)
+            for (int i = 0; i < LIST_MGR_ID_INDEX_ARRAY_SIZE; i++)
             {
                 if (this.EntryTableArray[i] == null)
                 {
@@ -85,7 +82,6 @@ namespace Phwang.PhwangUtils
             if (on_off_val)
                 this.logit(str0_val, str1_val);
         }
-
 
         private void logit(string str0_val, string str1_val)
         {

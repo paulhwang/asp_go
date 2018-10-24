@@ -20,17 +20,20 @@ namespace Phwang.Fabric
 
     public class FabricRootClass
     {
-        private string ObjectName { get; }
+        private string ObjectName = "FabricRootClass";
+
         private PhwangUtils.PhwangApiClass PhwangApiObject { get; }
         private PhwangUtils.ListMgrClass ListMgrObject { get; }
 
         public FabricRootClass()
         {
-            this.ObjectName = "FabricRootClass";
-            this.PhwangApiObject = new PhwangUtils.PhwangApiClass();
-            this.debug(true, "FabricRootClass", "init");
+             this.PhwangApiObject = new PhwangUtils.PhwangApiClass();
 
             this.ListMgrObject = new PhwangUtils.ListMgrClass("LINK", FabricProtocalClass.LINK_MGR_PROTOCOL_LINK_ID_SIZE, FabricProtocalClass.LINK_MGR_PROTOCOL_LINK_INDEX_SIZE, 100);
+            //this->theGroupListMgrObject = phwangListMgrMalloc("GROUP", GROUP_MGR_PROTOCOL_GROUP_ID_SIZE, GROUP_MGR_PROTOCOL_GROUP_INDEX_SIZE, 500);
+            //this->startWatchDogThread();
+
+            this.debug(true, "FabricRootClass", "init");
         }
 
         private void debug(bool on_off_val, string str0_val, string str1_val)
@@ -41,12 +44,12 @@ namespace Phwang.Fabric
 
         private void logit(string str0_val, string str1_val)
         {
-            this.PhwangApiObject.phwangLogit(this.ObjectName + "::" + str0_val, str1_val);
+            PhwangUtils.AbendClass.phwangLogit(this.ObjectName + "::" + str0_val, str1_val);
         }
 
         private void abend(string str0_val, string str1_val)
         {
-            this.PhwangApiObject.phwangAbend(this.ObjectName + "::" + str0_val, str1_val);
+            PhwangUtils.AbendClass.phwangAbend(this.ObjectName + "::" + str0_val, str1_val);
         }
     }
 }
