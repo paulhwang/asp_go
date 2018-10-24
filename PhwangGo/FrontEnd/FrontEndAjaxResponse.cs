@@ -12,9 +12,9 @@ namespace PhwangGo.FrontEnd
 {
     public class FabricAjaxResponseClass
     {
-        private FabricAjaxParserClass AjaxParserObject { get; }
+        private FrontEndAjaxParserClass AjaxParserObject { get; }
 
-        public FabricAjaxResponseClass(FabricAjaxParserClass ajax_parser_object_var)
+        public FabricAjaxResponseClass(FrontEndAjaxParserClass ajax_parser_object_var)
         {
             this.AjaxParserObject = ajax_parser_object_var;
         }

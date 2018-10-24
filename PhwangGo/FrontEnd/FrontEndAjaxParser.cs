@@ -10,14 +10,14 @@ using System.Diagnostics;
 
 namespace PhwangGo.FrontEnd
 {
-    public class FabricAjaxParserClass
+    public class FrontEndAjaxParserClass
     {
         private object debug;
 
         private FrontEndRootClass RootObject { get; }
         private FabricAjaxResponseClass FabricAjaxResponseObject { get; }
 
-        public FabricAjaxParserClass(FrontEndRootClass root_object_val)
+        public FrontEndAjaxParserClass(FrontEndRootClass root_object_val)
         {
             this.RootObject = root_object_val;
             this.FabricAjaxResponseObject = new FabricAjaxResponseClass(this);

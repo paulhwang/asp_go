@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 namespace PhwangGo.FrontEnd
 {
 
-    public class FabricGoServiceClass
+    public class FrontEndGoServiceClass
     {
         private FrontEndRootClass FabricRootObject { get; }
         private int GlobalAjaxId { get; set; }
 
-        public FabricGoServiceClass(FrontEndRootClass root_object_val)
+        public FrontEndGoServiceClass(FrontEndRootClass root_object_val)
         {
             this.FabricRootObject = root_object_val;
         }
