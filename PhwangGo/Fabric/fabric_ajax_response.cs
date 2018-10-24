@@ -12,11 +12,11 @@ namespace PhwangGo.Fabric
 {
     public class FabricAjaxResponseClass
     {
-        private FabricAjaxParserClass FabricAjaxParserObject { get; }
+        private FabricAjaxParserClass AjaxParserObject { get; }
 
-        public FabricAjaxResponseClass(FabricAjaxParserClass ajax_web_service_object_var)
+        public FabricAjaxResponseClass(FabricAjaxParserClass ajax_parser_object_var)
         {
-            this.FabricAjaxParserObject = ajax_web_service_object_var;
+            this.AjaxParserObject = ajax_parser_object_var;
         }
 
         [DataContract]

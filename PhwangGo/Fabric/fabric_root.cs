@@ -14,7 +14,6 @@ namespace PhwangGo.Fabric
         {
             this.FabricGoServiceObject = new FabricGoServiceClass(this);
             this.FabricAjaxParserObject = new FabricAjaxParserClass(this);
-            return;
-        }
+         }
     }
 }

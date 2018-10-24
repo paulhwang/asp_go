@@ -14,13 +14,13 @@ namespace PhwangGo.Fabric
     {
         private object debug;
 
-        private FabricRootClass rootObject { get; }
-        private FabricAjaxResponseClass jsonEncodeObject { get; }
+        private FabricRootClass RootObject { get; }
+        private FabricAjaxResponseClass AjaxResponseObject { get; }
 
         public FabricAjaxParserClass(FabricRootClass root_object_val)
         {
-            this.rootObject = root_object_val;
-            this.jsonEncodeObject = new FabricAjaxResponseClass(this);
+            this.RootObject = root_object_val;
+            this.AjaxResponseObject = new FabricAjaxResponseClass(this);
         }
 
         public string ProcessAjaxInput(string input_data_var)
@@ -88,7 +88,7 @@ namespace PhwangGo.Fabric
                 Debug.WriteLine("password = " + format_data.password);
            }
 
-            string response_data = this.jsonEncodeObject.GenerateSetupLinkResponse(123, "phwang");
+            string response_data = this.AjaxResponseObject.GenerateSetupLinkResponse(123, "phwang");
             return response_data;
         }
 
@@ -110,7 +110,7 @@ namespace PhwangGo.Fabric
                 Debug.WriteLine("link_id = " + format_data.link_id);
             }
 
-            string response_data = this.jsonEncodeObject.GenerateGetLinkDataResponse(123, "phwang");
+            string response_data = this.AjaxResponseObject.GenerateGetLinkDataResponse(123, "phwang");
             return response_data;
         }
     }
