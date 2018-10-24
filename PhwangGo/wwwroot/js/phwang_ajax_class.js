@@ -64,12 +64,14 @@ function PhwangAjaxClass(phwang_object_val) {
         };
     };
     this.setupLink = function (link_val, password_val) {
+        var output_data = JSON.stringify({
+            my_name: link_val.myName(),
+            password: password_val,
+        });
         var output = JSON.stringify({
             command: this.phwangAjaxProtocolObject().SETUP_LINK_COMMAND(),
-            data: "data",
-            //packet_id: this.ajaxPacketId(),
-            my_name: link_val.myName(),
-            //password: password_val,
+            packet_id: this.ajaxPacketId(),
+            data: output_data,
         });
         this.debug(true, "setupLink", "output=" + output);
         this.transmitAjaxRequest(output);
