@@ -7,13 +7,13 @@ namespace PhwangGo.FrontEnd
 {
     public static class GlobalVariableClass
     {
-        static public FabricRootClass fabricRootObject { get; set; }
+        static public FrontRootClass fabricRootObject { get; set; }
 
-        public static FabricRootClass getGoRoot()
+        public static FrontRootClass getGoRoot()
         {
             if (fabricRootObject == null)
             {
-                fabricRootObject = new FabricRootClass();
+                fabricRootObject = new FrontRootClass();
             }
             return fabricRootObject;
         }

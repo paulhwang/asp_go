@@ -9,7 +9,7 @@ namespace PhwangGo.Controllers
 {
     public class AjaxController : Controller
     {
-        private FrontEnd.FabricRootClass FabricRoot { get; }
+        private FrontEnd.FrontRootClass FabricRoot { get; }
 
         public AjaxController()
         {
