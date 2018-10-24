@@ -50,7 +50,7 @@ namespace Phwang.Controllers
 
             }
 
-            return this.FabricRoot.FabricAjaxParserObject.ProcessAjaxInput(input_data);
+            return this.FabricRoot.FrontEndAjaxParserObject.ProcessAjaxInput(input_data);
         }
     }
 }

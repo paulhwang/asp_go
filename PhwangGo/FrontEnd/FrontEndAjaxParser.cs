@@ -14,13 +14,13 @@ namespace Phwang.FrontEnd
     {
         private object debug;
 
-        private FrontEndRootClass RootObject { get; }
-        private FabricAjaxResponseClass FabricAjaxResponseObject { get; }
+        private FrontEndRootClass FrontEndRootObject { get; }
+        private FrontEndAjaxResponseClass FrontEndAjaxResponseObject { get; }
 
         public FrontEndAjaxParserClass(FrontEndRootClass root_object_val)
         {
-            this.RootObject = root_object_val;
-            this.FabricAjaxResponseObject = new FabricAjaxResponseClass(this);
+            this.FrontEndRootObject = root_object_val;
+            this.FrontEndAjaxResponseObject = new FrontEndAjaxResponseClass(this);
         }
 
         public string ProcessAjaxInput(string input_data_var)
@@ -88,7 +88,7 @@ namespace Phwang.FrontEnd
                 Debug.WriteLine("password = " + format_data.password);
            }
 
-            string response_data = this.FabricAjaxResponseObject.GenerateSetupLinkResponse(123, "phwang");
+            string response_data = this.FrontEndAjaxResponseObject.GenerateSetupLinkResponse(123, "phwang");
             return response_data;
         }
 
@@ -110,7 +110,7 @@ namespace Phwang.FrontEnd
                 Debug.WriteLine("link_id = " + format_data.link_id);
             }
 
-            string response_data = this.FabricAjaxResponseObject.GenerateGetLinkDataResponse(123, "phwang");
+            string response_data = this.FrontEndAjaxResponseObject.GenerateGetLinkDataResponse(123, "phwang");
             return response_data;
         }
     }

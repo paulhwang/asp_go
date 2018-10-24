@@ -5,18 +5,23 @@ using System.Threading.Tasks;
 
 namespace Phwang.GlobalVariables
 {
-    public static class GlobalVariableClass
+    public class GlobalVariableClass
     {
         static public FrontEnd.FrontEndRootClass FrontEndRootObject { get; set; }
         static public Fabric.FabricRootClass FabricRootObject { get; set; }
 
-        public static FrontEnd.FrontEndRootClass getGoRoot()
+        public static void Initilization()
         {
             if (FrontEndRootObject == null)
             {
                 FabricRootObject = new Fabric.FabricRootClass();
                 FrontEndRootObject = new FrontEnd.FrontEndRootClass();
             }
+        }
+
+        public static FrontEnd.FrontEndRootClass getGoRoot()
+        {
+            Initilization();
             return FrontEndRootObject;
         }
     }

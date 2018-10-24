@@ -7,13 +7,13 @@ namespace Phwang.FrontEnd
 {
     public class FrontEndRootClass
     {
-        public FrontEndAjaxParserClass FabricAjaxParserObject { get; }
-        public FrontEndGoServiceClass FabricGoServiceObject { get; }
+        public FrontEndAjaxParserClass FrontEndAjaxParserObject { get; }
+        public FrontEndGoServiceClass FrontEndGoServiceObject { get; }
 
         public FrontEndRootClass()
         {
-            this.FabricGoServiceObject = new FrontEndGoServiceClass(this);
-            this.FabricAjaxParserObject = new FrontEndAjaxParserClass(this);
+            this.FrontEndGoServiceObject = new FrontEndGoServiceClass(this);
+            this.FrontEndAjaxParserObject = new FrontEndAjaxParserClass(this);
          }
     }
 }

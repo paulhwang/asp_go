@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace Phwang.FrontEnd
 {
-    public class FabricAjaxResponseClass
+    public class FrontEndAjaxResponseClass
     {
         private FrontEndAjaxParserClass AjaxParserObject { get; }
 
-        public FabricAjaxResponseClass(FrontEndAjaxParserClass ajax_parser_object_var)
+        public FrontEndAjaxResponseClass(FrontEndAjaxParserClass ajax_parser_object_var)
         {
             this.AjaxParserObject = ajax_parser_object_var;
         }

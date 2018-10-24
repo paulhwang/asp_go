@@ -19,6 +19,20 @@ namespace Phwang.PhwangUtils
 
         }
 
+        public void StartServerThread()
+        {
+            this.debug(false, "startServerThread", "");
+ 
+            /*
+            int r = pthread_create(&this->theServerThread, 0, transportServerThreadFunction, this);
+            if (r)
+            {
+                printf("Error - startServerThread() return code: %d\n", r);
+                return;
+            }
+            */
+        }
+
         private void debug(bool on_off_val, string str0_val, string str1_val)
         {
             if (on_off_val)
