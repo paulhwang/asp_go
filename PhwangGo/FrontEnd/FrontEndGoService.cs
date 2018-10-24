@@ -8,10 +8,10 @@ namespace PhwangGo.FrontEnd
 
     public class FabricGoServiceClass
     {
-        private FrontRootClass FabricRootObject { get; }
+        private FrontEndRootClass FabricRootObject { get; }
         private int GlobalAjaxId { get; set; }
 
-        public FabricGoServiceClass(FrontRootClass root_object_val)
+        public FabricGoServiceClass(FrontEndRootClass root_object_val)
         {
             this.FabricRootObject = root_object_val;
         }

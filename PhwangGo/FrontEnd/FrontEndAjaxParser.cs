@@ -14,10 +14,10 @@ namespace PhwangGo.FrontEnd
     {
         private object debug;
 
-        private FrontRootClass RootObject { get; }
+        private FrontEndRootClass RootObject { get; }
         private FabricAjaxResponseClass FabricAjaxResponseObject { get; }
 
-        public FabricAjaxParserClass(FrontRootClass root_object_val)
+        public FabricAjaxParserClass(FrontEndRootClass root_object_val)
         {
             this.RootObject = root_object_val;
             this.FabricAjaxResponseObject = new FabricAjaxResponseClass(this);

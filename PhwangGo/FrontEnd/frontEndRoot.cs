@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 
 namespace PhwangGo.FrontEnd
 {
-    public class FrontRootClass
+    public class FrontEndRootClass
     {
         public FabricAjaxParserClass FabricAjaxParserObject { get; }
         public FabricGoServiceClass FabricGoServiceObject { get; }
 
-        public FrontRootClass()
+        public FrontEndRootClass()
         {
             this.FabricGoServiceObject = new FabricGoServiceClass(this);
             this.FabricAjaxParserObject = new FabricAjaxParserClass(this);
