@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace PhwangGo.Fabric
 {
-    public class FabricJsonEncodeClass
+    public class FabricAjaxResponseClass
     {
         private FabricAjaxParserClass FabricAjaxParserObject { get; }
 
-        public FabricJsonEncodeClass (FabricAjaxParserClass ajax_web_service_object_var)
+        public FabricAjaxResponseClass(FabricAjaxParserClass ajax_web_service_object_var)
         {
             this.FabricAjaxParserObject = ajax_web_service_object_var;
         }

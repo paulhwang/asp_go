@@ -15,12 +15,12 @@ namespace PhwangGo.Fabric
         private object debug;
 
         private FabricRootClass rootObject { get; }
-        private FabricJsonEncodeClass jsonEncodeObject { get; }
+        private FabricAjaxResponseClass jsonEncodeObject { get; }
 
         public FabricAjaxParserClass(FabricRootClass root_object_val)
         {
             this.rootObject = root_object_val;
-            this.jsonEncodeObject = new FabricJsonEncodeClass(this);
+            this.jsonEncodeObject = new FabricAjaxResponseClass(this);
         }
 
         public string ProcessAjaxInput(string input_data_var)
