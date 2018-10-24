@@ -9,11 +9,11 @@ namespace Phwang.Controllers
 {
     public class AjaxController : Controller
     {
-        private FrontEnd.FrontEndRootClass FabricRoot { get; }
+        private FrontEnd.FrontEndRootClass FrontEndRoot { get; }
 
         public AjaxController()
         {
-            this.FabricRoot = GlobalVariables.GlobalVariableClass.getGoRoot();
+            this.FrontEndRoot = GlobalVariables.GlobalVariableClass.getGoRoot();
         }
 
         [HttpGet]
@@ -50,7 +50,7 @@ namespace Phwang.Controllers
 
             }
 
-            return this.FabricRoot.FrontEndAjaxParserObject.ProcessAjaxInput(input_data);
+            return this.FrontEndRoot.FrontEndAjaxParserObject.ProcessAjaxInput(input_data);
         }
     }
 }

@@ -6,10 +6,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using PhwangGo.Models;
 
-namespace PhwangGo.Controllers
+namespace Phwang.Controllers
 {
     public class HomeController : Controller
     {
+        public HomeController()
+        {
+            GlobalVariables.GlobalVariableClass.getGoRoot();
+        }
+
         public IActionResult Index()
         {
             ViewBag.phwang = "phwang";
