@@ -3,19 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PhwangGo.FrontEnd
+namespace PhwangGo.GlobalVariables
 {
     public static class GlobalVariableClass
     {
-        static public FrontRootClass fabricRootObject { get; set; }
+        static public FrontEnd.FrontRootClass FrontEndRootObject { get; set; }
+        static public Fabric.FabricRootClass FabricRootObject { get; set; }
 
-        public static FrontRootClass getGoRoot()
+        public static FrontEnd.FrontRootClass getGoRoot()
         {
-            if (fabricRootObject == null)
+            if (FrontEndRootObject == null)
             {
-                fabricRootObject = new FrontRootClass();
+                FrontEndRootObject = new FrontEnd.FrontRootClass();
             }
-            return fabricRootObject;
+            if (FabricRootObject == null)
+            {
+                FabricRootObject = new Fabric.FabricRootClass();
+            }
+            return FrontEndRootObject;
         }
     }
 }

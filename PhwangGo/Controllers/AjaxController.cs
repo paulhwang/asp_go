@@ -13,7 +13,7 @@ namespace PhwangGo.Controllers
 
         public AjaxController()
         {
-            this.FabricRoot = FrontEnd.GlobalVariableClass.getGoRoot();
+            this.FabricRoot = GlobalVariables.GlobalVariableClass.getGoRoot();
         }
 
         [HttpGet]
