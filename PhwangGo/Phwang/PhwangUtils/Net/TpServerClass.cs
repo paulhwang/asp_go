@@ -9,11 +9,40 @@ namespace Phwang.PhwangUtils
     {
         private string ObjectName = "TpServerClass";
 
-        public TpServerClass()
+        private object callerObject { get; }
+        private short thePort { get; }
+        private string theWho { get; }
+
+        //void (* theAcceptCallbackFunc) (void*, void*);
+        //void (* theReceiveCallbackFunc) (void*, void*, void*);
+        //void* theAcceptCallbackParameter;
+        //  void* theReceiveCallbackParameter;
+        //pthread_t theServerThread;
+        int tpTransferObjectIndex { get; }
+
+        public TpServerClass(
+                    Object caller_object_val,
+                    short port_val/*,
+                    void (* accept_callback_func_val) (void*, void*),
+                    void* accept_callback_parameter_val,
+                    void (* receive_callback_func_val) (void*, void*, void*),
+                    void* receive_callback_parameter_val*/,
+                    string who_val)
+
         {
+            this.callerObject = caller_object_val;
+            this.thePort = port_val;
+            //this->theAcceptCallbackFunc = accept_callback_func_val;
+            //this->theReceiveCallbackFunc = receive_callback_func_val;
+            //this->theAcceptCallbackParameter = accept_callback_parameter_val;
+            //this->theReceiveCallbackParameter = receive_callback_parameter_val;
+            this.theWho = who_val;
+            this.tpTransferObjectIndex = 1;
 
+            this.debug(true, who_val, "TpServerClass");
+            //this.debug(true, "TpServerClass", "init");
         }
-
+ 
         public void StartServerThread()
         {
             this.debug(false, "startServerThread", "");
