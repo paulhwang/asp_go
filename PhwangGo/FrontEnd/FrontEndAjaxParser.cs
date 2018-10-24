@@ -8,7 +8,7 @@ using System.IO;
 using System.Text;
 using System.Diagnostics;
 
-namespace PhwangGo.FrontEnd
+namespace Phwang.FrontEnd
 {
     public class FrontEndAjaxParserClass
     {

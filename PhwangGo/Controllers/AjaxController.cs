@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace PhwangGo.Controllers
+namespace Phwang.Controllers
 {
     public class AjaxController : Controller
     {

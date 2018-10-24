@@ -8,7 +8,7 @@ using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PhwangGo.FrontEnd
+namespace Phwang.FrontEnd
 {
     public class FabricAjaxResponseClass
     {

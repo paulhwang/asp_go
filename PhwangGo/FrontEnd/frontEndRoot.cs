@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PhwangGo.FrontEnd
+namespace Phwang.FrontEnd
 {
     public class FrontEndRootClass
     {

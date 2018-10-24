@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PhwangGo.PhwangUtils
+namespace Phwang.PhwangUtils
 {
     public class PhwangApiClass
     {
@@ -18,5 +18,10 @@ namespace PhwangGo.PhwangUtils
             Debug.WriteLine(str0_val + " " + str1_val);
         }
 
-}
+        public void phwangAbend(string str0_val, string str1_val)
+        {
+            Debug.WriteLine(str0_val + " " + str1_val);
+        }
+
+    }
 }

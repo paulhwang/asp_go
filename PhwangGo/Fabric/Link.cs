@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PhwangGo.Fabric
+namespace Phwang.Fabric
 {
     public class LinkClass
     {

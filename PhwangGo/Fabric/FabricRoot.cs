@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PhwangGo.Fabric
+namespace Phwang.Fabric
 {
     public class FabricRootClass
     {
@@ -30,10 +30,7 @@ namespace PhwangGo.Fabric
 
         private void abend(string str0_val, string str1_val)
         {
-            //char s[LOGIT_BUF_SIZE];
-            //sprintf(s, "%s(%s)::%s", this->objectName(), this->theCallerName, str0_val);
-            //phwangAbend(s, str1_val);
-
+            this.PhwangApiObject.phwangAbend(this.ObjectName + "::" + str0_val, str1_val);
         }
     }
 }
