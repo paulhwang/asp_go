@@ -18,7 +18,7 @@ namespace Phwang.PhwangUtils
         private string theWho { get; }
         private Thread serverThread { get; }
 
-        public delegate void TcpAcceptDelegate(object a, object b);
+        public delegate void TcpAcceptDelegate(object a, NetworkStream tcp_transfer_object_var);
 
         TcpAcceptDelegate acceptCallbackFunc;
         //void (* theAcceptCallbackFunc) (void*, void*);
@@ -81,14 +81,9 @@ namespace Phwang.PhwangUtils
             NetworkStream stream = client.GetStream();
             this.debugIt(true, "tcpServerThreadFunction", "after GetStream");
 
-            this.acceptCallbackFunc(null, null);
+            this.acceptCallbackFunc(this.callerObject, stream);
 
-            while (true)
-            {
-                this.TcpReceiveData___(stream);
-                Thread.Sleep(1000);
-            }
-                //int path_id = this.IpcPath().AllocPath(stream);
+            //int path_id = this.IpcPath().AllocPath(stream);
         }
 
         public static void TcpTransmitData(NetworkStream stream_var, string data_var)
@@ -98,19 +93,19 @@ namespace Phwang.PhwangUtils
             writer.Flush();
         }
 
-        public string TcpReceiveData___(NetworkStream stream_var)
+        public static string TcpReceiveData___(NetworkStream stream_var)
         {
             BinaryReader reader = new BinaryReader(stream_var);
 
             try
             {
                 string data = reader.ReadString();
-                this.debugIt(true, "TCpReceiveData: **************data=", data);
+                PhwangUtils.AbendClass.phwangLogit("TCpReceiveData: **************data=", data);
                 return data;
             }
             catch (Exception ex)
             {
-                this.debugIt(true, "TCpReceiveData", "exception");
+                PhwangUtils.AbendClass.phwangLogit("TCpReceiveData", "exception");
                 return null;
             }
         }
