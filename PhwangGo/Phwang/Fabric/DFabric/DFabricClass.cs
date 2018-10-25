@@ -26,13 +26,13 @@ namespace Phwang.Fabric
         {
             this.TpServerObject = PhwangUtils.TcpApiClass.MallocTcpServer(this, PortProtocolClass.LINK_MGR_PROTOCOL_TRANSPORT_PORT_NUMBER, dFabricTpServerAcceptFunction /*, this, dFabricTpReceiveDataFunction, this*/, this.ObjectName);
         }
-        void dFabricTpServerAcceptFunction(object d_fabric_object_val, NetworkStream tp_transfer_object_val)
+        void dFabricTpServerAcceptFunction(object d_fabric_object_val, PhwangUtils.TcpTransferClass tp_transfer_object_val)
         {
             this.debugIt(true, "dFabricTpServerAcceptFunction", "*****************************************");
 
             while (true)
             {
-                PhwangUtils.TcpServerClass.TcpReceiveData___(tp_transfer_object_val);
+                PhwangUtils.TcpServerClass.TcpReceiveData___(tp_transfer_object_val.theStream);
                 Thread.Sleep(1000);
             }
             //((DFabricClass*)d_fabric_object_val)->exportedNetAcceptFunction(tp_transfer_object_val);

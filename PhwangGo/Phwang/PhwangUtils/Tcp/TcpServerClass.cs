@@ -18,7 +18,7 @@ namespace Phwang.PhwangUtils
         private string theWho { get; }
         private Thread serverThread { get; }
 
-        public delegate void TcpAcceptDelegate(object a, NetworkStream tcp_transfer_object_var);
+        public delegate void TcpAcceptDelegate(object a, PhwangUtils.TcpTransferClass tcp_transfer_object_var);
 
         TcpAcceptDelegate acceptCallbackFunc;
         //void (* theAcceptCallbackFunc) (void*, void*);
@@ -81,7 +81,11 @@ namespace Phwang.PhwangUtils
             NetworkStream stream = client.GetStream();
             this.debugIt(true, "tcpServerThreadFunction", "after GetStream");
 
-            this.acceptCallbackFunc(this.callerObject, stream);
+            TcpTransferClass tp_transfer_object = new TcpTransferClass(stream/*, this->theReceiveCallbackFunc, this->theCallerObject*/);
+            //tp_transfer_object->startThreads(this->theTpTransferObjectIndex);
+            //this->theTpTransferObjectIndex++;
+            //this->theAcceptCallbackFunc(this->theCallerObject, tp_transfer_object);
+            this.acceptCallbackFunc(this.callerObject, tp_transfer_object);
 
             //int path_id = this.IpcPath().AllocPath(stream);
         }

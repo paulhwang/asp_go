@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net.Sockets;
 using System.Threading.Tasks;
 
 namespace Phwang.PhwangUtils
@@ -9,8 +11,25 @@ namespace Phwang.PhwangUtils
     {
         private string ObjectName = "TcpTransferClass";
 
-        public TcpTransferClass()
+        //void* theReceiveObject;
+        public NetworkStream theStream { get; }
+        int theIndex;
+
+        //pthread_t theReceiveThread;
+        //pthread_t theReceiveThread2;
+        //pthread_t theTransmitThread;
+        //void* theTransmitQueue;
+        //void* theReceiveQueue;
+
+
+        public TcpTransferClass(NetworkStream stream_val/*, void (* receive_callback_val)(void*, void*, void*), void* receive_object_val*/)
         {
+            this.theStream = stream_val;
+            //this->theReceiveCallback = receive_callback_val;
+            //this->theReceiveObject = receive_object_val;
+
+            //this->theReceiveQueue = phwangMallocSuspendedQueue(TP_TRANSFER_CLASS_RECEIVE_QUEUE_SIZE);
+            //this->theTransmitQueue = phwangMallocSuspendedQueue(TP_TRANSFER_CLASS_TRANSMIT_QUEUE_SIZE);
 
         }
 
