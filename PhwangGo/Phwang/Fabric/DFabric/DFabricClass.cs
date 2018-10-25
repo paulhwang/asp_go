@@ -38,6 +38,19 @@ namespace Phwang.Fabric
             //((DFabricClass*)d_fabric_object_val)->exportedNetAcceptFunction(tp_transfer_object_val);
         }
 
+        void dFabricTpReceiveDataFunction(object tp_transfer_object_val, object d_fabric_object_val, object data_val)
+        {
+            /*
+            if (*((char*)data_val) != WEB_FABRIC_PROTOCOL_COMMAND_IS_GET_LINK_DATA)
+            {
+                printf("Golbal::dFabricTpReceiveDataFunction index=%d)))))))))))))))))))))))))))))))))))))))))\n", ((TpTransferClass*)tp_transfer_object_val)->index());
+                phwangLogit("Golbal::dFabricTpReceiveDataFunction", (char*)data_val);
+            }
+            */
+           //((DFabricClass*)d_fabric_object_val)->exportedparseFunction(tp_transfer_object_val, (char*)data_val);
+            //phwangFree(data_val, "dFabricTpReceiveDataFunction");
+        }
+
         private void debugIt(bool on_off_val, string str0_val, string str1_val)
         {
             if (on_off_val)

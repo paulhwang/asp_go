@@ -19,6 +19,7 @@ namespace Phwang.PhwangUtils
         private Thread serverThread { get; }
 
         public delegate void TcpAcceptDelegate(object a, PhwangUtils.TcpTransferClass tcp_transfer_object_var);
+        public delegate void TcpReceiveDataDelegae(object tp_transfer_object_val, object d_fabric_object_val, object data_val);
 
         TcpAcceptDelegate acceptCallbackFunc;
         //void (* theAcceptCallbackFunc) (void*, void*);
