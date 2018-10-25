@@ -1,23 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Phwang.PhwangUtils
 {
     public class TcpServerClass
     {
-        private string ObjectName = "TcpServerClass";
+        private string objectName = "TcpServerClass";
 
         private object callerObject { get; }
-        private short thePort { get; }
+        private string ipAddr { get; }
+        private short tcpPort { get; }
         private string theWho { get; }
+        private Thread serverThread { get; }
 
         //void (* theAcceptCallbackFunc) (void*, void*);
         //void (* theReceiveCallbackFunc) (void*, void*, void*);
         //void* theAcceptCallbackParameter;
         //  void* theReceiveCallbackParameter;
-        //pthread_t theServerThread;
         int tpTransferObjectIndex { get; }
 
         public TcpServerClass(
@@ -31,7 +34,8 @@ namespace Phwang.PhwangUtils
 
         {
             this.callerObject = caller_object_val;
-            this.thePort = port_val;
+            this.ipAddr = "127.0.0.1";
+            this.tcpPort = port_val;
             //this->theAcceptCallbackFunc = accept_callback_func_val;
             //this->theReceiveCallbackFunc = receive_callback_func_val;
             //this->theAcceptCallbackParameter = accept_callback_parameter_val;
@@ -39,38 +43,57 @@ namespace Phwang.PhwangUtils
             this.theWho = who_val;
             this.tpTransferObjectIndex = 1;
 
-            this.debug(true, who_val, "TpServerClass");
+            this.debugIt(true, who_val, "TpServerClass");
             //this.debug(true, "TpServerClass", "init");
         }
  
         public void StartServerThread()
         {
-            this.debug(false, "startServerThread", "");
- 
-            /*
-            int r = pthread_create(&this->theServerThread, 0, transportServerThreadFunction, this);
-            if (r)
+            this.debugIt(true, "startServerThread", "invoker");
+
+            Thread server_thread = new Thread(tcpServerThreadFunction);
+            if (server_thread == null)
             {
-                printf("Error - startServerThread() return code: %d\n", r);
+                this.abendIt("StartServerThread", "null serverThread");
                 return;
             }
-            */
+            server_thread.Start(new IpAddrPort(this.ipAddr, this.tcpPort));
         }
 
-        private void debug(bool on_off_val, string str0_val, string str1_val)
+        private void tcpServerThreadFunction(object tp_server_object_val)
+        {
+            AbendClass.phwangLogit( "tcpServerThreadFunction", "start");
+
+            while (true)
+            {
+                TcpListener listener = new TcpListener(System.Net.IPAddress.Parse(this.ipAddr), this.tcpPort);
+                listener.Start();
+                this.debugIt(true, "tcpServerThreadFunction", "after listener.Start()");
+
+                TcpClient client = listener.AcceptTcpClient();
+                this.debugIt(true, "tcpServerThreadFunction", "after AcceptTcpClient*******************");
+
+                NetworkStream stream = client.GetStream();
+                this.debugIt(true, "tcpServerThreadFunction", "after GetStream");
+
+                //int path_id = this.IpcPath().AllocPath(stream);
+            }
+        }
+
+        private void debugIt(bool on_off_val, string str0_val, string str1_val)
         {
             if (on_off_val)
-                this.logit(str0_val, str1_val);
+                this.logitIt(str0_val, str1_val);
         }
 
-        private void logit(string str0_val, string str1_val)
+        private void logitIt(string str0_val, string str1_val)
         {
-            PhwangUtils.AbendClass.phwangLogit(this.ObjectName + "::" + str0_val, str1_val);
+            PhwangUtils.AbendClass.phwangLogit(this.objectName + "::" + str0_val, str1_val);
         }
 
-        private void abend(string str0_val, string str1_val)
+        private void abendIt(string str0_val, string str1_val)
         {
-            PhwangUtils.AbendClass.phwangAbend(this.ObjectName + "::" + str0_val, str1_val);
+            PhwangUtils.AbendClass.phwangAbend(this.objectName + "::" + str0_val, str1_val);
         }
     }
 }
