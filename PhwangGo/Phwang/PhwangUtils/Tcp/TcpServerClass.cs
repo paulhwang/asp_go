@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Sockets;
 using System.Threading;
@@ -17,6 +18,9 @@ namespace Phwang.PhwangUtils
         private string theWho { get; }
         private Thread serverThread { get; }
 
+        public delegate void TcpAcceptDelegate(object a, object b);
+
+        TcpAcceptDelegate acceptCallbackFunc;
         //void (* theAcceptCallbackFunc) (void*, void*);
         //void (* theReceiveCallbackFunc) (void*, void*, void*);
         //void* theAcceptCallbackParameter;
@@ -25,17 +29,20 @@ namespace Phwang.PhwangUtils
 
         public TcpServerClass(
                     Object caller_object_val,
-                    short port_val/*,
+                    short port_val,
+                    TcpAcceptDelegate accept_callback_func_val,
+                    /*,
                     void (* accept_callback_func_val) (void*, void*),
                     void* accept_callback_parameter_val,
                     void (* receive_callback_func_val) (void*, void*, void*),
-                    void* receive_callback_parameter_val*/,
+                    void* receive_callback_parameter_val*/
                     string who_val)
 
         {
             this.callerObject = caller_object_val;
             this.ipAddr = "127.0.0.1";
             this.tcpPort = port_val;
+            this.acceptCallbackFunc = accept_callback_func_val;
             //this->theAcceptCallbackFunc = accept_callback_func_val;
             //this->theReceiveCallbackFunc = receive_callback_func_val;
             //this->theAcceptCallbackParameter = accept_callback_parameter_val;
@@ -64,19 +71,47 @@ namespace Phwang.PhwangUtils
         {
             AbendClass.phwangLogit( "tcpServerThreadFunction", "start");
 
+            TcpListener listener = new TcpListener(System.Net.IPAddress.Parse(this.ipAddr), this.tcpPort);
+            listener.Start();
+            this.debugIt(true, "tcpServerThreadFunction", "after listener.Start()");
+
+            TcpClient client = listener.AcceptTcpClient();
+            this.debugIt(true, "tcpServerThreadFunction", "after AcceptTcpClient*******************");
+
+            NetworkStream stream = client.GetStream();
+            this.debugIt(true, "tcpServerThreadFunction", "after GetStream");
+
+            this.acceptCallbackFunc(null, null);
+
             while (true)
             {
-                TcpListener listener = new TcpListener(System.Net.IPAddress.Parse(this.ipAddr), this.tcpPort);
-                listener.Start();
-                this.debugIt(true, "tcpServerThreadFunction", "after listener.Start()");
-
-                TcpClient client = listener.AcceptTcpClient();
-                this.debugIt(true, "tcpServerThreadFunction", "after AcceptTcpClient*******************");
-
-                NetworkStream stream = client.GetStream();
-                this.debugIt(true, "tcpServerThreadFunction", "after GetStream");
-
+                this.TcpReceiveData___(stream);
+                Thread.Sleep(1000);
+            }
                 //int path_id = this.IpcPath().AllocPath(stream);
+        }
+
+        public static void TcpTransmitData(NetworkStream stream_var, string data_var)
+        {
+            BinaryWriter writer = new BinaryWriter(stream_var);
+            writer.Write(data_var);
+            writer.Flush();
+        }
+
+        public string TcpReceiveData___(NetworkStream stream_var)
+        {
+            BinaryReader reader = new BinaryReader(stream_var);
+
+            try
+            {
+                string data = reader.ReadString();
+                this.debugIt(true, "TCpReceiveData: **************data=", data);
+                return data;
+            }
+            catch (Exception ex)
+            {
+                this.debugIt(true, "TCpReceiveData", "exception");
+                return null;
             }
         }
 

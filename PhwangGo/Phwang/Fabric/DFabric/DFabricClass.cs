@@ -22,7 +22,12 @@ namespace Phwang.Fabric
 
         void startNetServer()
         {
-            this.TpServerObject = PhwangUtils.TcpApiClass.MallocTcpServer(this, PortProtocolClass.LINK_MGR_PROTOCOL_TRANSPORT_PORT_NUMBER/*, dFabricTpServerAcceptFunction, this, dFabricTpReceiveDataFunction, this*/, this.ObjectName);
+            this.TpServerObject = PhwangUtils.TcpApiClass.MallocTcpServer(this, PortProtocolClass.LINK_MGR_PROTOCOL_TRANSPORT_PORT_NUMBER, dFabricTpServerAcceptFunction /*, this, dFabricTpReceiveDataFunction, this*/, this.ObjectName);
+        }
+        void dFabricTpServerAcceptFunction(object d_fabric_object_val, object tp_transfer_object_val)
+        {
+            this.debugIt(true, "dFabricTpServerAcceptFunction", "*****************************************");
+            //((DFabricClass*)d_fabric_object_val)->exportedNetAcceptFunction(tp_transfer_object_val);
         }
 
         private void debugIt(bool on_off_val, string str0_val, string str1_val)
