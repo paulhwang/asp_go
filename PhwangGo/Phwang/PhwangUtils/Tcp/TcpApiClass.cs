@@ -7,7 +7,7 @@ namespace Phwang.PhwangUtils
 {
     public class TcpApiClass
     {
-        public static TcpServerClass MallocTpServer(Object caller_object_val,
+        public static TcpServerClass MallocTcpServer(Object caller_object_val,
                                 short port_val//,
                                 /*
                                 void (* accept_callback_func_val)(void*, void*),
