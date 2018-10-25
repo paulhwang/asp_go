@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PhwangGo.Phwang.GlobalVariables.PhwangUtils.Test
+namespace Phwang.PhwangUtils
 {
-    public class IpcTest_rpgram
+    public class IpcTestProgram
     {
     }
 }
