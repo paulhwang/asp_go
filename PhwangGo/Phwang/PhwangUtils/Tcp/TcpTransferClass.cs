@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace Phwang.PhwangUtils
 {
-    public class TpTransferClass
+    public class TcpTransferClass
     {
-        private string ObjectName = "TpTransferClass";
+        private string ObjectName = "TcpTransferClass";
 
-        public TpTransferClass()
+        public TcpTransferClass()
         {
 
         }

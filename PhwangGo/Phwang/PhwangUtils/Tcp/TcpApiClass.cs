@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace Phwang.PhwangUtils
 {
-    public class TpApiClass
+    public class TcpApiClass
     {
-        public static TpServerClass MallocTpServer(Object caller_object_val,
+        public static TcpServerClass MallocTpServer(Object caller_object_val,
                                 short port_val//,
                                 /*
                                 void (* accept_callback_func_val)(void*, void*),
@@ -16,7 +16,7 @@ namespace Phwang.PhwangUtils
                                 void* receive_callback_parameter_val*/,
                                 string who_val)
         {
-            TpServerClass tp_server_object = new TpServerClass(
+            TcpServerClass tp_server_object = new TcpServerClass(
                     caller_object_val,
                     port_val/*,
                     accept_callback_func_val,

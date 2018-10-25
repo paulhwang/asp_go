@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace Phwang.PhwangUtils
 {
-    public class TpServerClass
+    public class TcpServerClass
     {
-        private string ObjectName = "TpServerClass";
+        private string ObjectName = "TcpServerClass";
 
         private object callerObject { get; }
         private short thePort { get; }
@@ -20,7 +20,7 @@ namespace Phwang.PhwangUtils
         //pthread_t theServerThread;
         int tpTransferObjectIndex { get; }
 
-        public TpServerClass(
+        public TcpServerClass(
                     Object caller_object_val,
                     short port_val/*,
                     void (* accept_callback_func_val) (void*, void*),
