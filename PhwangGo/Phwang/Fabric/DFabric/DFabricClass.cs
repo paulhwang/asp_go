@@ -25,7 +25,7 @@ namespace Phwang.Fabric
         private string objectName = "DFabricClass";
 
         private FabricRootClass fabricRootObject { get; }
-        private DFabricResponseClass dFabricObject { get; }
+        private DFabricResponseClass dFabricResponseObject { get; }
         private PhwangUtils.BinderClass binderObject { get; }
         private Thread receiveThread { get; set; }
 
@@ -33,7 +33,7 @@ namespace Phwang.Fabric
         {
             this.debugIt(true, "DFabricClass", "init start");
             this.fabricRootObject = fabric_root_class_val;
-            this.dFabricObject = new DFabricResponseClass(this);
+            this.dFabricResponseObject = new DFabricResponseClass(this);
             this.binderObject = new PhwangUtils.BinderClass(this.objectName);
             this.binderObject.BindAsTcpServer(FabricFrontEnd.FabricFrontEndProtocolClass.LINK_MGR_PROTOCOL_TRANSPORT_PORT_NUMBER);
 
@@ -122,12 +122,10 @@ namespace Phwang.Fabric
                 this.debugIt(true, "processSetupLinkRequest", "password = " + format_data.password);
             }
 
-           //this.frontEndFabricObject().transmitDataToFabric(format_data.my_name);
-            //this.frontEndFabricObject().transmitDataToFabric(ajax_entry_object, "L" + ajax_entry_object.ajaxId() + format_data.my_name);
+            int link_id = 100;
 
-            //string response_data = this.frontEndAjaxResponseObject.GenerateSetupLinkResponse(123, "phwang");
-            this.binderObject.TransmitData("paul hwang");
-            //return response_data;
+            string response_data = this.dFabricResponseObject.GenerateSetupLinkResponse(link_id, "phwang");
+            this.binderObject.TransmitData(response_data);
         }
 
         [DataContract]
