@@ -27,9 +27,9 @@ namespace Phwang.Fabric
         public DFabricClass(FabricRootClass fabric_root_class_val)
         {
             this.fabricRootObject = fabric_root_class_val;
-            this.startNetServer();
+            //this.startNetServer();
             this.binderObject = new PhwangUtils.BinderClass(this.objectName);
-            this.binderObject.BindAsTcpServer(123);
+            this.binderObject.BindAsTcpServer(PortProtocolClass.LINK_MGR_PROTOCOL_TRANSPORT_PORT_NUMBER);
             this.debugIt(true, "UFabricClass", "init");
         }
 
