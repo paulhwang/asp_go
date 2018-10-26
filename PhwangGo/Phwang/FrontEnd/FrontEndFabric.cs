@@ -52,12 +52,11 @@ namespace Phwang.FrontEnd
 
         private class AjaxEntryClass
         {
-            private AjaxEntryClass()
+            private string ajaxIdStr { get; }
+
+            public AjaxEntryClass(string ajax_id_str_val)
             {
-                //this.theAjaxId = ajax_id_val;
-                //this.theCallbackFunction = callback_func_val;
-                //this.theAjaxRequest = go_request_val;
-                //this.theAjaxResponse = res_val;
+                this.ajaxIdStr = ajax_id_str_val;
             }
         }
 
@@ -66,16 +65,14 @@ namespace Phwang.FrontEnd
             this.globalAjaxId++;
             string ajax_id_str = this.EncodeNumber(this.globalAjaxId, this.ajaxIdSize);
             this.debugIt(true, "MallocAjaxEntryObject", "********data={" + ajax_id_str + "}");
-            //var ajax_entry_object = new AjaxEntryClass(ajax_id_str, callback_func_val, go_request_val, res_val);
-            //return ajax_entry_object;
-            return null;
+            AjaxEntryClass ajax_entry_object = new AjaxEntryClass(ajax_id_str);
+            return ajax_entry_object;
         }
         
         public string EncodeNumber(int number_val, int size_val)
         {
             string str = number_val.ToString();
 
-            this.debugIt(true, "EncodeNumber", "********data={" + str + "}");
             var buf = "";
             for (var i = str.Length; i < size_val; i++)
             {
