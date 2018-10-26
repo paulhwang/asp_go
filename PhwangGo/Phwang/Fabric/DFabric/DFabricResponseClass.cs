@@ -21,11 +21,11 @@ namespace Phwang.Fabric
     {
         private string objectName = "DFabricResponseClass";
 
-        private DFabricClass dFabricObject { get; }
+        private DFabricParserClass dFabricResponseObject { get; }
 
-        public DFabricResponseClass(DFabricClass dfabric_object_val)
+        public DFabricResponseClass(DFabricParserClass dfabric_response_object_val)
         {
-            this.dFabricObject = dfabric_object_val;
+            this.dFabricResponseObject = dfabric_response_object_val;
         }
 
         [DataContract]
