@@ -15,9 +15,9 @@ using System.Threading.Tasks;
 
 namespace Phwang.PhwangUtils
 {
-    public class TcpTransferClass
+    public class BinderClass
     {
-        private string ObjectName = "TcpTransferClass";
+        private string ObjectName = "BinderClass";
 
         //void* theReceiveObject;
         public NetworkStream theStream { get; }
@@ -30,7 +30,7 @@ namespace Phwang.PhwangUtils
         //void* theReceiveQueue;
 
 
-        public TcpTransferClass(NetworkStream stream_val/*, void (* receive_callback_val)(void*, void*, void*), void* receive_object_val*/)
+        public BinderClass(NetworkStream stream_val/*, void (* receive_callback_val)(void*, void*, void*), void* receive_object_val*/)
         {
             this.theStream = stream_val;
             //this->theReceiveCallback = receive_callback_val;
