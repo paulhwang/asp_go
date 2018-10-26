@@ -25,6 +25,7 @@ namespace Phwang.Fabric
         private string objectName = "DFabricClass";
 
         private FabricRootClass fabricRootObject { get; }
+        private DFabricResponseClass dFabricObject { get; }
         private PhwangUtils.BinderClass binderObject { get; }
         private Thread receiveThread { get; set; }
 
@@ -32,6 +33,7 @@ namespace Phwang.Fabric
         {
             this.debugIt(true, "DFabricClass", "init start");
             this.fabricRootObject = fabric_root_class_val;
+            this.dFabricObject = new DFabricResponseClass(this);
             this.binderObject = new PhwangUtils.BinderClass(this.objectName);
             this.binderObject.BindAsTcpServer(FabricFrontEnd.FabricFrontEndProtocolClass.LINK_MGR_PROTOCOL_TRANSPORT_PORT_NUMBER);
 
