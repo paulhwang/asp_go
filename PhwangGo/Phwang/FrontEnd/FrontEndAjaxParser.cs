@@ -48,6 +48,7 @@ namespace Phwang.FrontEnd
 
         private string ParseAjaxPacket(string input_data_var)
         {
+            this.debugIt(true, "ParseAjaxPacket", "input_data_var = " + input_data_var);
             this.frontEndFabricObject().transmitDataToFabric(input_data_var);
             return "tbd";
 
@@ -57,7 +58,6 @@ namespace Phwang.FrontEnd
             {
                 DataContractJsonSerializer deseralizer = new DataContractJsonSerializer(typeof(AjaxFabricRequestFormatClass));
                 ajax_fabric_request = (AjaxFabricRequestFormatClass)deseralizer.ReadObject(ms);
-                this.debugIt(true, "ParseAjaxPacket", "input_data_var = " + input_data_var);
                 this.debugIt(true, "ParseAjaxPacket", "command = " + ajax_fabric_request.command);
                 this.debugIt(true, "ParseAjaxPacket", "data = " + ajax_fabric_request.data);
             }

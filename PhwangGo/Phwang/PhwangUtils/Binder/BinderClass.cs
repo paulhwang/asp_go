@@ -120,7 +120,7 @@ namespace Phwang.PhwangUtils
         public void TransmitRawData(string data_var)
         {
             this.debugIt(true, "TransmitData", "data = " + data_var);
-            PhwangUtils.TcpServerClass.TcpTransmitData(this.networkStream, "data = " + data_var);
+            PhwangUtils.TcpServerClass.TcpTransmitData(this.networkStream, data_var);
         }
 
         public void TransmitData(string data_var)

@@ -93,6 +93,7 @@ namespace Phwang.PhwangUtils
 
         public static void TcpTransmitData(NetworkStream stream_val, string data_val)
         {
+            PhwangUtils.AbendClass.phwangLogit("TcpTransmitData: **************data=", data_val);
             BinaryWriter writer = new BinaryWriter(stream_val);
             writer.Write(data_val);
             writer.Flush();

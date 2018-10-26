@@ -123,9 +123,7 @@ namespace Phwang.PhwangUtils
                     this.AbendQueue("dequeueData begin");
                     lock (this.Lock)
                     {
-                        this.debugIt(true, "DequeueData", "before dequeueEntry");
                         entry = this.dequeueEntry();
-                        this.debugIt(true, "DequeueData", "after dequeueEntry");
                     }
                     this.AbendQueue("dequeueData end");
 
@@ -142,8 +140,7 @@ namespace Phwang.PhwangUtils
 
         }
 
-
-        private QueueEntryClass dequeueEntry ()
+        private QueueEntryClass dequeueEntry()
         {
             QueueEntryClass entry;
 
@@ -155,8 +152,7 @@ namespace Phwang.PhwangUtils
 
             if (this.QueueLength == 1)
             {
-                this.debugIt(true, "dequeueEntry", "theQueueSize == 1");
-                entry = this.QueueHead;
+                 entry = this.QueueHead;
                 this.QueueHead = this.QueueTail = null;
                 this.QueueLength = 0;
                 return entry;
