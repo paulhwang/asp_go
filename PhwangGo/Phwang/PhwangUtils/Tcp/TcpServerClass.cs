@@ -93,7 +93,7 @@ namespace Phwang.PhwangUtils
 
         public static void TcpTransmitData(NetworkStream stream_val, string data_val)
         {
-            PhwangUtils.AbendClass.phwangLogit("TcpTransmitData: **************data=", data_val);
+            PhwangUtils.AbendClass.phwangLogit("TcpTransmitData: data=", data_val);
             BinaryWriter writer = new BinaryWriter(stream_val);
             writer.Write(data_val);
             writer.Flush();
@@ -106,12 +106,12 @@ namespace Phwang.PhwangUtils
             try
             {
                 string data = reader.ReadString();
-                PhwangUtils.AbendClass.phwangLogit("TCpReceiveData: **************data=", data);
+                PhwangUtils.AbendClass.phwangLogit("TcpReceiveData(): *data=", data);
                 return data;
             }
             catch (Exception ex)
             {
-                PhwangUtils.AbendClass.phwangLogit("TCpReceiveData", "exception");
+                PhwangUtils.AbendClass.phwangLogit("TcpReceiveData()", "exception");
                 return null;
             }
         }

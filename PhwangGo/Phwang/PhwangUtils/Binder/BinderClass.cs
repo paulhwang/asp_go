@@ -78,7 +78,7 @@ namespace Phwang.PhwangUtils
             while (true)
             {
                 data = PhwangUtils.TcpServerClass.TcpReceiveData(this.networkStream);
-                this.debugIt(true, "receiveThreadFunc", "********************data = " + data);
+                this.debugIt(true, "receiveThreadFunc", "data = " + data);
                 this.receiveQueue.EnqueueData(data);
                 Thread.Sleep(10);
 
@@ -92,19 +92,6 @@ namespace Phwang.PhwangUtils
             {
 
             }
-        }
-
-        private void binderTcpReceiveDataFunc(object tp_transfer_object_val, object d_fabric_object_val, object data_val)
-        {
-            /*
-            if (*((char*)data_val) != WEB_FABRIC_PROTOCOL_COMMAND_IS_GET_LINK_DATA)
-            {
-                printf("Golbal::dFabricTpReceiveDataFunction index=%d)))))))))))))))))))))))))))))))))))))))))\n", ((TpTransferClass*)tp_transfer_object_val)->index());
-                phwangLogit("Golbal::dFabricTpReceiveDataFunction", (char*)data_val);
-            }
-            */
-            //((DFabricClass*)d_fabric_object_val)->exportedparseFunction(tp_transfer_object_val, (char*)data_val);
-            //phwangFree(data_val, "dFabricTpReceiveDataFunction");
         }
 
         public string ReceiveData()

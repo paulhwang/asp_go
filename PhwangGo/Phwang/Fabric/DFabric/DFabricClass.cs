@@ -51,10 +51,10 @@ namespace Phwang.Fabric
                 data = this.binderObject.ReceiveData();
                 if (data == null)
                 {
-                    Thread.Sleep(1000);
+                    this.abendIt("receiveThreadFunc", "null data");
                     continue;
                 }
-                this.debugIt(true, "receiveThreadFunc", "********************data = " + data);
+                this.debugIt(true, "receiveThreadFunc", "data = " + data);
                 this.parseInputPacket(data);
 
             }

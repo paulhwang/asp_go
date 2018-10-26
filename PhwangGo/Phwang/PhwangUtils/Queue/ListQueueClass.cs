@@ -73,14 +73,13 @@ namespace Phwang.PhwangUtils
             lock (this.theLock)
             {
                 this.EnqueueEntry(entry);
+                if (this.theSignal != null)
+                {
+                    this.theSignal.Set();
+                }
             }
 
             this.AbendQueue("enqueueData end");
-
-            //if (this->theSuspendObject)
-            {
-                //this->theSuspendObject->signal();
-            }
 
             this.debugIt(true, "EnqueueData", "done");
         }
@@ -112,12 +111,11 @@ namespace Phwang.PhwangUtils
             {
                 if (this.QueueHead == null)
                 {
-                    return null;
-                    //if (!this->theSuspendObject)
+                    if (this.theSignal == null)
                     {
-                        //return 0;
+                        return null;
                     }
-                    //this->theSuspendObject->wait();
+                    this.theSignal.WaitOne();
                 }
                 else
                 {
