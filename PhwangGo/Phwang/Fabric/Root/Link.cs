@@ -17,8 +17,19 @@ namespace Phwang.Fabric
     {
         private string objectName = "LinkClass";
 
+        FabricRootClass fabricRootObject;
+        //char theLinkName[LINK_CLASS_LINK_NAME_BUF_SIZE + 4];
+        object theSessionListMgrObject;
+        object thePendingSessionSetupQueue;
+        object thePendingSessionSetupQueue3;
+        private char theNameListChanged;
+        //time_t theKeepAliveTime;
+
         public LinkClass(object list_mgr_object_val, FabricRootClass fabric_root_object_val, string link_name_val)
         {
+            //this.listEntryClass = list_mgr_object_val;
+            this.fabricRootObject = fabric_root_object_val;
+            this.theNameListChanged = 'D';
 
         }
 
