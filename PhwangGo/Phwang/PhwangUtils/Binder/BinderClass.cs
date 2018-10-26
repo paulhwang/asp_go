@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Sockets;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Phwang.PhwangUtils
@@ -19,19 +20,45 @@ namespace Phwang.PhwangUtils
     {
         private string ObjectName = "BinderClass";
 
-        //void* theReceiveObject;
-        public NetworkStream theStream { get; }
-        int theIndex;
+        private string ownerObject { get; }
 
-        //pthread_t theReceiveThread;
-        //pthread_t theReceiveThread2;
-        //pthread_t theTransmitThread;
+        //void* theReceiveObject;
+        public NetworkStream netStream { get; }
+        Thread receiveThread { get; }
+        Thread transmitThread { get; }
+
+        //Thread theReceiveThread2;
         //void* theTransmitQueue;
         //void* theReceiveQueue;
 
 
-        public BinderClass()
+        public BinderClass(string owner_object_var)
         {
+            this.ownerObject = owner_object_var;
+
+            this.receiveThread = new Thread(this.receiveThreadFunc);
+            this.receiveThread.Start();
+
+            this.transmitThread = new Thread(this.transmitThreadFunc);
+            this.transmitThread.Start();
+        }
+
+        private void receiveThreadFunc()
+        {
+            this.debugIt(true, "receiveThreadFunc", "start by: " + this.ownerObject);
+            while (true)
+            {
+
+            }
+        }
+
+        private void transmitThreadFunc()
+        {
+            this.debugIt(true, "transmitThreadFunc", "start by: " + this.ownerObject);
+            while (true)
+            {
+
+            }
         }
 
         public void TransmitRawData(string data_var)
@@ -54,20 +81,20 @@ namespace Phwang.PhwangUtils
             return this.ReceiveRawData();
         }
 
-        private void debug(bool on_off_val, string str0_val, string str1_val)
+        private void debugIt(bool on_off_val, string str0_val, string str1_val)
         {
             if (on_off_val)
-                this.logit(str0_val, str1_val);
+                this.logitIt(str0_val, str1_val);
         }
 
-        private void logit(string str0_val, string str1_val)
+        private void logitIt(string str0_val, string str1_val)
         {
-            PhwangUtils.AbendClass.phwangLogit(this.ObjectName + "::" + str0_val, str1_val);
+            PhwangUtils.AbendClass.phwangLogit(this.ObjectName + "." + str0_val, str1_val);
         }
 
-        private void abend(string str0_val, string str1_val)
+        private void abendIt(string str0_val, string str1_val)
         {
-            PhwangUtils.AbendClass.phwangAbend(this.ObjectName + "::" + str0_val, str1_val);
+            PhwangUtils.AbendClass.phwangAbend(this.ObjectName + "." + str0_val, str1_val);
         }
     }
 }

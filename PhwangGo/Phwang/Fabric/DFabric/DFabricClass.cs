@@ -18,21 +18,23 @@ namespace Phwang.Fabric
 {
     public class DFabricClass
     {
-        private string ObjectName = "DFabricClass";
+        private string objectName = "DFabricClass";
 
-        private FabricRootClass FabricRootObject { get; }
+        private FabricRootClass fabricRootObject { get; }
+        private PhwangUtils.BinderClass binderObject { get; }
         PhwangUtils.TcpServerClass TpServerObject { get; set; }
 
         public DFabricClass(FabricRootClass fabric_root_class_val)
         {
-            this.FabricRootObject = fabric_root_class_val;
+            this.fabricRootObject = fabric_root_class_val;
             this.startNetServer();
+            this.binderObject = new PhwangUtils.BinderClass(this.objectName);
             this.debugIt(true, "UFabricClass", "init");
         }
 
         void startNetServer()
         {
-            this.TpServerObject = PhwangUtils.TcpApiClass.MallocTcpServer(this, PortProtocolClass.LINK_MGR_PROTOCOL_TRANSPORT_PORT_NUMBER, dFabricTpServerAcceptFunction /*, this, dFabricTpReceiveDataFunction, this*/, this.ObjectName);
+            this.TpServerObject = PhwangUtils.TcpApiClass.MallocTcpServer(this, PortProtocolClass.LINK_MGR_PROTOCOL_TRANSPORT_PORT_NUMBER, dFabricTpServerAcceptFunction /*, this, dFabricTpReceiveDataFunction, this*/, this.objectName);
         }
         void dFabricTpServerAcceptFunction(object d_fabric_object_val, PhwangUtils.TcpTransferClass tp_transfer_object_val)
         {
@@ -67,12 +69,12 @@ namespace Phwang.Fabric
 
         private void logitIt(string str0_val, string str1_val)
         {
-            PhwangUtils.AbendClass.phwangLogit(this.ObjectName + "::" + str0_val, str1_val);
+            PhwangUtils.AbendClass.phwangLogit(this.objectName + "." + str0_val, str1_val);
         }
 
         private void abendIt(string str0_val, string str1_val)
         {
-            PhwangUtils.AbendClass.phwangAbend(this.ObjectName + "::" + str0_val, str1_val);
+            PhwangUtils.AbendClass.phwangAbend(this.objectName + "." + str0_val, str1_val);
         }
     }
 }
