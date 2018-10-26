@@ -92,6 +92,7 @@ namespace Phwang.FrontEnd
                 this.debugIt(true, "processSetupLinkRequest", "password = " + format_data.password);
            }
 
+            this.frontEndFabricObject().transmitDataToFabric(format_data.my_name);
             //this.frontEndFabricObject().transmitDataToFabric(ajax_entry_object, "L" + ajax_entry_object.ajaxId() + format_data.my_name);
 
             string response_data = this.frontEndAjaxResponseObject.GenerateSetupLinkResponse(123, "phwang");

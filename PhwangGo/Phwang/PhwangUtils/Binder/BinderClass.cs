@@ -103,24 +103,26 @@ namespace Phwang.PhwangUtils
             }
         }
 
-        public void TransmitRawData(string data_var)
-        {
-
-        }
-
         public string ReceiveRawData()
         {
             return null;
         }
 
-        public void TransmitData(string data_var)
-        {
-            this.TransmitRawData(data_var);
-        }
-
         public string ReceivData()
         {
             return this.ReceiveRawData();
+        }
+
+        public void TransmitRawData(string data_var)
+        {
+            this.debugIt(true, "TransmitData", "data = " + data_var);
+
+        }
+
+        public void TransmitData(string data_var)
+        {
+            this.debugIt(true, "TransmitData", "data = " + data_var);
+            this.TransmitRawData(data_var);
         }
 
         private void debugIt(bool on_off_val, string str0_val, string str1_val)

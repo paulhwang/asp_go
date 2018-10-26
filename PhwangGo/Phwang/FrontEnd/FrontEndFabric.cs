@@ -40,7 +40,18 @@ namespace Phwang.FrontEnd
 
         public void transmitDataToFabric(string data_var)
         {
-
+            this.binderObject.TransmitData(data_var);
+            /*
+            this.putAjaxEntryObject(ajax_entry_object_val);
+            if (data_val.length < 1000)
+            {
+                this.netClientOjbect().write("{" + this.encodeNumber(data_val.length, 3) + data_val + "}");
+            }
+            else
+            {
+                this.netClientOjbect().write("[" + this.encodeNumber(data_val.length, 5) + data_val + "]");
+            }
+*/
         }
 
         private class AjaxEntryClass
