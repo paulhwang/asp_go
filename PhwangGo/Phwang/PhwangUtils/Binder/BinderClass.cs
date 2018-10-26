@@ -30,15 +30,28 @@ namespace Phwang.PhwangUtils
         //void* theReceiveQueue;
 
 
-        public BinderClass(NetworkStream stream_val/*, void (* receive_callback_val)(void*, void*, void*), void* receive_object_val*/)
+        public BinderClass()
         {
-            this.theStream = stream_val;
-            //this->theReceiveCallback = receive_callback_val;
-            //this->theReceiveObject = receive_object_val;
+        }
 
-            //this->theReceiveQueue = phwangMallocSuspendedQueue(TP_TRANSFER_CLASS_RECEIVE_QUEUE_SIZE);
-            //this->theTransmitQueue = phwangMallocSuspendedQueue(TP_TRANSFER_CLASS_TRANSMIT_QUEUE_SIZE);
+        public void TransmitRawData(string data_var)
+        {
 
+        }
+
+        public string ReceiveRawData()
+        {
+            return null;
+        }
+
+        public void TransmitData(string data_var)
+        {
+            this.TransmitRawData(data_var);
+        }
+
+        public string ReceivData()
+        {
+            return this.ReceiveRawData();
         }
 
         private void debug(bool on_off_val, string str0_val, string str1_val)
