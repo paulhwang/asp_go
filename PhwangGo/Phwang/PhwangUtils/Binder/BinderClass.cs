@@ -52,8 +52,14 @@ namespace Phwang.PhwangUtils
         public bool BindAsTcpServer(short port_var)
         {
             PhwangUtils.TcpApiClass.MallocTcpServer(this, FabricFrontEnd.FabricFrontEndProtocolClass.LINK_MGR_PROTOCOL_TRANSPORT_PORT_NUMBER, binderTcpServerAcceptFunc /*, this, binderTcpReceiveDataFunc, this*/, this.objectName);
-            createWorkingThreads();
-            return true;
+           return true;
+        }
+
+        private void binderTcpServerAcceptFunc(object d_fabric_object_val, NetworkStream netwrok_stream_val)
+        {
+            this.debugIt(true, "binderTcpServerAcceptFunc", "accepted!");
+            this.networkStream = netwrok_stream_val;
+            this.createWorkingThreads();
         }
 
         private void createWorkingThreads()
@@ -68,8 +74,17 @@ namespace Phwang.PhwangUtils
         private void receiveThreadFunc()
         {
             this.debugIt(true, "receiveThreadFunc", "start");
+            if (this.networkStream == null)
+            {
+                this.abendIt("receiveThreadFunc", "null networkStream");
+
+            }
+            string data;
             while (true)
             {
+                data = PhwangUtils.TcpServerClass.TcpReceiveData__(this.networkStream);
+                this.debugIt(true, "receiveThreadFunc", "********************data = " + data);
+                Thread.Sleep(10);
 
             }
         }
@@ -81,18 +96,6 @@ namespace Phwang.PhwangUtils
             {
 
             }
-        }
-
-        private void binderTcpServerAcceptFunc(object d_fabric_object_val, PhwangUtils.TcpTransferClass tp_transfer_object_val)
-        {
-            this.debugIt(true, "binderTcpServerAcceptFunc", "accepted!");
-
-            while (true)
-            {
-                PhwangUtils.TcpServerClass.TcpReceiveData___(tp_transfer_object_val.theStream);
-                Thread.Sleep(1000);
-            }
-            //((DFabricClass*)d_fabric_object_val)->exportedNetAcceptFunction(tp_transfer_object_val);
         }
 
         private void binderTcpReceiveDataFunc(object tp_transfer_object_val, object d_fabric_object_val, object data_val)
@@ -143,7 +146,7 @@ namespace Phwang.PhwangUtils
 
         private void abendIt(string str0_val, string str1_val)
         {
-            PhwangUtils.AbendClass.phwangAbend(this.objectName + "." + str0_val +"()", str1_val);
+            PhwangUtils.AbendClass.phwangAbend(this.objectName + "(" + this.ownerObject + ")." + str0_val + "()", str1_val);
         }
     }
 }

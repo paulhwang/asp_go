@@ -36,7 +36,7 @@ namespace Phwang.Fabric
 
         void startNetServer()
         {
-            this.TpServerObject = PhwangUtils.TcpApiClass.MallocTcpServer(this, FabricFrontEnd.FabricFrontEndProtocolClass.LINK_MGR_PROTOCOL_TRANSPORT_PORT_NUMBER, dFabricTpServerAcceptFunction /*, this, dFabricTpReceiveDataFunction, this*/, this.objectName);
+            //this.TpServerObject = PhwangUtils.TcpApiClass.MallocTcpServer(this, FabricFrontEnd.FabricFrontEndProtocolClass.LINK_MGR_PROTOCOL_TRANSPORT_PORT_NUMBER, dFabricTpServerAcceptFunction /*, this, dFabricTpReceiveDataFunction, this*/, this.objectName);
         }
         void dFabricTpServerAcceptFunction(object d_fabric_object_val, PhwangUtils.TcpTransferClass tp_transfer_object_val)
         {
@@ -44,7 +44,7 @@ namespace Phwang.Fabric
 
             while (true)
             {
-                PhwangUtils.TcpServerClass.TcpReceiveData___(tp_transfer_object_val.theStream);
+                //PhwangUtils.TcpServerClass.TcpReceiveData___(tp_transfer_object_val.theStream);
                 Thread.Sleep(1000);
             }
             //((DFabricClass*)d_fabric_object_val)->exportedNetAcceptFunction(tp_transfer_object_val);
