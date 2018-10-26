@@ -1,4 +1,12 @@
-﻿using System;
+﻿/*
+ ******************************************************************************
+ *                                       
+ *  Copyright (c) 2018 phwang. All rights reserved.
+ *
+ ******************************************************************************
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -39,7 +47,7 @@ namespace Phwang.Fabric
 
     public class FabricRootClass
     {
-        private string ObjectName = "FabricRootClass";
+        private string objectName = "FabricRootClass";
 
         private UFabricClass UFabricObject { get; }
         private DFabricClass DFabricObject { get; }
@@ -55,7 +63,7 @@ namespace Phwang.Fabric
             this.GroupListMgrObject = new PhwangUtils.ListMgrClass("GROUP", GroupProtocolClass.GROUP_MGR_PROTOCOL_GROUP_ID_SIZE, GroupProtocolClass.GROUP_MGR_PROTOCOL_GROUP_INDEX_SIZE, 500);
             this.StartWatchDogThread();
 
-            this.debug(true, "FabricRootClass", "init");
+            this.debugIt(true, "FabricRootClass", "init");
         }
 
         private void StartWatchDogThread()
@@ -63,20 +71,20 @@ namespace Phwang.Fabric
 
         }
 
-        private void debug(bool on_off_val, string str0_val, string str1_val)
+        private void debugIt(bool on_off_val, string str0_val, string str1_val)
         {
             if (on_off_val)
-                this.logit(str0_val, str1_val);
+                this.logitIt(str0_val, str1_val);
         }
 
-        private void logit(string str0_val, string str1_val)
+        private void logitIt(string str0_val, string str1_val)
         {
-            PhwangUtils.AbendClass.phwangLogit(this.ObjectName + "::" + str0_val, str1_val);
+            PhwangUtils.AbendClass.phwangLogit(this.objectName + "." + str0_val + "()", str1_val);
         }
 
-        private void abend(string str0_val, string str1_val)
+        private void abendIt(string str0_val, string str1_val)
         {
-            PhwangUtils.AbendClass.phwangAbend(this.ObjectName + "::" + str0_val, str1_val);
+            PhwangUtils.AbendClass.phwangAbend(this.objectName + "." + str0_val + "()", str1_val);
         }
     }
 }
