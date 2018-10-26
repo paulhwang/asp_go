@@ -23,19 +23,20 @@ namespace Phwang.PhwangUtils
         private QueueEntryClass QueueHead { get; set; }
         private QueueEntryClass QueueTail { get; set; }
         private int MaxQueueLength { get; set; }
-        private object Lock { get; }
+        private object theLock { get; }
+        private ManualResetEvent theSignal { get; }
 
         public ListQueueClass(bool do_suspend_val, int max_length_val)
         {
             this.MaxQueueLength = max_length_val;
-            this.Lock = new object();
+            this.theLock = new object();
 
 
-            if (do_suspend_val = true) {
-                //this.SuspendObject = new SuspendClass();
+            if (do_suspend_val) {
+                this.theSignal = new ManualResetEvent(false);
             }
             else {
-                //this.SuspendObject = nuill;
+                this.theSignal = null;
             }
 
             if (this.MaxQueueLength == 0) {
@@ -69,7 +70,7 @@ namespace Phwang.PhwangUtils
             entry.data = data_val;
 
             this.AbendQueue("enqueueData begin");
-            lock (this.Lock)
+            lock (this.theLock)
             {
                 this.EnqueueEntry(entry);
             }
@@ -121,7 +122,7 @@ namespace Phwang.PhwangUtils
                 else
                 {
                     this.AbendQueue("dequeueData begin");
-                    lock (this.Lock)
+                    lock (this.theLock)
                     {
                         entry = this.dequeueEntry();
                     }
@@ -199,7 +200,7 @@ namespace Phwang.PhwangUtils
                 }
             }
 
-            lock (this.Lock)
+            lock (this.theLock)
             {
                 length = 0;
                 entry = this.QueueHead;
