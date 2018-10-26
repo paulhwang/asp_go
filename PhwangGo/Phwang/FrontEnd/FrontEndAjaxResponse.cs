@@ -67,7 +67,7 @@ namespace Phwang.FrontEnd
             js.WriteObject(msObj, raw_data);
             msObj.Position = 0;
 
-           StreamReader sr = new StreamReader(msObj, Encoding.UTF8);
+            StreamReader sr = new StreamReader(msObj, Encoding.UTF8);
             string data = sr.ReadToEnd();
             sr.Close();
             msObj.Close();

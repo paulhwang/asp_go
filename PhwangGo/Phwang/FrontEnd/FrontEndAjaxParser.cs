@@ -50,7 +50,11 @@ namespace Phwang.FrontEnd
         {
             this.debugIt(true, "ParseAjaxPacket", "input_data_var = " + input_data_var);
             this.frontEndFabricObject().transmitDataToFabric(input_data_var);
-            return "tbd";
+            string data = this.frontEndFabricObject().receiveDataFromFabric();
+            this.debugIt(true, "ParseAjaxPacket", "data = " + data);
+            string response_data = this.frontEndAjaxResponseObject.GenerateSetupLinkResponse(123, data);
+            this.debugIt(true, "ParseAjaxPacket", "response_data = " + response_data);
+            return response_data;
 
             string toDes = input_data_var;
             AjaxFabricRequestFormatClass ajax_fabric_request;
