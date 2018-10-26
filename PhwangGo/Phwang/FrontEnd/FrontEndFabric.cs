@@ -18,6 +18,7 @@ namespace Phwang.FrontEnd
     public class FrontEndFabricClass
     {
         private string objectName = "FrontEndFabricClass";
+        private int ajaxIdSize = 3;
 
         private FrontEndRootClass frontEndRootObject { get; }
         private PhwangUtils.BinderClass binderObject { get; }
@@ -40,6 +41,7 @@ namespace Phwang.FrontEnd
 
         public void transmitDataToFabric(string data_var)
         {
+            AjaxEntryClass ajax_entry_object = this.mallocAjaxEntryObject();
             this.binderObject.TransmitData(data_var);
         }
 
@@ -59,13 +61,28 @@ namespace Phwang.FrontEnd
             }
         }
 
-        private AjaxEntryClass MallocAjaxEntryObject(/*callback_func_val, go_request_val, res_val*/)
+        private AjaxEntryClass mallocAjaxEntryObject()
         {
             this.globalAjaxId++;
-            //var ajax_id_str = this.encodeNumber(this.globalAjaxId(), this.ajaxIdSize());
+            string ajax_id_str = this.EncodeNumber(this.globalAjaxId, this.ajaxIdSize);
+            this.debugIt(true, "MallocAjaxEntryObject", "********data={" + ajax_id_str + "}");
             //var ajax_entry_object = new AjaxEntryClass(ajax_id_str, callback_func_val, go_request_val, res_val);
             //return ajax_entry_object;
             return null;
+        }
+        
+        public string EncodeNumber(int number_val, int size_val)
+        {
+            string str = number_val.ToString();
+
+            this.debugIt(true, "EncodeNumber", "********data={" + str + "}");
+            var buf = "";
+            for (var i = str.Length; i < size_val; i++)
+            {
+                buf = buf + "0";
+            }
+            buf = buf + str;
+            return buf;
         }
 
         private void debugIt(bool on_off_val, string str0_val, string str1_val)
