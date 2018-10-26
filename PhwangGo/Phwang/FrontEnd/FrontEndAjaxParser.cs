@@ -14,13 +14,18 @@ namespace Phwang.FrontEnd
     {
         private string objectName = "FrontEndAjaxParserClass";
 
-        private FrontEndRootClass FrontEndRootObject { get; }
-        private FrontEndAjaxResponseClass FrontEndAjaxResponseObject { get; }
+        private FrontEndRootClass frontEndRootObject { get; }
+        private FrontEndAjaxResponseClass frontEndAjaxResponseObject { get; }
 
         public FrontEndAjaxParserClass(FrontEndRootClass root_object_val)
         {
-            this.FrontEndRootObject = root_object_val;
-            this.FrontEndAjaxResponseObject = new FrontEndAjaxResponseClass(this);
+            this.frontEndRootObject = root_object_val;
+            this.frontEndAjaxResponseObject = new FrontEndAjaxResponseClass(this);
+        }
+
+        private FrontEndFabricClass frontEndFabricObject()
+        {
+            return this.frontEndRootObject.frontEndFabricObject;
         }
 
         public string ProcessAjaxInput(string input_data_var)
@@ -87,7 +92,9 @@ namespace Phwang.FrontEnd
                 this.debugIt(true, "processSetupLinkRequest", "password = " + format_data.password);
            }
 
-            string response_data = this.FrontEndAjaxResponseObject.GenerateSetupLinkResponse(123, "phwang");
+            //this.frontEndFabricObject().transmitDataToFabric(ajax_entry_object, "L" + ajax_entry_object.ajaxId() + format_data.my_name);
+
+            string response_data = this.frontEndAjaxResponseObject.GenerateSetupLinkResponse(123, "phwang");
             return response_data;
         }
 
@@ -109,7 +116,7 @@ namespace Phwang.FrontEnd
                 this.debugIt(true, "processGetLinkDataRequest", "link_id = " + format_data.link_id);
             }
 
-            string response_data = this.FrontEndAjaxResponseObject.GenerateGetLinkDataResponse(123, "phwang");
+            string response_data = this.frontEndAjaxResponseObject.GenerateGetLinkDataResponse(123, "phwang");
             return response_data;
         }
 

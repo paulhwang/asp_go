@@ -38,6 +38,11 @@ namespace Phwang.FrontEnd
             this.debugIt(true, "FrontEndFabricClass", "init done");
         }
 
+        public void transmitDataToFabric(string data_var)
+        {
+
+        }
+
         private class AjaxEntryClass
         {
             private AjaxEntryClass()
