@@ -43,9 +43,19 @@ namespace Phwang.PhwangUtils
             this.transmitThread.Start();
         }
 
+        public bool doTcpBindingAsClient(string ipaddr_var, short port_var)
+        {
+            return true;
+        }
+
+        public bool doTcpBindingAsServer(short port_var)
+        {
+            return true;
+        }
+
         private void receiveThreadFunc()
         {
-            this.debugIt(true, "receiveThreadFunc", "start by: " + this.ownerObject);
+            this.debugIt(true, "receiveThreadFunc", "start");
             while (true)
             {
 
@@ -54,7 +64,7 @@ namespace Phwang.PhwangUtils
 
         private void transmitThreadFunc()
         {
-            this.debugIt(true, "transmitThreadFunc", "start by: " + this.ownerObject);
+            this.debugIt(true, "transmitThreadFunc", "start");
             while (true)
             {
 
@@ -89,7 +99,7 @@ namespace Phwang.PhwangUtils
 
         private void logitIt(string str0_val, string str1_val)
         {
-            PhwangUtils.AbendClass.phwangLogit(this.ObjectName + "." + str0_val, str1_val);
+            PhwangUtils.AbendClass.phwangLogit(this.ObjectName + "(" +this.ownerObject + ")." + str0_val, str1_val);
         }
 
         private void abendIt(string str0_val, string str1_val)
