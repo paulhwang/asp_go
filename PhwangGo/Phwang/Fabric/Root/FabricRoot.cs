@@ -38,8 +38,8 @@ namespace Phwang.Fabric
 
         private UFabricClass UFabricObject { get; }
         private DFabricClass DFabricObject { get; }
-        private PhwangUtils.ListMgrClass ListMgrObject { get; }
-        private PhwangUtils.ListMgrClass GroupListMgrObject { get; }
+        private PhwangUtils.ListMgrClass linkListMgrObject { get; }
+        private PhwangUtils.ListMgrClass groupListMgrObject { get; }
 
         public FabricRootClass()
         {
@@ -47,8 +47,8 @@ namespace Phwang.Fabric
             this.UFabricObject = new UFabricClass(this);
             this.DFabricObject = new DFabricClass(this);
             //this->theNameListObject = new NameListClass(this);
-            this.ListMgrObject = new PhwangUtils.ListMgrClass("LINK", FabricFrontEnd.FabricFrontEndProtocolClass.LINK_MGR_PROTOCOL_LINK_ID_SIZE, FabricFrontEnd.FabricFrontEndProtocolClass.LINK_MGR_PROTOCOL_LINK_INDEX_SIZE, 100);
-            this.GroupListMgrObject = new PhwangUtils.ListMgrClass("GROUP", GroupProtocolClass.GROUP_MGR_PROTOCOL_GROUP_ID_SIZE, GroupProtocolClass.GROUP_MGR_PROTOCOL_GROUP_INDEX_SIZE, 500);
+            this.linkListMgrObject = new PhwangUtils.ListMgrClass("LINK", FabricFrontEnd.FabricFrontEndProtocolClass.LINK_MGR_PROTOCOL_LINK_ID_SIZE, FabricFrontEnd.FabricFrontEndProtocolClass.LINK_MGR_PROTOCOL_LINK_INDEX_SIZE, 100);
+            this.groupListMgrObject = new PhwangUtils.ListMgrClass("GROUP", GroupProtocolClass.GROUP_MGR_PROTOCOL_GROUP_ID_SIZE, GroupProtocolClass.GROUP_MGR_PROTOCOL_GROUP_INDEX_SIZE, 500);
             this.StartWatchDogThread();
 
             this.debugIt(true, "FabricRootClass", "init done");
@@ -57,6 +57,25 @@ namespace Phwang.Fabric
         private void StartWatchDogThread()
         {
 
+        }
+
+        public LinkClass mallocLink(string data_val)
+        {
+            this.debugIt(true, "mallocLink", data_val);
+
+            //if (strcmp(((ListMgrClass*) this.linkListMgrObject)->objectName(), "ListMgrClass")) {
+             //   this->abend("mallocLink", "bad name 000");
+            //}
+
+
+            LinkClass link = new LinkClass(this.linkListMgrObject, this, data_val);
+
+            //if (strcmp(((ListMgrClass*) this->linkListMgrObject())->objectName(), "ListMgrClass")) {
+            //    this.abendIt("mallocLink", "bad name 111");
+            //}
+
+            //this->theNameListObject->updateNameList();
+            return link;
         }
 
         private void debugIt(bool on_off_val, string str0_val, string str1_val)

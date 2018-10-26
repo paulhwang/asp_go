@@ -17,7 +17,7 @@ namespace Phwang.Fabric
     {
         private string objectName = "LinkClass";
 
-        public LinkClass()
+        public LinkClass(object list_mgr_object_val, FabricRootClass fabric_root_object_val, string link_name_val)
         {
 
         }
