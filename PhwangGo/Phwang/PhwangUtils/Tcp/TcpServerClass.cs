@@ -91,16 +91,16 @@ namespace Phwang.PhwangUtils
             //int path_id = this.IpcPath().AllocPath(stream);
         }
 
-        public static void TcpTransmitData(NetworkStream stream_var, string data_var)
+        public static void TcpTransmitData(NetworkStream stream_val, string data_val)
         {
-            BinaryWriter writer = new BinaryWriter(stream_var);
-            writer.Write(data_var);
+            BinaryWriter writer = new BinaryWriter(stream_val);
+            writer.Write(data_val);
             writer.Flush();
         }
 
-        public static string TcpReceiveData__(NetworkStream stream_var)
+        public static string TcpReceiveData(NetworkStream stream_val)
         {
-            BinaryReader reader = new BinaryReader(stream_var);
+            BinaryReader reader = new BinaryReader(stream_val);
 
             try
             {

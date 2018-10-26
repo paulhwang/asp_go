@@ -22,7 +22,8 @@ namespace Phwang.Fabric
 
         private FabricRootClass fabricRootObject { get; }
         private PhwangUtils.BinderClass binderObject { get; }
-        PhwangUtils.TcpServerClass TpServerObject { get; set; }
+        private Thread receiveThread { get; set; }
+        //PhwangUtils.TcpServerClass TpServerObject { get; set; }
 
         public DFabricClass(FabricRootClass fabric_root_class_val)
         {
@@ -31,7 +32,29 @@ namespace Phwang.Fabric
             //this.startNetServer();
             this.binderObject = new PhwangUtils.BinderClass(this.objectName);
             this.binderObject.BindAsTcpServer(FabricFrontEnd.FabricFrontEndProtocolClass.LINK_MGR_PROTOCOL_TRANSPORT_PORT_NUMBER);
+
+            this.receiveThread = new Thread(this.receiveThreadFunc);
+            this.receiveThread.Start();
+
             this.debugIt(true, "DFabricClass", "init done");
+        }
+
+        private void receiveThreadFunc()
+        {
+            this.debugIt(true, "receiveThreadFunc", "start");
+
+            string data;
+            while (true)
+            {
+                data = this.binderObject.ReceiveData();
+                if (data == null)
+                {
+                    Thread.Sleep(1000);
+                    continue;
+                }
+                this.debugIt(true, "receiveThreadFunc", "********************data = " + data);
+
+            }
         }
 
         void startNetServer()

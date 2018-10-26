@@ -16,6 +16,8 @@ namespace Phwang.PhwangUtils
 {
     class ListQueueClass
     {
+        private string objectName = "ListQueueClass";
+
         private int QUEUE_CLASS_DEFAULT_MAX_QUEUE_SIZE { get; } = 1000;
         private int QueueLength { get; set; }
         private QueueEntryClass QueueHead { get; set; }
@@ -44,11 +46,11 @@ namespace Phwang.PhwangUtils
             //if (pthread_mutex_init(&this->theMutex, NULL) != 0) {
                 //this->abend("QueueClass", "pthread_mutex_init fail");
             //}
-    }
+        }
 
-    public void enqueueData (object data_val)
+        public void EnqueueData(object data_val)
         {
-            //this->debug(false, "enqueueData", (char*)data_val);
+            this.debugIt(true, "EnqueueData", (string) data_val);
 
             /* queue is too big */
             if ((this.MaxQueueLength != 0) && (this.QueueLength > this.MaxQueueLength))
@@ -79,44 +81,8 @@ namespace Phwang.PhwangUtils
                 //this->theSuspendObject->signal();
             }
 
+            this.debugIt(true, "EnqueueData", "done");
         }
-
-        public object dequeueData ()
-        {
-            QueueEntryClass entry;
-
-            while (true)
-            {
-                if (this.QueueHead == null)
-                {
-                    //if (!this->theSuspendObject)
-                    {
-                        //return 0;
-                    }
-                    //this->theSuspendObject->wait();
-                }
-                else
-                {
-                    this.AbendQueue("dequeueData begin");
-                    lock (this.Lock)
-                    {
-                        entry = this.DequeueEntry();
-                    }
-                   this.AbendQueue("dequeueData end");
-
-                    if (entry != null)
-                    {
-                        object data = entry.data;
-                        entry = null;
-
-                        //this->debug(false, "dequeueData", (char*)data);
-                        return data;
-                    }
-                }
-            }
-
-        }
-
         private void EnqueueEntry(QueueEntryClass entry)
         {
             if (this.QueueHead == null)
@@ -137,18 +103,59 @@ namespace Phwang.PhwangUtils
             }
         }
 
+        public object DequeueData()
+        {
+            QueueEntryClass entry;
+
+            while (true)
+            {
+                if (this.QueueHead == null)
+                {
+                    return null;
+                    //if (!this->theSuspendObject)
+                    {
+                        //return 0;
+                    }
+                    //this->theSuspendObject->wait();
+                }
+                else
+                {
+                    this.AbendQueue("dequeueData begin");
+                    lock (this.Lock)
+                    {
+                        this.debugIt(true, "DequeueData", "before dequeueEntry");
+                        entry = this.dequeueEntry();
+                        this.debugIt(true, "DequeueData", "after dequeueEntry");
+                    }
+                    this.AbendQueue("dequeueData end");
+
+                    if (entry != null)
+                    {
+                        object data = entry.data;
+                        entry = null;
+
+                        this.debugIt(true, "DequeueData", "data = " + (string)data);
+                        return data;
+                    }
+                }
+            }
+
+        }
+
+
         private QueueEntryClass dequeueEntry ()
         {
             QueueEntryClass entry;
 
             if (this.QueueLength == 0)
             {
-                //this->abend("dequeueEntry", "theQueueSize == 0");
+                this.abendIt("dequeueEntry", "QueueLength == 0");
                 return null;
             }
 
             if (this.QueueLength == 1)
             {
+                this.debugIt(true, "dequeueEntry", "theQueueSize == 1");
                 entry = this.QueueHead;
                 this.QueueHead = this.QueueTail = null;
                 this.QueueLength = 0;
@@ -166,11 +173,6 @@ namespace Phwang.PhwangUtils
         public int GetQueueLength()
         {
             return this.QueueLength;
-        }
-
-        private QueueEntryClass DequeueEntry()
-        {
-            return null;
         }
 
         private void AbendQueue (string msg_val)
@@ -255,6 +257,22 @@ namespace Phwang.PhwangUtils
             }
 
             //pthread_mutex_unlock(&this->theMutex);
+        }
+
+        private void debugIt(bool on_off_val, string str0_val, string str1_val)
+        {
+            if (on_off_val)
+                this.logitIt(str0_val, str1_val);
+        }
+
+        private void logitIt(string str0_val, string str1_val)
+        {
+            PhwangUtils.AbendClass.phwangLogit(this.objectName + "." + str0_val + "()", str1_val);
+        }
+
+        private void abendIt(string str0_val, string str1_val)
+        {
+            PhwangUtils.AbendClass.phwangAbend(this.objectName + "." + str0_val + "()", str1_val);
         }
     }
 

@@ -49,6 +49,8 @@ namespace Phwang.FrontEnd
         private string ParseAjaxPacket(string input_data_var)
         {
             this.frontEndFabricObject().transmitDataToFabric(input_data_var);
+            return "tbd";
+
             string toDes = input_data_var;
             AjaxFabricRequestFormatClass ajax_fabric_request;
             using (var ms = new MemoryStream(Encoding.Unicode.GetBytes(toDes)))

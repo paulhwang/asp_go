@@ -20,21 +20,19 @@ namespace Phwang.PhwangUtils
     {
         private string objectName = "BinderClass";
 
+        private ListQueueClass receiveQueue { get; }
         private string ownerObject { get; }
         //void* theReceiveObject;
         private NetworkStream networkStream { get; set; }
         private Thread receiveThread { get; set; }
         private Thread transmitThread { get; set; }
-
-        //Thread theReceiveThread2;
         //void* theTransmitQueue;
-        //void* theReceiveQueue;
 
 
         public BinderClass(string owner_object_var)
         {
             this.ownerObject = owner_object_var;
-
+            this.receiveQueue = new ListQueueClass(true, 0);
         }
 
         public bool BindAsTcpClient(string ip_addr_var, short port_var)
@@ -42,10 +40,7 @@ namespace Phwang.PhwangUtils
             TcpClient client = new TcpClient(ip_addr_var, port_var);
             this.debugIt(true, "BindAsTcpClient", "connected!");
             this.networkStream = client.GetStream();
-            //Utils.DebugClass.DebugIt("TcpClient", "end");
             createWorkingThreads();
-
-            PhwangUtils.TcpServerClass.TcpTransmitData(this.networkStream, "hello there****************");
             return true;
         }
 
@@ -82,8 +77,9 @@ namespace Phwang.PhwangUtils
             string data;
             while (true)
             {
-                data = PhwangUtils.TcpServerClass.TcpReceiveData__(this.networkStream);
+                data = PhwangUtils.TcpServerClass.TcpReceiveData(this.networkStream);
                 this.debugIt(true, "receiveThreadFunc", "********************data = " + data);
+                this.receiveQueue.EnqueueData(data);
                 Thread.Sleep(10);
 
             }
@@ -111,14 +107,14 @@ namespace Phwang.PhwangUtils
             //phwangFree(data_val, "dFabricTpReceiveDataFunction");
         }
 
-        public string ReceiveRawData()
+        public string ReceiveData()
         {
-            return null;
-        }
-
-        public string ReceivData()
-        {
-            return this.ReceiveRawData();
+            string data = (string) this.receiveQueue.DequeueData();
+            if (data != null)
+            {
+                this.debugIt(true, "ReceivData", "data = " + data);
+            }
+            return data;
         }
 
         public void TransmitRawData(string data_var)
