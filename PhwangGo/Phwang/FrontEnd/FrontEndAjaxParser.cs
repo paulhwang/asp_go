@@ -12,7 +12,7 @@ namespace Phwang.FrontEnd
 {
     public class FrontEndAjaxParserClass
     {
-        private object debug;
+        private string objectName = "FrontEndAjaxParserClass";
 
         private FrontEndRootClass FrontEndRootObject { get; }
         private FrontEndAjaxResponseClass FrontEndAjaxResponseObject { get; }
@@ -48,11 +48,10 @@ namespace Phwang.FrontEnd
             using (var ms = new MemoryStream(Encoding.Unicode.GetBytes(toDes)))
             {
                 DataContractJsonSerializer deseralizer = new DataContractJsonSerializer(typeof(AjaxFabricRequestFormatClass));
-                ajax_fabric_request = (AjaxFabricRequestFormatClass)deseralizer.ReadObject(ms);// //反序列化ReadObject
-                Debug.WriteLine("input_data_var = " + input_data_var);
-                Debug.WriteLine("command = " + ajax_fabric_request.command);
-                Debug.WriteLine("packet_id = " + ajax_fabric_request.packet_id);
-                Debug.WriteLine("data = " + ajax_fabric_request.data);
+                ajax_fabric_request = (AjaxFabricRequestFormatClass)deseralizer.ReadObject(ms);
+                this.debugIt(true, "ParseAjaxPacket", "input_data_var = " + input_data_var);
+                this.debugIt(true, "ParseAjaxPacket", "command = " + ajax_fabric_request.command);
+                this.debugIt(true, "ParseAjaxPacket", "data = " + ajax_fabric_request.data);
             }
 
             if (ajax_fabric_request.command == "setup_link")
@@ -78,14 +77,14 @@ namespace Phwang.FrontEnd
 
         private string processSetupLinkRequest (string input_data_var)
         {
-            Debug.WriteLine("input_data_var = " + input_data_var);
+            this.debugIt(true, "processSetupLinkRequest", "input_data_var = " + input_data_var);
             SetupLinkRequestFormatClass format_data;
             using (var ms = new MemoryStream(Encoding.Unicode.GetBytes(input_data_var)))
             {
                 DataContractJsonSerializer deseralizer = new DataContractJsonSerializer(typeof(SetupLinkRequestFormatClass));
                 format_data = (SetupLinkRequestFormatClass)deseralizer.ReadObject(ms);// //反序列化ReadObject
-                Debug.WriteLine("my_name = " + format_data.my_name);
-                Debug.WriteLine("password = " + format_data.password);
+                this.debugIt(true, "processSetupLinkRequest", "my_name = " + format_data.my_name);
+                this.debugIt(true, "processSetupLinkRequest", "password = " + format_data.password);
            }
 
             string response_data = this.FrontEndAjaxResponseObject.GenerateSetupLinkResponse(123, "phwang");
@@ -101,17 +100,33 @@ namespace Phwang.FrontEnd
 
         private string processGetLinkDataRequest(string input_data_var)
         {
-            Debug.WriteLine("input_data_var = " + input_data_var);
+            this.debugIt(true, "processGetLinkDataRequest", "input_data_var = " + input_data_var);
             GetLinkDataRequestFormat format_data;
             using (var ms = new MemoryStream(Encoding.Unicode.GetBytes(input_data_var)))
             {
                 DataContractJsonSerializer deseralizer = new DataContractJsonSerializer(typeof(GetLinkDataRequestFormat));
                 format_data = (GetLinkDataRequestFormat)deseralizer.ReadObject(ms);// //反序列化ReadObject
-                Debug.WriteLine("link_id = " + format_data.link_id);
+                this.debugIt(true, "processGetLinkDataRequest", "link_id = " + format_data.link_id);
             }
 
             string response_data = this.FrontEndAjaxResponseObject.GenerateGetLinkDataResponse(123, "phwang");
             return response_data;
+        }
+
+        private void debugIt(bool on_off_val, string str0_val, string str1_val)
+        {
+            if (on_off_val)
+                this.logitIt(str0_val, str1_val);
+        }
+
+        private void logitIt(string str0_val, string str1_val)
+        {
+            PhwangUtils.AbendClass.phwangLogit(this.objectName + "." + str0_val + "()", str1_val);
+        }
+
+        private void abendIt(string str0_val, string str1_val)
+        {
+            PhwangUtils.AbendClass.phwangAbend(this.objectName + "." + str0_val + "()", str1_val);
         }
     }
 }
