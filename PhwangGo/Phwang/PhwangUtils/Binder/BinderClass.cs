@@ -21,11 +21,10 @@ namespace Phwang.PhwangUtils
         private string objectName = "BinderClass";
 
         private string ownerObject { get; }
-
         //void* theReceiveObject;
-        public NetworkStream netStream { get; }
-        Thread receiveThread { get; }
-        Thread transmitThread { get; }
+        private NetworkStream networkStream { get; set; }
+        private Thread receiveThread { get; set; }
+        private Thread transmitThread { get; set; }
 
         //Thread theReceiveThread2;
         //void* theTransmitQueue;
@@ -36,6 +35,29 @@ namespace Phwang.PhwangUtils
         {
             this.ownerObject = owner_object_var;
 
+        }
+
+        public bool BindAsTcpClient(string ip_addr_var, short port_var)
+        {
+            TcpClient client = new TcpClient(ip_addr_var, port_var);
+            this.debugIt(true, "BindAsTcpClient", "connected!");
+            this.networkStream = client.GetStream();
+            //Utils.DebugClass.DebugIt("TcpClient", "end");
+            createWorkingThreads();
+
+            PhwangUtils.TcpServerClass.TcpTransmitData(this.networkStream, "hello there****************");
+            return true;
+        }
+
+        public bool BindAsTcpServer(short port_var)
+        {
+            PhwangUtils.TcpApiClass.MallocTcpServer(this, FabricFrontEnd.FabricFrontEndProtocolClass.LINK_MGR_PROTOCOL_TRANSPORT_PORT_NUMBER, binderTcpServerAcceptFunc /*, this, binderTcpReceiveDataFunc, this*/, this.objectName);
+            createWorkingThreads();
+            return true;
+        }
+
+        private void createWorkingThreads()
+        {
             this.receiveThread = new Thread(this.receiveThreadFunc);
             this.receiveThread.Start();
 
@@ -43,21 +65,22 @@ namespace Phwang.PhwangUtils
             this.transmitThread.Start();
         }
 
-        public bool BindAsTcpClient(string ip_addr_var, short port_var)
+        private void receiveThreadFunc()
         {
-            TcpClient client = new TcpClient(ip_addr_var, port_var);
-            this.debugIt(true, "BindAsTcpClient", "connected!");
-            NetworkStream stream = client.GetStream();
-            //Utils.DebugClass.DebugIt("TcpClient", "end");
+            this.debugIt(true, "receiveThreadFunc", "start");
+            while (true)
+            {
 
-            PhwangUtils.TcpServerClass.TcpTransmitData(stream, "hello there****************");
-            return true;
+            }
         }
 
-        public bool BindAsTcpServer(short port_var)
+        private void transmitThreadFunc()
         {
-            PhwangUtils.TcpApiClass.MallocTcpServer(this, FabricFrontEnd.FabricFrontEndProtocolClass.LINK_MGR_PROTOCOL_TRANSPORT_PORT_NUMBER, binderTcpServerAcceptFunc /*, this, binderTcpReceiveDataFunc, this*/, this.objectName);
-            return true;
+            this.debugIt(true, "transmitThreadFunc", "start");
+            while (true)
+            {
+
+            }
         }
 
         private void binderTcpServerAcceptFunc(object d_fabric_object_val, PhwangUtils.TcpTransferClass tp_transfer_object_val)
@@ -85,24 +108,6 @@ namespace Phwang.PhwangUtils
             //phwangFree(data_val, "dFabricTpReceiveDataFunction");
         }
 
-        private void receiveThreadFunc()
-        {
-            this.debugIt(true, "receiveThreadFunc", "start");
-            while (true)
-            {
-
-            }
-        }
-
-        private void transmitThreadFunc()
-        {
-            this.debugIt(true, "transmitThreadFunc", "start");
-            while (true)
-            {
-
-            }
-        }
-
         public string ReceiveRawData()
         {
             return null;
@@ -116,7 +121,7 @@ namespace Phwang.PhwangUtils
         public void TransmitRawData(string data_var)
         {
             this.debugIt(true, "TransmitData", "data = " + data_var);
-
+            PhwangUtils.TcpServerClass.TcpTransmitData(this.networkStream, "data = " + data_var);
         }
 
         public void TransmitData(string data_var)
