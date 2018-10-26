@@ -29,6 +29,7 @@ namespace Phwang.Fabric
             this.fabricRootObject = fabric_root_class_val;
             this.startNetServer();
             this.binderObject = new PhwangUtils.BinderClass(this.objectName);
+            this.binderObject.BindAsTcpServer(123);
             this.debugIt(true, "UFabricClass", "init");
         }
 
@@ -69,12 +70,12 @@ namespace Phwang.Fabric
 
         private void logitIt(string str0_val, string str1_val)
         {
-            PhwangUtils.AbendClass.phwangLogit(this.objectName + "." + str0_val, str1_val);
+            PhwangUtils.AbendClass.phwangLogit(this.objectName + "." + str0_val + "()", str1_val);
         }
 
         private void abendIt(string str0_val, string str1_val)
         {
-            PhwangUtils.AbendClass.phwangAbend(this.objectName + "." + str0_val, str1_val);
+            PhwangUtils.AbendClass.phwangAbend(this.objectName + "." + str0_val + "()", str1_val);
         }
     }
 }

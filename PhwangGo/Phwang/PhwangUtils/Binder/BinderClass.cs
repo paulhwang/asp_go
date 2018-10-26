@@ -43,12 +43,18 @@ namespace Phwang.PhwangUtils
             this.transmitThread.Start();
         }
 
-        public bool doTcpBindingAsClient(string ipaddr_var, short port_var)
+        public bool BindAsTcpClient(string ip_addr_var, short port_var)
         {
+            TcpClient client = new TcpClient(ip_addr_var, port_var);
+            this.debugIt(true, "BindAsTcpClient", "connected!");
+            NetworkStream stream = client.GetStream();
+            //Utils.DebugClass.DebugIt("TcpClient", "end");
+
+            PhwangUtils.TcpServerClass.TcpTransmitData(stream, "hello there****************");
             return true;
         }
 
-        public bool doTcpBindingAsServer(short port_var)
+        public bool BindAsTcpServer(short port_var)
         {
             return true;
         }
@@ -99,12 +105,12 @@ namespace Phwang.PhwangUtils
 
         private void logitIt(string str0_val, string str1_val)
         {
-            PhwangUtils.AbendClass.phwangLogit(this.ObjectName + "(" +this.ownerObject + ")." + str0_val, str1_val);
+            PhwangUtils.AbendClass.phwangLogit(this.ObjectName + "(" +this.ownerObject + ")." + str0_val + "()", str1_val);
         }
 
         private void abendIt(string str0_val, string str1_val)
         {
-            PhwangUtils.AbendClass.phwangAbend(this.ObjectName + "." + str0_val, str1_val);
+            PhwangUtils.AbendClass.phwangAbend(this.ObjectName + "." + str0_val +"()", str1_val);
         }
     }
 }
