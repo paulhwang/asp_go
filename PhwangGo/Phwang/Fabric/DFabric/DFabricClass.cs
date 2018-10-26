@@ -30,13 +30,13 @@ namespace Phwang.Fabric
             this.fabricRootObject = fabric_root_class_val;
             //this.startNetServer();
             this.binderObject = new PhwangUtils.BinderClass(this.objectName);
-            this.binderObject.BindAsTcpServer(PortProtocolClass.LINK_MGR_PROTOCOL_TRANSPORT_PORT_NUMBER);
+            this.binderObject.BindAsTcpServer(FabricFrontEnd.FabricFrontEndProtocolClass.LINK_MGR_PROTOCOL_TRANSPORT_PORT_NUMBER);
             this.debugIt(true, "DFabricClass", "init done");
         }
 
         void startNetServer()
         {
-            this.TpServerObject = PhwangUtils.TcpApiClass.MallocTcpServer(this, PortProtocolClass.LINK_MGR_PROTOCOL_TRANSPORT_PORT_NUMBER, dFabricTpServerAcceptFunction /*, this, dFabricTpReceiveDataFunction, this*/, this.objectName);
+            this.TpServerObject = PhwangUtils.TcpApiClass.MallocTcpServer(this, FabricFrontEnd.FabricFrontEndProtocolClass.LINK_MGR_PROTOCOL_TRANSPORT_PORT_NUMBER, dFabricTpServerAcceptFunction /*, this, dFabricTpReceiveDataFunction, this*/, this.objectName);
         }
         void dFabricTpServerAcceptFunction(object d_fabric_object_val, PhwangUtils.TcpTransferClass tp_transfer_object_val)
         {

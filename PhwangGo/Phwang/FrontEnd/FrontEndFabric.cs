@@ -25,15 +25,17 @@ namespace Phwang.FrontEnd
 
         public FrontEndFabricClass(FrontEndRootClass root_object_val)
         {
+            this.debugIt(true, "FrontEndFabricClass", "init start");
             this.frontEndRootObject = root_object_val;
             this.binderObject = new PhwangUtils.BinderClass(this.objectName);
-            this.binderObject.BindAsTcpClient("127.0.0.1", Fabric.PortProtocolClass.LINK_MGR_PROTOCOL_TRANSPORT_PORT_NUMBER);
+            this.binderObject.BindAsTcpClient("127.0.0.1", FabricFrontEnd.FabricFrontEndProtocolClass.LINK_MGR_PROTOCOL_TRANSPORT_PORT_NUMBER);
 
             //this.theNetClientObject = require("../util_modules/net_client.js").malloc(this.rootObject());
             this.globalAjaxId = 0;
             //this.theMaxAjaxIdIndex = 0;
             //this.theAjaxIdArray = [];
             //this.setMaxGlobalAjaxId(this.ajaxIdSize());
+            this.debugIt(true, "FrontEndFabricClass", "init done");
         }
 
         private class AjaxEntryClass
