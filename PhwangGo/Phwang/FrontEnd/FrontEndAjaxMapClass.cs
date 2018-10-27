@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace Phwang.FrontEnd
 {
-    public class FrantEndAjaxMapClass
+    public class FrontEndAjaxMapClass
     {
         public string ajaxIdStr { get; }
 
-        public FrantEndAjaxMapClass(string ajax_id_str_val)
+        public FrontEndAjaxMapClass(string ajax_id_str_val)
         {
             this.ajaxIdStr = ajax_id_str_val;
         }
