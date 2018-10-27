@@ -46,7 +46,15 @@ namespace Phwang.FrontEnd
 
         public string receiveDataFromFabric()
         {
-            return this.binderObject.ReceiveData();
+            string received_data = this.binderObject.ReceiveData();
+            string ajax_id_str = received_data.Substring(0, FabricFrontEnd.FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
+            AjaxEntryClass ajax_entry = getAjaxEntryObject(ajax_id_str);
+            if (ajax_entry == null)
+            {
+                this.abendIt("receiveDataFromFabric", "null ajax_entry");
+            }
+            string response_data = received_data.Substring(FabricFrontEnd.FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
+            return response_data;
         }
 
         public void transmitDataToFabric(string data_var)
@@ -70,19 +78,37 @@ namespace Phwang.FrontEnd
             this.incrementMaxAjaxIdIndex();
         }
 
+        public AjaxEntryClass getAjaxEntryObject(string ajax_id_str_val)
+        {
+            int index;
+
+            var found = false;
+            for (index = 0; index < this.maxAjaxIdIndex; index++)
+            {
+                if (this.ajaxIdArray[index] != null)
+                {
+                    if (this.ajaxIdArray[index].ajaxIdStr == ajax_id_str_val)
+                    {
+                        found = true;
+                        break;
+                    }
+                }
+            }
+
+            if (!found)
+            {
+                this.abendIt("getAjaxEntryObject", "not found" + ajax_id_str_val);
+                return null;
+            }
+
+            AjaxEntryClass element = this.ajaxIdArray[index];
+            this.ajaxIdArray[index] = null;
+            return element;
+        }
+
         private void incrementMaxAjaxIdIndex()
         {
             this.maxAjaxIdIndex++;
-        }
-
-        private class AjaxEntryClass
-        {
-            public string ajaxIdStr { get; }
-
-            public AjaxEntryClass(string ajax_id_str_val)
-            {
-                this.ajaxIdStr = ajax_id_str_val;
-            }
         }
 
         private AjaxEntryClass mallocAjaxEntryObject()
@@ -140,6 +166,16 @@ namespace Phwang.FrontEnd
         private void abendIt(string str0_val, string str1_val)
         {
             PhwangUtils.AbendClass.phwangAbend(this.objectName + "." + str0_val + "()", str1_val);
+        }
+    }
+
+    public class AjaxEntryClass
+    {
+        public string ajaxIdStr { get; }
+
+        public AjaxEntryClass(string ajax_id_str_val)
+        {
+            this.ajaxIdStr = ajax_id_str_val;
         }
     }
 }
