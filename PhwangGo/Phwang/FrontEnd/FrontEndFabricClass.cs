@@ -26,8 +26,8 @@ namespace Phwang.FrontEnd
         private FrontEndJobMgrClass frontEndJobMgrObject { get; }
         private int nextAvailableAjaxId { get; set; }
         private int maxAllowedAjaxId { get; set; }
-        private int maxAjaxMapIndex { get; set; }
-        private FrontEndJobClass[] ajaxMapArray { get; }
+        private int maxJobIndex { get; set; }
+        private FrontEndJobClass[] jobArray { get; }
 
         public FrontEndFabricClass(FrontEndRootClass root_object_val)
         {
@@ -39,9 +39,9 @@ namespace Phwang.FrontEnd
 
             //this.theNetClientObject = require("../util_modules/net_client.js").malloc(this.rootObject());
             this.nextAvailableAjaxId = 0;
-            this.maxAjaxMapIndex = 0;
+            this.maxJobIndex = 0;
             this.setMaxGlobalAjaxId(FabricFrontEnd.FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
-            this.ajaxMapArray = new FrontEndJobClass[MAX_AJAX_ENTRY_ARRAY_SIZE];
+            this.jobArray = new FrontEndJobClass[MAX_AJAX_ENTRY_ARRAY_SIZE];
             this.debugIt(true, "FrontEndFabricClass", "init done");
         }
 
@@ -49,7 +49,7 @@ namespace Phwang.FrontEnd
         {
             string received_data = this.binderObject.ReceiveData();
             string ajax_id_str = received_data.Substring(0, FabricFrontEnd.FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
-            FrontEndJobClass ajax_entry = getAjaxEntryObject(ajax_id_str);
+            FrontEndJobClass ajax_entry = getJobObject(ajax_id_str);
             if (ajax_entry == null)
             {
                 this.abendIt("receiveDataFromFabric", "null ajax_entry");
@@ -60,35 +60,35 @@ namespace Phwang.FrontEnd
 
         public void transmitDataToFabric(string data_var)
         {
-            FrontEndJobClass ajax_entry_object = this.mallocAjaxEntryObject();
-            this.putAjaxEntryObject(ajax_entry_object);
+            FrontEndJobClass ajax_entry_object = this.mallocJobObject();
+            this.putJobObject(ajax_entry_object);
             this.binderObject.TransmitData(ajax_entry_object.ajaxIdStr + data_var);
         }
 
-        private void putAjaxEntryObject(FrontEndJobClass val)
+        private void putJobObject(FrontEndJobClass val)
         {
-            for (var i = 0; i < this.maxAjaxMapIndex; i++)
+            for (var i = 0; i < this.maxJobIndex; i++)
             {
-                if (this.ajaxMapArray[i] == null)
+                if (this.jobArray[i] == null)
                 {
-                    this.ajaxMapArray[i] = val;
+                    this.jobArray[i] = val;
                     return;
                 }
             }
-            this.ajaxMapArray[this.maxAjaxMapIndex] = val;
+            this.jobArray[this.maxJobIndex] = val;
             this.incrementMaxAjaxMapIndex();
         }
 
-        public FrontEndJobClass getAjaxEntryObject(string ajax_id_str_val)
+        public FrontEndJobClass getJobObject(string ajax_id_str_val)
         {
             int index;
 
             var found = false;
-            for (index = 0; index < this.maxAjaxMapIndex; index++)
+            for (index = 0; index < this.maxJobIndex; index++)
             {
-                if (this.ajaxMapArray[index] != null)
+                if (this.jobArray[index] != null)
                 {
-                    if (this.ajaxMapArray[index].ajaxIdStr == ajax_id_str_val)
+                    if (this.jobArray[index].ajaxIdStr == ajax_id_str_val)
                     {
                         found = true;
                         break;
@@ -102,17 +102,17 @@ namespace Phwang.FrontEnd
                 return null;
             }
 
-            FrontEndJobClass element = this.ajaxMapArray[index];
-            this.ajaxMapArray[index] = null;
+            FrontEndJobClass element = this.jobArray[index];
+            this.jobArray[index] = null;
             return element;
         }
 
         private void incrementMaxAjaxMapIndex()
         {
-            this.maxAjaxMapIndex++;
+            this.maxJobIndex++;
         }
 
-        private FrontEndJobClass mallocAjaxEntryObject()
+        private FrontEndJobClass mallocJobObject()
         {
             this.incrementNextAvailableAjaxId();
             string ajax_id_str = PhwangUtils.EncodeNumberClass.EncodeNumber(this.nextAvailableAjaxId, FabricFrontEnd.FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
