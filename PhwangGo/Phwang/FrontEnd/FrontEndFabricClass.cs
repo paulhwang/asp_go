@@ -23,8 +23,8 @@ namespace Phwang.FrontEnd
         private FrontEndRootClass frontEndRootObject { get; }
         private PhwangUtils.BinderClass binderObject { get; }
         private FrontEndJobMgrClass frontEndJobMgrObject { get; }
-        private int nextAvailableAjaxId { get; set; }
-        private int maxAllowedAjaxId { get; set; }
+        private int nextAvailableJobId { get; set; }
+        private int maxAllowedJobId { get; set; }
 
         public FrontEndFabricClass(FrontEndRootClass root_object_val)
         {
@@ -35,8 +35,8 @@ namespace Phwang.FrontEnd
             this.binderObject.BindAsTcpClient("127.0.0.1", FabricFrontEnd.FabricFrontEndProtocolClass.LINK_MGR_PROTOCOL_TRANSPORT_PORT_NUMBER);
 
             //this.theNetClientObject = require("../util_modules/net_client.js").malloc(this.rootObject());
-            this.nextAvailableAjaxId = 0;
-            this.setMaxGlobalAjaxId(FabricFrontEnd.FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
+            this.nextAvailableJobId = 0;
+            this.setMaxAllowedJobId(FabricFrontEnd.FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
             this.debugIt(true, "FrontEndFabricClass", "init done");
         }
 
@@ -63,30 +63,30 @@ namespace Phwang.FrontEnd
 
         private FrontEndJobClass mallocJobObject()
         {
-            this.incrementNextAvailableAjaxId();
-            string ajax_id_str = PhwangUtils.EncodeNumberClass.EncodeNumber(this.nextAvailableAjaxId, FabricFrontEnd.FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
+            this.incrementNextAvailableJobId();
+            string ajax_id_str = PhwangUtils.EncodeNumberClass.EncodeNumber(this.nextAvailableJobId, FabricFrontEnd.FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
             this.debugIt(true, "MallocAjaxEntryObject", "********data={" + ajax_id_str + "}");
             FrontEndJobClass ajax_entry_object = new FrontEndJobClass(ajax_id_str);
             return ajax_entry_object;
         }
 
-        private void incrementNextAvailableAjaxId()
+        private void incrementNextAvailableJobId()
         {
-            this.nextAvailableAjaxId++;
-            if (this.nextAvailableAjaxId > this.maxAllowedAjaxId)
+            this.nextAvailableJobId++;
+            if (this.nextAvailableJobId > this.maxAllowedJobId)
             {
-                this.nextAvailableAjaxId = 1;
+                this.nextAvailableJobId = 1;
             }
         }
 
-        private void setMaxGlobalAjaxId (int ajax_id_size_val)
+        private void setMaxAllowedJobId (int ajax_id_size_val)
         {
-            this.maxAllowedAjaxId = 1;
+            this.maxAllowedJobId = 1;
             for (var i = 0; i < ajax_id_size_val; i++)
             {
-                this.maxAllowedAjaxId *= 10;
+                this.maxAllowedJobId *= 10;
             }
-            this.maxAllowedAjaxId -= 1;
+            this.maxAllowedJobId -= 1;
         }
 
 
