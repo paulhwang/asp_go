@@ -28,7 +28,7 @@ namespace Phwang.FrontEnd
             return this.frontEndRootObject.frontEndFabricObject;
         }
 
-        public string ProcessAjaxInput(string input_data_var)
+        public string ProcessAjaxInput111(string input_data_var)
         {
             return this.ParseAjaxPacket(input_data_var);
         }

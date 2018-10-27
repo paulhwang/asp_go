@@ -34,6 +34,20 @@ namespace Phwang.FrontEnd
             this.debugIt(true, "FrontEndFabricClass", "init done");
         }
 
+        public string ProcessAjaxInput(string input_data_var)
+        {
+            return this.ParseAjaxPacket(input_data_var);
+        }
+
+        private string ParseAjaxPacket(string input_data_var)
+        {
+            this.debugIt(true, "ParseAjaxPacket", "input_data_var = " + input_data_var);
+            this.transmitDataToFabric(input_data_var);
+            string response_data = this.receiveDataFromFabric();
+            this.debugIt(true, "ParseAjaxPacket", "response_data = " + response_data);
+            return response_data;
+        }
+
         public string receiveDataFromFabric()
         {
             string received_data = this.binderObject.ReceiveData();
