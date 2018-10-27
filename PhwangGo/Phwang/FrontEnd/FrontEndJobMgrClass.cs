@@ -19,20 +19,20 @@ namespace Phwang.FrontEnd
         private const int MAX_AJAX_ENTRY_ARRAY_SIZE = 1000;
 
         private FrontEndFabricClass frontEndFabricObject { get; }
-        private int maxJobIndex { get; set; }
+        private int maxJobArrayIndex { get; set; }
         private FrontEndJobClass[] jobArray { get; }
 
         public FrontEndJobMgrClass(FrontEndFabricClass fabric_object_val)
         {
             this.frontEndFabricObject = fabric_object_val;
 
-            this.maxJobIndex = 0;
+            this.maxJobArrayIndex = 0;
             this.jobArray = new FrontEndJobClass[MAX_AJAX_ENTRY_ARRAY_SIZE];
         }
 
         public void PutJobObject(FrontEndJobClass val)
         {
-            for (var i = 0; i < this.maxJobIndex; i++)
+            for (var i = 0; i < this.maxJobArrayIndex; i++)
             {
                 if (this.jobArray[i] == null)
                 {
@@ -40,7 +40,7 @@ namespace Phwang.FrontEnd
                     return;
                 }
             }
-            this.jobArray[this.maxJobIndex] = val;
+            this.jobArray[this.maxJobArrayIndex] = val;
             this.incrementMaxAjaxMapIndex();
         }
 
@@ -49,7 +49,7 @@ namespace Phwang.FrontEnd
             int index;
 
             var found = false;
-            for (index = 0; index < this.maxJobIndex; index++)
+            for (index = 0; index < this.maxJobArrayIndex; index++)
             {
                 if (this.jobArray[index] != null)
                 {
@@ -74,7 +74,7 @@ namespace Phwang.FrontEnd
 
         private void incrementMaxAjaxMapIndex()
         {
-            this.maxJobIndex++;
+            this.maxJobArrayIndex++;
         }
 
         private void debugIt(bool on_off_val, string str0_val, string str1_val)
