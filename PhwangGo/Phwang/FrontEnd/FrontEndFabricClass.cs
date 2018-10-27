@@ -19,15 +19,12 @@ namespace Phwang.FrontEnd
     public class FrontEndFabricClass
     {
         private string objectName = "FrontEndFabricClass";
-        private const int MAX_AJAX_ENTRY_ARRAY_SIZE = 1000;
 
         private FrontEndRootClass frontEndRootObject { get; }
         private PhwangUtils.BinderClass binderObject { get; }
         private FrontEndJobMgrClass frontEndJobMgrObject { get; }
         private int nextAvailableAjaxId { get; set; }
         private int maxAllowedAjaxId { get; set; }
-        private int maxJobIndex { get; set; }
-        private FrontEndJobClass[] jobArray { get; }
 
         public FrontEndFabricClass(FrontEndRootClass root_object_val)
         {
@@ -39,9 +36,7 @@ namespace Phwang.FrontEnd
 
             //this.theNetClientObject = require("../util_modules/net_client.js").malloc(this.rootObject());
             this.nextAvailableAjaxId = 0;
-            this.maxJobIndex = 0;
             this.setMaxGlobalAjaxId(FabricFrontEnd.FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
-            this.jobArray = new FrontEndJobClass[MAX_AJAX_ENTRY_ARRAY_SIZE];
             this.debugIt(true, "FrontEndFabricClass", "init done");
         }
 
@@ -49,7 +44,7 @@ namespace Phwang.FrontEnd
         {
             string received_data = this.binderObject.ReceiveData();
             string ajax_id_str = received_data.Substring(0, FabricFrontEnd.FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
-            FrontEndJobClass ajax_entry = getJobObject(ajax_id_str);
+            FrontEndJobClass ajax_entry = this.frontEndJobMgrObject.GetJobObject(ajax_id_str);
             if (ajax_entry == null)
             {
                 this.abendIt("receiveDataFromFabric", "null ajax_entry");
@@ -61,56 +56,10 @@ namespace Phwang.FrontEnd
         public void transmitDataToFabric(string data_var)
         {
             FrontEndJobClass ajax_entry_object = this.mallocJobObject();
-            this.putJobObject(ajax_entry_object);
+            this.frontEndJobMgrObject.PutJobObject(ajax_entry_object);
             this.binderObject.TransmitData(ajax_entry_object.ajaxIdStr + data_var);
         }
 
-        private void putJobObject(FrontEndJobClass val)
-        {
-            for (var i = 0; i < this.maxJobIndex; i++)
-            {
-                if (this.jobArray[i] == null)
-                {
-                    this.jobArray[i] = val;
-                    return;
-                }
-            }
-            this.jobArray[this.maxJobIndex] = val;
-            this.incrementMaxAjaxMapIndex();
-        }
-
-        public FrontEndJobClass getJobObject(string ajax_id_str_val)
-        {
-            int index;
-
-            var found = false;
-            for (index = 0; index < this.maxJobIndex; index++)
-            {
-                if (this.jobArray[index] != null)
-                {
-                    if (this.jobArray[index].ajaxIdStr == ajax_id_str_val)
-                    {
-                        found = true;
-                        break;
-                    }
-                }
-            }
-
-            if (!found)
-            {
-                this.abendIt("getAjaxEntryObject", "not found" + ajax_id_str_val);
-                return null;
-            }
-
-            FrontEndJobClass element = this.jobArray[index];
-            this.jobArray[index] = null;
-            return element;
-        }
-
-        private void incrementMaxAjaxMapIndex()
-        {
-            this.maxJobIndex++;
-        }
 
         private FrontEndJobClass mallocJobObject()
         {
