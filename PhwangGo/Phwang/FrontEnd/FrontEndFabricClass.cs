@@ -115,7 +115,7 @@ namespace Phwang.FrontEnd
         private FrontEndJobClass mallocAjaxEntryObject()
         {
             this.incrementNextAvailableAjaxId();
-            string ajax_id_str = this.EncodeNumber(this.nextAvailableAjaxId, FabricFrontEnd.FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
+            string ajax_id_str = PhwangUtils.EncodeNumberClass.EncodeNumber(this.nextAvailableAjaxId, FabricFrontEnd.FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
             this.debugIt(true, "MallocAjaxEntryObject", "********data={" + ajax_id_str + "}");
             FrontEndJobClass ajax_entry_object = new FrontEndJobClass(ajax_id_str);
             return ajax_entry_object;
@@ -140,18 +140,6 @@ namespace Phwang.FrontEnd
             this.maxAllowedAjaxId -= 1;
         }
 
-        public string EncodeNumber(int number_val, int size_val)
-        {
-            string str = number_val.ToString();
-
-            var buf = "";
-            for (var i = str.Length; i < size_val; i++)
-            {
-                buf = buf + "0";
-            }
-            buf = buf + str;
-            return buf;
-        }
 
         private void debugIt(bool on_off_val, string str0_val, string str1_val)
         {
