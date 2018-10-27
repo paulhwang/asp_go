@@ -25,9 +25,9 @@ namespace Phwang.FrontEnd
         private PhwangUtils.BinderClass binderObject { get; }
         private int globalAjaxId { get; set; }
         private int maxGolbalAjaxId { get; set; }
-        private int maxAjaxIdIndex { get; set; }
+        private int maxAjaxMapIndex { get; set; }
 
-        private FrontEndAjaxMapClass[] ajaxIdArray;
+        private FrontEndAjaxMapClass[] ajaxMapArray;
 
         public FrontEndFabricClass(FrontEndRootClass root_object_val)
         {
@@ -38,9 +38,9 @@ namespace Phwang.FrontEnd
 
             //this.theNetClientObject = require("../util_modules/net_client.js").malloc(this.rootObject());
             this.globalAjaxId = 0;
-            this.maxAjaxIdIndex = 0;
+            this.maxAjaxMapIndex = 0;
             this.setMaxGlobalAjaxId(FabricFrontEnd.FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
-            this.ajaxIdArray = new FrontEndAjaxMapClass[MAX_AJAX_ENTRY_ARRAY_SIZE];
+            this.ajaxMapArray = new FrontEndAjaxMapClass[MAX_AJAX_ENTRY_ARRAY_SIZE];
             this.debugIt(true, "FrontEndFabricClass", "init done");
         }
 
@@ -66,16 +66,16 @@ namespace Phwang.FrontEnd
 
         private void putAjaxEntryObject(FrontEndAjaxMapClass val)
         {
-            for (var i = 0; i < this.maxAjaxIdIndex; i++)
+            for (var i = 0; i < this.maxAjaxMapIndex; i++)
             {
-                if (this.ajaxIdArray[i] == null)
+                if (this.ajaxMapArray[i] == null)
                 {
-                    this.ajaxIdArray[i] = val;
+                    this.ajaxMapArray[i] = val;
                     return;
                 }
             }
-            this.ajaxIdArray[this.maxAjaxIdIndex] = val;
-            this.incrementMaxAjaxIdIndex();
+            this.ajaxMapArray[this.maxAjaxMapIndex] = val;
+            this.incrementMaxAjaxMapIndex();
         }
 
         public FrontEndAjaxMapClass getAjaxEntryObject(string ajax_id_str_val)
@@ -83,11 +83,11 @@ namespace Phwang.FrontEnd
             int index;
 
             var found = false;
-            for (index = 0; index < this.maxAjaxIdIndex; index++)
+            for (index = 0; index < this.maxAjaxMapIndex; index++)
             {
-                if (this.ajaxIdArray[index] != null)
+                if (this.ajaxMapArray[index] != null)
                 {
-                    if (this.ajaxIdArray[index].ajaxIdStr == ajax_id_str_val)
+                    if (this.ajaxMapArray[index].ajaxIdStr == ajax_id_str_val)
                     {
                         found = true;
                         break;
@@ -101,14 +101,14 @@ namespace Phwang.FrontEnd
                 return null;
             }
 
-            FrontEndAjaxMapClass element = this.ajaxIdArray[index];
-            this.ajaxIdArray[index] = null;
+            FrontEndAjaxMapClass element = this.ajaxMapArray[index];
+            this.ajaxMapArray[index] = null;
             return element;
         }
 
-        private void incrementMaxAjaxIdIndex()
+        private void incrementMaxAjaxMapIndex()
         {
-            this.maxAjaxIdIndex++;
+            this.maxAjaxMapIndex++;
         }
 
         private FrontEndAjaxMapClass mallocAjaxEntryObject()
