@@ -23,8 +23,8 @@ namespace Phwang.FrontEnd
 
         private FrontEndRootClass frontEndRootObject { get; }
         private PhwangUtils.BinderClass binderObject { get; }
-        private int globalAjaxId { get; set; }
-        private int maxGolbalAjaxId { get; set; }
+        private int nextAvailableAjaxId { get; set; }
+        private int maxAllowedAjaxId { get; set; }
         private int maxAjaxMapIndex { get; set; }
         private FrontEndAjaxMapClass[] ajaxMapArray { get; }
 
@@ -36,7 +36,7 @@ namespace Phwang.FrontEnd
             this.binderObject.BindAsTcpClient("127.0.0.1", FabricFrontEnd.FabricFrontEndProtocolClass.LINK_MGR_PROTOCOL_TRANSPORT_PORT_NUMBER);
 
             //this.theNetClientObject = require("../util_modules/net_client.js").malloc(this.rootObject());
-            this.globalAjaxId = 0;
+            this.nextAvailableAjaxId = 0;
             this.maxAjaxMapIndex = 0;
             this.setMaxGlobalAjaxId(FabricFrontEnd.FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
             this.ajaxMapArray = new FrontEndAjaxMapClass[MAX_AJAX_ENTRY_ARRAY_SIZE];
@@ -112,30 +112,30 @@ namespace Phwang.FrontEnd
 
         private FrontEndAjaxMapClass mallocAjaxEntryObject()
         {
-            this.incrementGlobalAjaxId();
-            string ajax_id_str = this.EncodeNumber(this.globalAjaxId, FabricFrontEnd.FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
+            this.incrementNextAvailableAjaxId();
+            string ajax_id_str = this.EncodeNumber(this.nextAvailableAjaxId, FabricFrontEnd.FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
             this.debugIt(true, "MallocAjaxEntryObject", "********data={" + ajax_id_str + "}");
             FrontEndAjaxMapClass ajax_entry_object = new FrontEndAjaxMapClass(ajax_id_str);
             return ajax_entry_object;
         }
 
-        private void incrementGlobalAjaxId()
+        private void incrementNextAvailableAjaxId()
         {
-            this.globalAjaxId++;
-            if (this.globalAjaxId > this.maxGolbalAjaxId)
+            this.nextAvailableAjaxId++;
+            if (this.nextAvailableAjaxId > this.maxAllowedAjaxId)
             {
-                this.globalAjaxId = 1;
+                this.nextAvailableAjaxId = 1;
             }
         }
 
         private void setMaxGlobalAjaxId (int ajax_id_size_val)
         {
-            this.maxGolbalAjaxId = 1;
+            this.maxAllowedAjaxId = 1;
             for (var i = 0; i < ajax_id_size_val; i++)
             {
-                this.maxGolbalAjaxId *= 10;
+                this.maxAllowedAjaxId *= 10;
             }
-            this.maxGolbalAjaxId -= 1;
+            this.maxAllowedAjaxId -= 1;
         }
 
         public string EncodeNumber(int number_val, int size_val)
