@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 namespace Phwang.FrontEnd
 {
 
+
     public class FrontEndFabricClass
     {
         private string objectName = "FrontEndFabricClass";
