@@ -26,7 +26,7 @@ namespace Phwang.FrontEnd
         private int nextAvailableAjaxId { get; set; }
         private int maxAllowedAjaxId { get; set; }
         private int maxAjaxMapIndex { get; set; }
-        private FrontEndAjaxMapClass[] ajaxMapArray { get; }
+        private FrontEndJobClass[] ajaxMapArray { get; }
 
         public FrontEndFabricClass(FrontEndRootClass root_object_val)
         {
@@ -39,7 +39,7 @@ namespace Phwang.FrontEnd
             this.nextAvailableAjaxId = 0;
             this.maxAjaxMapIndex = 0;
             this.setMaxGlobalAjaxId(FabricFrontEnd.FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
-            this.ajaxMapArray = new FrontEndAjaxMapClass[MAX_AJAX_ENTRY_ARRAY_SIZE];
+            this.ajaxMapArray = new FrontEndJobClass[MAX_AJAX_ENTRY_ARRAY_SIZE];
             this.debugIt(true, "FrontEndFabricClass", "init done");
         }
 
@@ -47,7 +47,7 @@ namespace Phwang.FrontEnd
         {
             string received_data = this.binderObject.ReceiveData();
             string ajax_id_str = received_data.Substring(0, FabricFrontEnd.FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
-            FrontEndAjaxMapClass ajax_entry = getAjaxEntryObject(ajax_id_str);
+            FrontEndJobClass ajax_entry = getAjaxEntryObject(ajax_id_str);
             if (ajax_entry == null)
             {
                 this.abendIt("receiveDataFromFabric", "null ajax_entry");
@@ -58,12 +58,12 @@ namespace Phwang.FrontEnd
 
         public void transmitDataToFabric(string data_var)
         {
-            FrontEndAjaxMapClass ajax_entry_object = this.mallocAjaxEntryObject();
+            FrontEndJobClass ajax_entry_object = this.mallocAjaxEntryObject();
             this.putAjaxEntryObject(ajax_entry_object);
             this.binderObject.TransmitData(ajax_entry_object.ajaxIdStr + data_var);
         }
 
-        private void putAjaxEntryObject(FrontEndAjaxMapClass val)
+        private void putAjaxEntryObject(FrontEndJobClass val)
         {
             for (var i = 0; i < this.maxAjaxMapIndex; i++)
             {
@@ -77,7 +77,7 @@ namespace Phwang.FrontEnd
             this.incrementMaxAjaxMapIndex();
         }
 
-        public FrontEndAjaxMapClass getAjaxEntryObject(string ajax_id_str_val)
+        public FrontEndJobClass getAjaxEntryObject(string ajax_id_str_val)
         {
             int index;
 
@@ -100,7 +100,7 @@ namespace Phwang.FrontEnd
                 return null;
             }
 
-            FrontEndAjaxMapClass element = this.ajaxMapArray[index];
+            FrontEndJobClass element = this.ajaxMapArray[index];
             this.ajaxMapArray[index] = null;
             return element;
         }
@@ -110,12 +110,12 @@ namespace Phwang.FrontEnd
             this.maxAjaxMapIndex++;
         }
 
-        private FrontEndAjaxMapClass mallocAjaxEntryObject()
+        private FrontEndJobClass mallocAjaxEntryObject()
         {
             this.incrementNextAvailableAjaxId();
             string ajax_id_str = this.EncodeNumber(this.nextAvailableAjaxId, FabricFrontEnd.FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
             this.debugIt(true, "MallocAjaxEntryObject", "********data={" + ajax_id_str + "}");
-            FrontEndAjaxMapClass ajax_entry_object = new FrontEndAjaxMapClass(ajax_id_str);
+            FrontEndJobClass ajax_entry_object = new FrontEndJobClass(ajax_id_str);
             return ajax_entry_object;
         }
 

@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Phwang.FrontEnd
 {
-    public class FrontEndAjaxMapClass
+    public class FrontEndJobClass
     {
         public string ajaxIdStr { get; }
         private ManualResetEvent theSignal { get; }
 
-        public FrontEndAjaxMapClass(string ajax_id_str_val)
+        public FrontEndJobClass(string ajax_id_str_val)
         {
             this.ajaxIdStr = ajax_id_str_val;
             this.theSignal = new ManualResetEvent(false);
