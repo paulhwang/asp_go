@@ -9,6 +9,8 @@ namespace Phwang.FabricFrontEnd
     {
         public const int LINK_MGR_PROTOCOL_TRANSPORT_PORT_NUMBER = 8006;
 
+        public const int AJAX_MAPING_ID_SIZE = 3;
+
         //#define LINK_MGR_DATA_BUFFER_SIZE 512
 
         public const int LINK_MGR_PROTOCOL_LINK_ID_SIZE = 4;

@@ -44,8 +44,8 @@ namespace Phwang.Fabric
 
         public void parseInputPacket(string input_data_var)
         {
-            string adax_id = input_data_var.Substring(0, 3);
-            string toDes = input_data_var.Substring(3);
+            string adax_id = input_data_var.Substring(0, FabricFrontEnd.FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
+            string toDes = input_data_var.Substring(FabricFrontEnd.FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
             AjaxFabricRequestFormatClass ajax_fabric_request;
             using (var ms = new MemoryStream(Encoding.Unicode.GetBytes(toDes)))
             {

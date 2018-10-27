@@ -18,8 +18,8 @@ namespace Phwang.FrontEnd
     public class FrontEndFabricClass
     {
         private string objectName = "FrontEndFabricClass";
-        private const int FRONT_END_AJAX_ID_SIZE = 3;
         private const int MAX_AJAX_ENTRY_ARRAY_SIZE = 1000;
+
         private FrontEndRootClass frontEndRootObject { get; }
         private PhwangUtils.BinderClass binderObject { get; }
         private int globalAjaxId { get; set; }
@@ -38,7 +38,7 @@ namespace Phwang.FrontEnd
             //this.theNetClientObject = require("../util_modules/net_client.js").malloc(this.rootObject());
             this.globalAjaxId = 0;
             this.maxAjaxIdIndex = 0;
-            this.setMaxGlobalAjaxId(FRONT_END_AJAX_ID_SIZE);
+            this.setMaxGlobalAjaxId(FabricFrontEnd.FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
             this.ajaxIdArray = new AjaxEntryClass[MAX_AJAX_ENTRY_ARRAY_SIZE];
             this.debugIt(true, "FrontEndFabricClass", "init done");
         }
@@ -87,7 +87,7 @@ namespace Phwang.FrontEnd
         private AjaxEntryClass mallocAjaxEntryObject()
         {
             this.incrementGlobalAjaxId();
-            string ajax_id_str = this.EncodeNumber(this.globalAjaxId, FRONT_END_AJAX_ID_SIZE);
+            string ajax_id_str = this.EncodeNumber(this.globalAjaxId, FabricFrontEnd.FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
             this.debugIt(true, "MallocAjaxEntryObject", "********data={" + ajax_id_str + "}");
             AjaxEntryClass ajax_entry_object = new AjaxEntryClass(ajax_id_str);
             return ajax_entry_object;
