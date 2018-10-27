@@ -42,9 +42,10 @@ namespace Phwang.Fabric
             public string data { get; set; }
         }
 
-        public string parseInputPacket(string input_data_var)
+        public void parseInputPacket(string input_data_var)
         {
-            string toDes = input_data_var;
+            string adax_id = input_data_var.Substring(0, 3);
+            string toDes = input_data_var.Substring(3);
             AjaxFabricRequestFormatClass ajax_fabric_request;
             using (var ms = new MemoryStream(Encoding.Unicode.GetBytes(toDes)))
             {
@@ -55,15 +56,20 @@ namespace Phwang.Fabric
                 this.debugIt(true, "ParseAjaxPacket", "data = " + ajax_fabric_request.data);
             }
 
+            string response_data;
             if (ajax_fabric_request.command == "setup_link")
             {
-                this.processSetupLinkRequest(ajax_fabric_request.data);
+                response_data = this.processSetupLinkRequest(ajax_fabric_request.data);
             }
-            if (ajax_fabric_request.command == "get_link_data")
+            else if (ajax_fabric_request.command == "get_link_data")
             {
-                this.processGetLinkDataRequest(ajax_fabric_request.data);
+                response_data = this.processGetLinkDataRequest(ajax_fabric_request.data);
             }
-            return "command " + ajax_fabric_request.command + " not supported";
+            else
+            {
+                response_data = "command " + ajax_fabric_request.command + " not supported";
+            }
+            this.dFabricObject.binderObject.TransmitData(/*adax_id +*/ response_data);
         }
 
         [DataContract]
@@ -76,7 +82,7 @@ namespace Phwang.Fabric
             public string password { get; set; }
         }
 
-        private void processSetupLinkRequest(string input_data_var)
+        private string processSetupLinkRequest(string input_data_var)
         {
             this.debugIt(true, "processSetupLinkRequest", "input_data_var = " + input_data_var);
             SetupLinkRequestFormatClass format_data;
@@ -91,7 +97,8 @@ namespace Phwang.Fabric
             int link_id = 100;
 
             string response_data = this.dFabricResponseObject.GenerateSetupLinkResponse(link_id, "phwang");
-            this.dFabricObject.binderObject.TransmitData(response_data);
+            return response_data;
+            //this.dFabricObject.binderObject.TransmitData(response_data);
         }
 
         [DataContract]
@@ -101,7 +108,7 @@ namespace Phwang.Fabric
             public int link_id { get; set; }
         }
 
-        private void processGetLinkDataRequest(string input_data_var)
+        private string processGetLinkDataRequest(string input_data_var)
         {
             this.debugIt(true, "processGetLinkDataRequest", "input_data_var = " + input_data_var);
             GetLinkDataRequestFormat format_data;
@@ -112,8 +119,8 @@ namespace Phwang.Fabric
                 this.debugIt(true, "processGetLinkDataRequest", "link_id = " + format_data.link_id);
             }
 
-            //string response_data = this.frontEndAjaxResponseObject.GenerateGetLinkDataResponse(123, "phwang");
-            //return response_data;
+            string response_data = this.dFabricResponseObject.GenerateGetLinkDataResponse(123, "phwang");
+            return response_data;
         }
 
         private void debugIt(bool on_off_val, string str0_val, string str1_val)
