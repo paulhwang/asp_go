@@ -26,8 +26,7 @@ namespace Phwang.FrontEnd
         private int globalAjaxId { get; set; }
         private int maxGolbalAjaxId { get; set; }
         private int maxAjaxMapIndex { get; set; }
-
-        private FrontEndAjaxMapClass[] ajaxMapArray;
+        private FrontEndAjaxMapClass[] ajaxMapArray { get; }
 
         public FrontEndFabricClass(FrontEndRootClass root_object_val)
         {
