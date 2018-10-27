@@ -23,6 +23,7 @@ namespace Phwang.FrontEnd
 
         private FrontEndRootClass frontEndRootObject { get; }
         private PhwangUtils.BinderClass binderObject { get; }
+        private FrontEndJobMgrClass frontEndJobMgrObject { get; }
         private int nextAvailableAjaxId { get; set; }
         private int maxAllowedAjaxId { get; set; }
         private int maxAjaxMapIndex { get; set; }
@@ -33,6 +34,7 @@ namespace Phwang.FrontEnd
             this.debugIt(true, "FrontEndFabricClass", "init start");
             this.frontEndRootObject = root_object_val;
             this.binderObject = new PhwangUtils.BinderClass(this.objectName);
+            this.frontEndJobMgrObject = new FrontEndJobMgrClass(this);
             this.binderObject.BindAsTcpClient("127.0.0.1", FabricFrontEnd.FabricFrontEndProtocolClass.LINK_MGR_PROTOCOL_TRANSPORT_PORT_NUMBER);
 
             //this.theNetClientObject = require("../util_modules/net_client.js").malloc(this.rootObject());
