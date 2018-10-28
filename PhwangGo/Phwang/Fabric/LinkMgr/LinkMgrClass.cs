@@ -28,12 +28,9 @@ namespace Phwang.Fabric
 
         public LinkClass MallocLink(string my_name_val)
         {
-            LinkClass link = null;
-
-            link.MyName = my_name_val;
-
+            LinkClass link = new LinkClass(my_name_val);
             PhwangUtils.ListEntryClass list_entry = this.listMgr.MallocEntry(link);
-
+            link.BindListEntry(list_entry);
             return link;
         }
 
