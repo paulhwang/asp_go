@@ -72,18 +72,13 @@ namespace Phwang.FrontEnd
             this.stopReceiveThreadFlag = true;
         }
 
-        public string ProcessAjaxInput(string input_data_var)
+        public string ProcessAjaxRequestPacket(string input_data_val)
         {
-            return this.ParseAjaxPacket(input_data_var);
-        }
-
-        private string ParseAjaxPacket(string input_data_val)
-        {
-            this.debugIt(true, "ParseAjaxPacket", "input_data_var = " + input_data_val);
+            this.debugIt(true, "ProcessAjaxRequestPacket", "input_data_var = " + input_data_val);
             FrontEndJobClass job_entry = this.frontEndJobMgrObject.MallocJobObject();
             this.binderObject.TransmitData(job_entry.ajaxIdStr + input_data_val);
             string response_data = job_entry.ReadData();
-            this.debugIt(true, "ParseAjaxPacket", "response_data = " + response_data);
+            this.debugIt(true, "ProcessAjaxRequestPacket", "response_data = " + response_data);
             return response_data;
         }
 
