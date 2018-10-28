@@ -41,12 +41,17 @@ namespace Phwang.Fabric
 
         public LinkClass GetLinkById(int id_val)
         {
-            LinkClass link = null;
+            PhwangUtils.ListEntryClass list_entry = this.listMgr.GetEntryById(id_val);
+            if (list_entry == null)
+            {
+                return null;
+            }
+            LinkClass link = (LinkClass) list_entry.Data;
 
             return link;
         }
 
-        public LinkClass GetLinkById(string my_name_val)
+        public LinkClass GetLinkByMyName(string my_name_val)
         {
             LinkClass link = null;
 
