@@ -53,15 +53,15 @@ namespace Phwang.FrontEnd
                 string received_data = this.binderObject.ReceiveData();
                 string ajax_id_str = received_data.Substring(0, FabricFrontEnd.FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
                 string response_data = received_data.Substring(FabricFrontEnd.FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
-                FrontEndJobClass ajax_entry = this.frontEndJobMgrObject.GetJobObject(ajax_id_str);
-                if (ajax_entry == null)
+
+                FrontEndJobClass job_entry = this.frontEndJobMgrObject.GetJobObject(ajax_id_str);
+                if (job_entry == null)
                 {
                     this.abendIt("receiveDataFromFabric", "null ajax_entry");
+                    continue;
                 }
-                else
-                {
-                    ajax_entry.WriteData(response_data);
-                }
+
+                job_entry.WriteData(response_data);
             }
 
             this.debugIt(true, "receiveThreadFunc", "exit");
@@ -82,7 +82,7 @@ namespace Phwang.FrontEnd
             this.debugIt(true, "ParseAjaxPacket", "input_data_var = " + input_data_var);
             FrontEndJobClass job_entry = this.transmitDataToFabric(input_data_var);
             string response_data = job_entry.ReadData();
-            this.debugIt(true, "ParseAjaxPacket================", "===========response_data = " + response_data);
+            this.debugIt(true, "ParseAjaxPacket", "response_data = " + response_data);
             return response_data;
         }
 

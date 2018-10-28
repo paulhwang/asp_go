@@ -30,7 +30,7 @@ namespace Phwang.FrontEnd
 
         public string ReadData()
         {
-            this.pendingTillWorkDone();
+            this.theSignal.WaitOne();
             string data = this.theData;
             if (data == null)
             {
@@ -39,19 +39,9 @@ namespace Phwang.FrontEnd
             return data;
         }
 
-        public void pendingTillWorkDone()
-        {
-            this.theSignal.WaitOne();
-        }
-
         public void WriteData(string data_val)
         {
             this.theData = data_val;
-            this.WakeUpPendingThread();
-        }
-
-        public void WakeUpPendingThread()
-        {
             this.theSignal.Set();
         }
 
