@@ -20,6 +20,7 @@ namespace Phwang.FrontEnd
 
         public string ajaxIdStr { get; }
         private ManualResetEvent theSignal { get; }
+        private string theData { get; set; }
 
         public FrontEndJobClass(string ajax_id_str_val)
         {
@@ -27,7 +28,13 @@ namespace Phwang.FrontEnd
             this.theSignal = new ManualResetEvent(false);
         }
 
-        public void PendingTillWorkDone()
+        public string ReceiveData()
+        {
+            this.pendingTillWorkDone();
+            return this.theData;
+        }
+
+        public void pendingTillWorkDone()
         {
             this.theSignal.WaitOne();
         }
@@ -36,6 +43,7 @@ namespace Phwang.FrontEnd
         {
             this.theSignal.Set();
         }
+
         private void debugIt(bool on_off_val, string str0_val, string str1_val)
         {
             if (on_off_val)
