@@ -13,24 +13,14 @@ using System.Threading.Tasks;
 
 namespace Phwang.Fabric
 {
-    public class LinkClass
+    public class SessionClass
     {
-        private string objectName = "LinkClass";
+        private string objectName = "SessionClass";
 
-        FabricRootClass fabricRootObject;
-        //char theLinkName[LINK_CLASS_LINK_NAME_BUF_SIZE + 4];
-        object theSessionListMgrObject;
-        object thePendingSessionSetupQueue;
-        object thePendingSessionSetupQueue3;
-        private char theNameListChanged;
-        //time_t theKeepAliveTime;
+        public int SessionId { get; set; }
 
-        public LinkClass(object list_mgr_object_val, FabricRootClass fabric_root_object_val, string link_name_val)
+        public SessionClass()
         {
-            //this.listEntryClass = list_mgr_object_val;
-            this.fabricRootObject = fabric_root_object_val;
-            this.theNameListChanged = 'D';
-
         }
 
         private void debugIt(bool on_off_val, string str0_val, string str1_val)

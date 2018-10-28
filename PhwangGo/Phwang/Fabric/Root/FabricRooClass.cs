@@ -59,25 +59,6 @@ namespace Phwang.Fabric
 
         }
 
-        public LinkClass mallocLink(string data_val)
-        {
-            this.debugIt(true, "mallocLink", data_val);
-
-            //if (strcmp(((ListMgrClass*) this.linkListMgrObject)->objectName(), "ListMgrClass")) {
-             //   this->abend("mallocLink", "bad name 000");
-            //}
-
-
-            LinkClass link = new LinkClass(this.linkListMgrObject, this, data_val);
-
-            //if (strcmp(((ListMgrClass*) this->linkListMgrObject())->objectName(), "ListMgrClass")) {
-            //    this.abendIt("mallocLink", "bad name 111");
-            //}
-
-            //this->theNameListObject->updateNameList();
-            return link;
-        }
-
         private void debugIt(bool on_off_val, string str0_val, string str1_val)
         {
             if (on_off_val)
