@@ -17,10 +17,13 @@ namespace Phwang.Fabric
     {
         private string objectName = "LinkMgrClass";
 
+        private FabricRootClass fabricRootObject { get; }
+        private PhwangUtils.ListMgrClass listMgr { get; }
 
-
-        public LinkMgrClass()
+        public LinkMgrClass(FabricRootClass root_fabric_object_val)
         {
+            this.fabricRootObject = root_fabric_object_val;
+            this.listMgr = new PhwangUtils.ListMgrClass(this.objectName, 100);
         }
 
         public LinkClass MallocLink(string my_name_val)
@@ -28,6 +31,9 @@ namespace Phwang.Fabric
             LinkClass link = null;
 
             link.MyName = my_name_val;
+
+            PhwangUtils.ListEntryClass list_entry = this.listMgr.MallocEntry(link);
+
             return link;
         }
 

@@ -30,11 +30,9 @@ namespace Phwang.PhwangUtils
         private ListEntryClass[] entryTableArray;
         private object theLock { get; }
 
-        public ListMgrClass(string caller_name_val, int id_size_val, int index_size_val, int init_global_id_val)
+        public ListMgrClass(string caller_name_val, int init_global_id_val)
         {
             this.theCallerName = caller_name_val;
-            this.IdSize = id_size_val;
-            this.IndexSize = index_size_val;
             this.globalId = init_global_id_val;
             this.entryCount = 0;
             this.MaxIdIndexTableIndex = 0;
@@ -52,11 +50,11 @@ namespace Phwang.PhwangUtils
             this.debugIt(true, "ListMgrClass", "init");
         }
 
-        public ListEntryClass MallocEntry(string object_val)
+        public ListEntryClass MallocEntry(object object_val)
         {
             int id;
             int index;
-            this.debugIt(true, "mallocEntry", object_val);
+            this.debugIt(true, "mallocEntry", "start");
 
             ListEntryClass entry = new ListEntryClass();
 
