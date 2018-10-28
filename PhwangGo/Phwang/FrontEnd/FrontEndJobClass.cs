@@ -28,7 +28,7 @@ namespace Phwang.FrontEnd
             this.theSignal = new ManualResetEvent(false);
         }
 
-        public string ReceiveData()
+        public string ReadData()
         {
             this.pendingTillWorkDone();
             string data = this.theData;
@@ -42,6 +42,12 @@ namespace Phwang.FrontEnd
         public void pendingTillWorkDone()
         {
             this.theSignal.WaitOne();
+        }
+
+        public void WriteData(string data_val)
+        {
+            this.theData = data_val;
+            this.WakeUpPendingThread();
         }
 
         public void WakeUpPendingThread()
