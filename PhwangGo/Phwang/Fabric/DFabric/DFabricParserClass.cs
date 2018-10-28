@@ -23,6 +23,9 @@ namespace Phwang.Fabric
         private DFabricClass dFabricObject { get; }
         private DFabricResponseClass dFabricResponseObject { get; }
 
+        private FabricRootClass fabricRootObject() { return this.dFabricObject.FabricRootObject(); }
+        private LinkMgrClass LinkMgrObject() { return this.fabricRootObject().LinkMgrObject(); }
+
         public DFabricParserClass(DFabricClass dfabric_object_val)
         {
             this.dFabricObject = dfabric_object_val;
@@ -94,11 +97,9 @@ namespace Phwang.Fabric
                 this.debugIt(true, "processSetupLinkRequest", "password = " + format_data.password);
             }
 
-            int link_id = 100;
-
-            string response_data = this.dFabricResponseObject.GenerateSetupLinkResponse(link_id, "phwang");
+            LinkClass link = this.LinkMgrObject().MallocLink(format_data.my_name);
+            string response_data = this.dFabricResponseObject.GenerateSetupLinkResponse(link.LinkId, link.MyName);
             return response_data;
-            //this.dFabricObject.binderObject.TransmitData(response_data);
         }
 
         [DataContract]

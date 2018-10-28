@@ -40,6 +40,8 @@ namespace Phwang.Fabric
         private DFabricClass DFabricObject { get; }
         private LinkMgrClass linkMgrObject { get; }
 
+        public LinkMgrClass LinkMgrObject() { return this.linkMgrObject; }
+
         //private PhwangUtils.ListMgrClass linkListMgrObject { get; }
         //private PhwangUtils.ListMgrClass groupListMgrObject { get; }
 

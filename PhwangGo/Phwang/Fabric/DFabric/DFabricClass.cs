@@ -22,8 +22,10 @@ namespace Phwang.Fabric
 
         private FabricRootClass fabricRootObject { get; }
         private DFabricParserClass dFabricParserObject { get; }
-       public PhwangUtils.BinderClass binderObject { get; set; }
+        public PhwangUtils.BinderClass binderObject { get; set; }
         private Thread receiveThread { get; set; }
+
+        public FabricRootClass FabricRootObject() { return this.fabricRootObject; }
 
         public DFabricClass(FabricRootClass fabric_root_class_val)
         {
