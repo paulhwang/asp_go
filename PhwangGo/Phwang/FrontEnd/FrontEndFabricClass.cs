@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Phwang.FrontEnd
@@ -23,15 +24,40 @@ namespace Phwang.FrontEnd
         private FrontEndRootClass frontEndRootObject { get; }
         private PhwangUtils.BinderClass binderObject { get; }
         private FrontEndJobMgrClass frontEndJobMgrObject { get; }
+        private Thread receiveThread { get; set; }
+        private bool stopReceiveThreadFlag { get; set; }
 
         public FrontEndFabricClass(FrontEndRootClass root_object_val)
         {
             this.debugIt(true, "FrontEndFabricClass", "init start");
             this.frontEndRootObject = root_object_val;
+            this.stopReceiveThreadFlag = false;
             this.binderObject = new PhwangUtils.BinderClass(this.objectName);
             this.frontEndJobMgrObject = new FrontEndJobMgrClass(this);
+            this.receiveThread = new Thread(this.receiveThreadFunc);
+            this.receiveThread.Start();
             this.binderObject.BindAsTcpClient("127.0.0.1", FabricFrontEnd.FabricFrontEndProtocolClass.LINK_MGR_PROTOCOL_TRANSPORT_PORT_NUMBER);
             this.debugIt(true, "FrontEndFabricClass", "init done");
+        }
+
+        private void receiveThreadFunc()
+        {
+            this.debugIt(true, "receiveThreadFunc", "====================start");
+            while (true)
+            {
+                if (this.stopReceiveThreadFlag)
+                {
+                    break;
+                }
+
+            }
+
+            this.debugIt(true, "receiveThreadFunc", "exit");
+        }
+
+        public void StopReceiveThread()
+        {
+            this.stopReceiveThreadFlag = true;
         }
 
         public string ProcessAjaxInput(string input_data_var)
