@@ -120,6 +120,7 @@ namespace Phwang.Fabric
                 this.debugIt(true, "processGetLinkDataRequest", "link_id = " + format_data.link_id);
             }
 
+            LinkClass link = this.LinkMgrObject().GetLinkById(format_data.link_id);
             string response_data = this.dFabricResponseObject.GenerateGetLinkDataResponse(123, "phwang");
             return response_data;
         }
