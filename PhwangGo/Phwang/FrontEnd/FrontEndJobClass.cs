@@ -31,7 +31,12 @@ namespace Phwang.FrontEnd
         public string ReceiveData()
         {
             this.pendingTillWorkDone();
-            return this.theData;
+            string data = this.theData;
+            if (data == null)
+            {
+                this.abendIt("ReceiveData", "null data");
+            }
+            return data;
         }
 
         public void pendingTillWorkDone()
