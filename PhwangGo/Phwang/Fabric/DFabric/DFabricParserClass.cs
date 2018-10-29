@@ -121,7 +121,8 @@ namespace Phwang.Fabric
             }
 
             LinkClass link = this.LinkMgrObject().GetLinkById(format_data.link_id);
-            string response_data = this.dFabricResponseObject.GenerateGetLinkDataResponse(link.LinkId, link.MyName);
+
+            string response_data = this.dFabricResponseObject.GenerateGetLinkDataResponse(link.LinkIdStr, link.MyName);
             return response_data;
         }
 

@@ -19,6 +19,7 @@ namespace Phwang.Fabric
 
         private PhwangUtils.ListEntryClass listEntryObject;
         public int LinkId { get; set; }
+        public string LinkIdStr { get; set; }
         public string MyName { get; set; }
 
         public LinkClass(string my_name_val)
@@ -30,6 +31,7 @@ namespace Phwang.Fabric
         {
             this.listEntryObject = list_entry_objectg_val;
             this.LinkId = this.listEntryObject.Id;
+            this.LinkIdStr = PhwangUtils.EncodeNumberClass.EncodeNumber(this.LinkId, FabricFrontEnd.FabricFrontEndProtocolClass.LINK_MGR_PROTOCOL_LINK_ID_SIZE);
         }
 
         private void debugIt(bool on_off_val, string str0_val, string str1_val)

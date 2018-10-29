@@ -91,15 +91,22 @@ namespace Phwang.Fabric
         private class GetLinkDataResponseFormatClass
         {
             [DataMember]
-            public string my_name { get; set; }
+            public string link_id { get; set; }
 
             [DataMember]
-            public int link_id { get; set; }
+            public string interval { get; set; }
+
+            [DataMember]
+            public string data { get; set; }
+
+            [DataMember]
+            public string pending_session_setup { get; set; }
+
         }
 
-        public string GenerateGetLinkDataResponse(int link_id_var, string my_name_var)
+        public string GenerateGetLinkDataResponse(string link_id_str_var, string my_name_var)
         {
-            GetLinkDataResponseFormatClass raw_data = new GetLinkDataResponseFormatClass { my_name = my_name_var, link_id = link_id_var };
+            GetLinkDataResponseFormatClass raw_data = new GetLinkDataResponseFormatClass { link_id = link_id_str_var, interval = "1000", data = null, pending_session_setup = null };
 
             this.debugIt(true, "EncodeLinkSetupResponse", "");
             DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(GetLinkDataResponseFormatClass));
