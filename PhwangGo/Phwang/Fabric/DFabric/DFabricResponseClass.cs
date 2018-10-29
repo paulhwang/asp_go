@@ -101,7 +101,6 @@ namespace Phwang.Fabric
 
             [DataMember]
             public string pending_session_setup { get; set; }
-
         }
 
         public string GenerateGetLinkDataResponse(string link_id_str_var, string my_name_var)
@@ -123,6 +122,38 @@ namespace Phwang.Fabric
 
             string response_data = this.EncodeResponse("get_link_data", data);
             return response_data;
+        }
+
+        [DataContract]
+        private class SetupSessionResponseFormatClass
+        {
+            [DataMember]
+            public string link_id { get; set; }
+
+            [DataMember]
+            public string session_id { get; set; }
+        }
+
+        public string GenerateSetupSessionResponse(string link_id_str_val, string session_id_str_val)
+        {
+            SetupSessionResponseFormatClass raw_data = new SetupSessionResponseFormatClass { link_id = link_id_str_val, session_id = session_id_str_val };
+
+            this.debugIt(true, "EncodeLinkSetupResponse", "");
+            DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(SetupSessionResponseFormatClass));
+            MemoryStream msObj = new MemoryStream();
+
+            js.WriteObject(msObj, raw_data);
+            msObj.Position = 0;
+
+            StreamReader sr = new StreamReader(msObj, Encoding.UTF8);
+            string data = sr.ReadToEnd();
+            sr.Close();
+            msObj.Close();
+            this.debugIt(true, "EncodeLinkSetupResponse", data);
+
+            string response_data = this.EncodeResponse("get_link_data", data);
+            return response_data;
+
         }
 
         private void debugIt(bool on_off_val, string str0_val, string str1_val)

@@ -68,6 +68,10 @@ namespace Phwang.Fabric
             {
                 response_data = this.processGetLinkDataRequest(ajax_fabric_request.data);
             }
+            else if (ajax_fabric_request.command == "setup_session")
+            {
+                response_data = this.processSetupSessionRequest(ajax_fabric_request.data);
+            }
             else
             {
                 response_data = "command " + ajax_fabric_request.command + " not supported";
@@ -123,6 +127,40 @@ namespace Phwang.Fabric
             LinkClass link = this.LinkMgrObject().GetLinkById(format_data.link_id);
 
             string response_data = this.dFabricResponseObject.GenerateGetLinkDataResponse(link.LinkIdStr, link.MyName);
+            return response_data;
+        }
+
+        [DataContract]
+        public class SetupSessionRequestFormat
+        {
+            [DataMember]
+            public int link_id { get; set; }
+
+            [DataMember]
+            public string his_name { get; set; }
+
+            [DataMember]
+            public string theme_data { get; set; }
+        }
+
+        private string processSetupSessionRequest(string input_data_var)
+        {
+            this.debugIt(true, "processSetupSessionRequest", "input_data_var = " + input_data_var);
+            SetupSessionRequestFormat format_data;
+            using (var ms = new MemoryStream(Encoding.Unicode.GetBytes(input_data_var)))
+            {
+                DataContractJsonSerializer deseralizer = new DataContractJsonSerializer(typeof(SetupSessionRequestFormat));
+                format_data = (SetupSessionRequestFormat)deseralizer.ReadObject(ms);// //反序列化ReadObject
+                this.debugIt(true, "processGetLinkDataRequest", "link_id = " + format_data.link_id);
+                this.debugIt(true, "processGetLinkDataRequest", "his_name = " + format_data.his_name);
+                this.debugIt(true, "processGetLinkDataRequest", "theme_data = " + format_data.theme_data);
+            }
+
+            LinkClass link = this.LinkMgrObject().GetLinkById(format_data.link_id);
+            //SessionClass session;
+            //session.SessionIdStr = "2001";
+
+            string response_data = this.dFabricResponseObject.GenerateSetupSessionResponse(link.LinkIdStr, "2001");
             return response_data;
         }
 

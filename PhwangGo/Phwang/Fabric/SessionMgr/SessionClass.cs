@@ -18,6 +18,7 @@ namespace Phwang.Fabric
         private string objectName = "SessionClass";
 
         public int SessionId { get; set; }
+        public string SessionIdStr { get; set; }
 
         public SessionClass()
         {

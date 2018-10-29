@@ -184,9 +184,11 @@ function PhwangAjaxClass(phwang_object_val) {
         var output = JSON.stringify({
             command: this.phwangAjaxProtocolObject().SETUP_SESSION_COMMAND(),
             packet_id: this.ajaxPacketId(),
-            link_id: link_val.linkId(),
-            his_name: his_name_val,
-            theme_data: theme_data_val,
+            data: JSON.stringify({
+                link_id: link_val.linkId(),
+                his_name: his_name_val,
+                theme_data: theme_data_val,
+            }),
         });
         this.debug(true, "setupSession", "output=" + output);
         this.transmitAjaxRequest(output);
