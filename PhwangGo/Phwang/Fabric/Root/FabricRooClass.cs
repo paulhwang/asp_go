@@ -39,8 +39,10 @@ namespace Phwang.Fabric
         private UFabricClass UFabricObject { get; }
         private DFabricClass DFabricObject { get; }
         private LinkMgrClass linkMgrObject { get; }
+        private NameListClass nameListObject { get; }
 
         public LinkMgrClass LinkMgrObject() { return this.linkMgrObject; }
+        public NameListClass NameListObject() { return this.nameListObject; }
 
         //private PhwangUtils.ListMgrClass linkListMgrObject { get; }
         //private PhwangUtils.ListMgrClass groupListMgrObject { get; }
@@ -51,6 +53,8 @@ namespace Phwang.Fabric
             this.UFabricObject = new UFabricClass(this);
             this.DFabricObject = new DFabricClass(this);
             this.linkMgrObject = new LinkMgrClass(this);
+            this.nameListObject = new NameListClass(this);
+
             //this->theNameListObject = new NameListClass(this);
             //this.linkListMgrObject = new PhwangUtils.ListMgrClass("LINK", FabricFrontEnd.FabricFrontEndProtocolClass.LINK_MGR_PROTOCOL_LINK_ID_SIZE, FabricFrontEnd.FabricFrontEndProtocolClass.LINK_MGR_PROTOCOL_LINK_INDEX_SIZE, 100);
             //this.groupListMgrObject = new PhwangUtils.ListMgrClass("GROUP", GroupProtocolClass.GROUP_MGR_PROTOCOL_GROUP_ID_SIZE, GroupProtocolClass.GROUP_MGR_PROTOCOL_GROUP_INDEX_SIZE, 500);

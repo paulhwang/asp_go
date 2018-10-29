@@ -151,7 +151,7 @@ namespace Phwang.Fabric
             msObj.Close();
             this.debugIt(true, "EncodeLinkSetupResponse", data);
 
-            string response_data = this.EncodeResponse("get_link_data", data);
+            string response_data = this.EncodeResponse("setup_session", data);
             return response_data;
 
         }
