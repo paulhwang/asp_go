@@ -27,6 +27,7 @@ namespace Phwang.Fabric
 
         public FabricRootClass FabricRootObject() { return this.dFabricObject.FabricRootObject(); }
         private LinkMgrClass LinkMgrObject() { return this.FabricRootObject().LinkMgrObject(); }
+        private GroupMgrClass GroupMgrObject() { return this.FabricRootObject().GroupMgrObject(); }
 
         public DFabricParserClass(DFabricClass dfabric_object_val)
         {
@@ -193,6 +194,7 @@ namespace Phwang.Fabric
 
             LinkClass link = this.LinkMgrObject().GetLinkById(format_data.link_id);
             SessionClass session = link.MallocSession();
+            GroupClass group = this.GroupMgrObject().MallocGroup(format_data.theme_data);
             //session.SessionIdStr = "2001";
 
             string response_data = this.dFabricResponseObject.GenerateSetupSessionResponse(link.LinkIdStr, "2001");

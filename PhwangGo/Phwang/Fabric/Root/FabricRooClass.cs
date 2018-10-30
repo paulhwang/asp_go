@@ -39,9 +39,11 @@ namespace Phwang.Fabric
         private UFabricClass UFabricObject { get; }
         private DFabricClass DFabricObject { get; }
         private LinkMgrClass linkMgrObject { get; }
+        private GroupMgrClass groupMgrObject { get; }
         private NameListClass nameListObject { get; }
 
         public LinkMgrClass LinkMgrObject() { return this.linkMgrObject; }
+        public GroupMgrClass GroupMgrObject() { return this.groupMgrObject; }
         public NameListClass NameListObject() { return this.nameListObject; }
 
         //private PhwangUtils.ListMgrClass linkListMgrObject { get; }
@@ -53,6 +55,7 @@ namespace Phwang.Fabric
             this.UFabricObject = new UFabricClass(this);
             this.DFabricObject = new DFabricClass(this);
             this.linkMgrObject = new LinkMgrClass(this);
+            this.groupMgrObject = new GroupMgrClass(this);
             this.nameListObject = new NameListClass(this);
 
             //this->theNameListObject = new NameListClass(this);
