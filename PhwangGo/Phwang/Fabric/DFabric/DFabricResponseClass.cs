@@ -134,14 +134,14 @@ namespace Phwang.Fabric
             public string link_id { get; set; }
 
             [DataMember]
-            public string name_list { get; set; }
+            public string c_name_list { get; set; }
         }
 
         public string GenerateGetNameListResponse(string link_id_str_val, string name_list_val)
         {
             string downlink_data = this.fabricRootObject().NameListObject().NameListTagStr();
 
-            GetNameListResponseFormatClass raw_data = new GetNameListResponseFormatClass { link_id = link_id_str_val, name_list = name_list_val };
+            GetNameListResponseFormatClass raw_data = new GetNameListResponseFormatClass { link_id = link_id_str_val, c_name_list = name_list_val };
 
             this.debugIt(true, "GenerateGetNameListResponse", "");
             DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(GetNameListResponseFormatClass));
