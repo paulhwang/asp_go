@@ -66,6 +66,15 @@ namespace Phwang.Fabric
             this.debugIt(true, "updateNameList", this.nameList);
         }
 
+        public string GetNameList(int tag_val)
+        {
+            if (this.nameListTag == tag_val)
+            {
+                return null;
+            }
+            return this.nameList;
+        }
+
         private void debugIt(bool on_off_val, string str0_val, string str1_val)
         {
             if (on_off_val)

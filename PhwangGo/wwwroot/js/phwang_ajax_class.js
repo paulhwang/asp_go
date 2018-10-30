@@ -156,9 +156,11 @@ function PhwangAjaxClass(phwang_object_val) {
         var output = JSON.stringify({
             command: this.phwangAjaxProtocolObject().GET_NAME_LIST_COMMAND(),
             packet_id: this.ajaxPacketId(),
-            link_id: link_val.linkId(),
-            name_list_tag: link_val.nameListTag(),
-        });
+            data: JSON.stringify({
+                link_id: link_val.linkId(),
+                name_list_tag: link_val.nameListTag(),
+             }),
+       });
         this.debug(true, "getNameList", "output=" + output);
         this.transmitAjaxRequest(output);
     };

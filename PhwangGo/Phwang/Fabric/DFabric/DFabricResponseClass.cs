@@ -110,7 +110,7 @@ namespace Phwang.Fabric
 
             GetLinkDataResponseFormatClass raw_data = new GetLinkDataResponseFormatClass { link_id = link_id_str_val, interval = "1000", data = data_val, pending_session_setup = null };
 
-            this.debugIt(true, "EncodeLinkSetupResponse", "");
+            this.debugIt(true, "GenerateGetLinkDataResponse", "");
             DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(GetLinkDataResponseFormatClass));
             MemoryStream msObj = new MemoryStream();
 
@@ -121,9 +121,42 @@ namespace Phwang.Fabric
             string data = sr.ReadToEnd();
             sr.Close();
             msObj.Close();
-            this.debugIt(true, "EncodeLinkSetupResponse", data);
+            this.debugIt(true, "GenerateGetLinkDataResponse", data);
 
             string response_data = this.EncodeResponse("get_link_data", data);
+            return response_data;
+        }
+
+        [DataContract]
+        private class GetNameListResponseFormatClass
+        {
+            [DataMember]
+            public string link_id { get; set; }
+
+            [DataMember]
+            public string name_list { get; set; }
+        }
+
+        public string GenerateGetNameListResponse(string link_id_str_val, string name_list_val)
+        {
+            string downlink_data = this.fabricRootObject().NameListObject().NameListTagStr();
+
+            GetNameListResponseFormatClass raw_data = new GetNameListResponseFormatClass { link_id = link_id_str_val, name_list = name_list_val };
+
+            this.debugIt(true, "GenerateGetNameListResponse", "");
+            DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(GetNameListResponseFormatClass));
+            MemoryStream msObj = new MemoryStream();
+
+            js.WriteObject(msObj, raw_data);
+            msObj.Position = 0;
+
+            StreamReader sr = new StreamReader(msObj, Encoding.UTF8);
+            string data = sr.ReadToEnd();
+            sr.Close();
+            msObj.Close();
+            this.debugIt(true, "GenerateGetNameListResponse", data);
+
+            string response_data = this.EncodeResponse("get_name_list", data);
             return response_data;
         }
 
@@ -141,7 +174,7 @@ namespace Phwang.Fabric
         {
             SetupSessionResponseFormatClass raw_data = new SetupSessionResponseFormatClass { link_id = link_id_str_val, session_id = session_id_str_val };
 
-            this.debugIt(true, "EncodeLinkSetupResponse", "");
+            this.debugIt(true, "GenerateSetupSessionResponse", "");
             DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(SetupSessionResponseFormatClass));
             MemoryStream msObj = new MemoryStream();
 
@@ -152,7 +185,7 @@ namespace Phwang.Fabric
             string data = sr.ReadToEnd();
             sr.Close();
             msObj.Close();
-            this.debugIt(true, "EncodeLinkSetupResponse", data);
+            this.debugIt(true, "GenerateSetupSessionResponse", data);
 
             string response_data = this.EncodeResponse("setup_session", data);
             return response_data;

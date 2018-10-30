@@ -143,6 +143,7 @@ namespace Phwang.Fabric
         {
             [DataMember]
             public int link_id { get; set; }
+            public int name_list_tag { get; set; }
         }
 
         private string processGetNameListRequest(string input_data_var)
@@ -158,9 +159,9 @@ namespace Phwang.Fabric
 
             LinkClass link = this.LinkMgrObject().GetLinkById(format_data.link_id);
 
-            string data = RESPONSE_IS_GET_LINK_DATA_NAME_LIST + this.FabricRootObject().NameListObject().NameListTagStr();
+            string name_list = this.FabricRootObject().NameListObject().GetNameList(format_data.name_list_tag);
 
-            string response_data = this.dFabricResponseObject.GenerateGetLinkDataResponse(link.LinkIdStr, data);
+            string response_data = this.dFabricResponseObject.GenerateGetNameListResponse(link.LinkIdStr, name_list);
             return response_data;
         }
 
