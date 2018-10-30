@@ -20,11 +20,13 @@ namespace Phwang.Fabric
     public class DFabricParserClass
     {
         private string objectName = "DFabricParserClass";
+        private string RESPONSE_IS_GET_LINK_DATA_NAME_LIST = FabricFrontEnd.FabricFrontEndProtocolClass.WEB_FABRIC_PROTOCOL_RESPOND_IS_GET_LINK_DATA_NAME_LIST;
+
         private DFabricClass dFabricObject { get; }
         private DFabricResponseClass dFabricResponseObject { get; }
 
-        private FabricRootClass fabricRootObject() { return this.dFabricObject.FabricRootObject(); }
-        private LinkMgrClass LinkMgrObject() { return this.fabricRootObject().LinkMgrObject(); }
+        public FabricRootClass FabricRootObject() { return this.dFabricObject.FabricRootObject(); }
+        private LinkMgrClass LinkMgrObject() { return this.FabricRootObject().LinkMgrObject(); }
 
         public DFabricParserClass(DFabricClass dfabric_object_val)
         {
@@ -126,7 +128,9 @@ namespace Phwang.Fabric
 
             LinkClass link = this.LinkMgrObject().GetLinkById(format_data.link_id);
 
-            string response_data = this.dFabricResponseObject.GenerateGetLinkDataResponse(link.LinkIdStr, link.MyName);
+            string data = RESPONSE_IS_GET_LINK_DATA_NAME_LIST + this.FabricRootObject().NameListObject().NameListTagStr();
+
+            string response_data = this.dFabricResponseObject.GenerateGetLinkDataResponse(link.LinkIdStr, data);
             return response_data;
         }
 

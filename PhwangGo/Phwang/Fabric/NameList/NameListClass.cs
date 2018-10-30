@@ -18,11 +18,14 @@ namespace Phwang.Fabric
         private string objectName = "NameListClass";
         const int NAME_LIST_CLASS_NAME_LIST_TAG_SIZE = FabricFrontEnd.FabricFrontEndProtocolClass.WEB_FABRIC_PROTOCOL_NAME_LIST_TAG_SIZE;
         const int NAME_LIST_CLASS_MAX_NAME_LIST_TAG = 999;
-        const int NAME_LIST_CLASS_NAME_LIST_BUFFER_SIZE = 10240;
 
         private FabricRootClass fabricRootObject { get; }
         private int nameListTag { get; set; }
+        private string nameListTagStr { get; set; }
         private string nameList { get; set; }
+
+        public string NameListTagStr() { return this.nameListTagStr; }
+        public string NameList() { return this.nameList; }
 
         public NameListClass(FabricRootClass root_fabric_object_val)
         {
@@ -34,15 +37,15 @@ namespace Phwang.Fabric
 
             int max_index = link_list_mgr.ListMgr().MaxIndex();
             PhwangUtils.ListEntryClass[] list_entry_array = link_list_mgr.ListMgr().EntryTableArray();
-            this.nameList = "";
-            int name_len;
 
             this.nameListTag++;
             if (this.nameListTag > NAME_LIST_CLASS_MAX_NAME_LIST_TAG)
             {
                 this.nameListTag = 1;
             }
+            this.nameListTagStr = PhwangUtils.EncodeNumberClass.EncodeNumber(this.nameListTag, NAME_LIST_CLASS_NAME_LIST_TAG_SIZE);
 
+            this.nameList = "";
             for (int i = max_index; i >= 0; i--)
             {
                 if (list_entry_array[i] != null)

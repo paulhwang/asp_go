@@ -21,11 +21,12 @@ namespace Phwang.Fabric
     {
         private string objectName = "DFabricResponseClass";
 
-        private DFabricParserClass dFabricResponseObject { get; }
+        private DFabricParserClass dFabricParserObject { get; }
+        private FabricRootClass fabricRootObject() { return this.dFabricParserObject.FabricRootObject();  }
 
-        public DFabricResponseClass(DFabricParserClass dfabric_response_object_val)
+        public DFabricResponseClass(DFabricParserClass dfabric_parser_object_val)
         {
-            this.dFabricResponseObject = dfabric_response_object_val;
+            this.dFabricParserObject = dfabric_parser_object_val;
         }
 
         [DataContract]
@@ -103,9 +104,11 @@ namespace Phwang.Fabric
             public string pending_session_setup { get; set; }
         }
 
-        public string GenerateGetLinkDataResponse(string link_id_str_var, string my_name_var)
+        public string GenerateGetLinkDataResponse(string link_id_str_val, string data_val)
         {
-            GetLinkDataResponseFormatClass raw_data = new GetLinkDataResponseFormatClass { link_id = link_id_str_var, interval = "1000", data = null, pending_session_setup = null };
+            string downlink_data = this.fabricRootObject().NameListObject().NameListTagStr();
+
+            GetLinkDataResponseFormatClass raw_data = new GetLinkDataResponseFormatClass { link_id = link_id_str_val, interval = "1000", data = data_val, pending_session_setup = null };
 
             this.debugIt(true, "EncodeLinkSetupResponse", "");
             DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(GetLinkDataResponseFormatClass));
