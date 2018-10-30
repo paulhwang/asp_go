@@ -16,26 +16,27 @@ namespace Phwang.Fabric
     public class GroupClass
     {
         private string objectName = "GroupClass";
+        private const int GROUP_MGR_PROTOCOL_GROUP_ID_SIZE = 4;
 
         private PhwangUtils.ListEntryClass listEntryObject;
-        private int linkId { get; set; }
-        private string myName { get; }
+        private int groupId { get; set; }
+        private string themeData { get; }
         private SessionMgrClass sessionMgrObject { get; }
 
-        public string MyName() { return this.myName; }
-        public int LinkId() { return this.linkId; }
-        public string LinkIdStr { get; set; }
+        public string ThemeData() { return this.themeData; }
+        public int GroupId() { return this.groupId; }
+        public string GroupIdStr { get; set; }
 
-        public GroupClass(string my_name_val)
+        public GroupClass(string theme_data_val)
         {
-            this.myName = my_name_val;
+            this.themeData = theme_data_val;
         }
 
         public void BindListEntry(PhwangUtils.ListEntryClass list_entry_objectg_val)
         {
             this.listEntryObject = list_entry_objectg_val;
-            this.linkId = this.listEntryObject.Id;
-            this.LinkIdStr = PhwangUtils.EncodeNumberClass.EncodeNumber(this.linkId, FabricFrontEnd.FabricFrontEndProtocolClass.LINK_MGR_PROTOCOL_LINK_ID_SIZE);
+            this.groupId = this.listEntryObject.Id;
+            this.GroupIdStr = PhwangUtils.EncodeNumberClass.EncodeNumber(this.groupId, GROUP_MGR_PROTOCOL_GROUP_ID_SIZE);
         }
 
         private void debugIt(bool on_off_val, string str0_val, string str1_val)
