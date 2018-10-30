@@ -70,6 +70,10 @@ namespace Phwang.Fabric
             {
                 response_data = this.processGetLinkDataRequest(ajax_fabric_request.data);
             }
+            else if (ajax_fabric_request.command == "get_name_list")
+            {
+                response_data = this.processGetNameListRequest(ajax_fabric_request.data);
+            }
             else if (ajax_fabric_request.command == "setup_session")
             {
                 response_data = this.processSetupSessionRequest(ajax_fabric_request.data);
@@ -124,6 +128,32 @@ namespace Phwang.Fabric
                 DataContractJsonSerializer deseralizer = new DataContractJsonSerializer(typeof(GetLinkDataRequestFormat));
                 format_data = (GetLinkDataRequestFormat)deseralizer.ReadObject(ms);// //反序列化ReadObject
                 this.debugIt(true, "processGetLinkDataRequest", "link_id = " + format_data.link_id);
+            }
+
+            LinkClass link = this.LinkMgrObject().GetLinkById(format_data.link_id);
+
+            string data = RESPONSE_IS_GET_LINK_DATA_NAME_LIST + this.FabricRootObject().NameListObject().NameListTagStr();
+
+            string response_data = this.dFabricResponseObject.GenerateGetLinkDataResponse(link.LinkIdStr, data);
+            return response_data;
+        }
+
+        [DataContract]
+        public class GetNameListRequestFormat
+        {
+            [DataMember]
+            public int link_id { get; set; }
+        }
+
+        private string processGetNameListRequest(string input_data_var)
+        {
+            this.debugIt(true, "processGetNameListRequest", "input_data_var = " + input_data_var);
+            GetNameListRequestFormat format_data;
+            using (var ms = new MemoryStream(Encoding.Unicode.GetBytes(input_data_var)))
+            {
+                DataContractJsonSerializer deseralizer = new DataContractJsonSerializer(typeof(GetNameListRequestFormat));
+                format_data = (GetNameListRequestFormat)deseralizer.ReadObject(ms);// //反序列化ReadObject
+                this.debugIt(true, "processGetNameListRequest", "link_id = " + format_data.link_id);
             }
 
             LinkClass link = this.LinkMgrObject().GetLinkById(format_data.link_id);
