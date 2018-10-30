@@ -30,6 +30,9 @@ namespace Phwang.PhwangUtils
         private ListEntryClass[] entryTableArray;
         private object theLock { get; }
 
+        public int MaxIndex() { return this.maxIndex; }
+        public ListEntryClass[] EntryTableArray() { return this.entryTableArray; }
+
         public ListMgrClass(string caller_name_val, int init_global_id_val)
         {
             this.theCallerName = caller_name_val;
@@ -38,6 +41,7 @@ namespace Phwang.PhwangUtils
             this.MaxIdIndexTableIndex = 0;
             this.maxIndex = 0;
             this.theLock = new object();
+
 
             //this->theMutex = PTHREAD_MUTEX_INITIALIZER;
 
