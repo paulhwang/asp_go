@@ -18,14 +18,17 @@ namespace Phwang.Fabric
         private string objectName = "LinkClass";
 
         private PhwangUtils.ListEntryClass listEntryObject;
-        public int LinkId { get; set; }
-        public string LinkIdStr { get; set; }
-        public string MyName { get; set; }
+        private int linkId { get; set; }
+        private string myName { get; }
         private SessionMgrClass sessionMgrObject { get; }
+
+        public string MyName() { return this.myName; }
+        public int LinkId() { return this.linkId; }
+        public string LinkIdStr { get; set; }
 
         public LinkClass(string my_name_val)
         {
-            this.MyName = my_name_val;
+            this.myName = my_name_val;
 
             this.sessionMgrObject = new SessionMgrClass(this);
         }
@@ -33,8 +36,8 @@ namespace Phwang.Fabric
         public void BindListEntry(PhwangUtils.ListEntryClass list_entry_objectg_val)
         {
             this.listEntryObject = list_entry_objectg_val;
-            this.LinkId = this.listEntryObject.Id;
-            this.LinkIdStr = PhwangUtils.EncodeNumberClass.EncodeNumber(this.LinkId, FabricFrontEnd.FabricFrontEndProtocolClass.LINK_MGR_PROTOCOL_LINK_ID_SIZE);
+            this.linkId = this.listEntryObject.Id;
+            this.LinkIdStr = PhwangUtils.EncodeNumberClass.EncodeNumber(this.linkId, FabricFrontEnd.FabricFrontEndProtocolClass.LINK_MGR_PROTOCOL_LINK_ID_SIZE);
         }
 
         public SessionClass MallocSession()

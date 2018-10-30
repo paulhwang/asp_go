@@ -59,7 +59,7 @@ namespace Phwang.Fabric
                         this.nameList = this.nameList + ",";
                     }
                     LinkClass link = (LinkClass) list_entry_array[i].Data;
-                    this.nameList = this.nameList + '"' + link.MyName + '"';
+                    this.nameList = this.nameList + '"' + link.MyName() + '"';
                 }
             }
 

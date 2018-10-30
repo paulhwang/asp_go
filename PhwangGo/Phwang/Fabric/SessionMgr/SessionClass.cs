@@ -17,11 +17,21 @@ namespace Phwang.Fabric
     {
         private string objectName = "SessionClass";
 
-        public int SessionId { get; set; }
+        private PhwangUtils.ListEntryClass listEntryObject;
+        public int sessionId { get; set; }
+
+        public int SessionId() { return this.sessionId; }
         public string SessionIdStr { get; set; }
 
         public SessionClass()
         {
+        }
+
+        public void BindListEntry(PhwangUtils.ListEntryClass list_entry_objectg_val)
+        {
+            this.listEntryObject = list_entry_objectg_val;
+            this.sessionId = this.listEntryObject.Id;
+            this.SessionIdStr = PhwangUtils.EncodeNumberClass.EncodeNumber(this.sessionId, FabricFrontEnd.FabricFrontEndProtocolClass.LINK_MGR_PROTOCOL_SESSION_ID_SIZE);
         }
 
         private void debugIt(bool on_off_val, string str0_val, string str1_val)

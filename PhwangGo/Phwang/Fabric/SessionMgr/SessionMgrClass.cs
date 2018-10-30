@@ -18,16 +18,23 @@ namespace Phwang.Fabric
         private string objectName = "SessionMgrClass";
 
         private LinkClass linkObject { get; }
+        private PhwangUtils.ListMgrClass listMgr { get; }
+
+        //public PhwangUtils.ListMgrClass ListMgr() { return this.listMgr; }
 
         public SessionMgrClass(LinkClass link_object_val)
         {
             this.linkObject = link_object_val;
+            this.listMgr = new PhwangUtils.ListMgrClass(this.objectName, 1000);
         }
 
         public SessionClass MallocSession()
         {
-            return null;
-        }
+            SessionClass session = new SessionClass();
+            PhwangUtils.ListEntryClass list_entry = this.listMgr.MallocEntry(session);
+            session.BindListEntry(list_entry);
+            return session;
+       }
 
         private void debugIt(bool on_off_val, string str0_val, string str1_val)
         {
