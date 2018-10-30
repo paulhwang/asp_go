@@ -17,8 +17,16 @@ namespace Phwang.Fabric
     {
         private string objectName = "SessionMgrClass";
 
-        public SessionMgrClass()
+        private LinkClass linkObject { get; }
+
+        public SessionMgrClass(LinkClass link_object_val)
         {
+            this.linkObject = link_object_val;
+        }
+
+        public SessionClass MallocSession()
+        {
+            return null;
         }
 
         private void debugIt(bool on_off_val, string str0_val, string str1_val)

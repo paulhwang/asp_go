@@ -192,7 +192,7 @@ namespace Phwang.Fabric
             }
 
             LinkClass link = this.LinkMgrObject().GetLinkById(format_data.link_id);
-            //SessionClass session;
+            SessionClass session = link.MallocSession();
             //session.SessionIdStr = "2001";
 
             string response_data = this.dFabricResponseObject.GenerateSetupSessionResponse(link.LinkIdStr, "2001");
