@@ -21,7 +21,7 @@ namespace Phwang.Fabric
         private PhwangUtils.ListEntryClass listEntryObject;
         private int groupId { get; set; }
         private string themeData { get; }
-        private SessionMgrClass sessionMgrObject { get; }
+        private GroupSessionMgrClass groupSessionMgrObject { get; }
 
         public string ThemeData() { return this.themeData; }
         public int GroupId() { return this.groupId; }
@@ -30,6 +30,8 @@ namespace Phwang.Fabric
         public GroupClass(string theme_data_val)
         {
             this.themeData = theme_data_val;
+            this.groupSessionMgrObject = new GroupSessionMgrClass();
+
         }
 
         public void BindListEntry(PhwangUtils.ListEntryClass list_entry_objectg_val)
@@ -40,6 +42,10 @@ namespace Phwang.Fabric
         }
 
         public void InsertSession(SessionClass session_val)
+        {
+
+        }
+        public void RemoveSession(SessionClass session_val)
         {
 
         }

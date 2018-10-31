@@ -31,7 +31,7 @@ namespace Phwang.PhwangUtils
         public char[] CharArrayTable() { return this.charArrayTable; }
 
 
-        public ArrayMgrClass(char array_type_val, int max_array_size_val)
+        public ArrayMgrClass(string owner_object_name_val, char array_type_val, int max_array_size_val)
         {
             this.arrayType = array_type_val;
             this.maxArraySize = max_array_size_val;
