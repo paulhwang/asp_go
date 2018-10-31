@@ -83,7 +83,7 @@ namespace Phwang.Fabric
             {
                 response_data = "command " + ajax_fabric_request.command + " not supported";
             }
-            this.dFabricObject.binderObject.TransmitData(adax_id + response_data);
+            this.dFabricObject.TransmitData(adax_id + response_data);
         }
 
         [DataContract]

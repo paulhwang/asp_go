@@ -60,6 +60,10 @@ namespace Phwang.Fabric
             }
         }
 
+        public void TransmitData(string data_var)
+        {
+            this.binderObject.TransmitData(data_var);
+        }
 
         private void debugIt(bool on_off_val, string str0_val, string str1_val)
         {
