@@ -17,6 +17,11 @@ namespace Phwang.Fabric
     {
         private string objectName = "UFabricClass";
 
+        const string FABRIC_THEME_PROTOCOL_COMMAND_IS_SETUP_ROOM = "R";
+        //#define FABRIC_THEME_PROTOCOL_RESPOND_IS_SETUP_ROOM 'r'
+        //#define FABRIC_THEME_PROTOCOL_COMMAND_IS_PUT_ROOM_DATA 'D'
+        //#define FABRIC_THEME_PROTOCOL_RESPOND_IS_PUT_ROOM_DATA 'd'
+
         private FabricRootClass FabricRootObject { get; }
         //void* theTpServerObject;
         //void* theTpTransferObject;
@@ -32,6 +37,9 @@ namespace Phwang.Fabric
         void StartNetServer()
         {
             //this.TpServerObject = phwangMallocTpServer(this, GROUP_ROOM_PROTOCOL_TRANSPORT_PORT_NUMBER, uFabricTpServerAcceptFunction, this, uFabricTpReceiveDataFunction, this, this->objectName());
+        }
+        public void TransmitFunction(string uplink_data_val)
+        {
         }
 
         private void debugIt(bool on_off_val, string str0_val, string str1_val)

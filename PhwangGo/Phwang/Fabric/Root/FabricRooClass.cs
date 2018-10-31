@@ -36,31 +36,27 @@ namespace Phwang.Fabric
     {
         private string objectName = "FabricRootClass";
 
-        private UFabricClass UFabricObject { get; }
-        private DFabricClass DFabricObject { get; }
+        private UFabricClass uFabricObject { get; }
+        private DFabricClass dFabricObject { get; }
         private LinkMgrClass linkMgrObject { get; }
         private GroupMgrClass groupMgrObject { get; }
         private NameListClass nameListObject { get; }
 
+        public UFabricClass UFabricObject() { return this.uFabricObject; }
+        public DFabricClass DFabricObject() { return this.dFabricObject; }
         public LinkMgrClass LinkMgrObject() { return this.linkMgrObject; }
         public GroupMgrClass GroupMgrObject() { return this.groupMgrObject; }
         public NameListClass NameListObject() { return this.nameListObject; }
 
-        //private PhwangUtils.ListMgrClass linkListMgrObject { get; }
-        //private PhwangUtils.ListMgrClass groupListMgrObject { get; }
-
         public FabricRootClass()
         {
             this.debugIt(true, "FabricRootClass", "init start");
-            this.UFabricObject = new UFabricClass(this);
-            this.DFabricObject = new DFabricClass(this);
+            this.uFabricObject = new UFabricClass(this);
+            this.dFabricObject = new DFabricClass(this);
             this.linkMgrObject = new LinkMgrClass(this);
             this.groupMgrObject = new GroupMgrClass(this);
             this.nameListObject = new NameListClass(this);
 
-            //this->theNameListObject = new NameListClass(this);
-            //this.linkListMgrObject = new PhwangUtils.ListMgrClass("LINK", FabricFrontEnd.FabricFrontEndProtocolClass.LINK_MGR_PROTOCOL_LINK_ID_SIZE, FabricFrontEnd.FabricFrontEndProtocolClass.LINK_MGR_PROTOCOL_LINK_INDEX_SIZE, 100);
-            //this.groupListMgrObject = new PhwangUtils.ListMgrClass("GROUP", GroupProtocolClass.GROUP_MGR_PROTOCOL_GROUP_ID_SIZE, GroupProtocolClass.GROUP_MGR_PROTOCOL_GROUP_INDEX_SIZE, 500);
             this.StartWatchDogThread();
 
             this.debugIt(true, "FabricRootClass", "init done");

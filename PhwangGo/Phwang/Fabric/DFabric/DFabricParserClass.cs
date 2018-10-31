@@ -202,11 +202,11 @@ namespace Phwang.Fabric
             group.InsertSession(session);
             session.BindGroup(group);
 
-            /*
-            if (!strcmp(his_name_val, session->linkObject()->linkName()))
+            if (format_data.his_name == link.MyName())
             {
                 this.mallocRoom(group, format_data.theme_data);
             }
+            /*
             else
             {
                 LinkClass his_link = this.LinkMgrObject().SearchLinkByName(his_name_val);
@@ -251,6 +251,10 @@ namespace Phwang.Fabric
 
         private void mallocRoom(GroupClass group_val, string theme_info_val)
         {
+            string uplink_data = Protocol.FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_COMMAND_IS_SETUP_ROOM;
+            uplink_data = uplink_data + group_val.GroupIdStr();
+            uplink_data = uplink_data + theme_info_val;
+            this.FabricRootObject().UFabricObject().TransmitFunction(uplink_data);
 
         }
 

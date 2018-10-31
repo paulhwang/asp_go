@@ -20,12 +20,13 @@ namespace Phwang.Fabric
 
         private PhwangUtils.ListEntryClass listEntryObject;
         private int groupId { get; set; }
+        public string groupIdStr { get; set; }
         private string themeData { get; }
         private GroupSessionMgrClass groupSessionMgrObject { get; }
 
         public string ThemeData() { return this.themeData; }
         public int GroupId() { return this.groupId; }
-        public string GroupIdStr { get; set; }
+        public string GroupIdStr() { return this.groupIdStr; }
 
         public GroupClass(string theme_data_val)
         {
@@ -38,7 +39,7 @@ namespace Phwang.Fabric
         {
             this.listEntryObject = list_entry_objectg_val;
             this.groupId = this.listEntryObject.Id;
-            this.GroupIdStr = PhwangUtils.EncodeNumberClass.EncodeNumber(this.groupId, GROUP_MGR_PROTOCOL_GROUP_ID_SIZE);
+            this.groupIdStr = PhwangUtils.EncodeNumberClass.EncodeNumber(this.groupId, GROUP_MGR_PROTOCOL_GROUP_ID_SIZE);
         }
 
         public void InsertSession(SessionClass session_val)
