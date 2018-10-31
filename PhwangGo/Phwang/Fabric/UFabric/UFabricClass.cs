@@ -36,18 +36,34 @@ namespace Phwang.Fabric
             this.binderObject = new PhwangUtils.BinderClass(this.objectName);
             this.binderObject.BindAsTcpServer(Protocols.FabricThemeProtocolClass.GROUP_ROOM_PROTOCOL_TRANSPORT_PORT_NUMBER);
 
-            //this.receiveThread = new Thread(this.receiveThreadFunc);
-            //this.receiveThread.Start();
+            this.receiveThread = new Thread(this.receiveThreadFunc);
+            this.receiveThread.Start();
 
             this.debugIt(true, "UFabricClass", "init done");
         }
 
-        void StartNetServer()
+        private void receiveThreadFunc()
         {
-            //this.TpServerObject = phwangMallocTpServer(this, GROUP_ROOM_PROTOCOL_TRANSPORT_PORT_NUMBER, uFabricTpServerAcceptFunction, this, uFabricTpReceiveDataFunction, this, this->objectName());
+            this.debugIt(true, "receiveThreadFunc", "start");
+
+            string data;
+            while (true)
+            {
+                data = this.binderObject.ReceiveData();
+                if (data == null)
+                {
+                    this.abendIt("receiveThreadFunc", "null data");
+                    continue;
+                }
+                this.debugIt(true, "receiveThreadFunc", "data = " + data);
+                this.uFabricParserObject.parseInputPacket(data);
+
+            }
         }
-        public void TransmitFunction(string uplink_data_val)
+
+        public void TransmitData(string data_val)
         {
+            this.binderObject.TransmitData(data_val);
         }
 
         private void debugIt(bool on_off_val, string str0_val, string str1_val)

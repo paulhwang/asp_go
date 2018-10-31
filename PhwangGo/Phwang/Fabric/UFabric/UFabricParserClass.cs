@@ -24,7 +24,11 @@ namespace Phwang.Fabric
             this.uFabricObject = ufabric_object_val;
         }
 
-        private void debugIt(bool on_off_val, string str0_val, string str1_val)
+        public void parseInputPacket(string input_data_var)
+        {
+        }
+
+            private void debugIt(bool on_off_val, string str0_val, string str1_val)
         {
             if (on_off_val)
                 this.logitIt(str0_val, str1_val);

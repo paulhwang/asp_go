@@ -254,7 +254,7 @@ namespace Phwang.Fabric
             string uplink_data = Protocols.FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_COMMAND_IS_SETUP_ROOM;
             uplink_data = uplink_data + group_val.GroupIdStr();
             uplink_data = uplink_data + theme_info_val;
-            this.FabricRootObject().UFabricObject().TransmitFunction(uplink_data);
+            this.FabricRootObject().UFabricObject().TransmitData(uplink_data);
 
         }
 
