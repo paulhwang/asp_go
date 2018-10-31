@@ -17,9 +17,72 @@ namespace Phwang.PhwangUtils
     {
         private string objectName = "ArrayMgrClass";
 
-        public ArrayMgrClass()
-        {
+        private char arrayType { get; }
+        private int arraySize { get; set; }
+        private int maxArraySize { get; }
+        private object[] objectArrayTable { get; set; }
+        private string[] stringArrayTable { get; set; }
+        private int[] intArrayTable { get; set; }
+        private char [] charArrayTable { get; set; }
 
+        public object[] ObjectArrayTable() { return this.objectArrayTable; }
+        public string[] StringArrayTable() { return this.stringArrayTable; }
+        public int[] IntArrayTable() { return this.intArrayTable; }
+        public char[] CharArrayTable() { return this.charArrayTable; }
+
+
+        public ArrayMgrClass(char array_type_val, int max_array_size_val)
+        {
+            this.arrayType = array_type_val;
+            this.maxArraySize = max_array_size_val;
+            this.allocateArrayTable();
+        }
+        private void allocateArrayTable()
+        {
+            switch (this.arrayType)
+            {
+                case 'o': // object
+                    this.objectArrayTable = new object[this.maxArraySize];
+                    break;
+
+                case 's': // string
+                    this.stringArrayTable = new string[this.maxArraySize];
+                    break;
+
+                case 'i': // integer
+                    this.intArrayTable = new int[this.maxArraySize];
+                    break;
+
+                case 'c': // char
+                    this.charArrayTable = new char[this.maxArraySize];
+                    break;
+
+                default:
+                    this.abendIt("allocArrayTable", "bad type");
+                    break;
+            }
+        }
+        public void InsertObjectElement(object object_val)
+        {
+            int i = 0;
+            while (i < this.arraySize)
+            {
+                if (this.objectArrayTable[i] == null)
+                {
+                    this.objectArrayTable[i] = object_val;
+                    return;
+                }
+                i++;
+            }
+
+            if (this.arraySize < this.maxArraySize)
+            {
+                this.objectArrayTable[this.arraySize] = object_val;
+                this.arraySize++;
+                return;
+            }
+
+            this.abendIt("insertObjectElement", "table is full");
         }
 
         private void debugIt(bool on_off_val, string str0_val, string str1_val)
