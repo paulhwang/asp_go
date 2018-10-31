@@ -28,6 +28,16 @@ namespace Phwang.Fabric
             this.arrayMgrObject = new PhwangUtils.ArrayMgrClass(this.objectName, 'o', MAX_SESSION_ARRAY_SIZE);
         }
 
+        public void InsertSession(SessionClass session_val)
+        {
+
+        }
+        public void RemoveSession(SessionClass session_val)
+        {
+
+        }
+
+
         private void debugIt(bool on_off_val, string str0_val, string str1_val)
         {
             if (on_off_val)

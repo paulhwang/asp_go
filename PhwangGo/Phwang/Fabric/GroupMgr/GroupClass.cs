@@ -43,10 +43,12 @@ namespace Phwang.Fabric
 
         public void InsertSession(SessionClass session_val)
         {
+            this.groupSessionMgrObject.InsertSession(session_val);
 
         }
         public void RemoveSession(SessionClass session_val)
         {
+            this.groupSessionMgrObject.RemoveSession(session_val);
 
         }
 
