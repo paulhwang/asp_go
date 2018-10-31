@@ -9,6 +9,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Phwang.Fabric
@@ -22,15 +23,22 @@ namespace Phwang.Fabric
         //#define FABRIC_THEME_PROTOCOL_COMMAND_IS_PUT_ROOM_DATA 'D'
         //#define FABRIC_THEME_PROTOCOL_RESPOND_IS_PUT_ROOM_DATA 'd'
 
-        private FabricRootClass FabricRootObject { get; }
-        //void* theTpServerObject;
-        //void* theTpTransferObject;
+        private FabricRootClass fabricRootObject { get; }
+        private DFabricParserClass dFabricParserObject { get; }
+        public PhwangUtils.BinderClass binderObject { get; set; }
+        private Thread receiveThread { get; set; }
 
         public UFabricClass(FabricRootClass fabric_root_class_val)
         {
             this.debugIt(true, "UFabricClass", "init start");
-            this.FabricRootObject = fabric_root_class_val;
-            this.StartNetServer();
+            this.fabricRootObject = fabric_root_class_val;
+            //this.dFabricParserObject = new DFabricParserClass(this);
+            //this.binderObject = new PhwangUtils.BinderClass(this.objectName);
+            //this.binderObject.BindAsTcpServer(Protocols.FabricFrontEndProtocolClass.LINK_MGR_PROTOCOL_TRANSPORT_PORT_NUMBER);
+
+            //this.receiveThread = new Thread(this.receiveThreadFunc);
+            //this.receiveThread.Start();
+
             this.debugIt(true, "UFabricClass", "init done");
         }
 
