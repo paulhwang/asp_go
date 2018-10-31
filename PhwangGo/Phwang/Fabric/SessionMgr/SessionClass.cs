@@ -35,6 +35,11 @@ namespace Phwang.Fabric
             this.sessionIdStr = PhwangUtils.EncodeNumberClass.EncodeNumber(this.sessionId, FabricFrontEnd.FabricFrontEndProtocolClass.LINK_MGR_PROTOCOL_SESSION_ID_SIZE);
         }
 
+        public void BindGroup(GroupClass group_val)
+        {
+
+        }
+
         private void debugIt(bool on_off_val, string str0_val, string str1_val)
         {
             if (on_off_val)

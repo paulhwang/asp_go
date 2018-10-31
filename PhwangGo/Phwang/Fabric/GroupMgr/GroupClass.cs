@@ -39,6 +39,11 @@ namespace Phwang.Fabric
             this.GroupIdStr = PhwangUtils.EncodeNumberClass.EncodeNumber(this.groupId, GROUP_MGR_PROTOCOL_GROUP_ID_SIZE);
         }
 
+        public void InsertSession(SessionClass session_val)
+        {
+
+        }
+
         private void debugIt(bool on_off_val, string str0_val, string str1_val)
         {
             if (on_off_val)

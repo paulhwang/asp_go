@@ -195,9 +195,63 @@ namespace Phwang.Fabric
             LinkClass link = this.LinkMgrObject().GetLinkById(format_data.link_id);
             SessionClass session = link.MallocSession();
             GroupClass group = this.GroupMgrObject().MallocGroup(format_data.theme_data);
+            if (group == null)
+            {
+                return this.errorProcessSetupSession(format_data.link_id, "null group");
+            }
+            group.InsertSession(session);
+            session.BindGroup(group);
+
+            /*
+            if (!strcmp(his_name_val, session->linkObject()->linkName()))
+            {
+                this.mallocRoom(group, format_data.theme_data);
+            }
+            else
+            {
+                LinkClass his_link = this.LinkMgrObject().SearchLinkByName(his_name_val);
+                if (!his_link)
+                {
+                    this->errorProcessSetupSession(tp_transfer_object_val, ajax_id, "his_link does not exist");
+                    return;
+                }
+
+                SessionClass* his_session = his_link->mallocSession();
+                if (!his_session)
+                {
+                    this->errorProcessSetupSession(tp_transfer_object_val, ajax_id, "null his_session");
+                    return;
+                }
+
+                group->insertSession(his_session);
+                his_session->bindGroup(group);
+
+                char* theme_data = (char*)malloc(32);
+                memcpy(theme_data, theme_info_val, theme_len);
+                theme_data[theme_len] = 0;
+                his_link->setPendingSessionSetup(his_session->sessionIdIndex(), theme_data);
+            }
+            */
+            //char* data_ptr;
+            //char* downlink_data = data_ptr = (char*)phwangMalloc(LINK_MGR_DATA_BUFFER_SIZE + 4, "DFS1");
+            //*data_ptr++ = WEB_FABRIC_PROTOCOL_RESPOND_IS_SETUP_SESSION;
+            //memcpy(data_ptr, ajax_id, WEB_FABRIC_PROTOCOL_AJAX_ID_SIZE);
+            //data_ptr += WEB_FABRIC_PROTOCOL_AJAX_ID_SIZE;
+            //strcpy(data_ptr, session->sessionIdIndex());
+            //this->transmitFunction(tp_transfer_object_val, downlink_data);
 
             string response_data = this.dFabricResponseObject.GenerateSetupSessionResponse(link.LinkIdStr, session.SessionIdStr());
             return response_data;
+        }
+
+        private string errorProcessSetupSession(int link_id_val, string error_msg_val)
+        {
+            return error_msg_val;
+        }
+
+        private void mallocRoom(GroupClass group_val, string theme_info_val)
+        {
+
         }
 
         private void debugIt(bool on_off_val, string str0_val, string str1_val)
