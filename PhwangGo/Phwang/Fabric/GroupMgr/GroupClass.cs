@@ -30,7 +30,7 @@ namespace Phwang.Fabric
         public GroupClass(string theme_data_val)
         {
             this.themeData = theme_data_val;
-            this.groupSessionMgrObject = new GroupSessionMgrClass();
+            this.groupSessionMgrObject = new GroupSessionMgrClass(this);
 
         }
 

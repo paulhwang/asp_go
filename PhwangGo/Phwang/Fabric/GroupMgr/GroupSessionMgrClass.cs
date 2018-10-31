@@ -18,11 +18,13 @@ namespace Phwang.Fabric
         private string objectName = "GroupSessionClass";
         private const int MAX_SESSION_ARRAY_SIZE = 10;
 
+        private GroupClass groupObject { get; }
         private PhwangUtils.ArrayMgrClass arrayMgrObject { get; }
 
 
-        public GroupSessionMgrClass()
+        public GroupSessionMgrClass(GroupClass group_object_val)
         {
+            this.groupObject = group_object_val;
             this.arrayMgrObject = new PhwangUtils.ArrayMgrClass(this.objectName, 'o', MAX_SESSION_ARRAY_SIZE);
         }
 
