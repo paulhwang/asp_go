@@ -30,12 +30,13 @@ namespace Phwang.Fabric
 
         public void InsertSession(SessionClass session_val)
         {
-
+            this.arrayMgrObject.InsertObjectElement(session_val);
         }
         public void RemoveSession(SessionClass session_val)
         {
+            this.arrayMgrObject.RemoveObjectElement(session_val);
 
-        }
+}
 
 
         private void debugIt(bool on_off_val, string str0_val, string str1_val)
