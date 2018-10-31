@@ -20,7 +20,7 @@ namespace Phwang.Fabric
     public class DFabricParserClass
     {
         private string objectName = "DFabricParserClass";
-        private string RESPONSE_IS_GET_LINK_DATA_NAME_LIST = FabricFrontEnd.FabricFrontEndProtocolClass.WEB_FABRIC_PROTOCOL_RESPOND_IS_GET_LINK_DATA_NAME_LIST;
+        private string RESPONSE_IS_GET_LINK_DATA_NAME_LIST = Protocols.FabricFrontEndProtocolClass.WEB_FABRIC_PROTOCOL_RESPOND_IS_GET_LINK_DATA_NAME_LIST;
 
         private DFabricClass dFabricObject { get; }
         private DFabricResponseClass dFabricResponseObject { get; }
@@ -50,8 +50,8 @@ namespace Phwang.Fabric
 
         public void parseInputPacket(string input_data_var)
         {
-            string adax_id = input_data_var.Substring(0, FabricFrontEnd.FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
-            string toDes = input_data_var.Substring(FabricFrontEnd.FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
+            string adax_id = input_data_var.Substring(0, Protocols.FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
+            string toDes = input_data_var.Substring(Protocols.FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
             AjaxFabricRequestFormatClass ajax_fabric_request;
             using (var ms = new MemoryStream(Encoding.Unicode.GetBytes(toDes)))
             {
@@ -251,7 +251,7 @@ namespace Phwang.Fabric
 
         private void mallocRoom(GroupClass group_val, string theme_info_val)
         {
-            string uplink_data = Protocol.FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_COMMAND_IS_SETUP_ROOM;
+            string uplink_data = Protocols.FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_COMMAND_IS_SETUP_ROOM;
             uplink_data = uplink_data + group_val.GroupIdStr();
             uplink_data = uplink_data + theme_info_val;
             this.FabricRootObject().UFabricObject().TransmitFunction(uplink_data);

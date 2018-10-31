@@ -37,7 +37,7 @@ namespace Phwang.Fabric
         {
             this.listEntryObject = list_entry_objectg_val;
             this.linkId = this.listEntryObject.Id;
-            this.LinkIdStr = PhwangUtils.EncodeNumberClass.EncodeNumber(this.linkId, FabricFrontEnd.FabricFrontEndProtocolClass.LINK_MGR_PROTOCOL_LINK_ID_SIZE);
+            this.LinkIdStr = PhwangUtils.EncodeNumberClass.EncodeNumber(this.linkId, Protocols.FabricFrontEndProtocolClass.LINK_MGR_PROTOCOL_LINK_ID_SIZE);
         }
 
         public SessionClass MallocSession()

@@ -16,7 +16,7 @@ namespace Phwang.Fabric
     public class NameListClass
     {
         private string objectName = "NameListClass";
-        const int NAME_LIST_CLASS_NAME_LIST_TAG_SIZE = FabricFrontEnd.FabricFrontEndProtocolClass.WEB_FABRIC_PROTOCOL_NAME_LIST_TAG_SIZE;
+        const int NAME_LIST_CLASS_NAME_LIST_TAG_SIZE = Protocols.FabricFrontEndProtocolClass.WEB_FABRIC_PROTOCOL_NAME_LIST_TAG_SIZE;
         const int NAME_LIST_CLASS_MAX_NAME_LIST_TAG = 999;
 
         private FabricRootClass fabricRootObject { get; }

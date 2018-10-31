@@ -29,7 +29,7 @@ namespace Phwang.FrontEnd
             this.frontEndFabricObject = fabric_object_val;
 
             this.nextAvailableJobId = 0;
-            this.setMaxAllowedJobId(FabricFrontEnd.FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
+            this.setMaxAllowedJobId(Protocols.FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
 
             this.maxJobArrayIndex = 0;
             this.jobArray = new FrontEndJobClass[MAX_AJAX_ENTRY_ARRAY_SIZE];
@@ -48,7 +48,7 @@ namespace Phwang.FrontEnd
         public FrontEndJobClass MallocJobObject()
         {
             this.incrementNextAvailableJobId();
-            string ajax_id_str = PhwangUtils.EncodeNumberClass.EncodeNumber(this.nextAvailableJobId, FabricFrontEnd.FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
+            string ajax_id_str = PhwangUtils.EncodeNumberClass.EncodeNumber(this.nextAvailableJobId, Protocols.FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
             FrontEndJobClass ajax_entry_object = new FrontEndJobClass(ajax_id_str);
             this.putJobObject(ajax_entry_object);
             return ajax_entry_object;

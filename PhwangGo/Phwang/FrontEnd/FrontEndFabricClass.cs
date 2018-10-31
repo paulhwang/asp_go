@@ -36,7 +36,7 @@ namespace Phwang.FrontEnd
             this.frontEndJobMgrObject = new FrontEndJobMgrClass(this);
             this.receiveThread = new Thread(this.receiveThreadFunc);
             this.receiveThread.Start();
-            this.binderObject.BindAsTcpClient("127.0.0.1", FabricFrontEnd.FabricFrontEndProtocolClass.LINK_MGR_PROTOCOL_TRANSPORT_PORT_NUMBER);
+            this.binderObject.BindAsTcpClient("127.0.0.1", Protocols.FabricFrontEndProtocolClass.LINK_MGR_PROTOCOL_TRANSPORT_PORT_NUMBER);
             this.debugIt(true, "FrontEndFabricClass", "init done");
         }
 
@@ -51,8 +51,8 @@ namespace Phwang.FrontEnd
                 }
 
                 string received_data = this.binderObject.ReceiveData();
-                string ajax_id_str = received_data.Substring(0, FabricFrontEnd.FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
-                string response_data = received_data.Substring(FabricFrontEnd.FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
+                string ajax_id_str = received_data.Substring(0, Protocols.FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
+                string response_data = received_data.Substring(Protocols.FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
 
                 FrontEndJobClass job_entry = this.frontEndJobMgrObject.GetJobObject(ajax_id_str);
                 if (job_entry == null)
