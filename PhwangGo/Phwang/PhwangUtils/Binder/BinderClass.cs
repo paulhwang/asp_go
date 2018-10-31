@@ -44,9 +44,9 @@ namespace Phwang.PhwangUtils
             return true;
         }
 
-        public bool BindAsTcpServer(short port_var)
+        public bool BindAsTcpServer(short port_val)
         {
-            PhwangUtils.TcpApiClass.MallocTcpServer(this, Protocols.FabricFrontEndProtocolClass.LINK_MGR_PROTOCOL_TRANSPORT_PORT_NUMBER, binderTcpServerAcceptFunc /*, this, binderTcpReceiveDataFunc, this*/, this.objectName);
+            PhwangUtils.TcpApiClass.MallocTcpServer(this, port_val, binderTcpServerAcceptFunc /*, this, binderTcpReceiveDataFunc, this*/, this.objectName);
            return true;
         }
 

@@ -34,7 +34,7 @@ namespace Phwang.Fabric
             this.fabricRootObject = fabric_root_class_val;
             this.uFabricParserObject = new UFabricParserClass(this);
             this.binderObject = new PhwangUtils.BinderClass(this.objectName);
-            //this.binderObject.BindAsTcpServer(Protocols.FabricFrontEndProtocolClass.LINK_MGR_PROTOCOL_TRANSPORT_PORT_NUMBER);
+            this.binderObject.BindAsTcpServer(Protocols.FabricThemeProtocolClass.GROUP_ROOM_PROTOCOL_TRANSPORT_PORT_NUMBER);
 
             //this.receiveThread = new Thread(this.receiveThreadFunc);
             //this.receiveThread.Start();

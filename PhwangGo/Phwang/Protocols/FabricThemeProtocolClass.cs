@@ -7,6 +7,8 @@ namespace Phwang.Protocols
 {
     public class FabricThemeProtocolClass
     {
+        public const int GROUP_ROOM_PROTOCOL_TRANSPORT_PORT_NUMBER = 8009;
+
         public const string FABRIC_THEME_PROTOCOL_COMMAND_IS_SETUP_ROOM = "R";
         //#define FABRIC_THEME_PROTOCOL_RESPOND_IS_SETUP_ROOM 'r'
         //#define FABRIC_THEME_PROTOCOL_COMMAND_IS_PUT_ROOM_DATA 'D'
