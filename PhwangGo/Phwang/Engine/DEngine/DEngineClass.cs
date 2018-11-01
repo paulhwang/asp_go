@@ -25,8 +25,16 @@ namespace Phwang.Engine
 
         public DEngineClass(EngineRootClass engine_root_object_val)
         {
+            this.debugIt(true, "DEngineClass", "init start");
             this.engineRootObject = engine_root_object_val;
             this.dEngineParserObject = new DEngineParserClass(this);
+            this.binderObject = new PhwangUtils.BinderClass(this.objectName);
+
+            this.receiveThread = new Thread(this.receiveThreadFunc);
+            this.receiveThread.Start();
+
+            this.binderObject.BindAsTcpClient("127.0.0.1", Protocols.ThemeEngineProtocolClass.BASE_MGR_PROTOCOL_TRANSPORT_PORT_NUMBER);
+            this.debugIt(true, "DEngineClass", "init done");
         }
 
         private void receiveThreadFunc()

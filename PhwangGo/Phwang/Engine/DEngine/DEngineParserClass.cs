@@ -24,9 +24,9 @@ namespace Phwang.Engine
             this.dEngineObject = d_engine_object_val;
         }
 
-        public void ParseInputPacket(string data_val)
+        public void ParseInputPacket(string input_data_val)
         {
-
+            this.debugIt(true, "ParseInputPacket", "data=" + input_data_val);
         }
 
         private void debugIt(bool on_off_val, string str0_val, string str1_val)
