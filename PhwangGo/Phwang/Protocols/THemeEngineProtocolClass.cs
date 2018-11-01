@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Phwang.Protocols
 {
-    public class THemeEngineProtocolClass
+    public class ThemeEngineProtocolClass
     {
         public const int BASE_MGR_PROTOCOL_TRANSPORT_PORT_NUMBER = 8005;
     }

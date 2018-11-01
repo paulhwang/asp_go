@@ -23,6 +23,9 @@ namespace Phwang.Theme
         {
             this.uThemeObject = u_theme_object_val;
         }
+        public void ParseInputPacket(string data_val)
+        {
+        }
 
         private void debugIt(bool on_off_val, string str0_val, string str1_val)
         {
