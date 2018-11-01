@@ -19,6 +19,9 @@ namespace Phwang.Theme
 
         private DThemeClass dThemeObject { get; }
 
+        public ThemeRootClass ThemeRootObject() { return this.dThemeObject.ThemeRootObject(); }
+        public RoomMgrClass RoomMgrObject() { return this.ThemeRootObject().RoomMgrObject(); }
+
         public DThemeParserClass(DThemeClass d_theme_object_val)
         {
             this.dThemeObject = d_theme_object_val;
@@ -50,23 +53,23 @@ namespace Phwang.Theme
         {
             this.debugIt(true, "processSetupRoom", data_val);
 
-            /*
-            char* group_id_index_val = data_val;
+            string group_id_index_val = data_val;
 
-            char* downlink_data;
-            char* uplink_data;
-            char* data_ptr;
+            //char* downlink_data;
+            //char* uplink_data;
+            //char* data_ptr;
 
-            RoomClass room = this->theThemeObject->mallocRoom(group_id_index_val);
-            if (!room)
+            RoomClass room = this.RoomMgrObject().MallocRoom(group_id_index_val);
+            if (room == null)
             {
-                this->abend("processSetupRoom", "null room");
-                downlink_data = data_ptr = (char*)phwangMalloc(ROOM_MGR_DATA_BUFFER_SIZE + 4, "DTSr");
-                *data_ptr++ = FABRIC_THEME_PROTOCOL_RESPOND_IS_SETUP_ROOM;
-                strcpy(data_ptr, "null room");
-                this->transmitFunction(downlink_data);
+                this.abendIt("processSetupRoom", "null room");
+                //downlink_data = data_ptr = (char*)phwangMalloc(ROOM_MGR_DATA_BUFFER_SIZE + 4, "DTSr");
+                //*data_ptr++ = FABRIC_THEME_PROTOCOL_RESPOND_IS_SETUP_ROOM;
+                //strcpy(data_ptr, "null room");
+                //this->transmitFunction(downlink_data);
                 return;
             }
+            /*
             data_val += GROUP_MGR_PROTOCOL_GROUP_ID_INDEX_SIZE;
 
             uplink_data = data_ptr = (char*)phwangMalloc(ROOM_MGR_DATA_BUFFER_SIZE + 4, "DTSR");

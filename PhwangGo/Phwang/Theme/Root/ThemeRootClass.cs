@@ -21,7 +21,9 @@ namespace Phwang.Theme
         private DThemeClass dThemeObject { get; }
         private RoomMgrClass roomMgrObject { get; }
 
-       
+        public RoomMgrClass RoomMgrObject() { return this.roomMgrObject; }
+
+
         public ThemeRootClass()
         {
             this.uThemeObject = new UThemeClass(this);
