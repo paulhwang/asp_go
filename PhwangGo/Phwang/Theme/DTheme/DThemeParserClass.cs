@@ -24,6 +24,38 @@ namespace Phwang.Theme
             this.dThemeObject = d_theme_object_val;
         }
 
+        public void ParseInputPacket(string data_val)
+        {
+            this.debugIt(true, "ParseInputPacket", data_val);
+            string command = data_val.Substring(0, 1);
+            string data = data_val.Substring(1);
+
+            if (command == Protocols.FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_COMMAND_IS_SETUP_ROOM)
+            {
+                this.processSetupRoom(data);
+                return;
+            }
+
+            if (command == Protocols.FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_COMMAND_IS_PUT_ROOM_DATA)
+            {
+                this.processPutRoomData(data);
+                return;
+            }
+
+            this.abendIt("ParseInputPacket", data_val);
+
+        }
+
+        private void processSetupRoom(string data_val)
+        {
+
+        }
+
+        private void processPutRoomData(string data_val)
+        {
+
+        }
+
         private void debugIt(bool on_off_val, string str0_val, string str1_val)
         {
             if (on_off_val)

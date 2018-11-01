@@ -9,6 +9,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Phwang.Theme
@@ -20,12 +21,38 @@ namespace Phwang.Theme
         private ThemeRootClass themeRootObject { get; }
         private DThemeParserClass dThemeParserObject { get; }
         private PhwangUtils.BinderClass binderObject { get; }
+        private Thread receiveThread { get; set; }
 
         public DThemeClass(ThemeRootClass theme_root_object_val)
         {
             this.themeRootObject = theme_root_object_val;
             this.dThemeParserObject = new DThemeParserClass(this);
             this.binderObject = new PhwangUtils.BinderClass(this.objectName);
+
+            this.receiveThread = new Thread(this.receiveThreadFunc);
+            this.receiveThread.Start();
+
+            this.binderObject.BindAsTcpClient("127.0.0.1", Protocols.FabricThemeProtocolClass.GROUP_ROOM_PROTOCOL_TRANSPORT_PORT_NUMBER);
+
+        }
+
+        private void receiveThreadFunc()
+        {
+            this.debugIt(true, "receiveThreadFunc", "start");
+
+            string data;
+            while (true)
+            {
+                data = this.binderObject.ReceiveData();
+                if (data == null)
+                {
+                    this.abendIt("receiveThreadFunc", "null data");
+                    continue;
+                }
+                this.debugIt(true, "receiveThreadFunc", "data = " + data);
+                this.dThemeParserObject.ParseInputPacket(data);
+
+            }
         }
 
         private void debugIt(bool on_off_val, string str0_val, string str1_val)
