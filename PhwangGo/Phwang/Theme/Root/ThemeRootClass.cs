@@ -19,12 +19,14 @@ namespace Phwang.Theme
 
         private UThemeClass uThemeObject { get; }
         private DThemeClass dThemeObject { get; }
+        private RoomMgrClass roomMgrObject { get; }
 
        
         public ThemeRootClass()
         {
             this.uThemeObject = new UThemeClass(this);
             this.dThemeObject = new DThemeClass(this);
+            this.roomMgrObject = new RoomMgrClass(this);
         }
 
         private void debugIt(bool on_off_val, string str0_val, string str1_val)

@@ -17,8 +17,11 @@ namespace Phwang.Theme
     {
         private string objectName = "RoomMgrClass";
 
-        public RoomMgrClass()
+        private ThemeRootClass themeRootObject { get; }
+
+        public RoomMgrClass(ThemeRootClass theme_root_object_val)
         {
+            this.themeRootObject = theme_root_object_val;
         }
 
         private void debugIt(bool on_off_val, string str0_val, string str1_val)
