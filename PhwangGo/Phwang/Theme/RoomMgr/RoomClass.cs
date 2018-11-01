@@ -17,8 +17,21 @@ namespace Phwang.Theme
     {
         private string objectName = "RoomClass";
 
-        public RoomClass()
+        private PhwangUtils.ListEntryClass listEntryObject;
+        private string groupIdIndex { get; }
+        private int roomId { get; set; }
+        private string roomIdStr { get; set; }
+
+        public RoomClass(string group_id_index_val)
         {
+            this.groupIdIndex = group_id_index_val;
+        }
+
+        public void BindListEntry(PhwangUtils.ListEntryClass list_entry_objectg_val)
+        {
+            this.listEntryObject = list_entry_objectg_val;
+            this.roomId = this.listEntryObject.Id;
+            this.roomIdStr = PhwangUtils.EncodeNumberClass.EncodeNumber(this.roomId, Protocols.FabricFrontEndProtocolClass.LINK_MGR_PROTOCOL_LINK_ID_SIZE);
         }
 
         private void debugIt(bool on_off_val, string str0_val, string str1_val)

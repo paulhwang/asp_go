@@ -26,6 +26,13 @@ namespace Phwang.Theme
             this.themeRootObject = theme_root_object_val;
             this.listMgr = new PhwangUtils.ListMgrClass(this.objectName, MAX_ROOM_LIST_SIZE);
         }
+        public RoomClass MallocRoom(string room_id_index_val)
+        {
+            RoomClass room = new RoomClass(room_id_index_val);
+            PhwangUtils.ListEntryClass list_entry = this.listMgr.MallocEntry(room);
+            room.BindListEntry(list_entry);
+            return room;
+        }
 
         private void debugIt(bool on_off_val, string str0_val, string str1_val)
         {
