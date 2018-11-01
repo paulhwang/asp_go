@@ -16,6 +16,7 @@ namespace Phwang.Theme
     public class DThemeParserClass
     {
         private string objectName = "DThemeParserClass";
+        private const int GROUP_ID_INDEX_SIZE = Protocols.FabricThemeProtocolClass.GROUP_MGR_PROTOCOL_GROUP_ID_INDEX_SIZE;
 
         private DThemeClass dThemeObject { get; }
 
@@ -53,13 +54,12 @@ namespace Phwang.Theme
         {
             this.debugIt(true, "processSetupRoom", data_val);
 
-            string group_id_index_val = data_val;
-
-            //char* downlink_data;
-            //char* uplink_data;
+            string group_id_index = data_val.Substring(0, GROUP_ID_INDEX_SIZE);
+            string downlink_data;
+            string uplink_data = data_val.Substring(GROUP_ID_INDEX_SIZE);
             //char* data_ptr;
 
-            RoomClass room = this.RoomMgrObject().MallocRoom(group_id_index_val);
+            RoomClass room = this.RoomMgrObject().MallocRoom(group_id_index);
             if (room == null)
             {
                 this.abendIt("processSetupRoom", "null room");

@@ -21,5 +21,7 @@ namespace Phwang.Protocols
         //#define FABRIC_THEME_PROTOCOL_RESPOND_IS_SETUP_ROOM 'r'
         public const string FABRIC_THEME_PROTOCOL_COMMAND_IS_PUT_ROOM_DATA = "D";
         //#define FABRIC_THEME_PROTOCOL_RESPOND_IS_PUT_ROOM_DATA 'd'
+
+        public const int GROUP_MGR_PROTOCOL_GROUP_ID_INDEX_SIZE = 4;
     }
 }
