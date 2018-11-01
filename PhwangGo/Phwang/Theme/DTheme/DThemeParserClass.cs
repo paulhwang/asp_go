@@ -48,6 +48,36 @@ namespace Phwang.Theme
 
         private void processSetupRoom(string data_val)
         {
+            this.debugIt(true, "processSetupRoom", data_val);
+
+            /*
+            char* group_id_index_val = data_val;
+
+            char* downlink_data;
+            char* uplink_data;
+            char* data_ptr;
+
+            RoomClass room = this->theThemeObject->mallocRoom(group_id_index_val);
+            if (!room)
+            {
+                this->abend("processSetupRoom", "null room");
+                downlink_data = data_ptr = (char*)phwangMalloc(ROOM_MGR_DATA_BUFFER_SIZE + 4, "DTSr");
+                *data_ptr++ = FABRIC_THEME_PROTOCOL_RESPOND_IS_SETUP_ROOM;
+                strcpy(data_ptr, "null room");
+                this->transmitFunction(downlink_data);
+                return;
+            }
+            data_val += GROUP_MGR_PROTOCOL_GROUP_ID_INDEX_SIZE;
+
+            uplink_data = data_ptr = (char*)phwangMalloc(ROOM_MGR_DATA_BUFFER_SIZE + 4, "DTSR");
+            *data_ptr++ = THEME_ENGINE_PROTOCOL_COMMAND_IS_SETUP_BASE;
+
+            memcpy(data_ptr, room->roomIdIndex(), ROOM_MGR_PROTOCOL_ROOM_ID_INDEX_SIZE);
+            data_ptr += ROOM_MGR_PROTOCOL_ROOM_ID_INDEX_SIZE;
+
+            strcpy(data_ptr, data_val);
+            this->theThemeObject->uThemeObject()->transmitFunction(uplink_data);
+            */
 
         }
 
