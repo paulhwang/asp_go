@@ -13,16 +13,15 @@ using System.Threading.Tasks;
 
 namespace Phwang.Theme
 {
-    public class UThemeClass
+    public class UThemeParserClass
     {
         private string objectName = "UThemeClass";
-        private ThemeRootClass themeRootObject { get; }
-        private UThemeParserClass uThemeParserObject { get; }
 
-        public UThemeClass(ThemeRootClass theme_root_object_val)
+        private UThemeClass uThemeObject;
+
+        public UThemeParserClass(UThemeClass u_theme_object_val)
         {
-            this.themeRootObject = theme_root_object_val;
-            this.uThemeParserObject = new UThemeParserClass(this);
+            this.uThemeObject = u_theme_object_val;
         }
 
         private void debugIt(bool on_off_val, string str0_val, string str1_val)
