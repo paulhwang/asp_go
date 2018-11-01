@@ -18,10 +18,12 @@ namespace Phwang.Engine
         private string objectName = "DEngineClass";
 
         private EngineRootClass engineRootObject { get; }
+        private DEngineParserClass dEngineParserObject { get; }
 
         public DEngineClass(EngineRootClass engine_root_object_val)
         {
             this.engineRootObject = engine_root_object_val;
+            this.dEngineParserObject = new DEngineParserClass(this);
         }
 
         private void debugIt(bool on_off_val, string str0_val, string str1_val)
