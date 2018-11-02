@@ -23,6 +23,8 @@ namespace Phwang.Theme
         public PhwangUtils.BinderClass binderObject { get; set; }
         private Thread receiveThread { get; set; }
 
+        public ThemeRootClass ThemeRootObject() { return this.themeRootObject; }
+
         public UThemeClass(ThemeRootClass theme_root_object_val)
         {
             this.themeRootObject = theme_root_object_val;

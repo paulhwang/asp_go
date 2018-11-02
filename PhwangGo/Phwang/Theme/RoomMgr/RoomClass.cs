@@ -18,15 +18,16 @@ namespace Phwang.Theme
         private string objectName = "RoomClass";
 
         private PhwangUtils.ListEntryClass listEntryObject;
-        private string groupIdIndex { get; }
+        private string groupIdStr { get; }
         private int roomId { get; set; }
         private string roomIdStr { get; set; }
 
         public string RoomIdStr() { return this.roomIdStr; }
+        public string GroupIdStr() { return this.groupIdStr; }
 
-        public RoomClass(string group_id_index_val)
+        public RoomClass(string group_id_str_val)
         {
-            this.groupIdIndex = group_id_index_val;
+            this.groupIdStr = group_id_str_val;
         }
 
         public void BindListEntry(PhwangUtils.ListEntryClass list_entry_objectg_val)

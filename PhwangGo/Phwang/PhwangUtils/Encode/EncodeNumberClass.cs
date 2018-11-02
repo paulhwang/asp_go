@@ -27,5 +27,22 @@ namespace Phwang.PhwangUtils
             buf = buf + str;
             return buf;
         }
+
+        public static int DecodeNumber(string str_val)
+        {
+            int str_len = str_val.Length;
+            int val = 0;
+
+            for (int i = 0; i < str_len; i++)
+            {
+                val += str_val[i] - '0';
+                if (i < str_len - 1)
+                {
+                    val *= 10;
+                }
+            }
+
+            return val;
+        }
     }
 }

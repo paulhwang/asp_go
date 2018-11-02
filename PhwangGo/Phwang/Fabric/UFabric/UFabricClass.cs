@@ -28,6 +28,7 @@ namespace Phwang.Fabric
         public PhwangUtils.BinderClass binderObject { get; set; }
         private Thread receiveThread { get; set; }
 
+
         public UFabricClass(FabricRootClass fabric_root_class_val)
         {
             this.debugIt(true, "UFabricClass", "init start");

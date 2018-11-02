@@ -34,6 +34,25 @@ namespace Phwang.Theme
             return room;
         }
 
+        public RoomClass GetRoomByRoomIdStr(string room_id_str_val)
+        {
+            int room_id = PhwangUtils.EncodeNumberClass.DecodeNumber(room_id_str_val);
+
+            return this.GetRoomByRoomId(room_id);
+         }
+
+        public RoomClass GetRoomByRoomId(int id_val)
+        {
+            PhwangUtils.ListEntryClass list_entry = this.listMgr.GetEntryById(id_val);
+            if (list_entry == null)
+            {
+                return null;
+            }
+            RoomClass room_object = (RoomClass)list_entry.Data;
+
+            return room_object;
+        }
+
         private void debugIt(bool on_off_val, string str0_val, string str1_val)
         {
             if (on_off_val)

@@ -19,6 +19,10 @@ namespace Phwang.Theme
 
         private UThemeClass uThemeObject;
 
+        public ThemeRootClass ThemeRootObject() { return this.uThemeObject.ThemeRootObject(); }
+        public DThemeClass DThemeObject() { return this.ThemeRootObject().DThemeObject(); }
+        public RoomMgrClass RoomMgrObject() { return this.ThemeRootObject().RoomMgrObject(); }
+
         public UThemeParserClass(UThemeClass u_theme_object_val)
         {
             this.uThemeObject = u_theme_object_val;
@@ -47,6 +51,13 @@ namespace Phwang.Theme
         private void processSetupBaseResponse(string input_data_val)
         {
             this.debugIt(true, "processSetupBaseResponse", input_data_val);
+
+            string room_id_str = input_data_val.Substring(0, 4);
+
+            RoomClass room_object = this.RoomMgrObject().GetRoomByRoomIdStr(room_id_str);
+            string downlink_data = Protocols.FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_RESPOND_IS_SETUP_ROOM;
+            downlink_data = downlink_data + room_object.GroupIdStr() + room_object.RoomIdStr();
+            this.DThemeObject().TransmitData(downlink_data);
 
             /*
             char* room_id_index_val = data_val;
