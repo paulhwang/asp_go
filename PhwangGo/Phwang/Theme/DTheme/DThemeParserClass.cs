@@ -51,18 +51,17 @@ namespace Phwang.Theme
 
         }
 
-        private void processSetupRoom(string data_val)
+        private void processSetupRoom(string input_data_val)
         {
-            this.debugIt(true, "processSetupRoom", data_val);
+            this.debugIt(true, "processSetupRoom", input_data_val);
 
-            string group_id_index = data_val.Substring(0, GROUP_ID_INDEX_SIZE);
-            string downlink_data;
-            string uplink_data = data_val.Substring(GROUP_ID_INDEX_SIZE);
-            //char* data_ptr;
+            string group_id_index = input_data_val.Substring(0, GROUP_ID_INDEX_SIZE);
+            string input_data = input_data_val.Substring(GROUP_ID_INDEX_SIZE);
 
             RoomClass room = this.RoomMgrObject().MallocRoom(group_id_index);
             if (room == null)
             {
+                string downlink_data;
                 this.abendIt("processSetupRoom", "null room");
                 //downlink_data = data_ptr = (char*)phwangMalloc(ROOM_MGR_DATA_BUFFER_SIZE + 4, "DTSr");
                 //*data_ptr++ = FABRIC_THEME_PROTOCOL_RESPOND_IS_SETUP_ROOM;
@@ -81,6 +80,9 @@ namespace Phwang.Theme
 
             strcpy(data_ptr, data_val);
             */
+            string room_id_str = "1234";
+            string uplink_data = Protocols.ThemeEngineProtocolClass.THEME_ENGINE_PROTOCOL_COMMAND_IS_SETUP_BASE;
+            uplink_data = uplink_data + room_id_str + input_data;
             this.UThemeObject().TransmitData(uplink_data);
         }
 
