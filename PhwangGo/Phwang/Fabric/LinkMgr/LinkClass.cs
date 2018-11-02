@@ -21,6 +21,8 @@ namespace Phwang.Fabric
         private int linkId { get; set; }
         private string myName { get; }
         private SessionMgrClass sessionMgrObject { get; }
+        private PhwangUtils.ListQueueClass pendingSessionSetupQueue { get; }
+        private PhwangUtils.ListQueueClass pendingSessionSetupQueue3 { get; }
 
         public string MyName() { return this.myName; }
         public int LinkId() { return this.linkId; }
@@ -30,6 +32,8 @@ namespace Phwang.Fabric
         {
             this.myName = my_name_val;
 
+            this.pendingSessionSetupQueue = new PhwangUtils.ListQueueClass(false, 0);
+            this.pendingSessionSetupQueue3 = new PhwangUtils.ListQueueClass(false, 0);
             this.sessionMgrObject = new SessionMgrClass(this);
         }
 
@@ -45,8 +49,19 @@ namespace Phwang.Fabric
             return this.sessionMgrObject.MallocSession();
         }
 
-        public void SetPendingSessionSetup3(string session_id_str_val, string aaa)
+        public void SetPendingSessionSetup3(string session_id_str_val, string theme_data_val)
         {
+            string data = session_id_str_val + theme_data_val;
+            this.pendingSessionSetupQueue3.EnqueueData(data);
+            /*
+            char* buf, *data_ptr;
+
+            buf = data_ptr = (char*)malloc(LINK_MGR_DATA_BUFFER_SIZE);
+            memcpy(data_ptr, session_id_index_val, SESSION_MGR_PROTOCOL_SESSION_ID_INDEX_SIZE);
+            data_ptr += SESSION_MGR_PROTOCOL_SESSION_ID_INDEX_SIZE;
+            strcpy(data_ptr, theme_data_val);
+            phwangEnqueue(this->thePendingSessionSetupQueue3, buf);
+            */
 
         }
 
