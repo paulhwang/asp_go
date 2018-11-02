@@ -21,6 +21,7 @@ namespace Phwang.Theme
         private DThemeClass dThemeObject { get; }
 
         public ThemeRootClass ThemeRootObject() { return this.dThemeObject.ThemeRootObject(); }
+        public UThemeClass UThemeObject() { return this.ThemeRootObject().UThemeObject(); }
         public RoomMgrClass RoomMgrObject() { return this.ThemeRootObject().RoomMgrObject(); }
 
         public DThemeParserClass(DThemeClass d_theme_object_val)
@@ -79,9 +80,8 @@ namespace Phwang.Theme
             data_ptr += ROOM_MGR_PROTOCOL_ROOM_ID_INDEX_SIZE;
 
             strcpy(data_ptr, data_val);
-            this->theThemeObject->uThemeObject()->transmitFunction(uplink_data);
             */
-
+            this.UThemeObject().TransmitData(uplink_data);
         }
 
         private void processPutRoomData(string data_val)
