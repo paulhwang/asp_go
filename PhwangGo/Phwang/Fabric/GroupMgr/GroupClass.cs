@@ -60,6 +60,16 @@ namespace Phwang.Fabric
             this.roomIdStr = room_id_str_val;
         }
 
+        public int GetSessionArraySize()
+        {
+            return this.groupSessionMgrObject.GetSessionArraySize();
+        }
+
+        public object[] GetSessionArray()
+        {
+            return this.groupSessionMgrObject.GetSessionArray();
+        }
+
         private void debugIt(bool on_off_val, string str0_val, string str1_val)
         {
             if (on_off_val)

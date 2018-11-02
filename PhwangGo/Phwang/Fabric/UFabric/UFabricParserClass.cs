@@ -56,13 +56,16 @@ namespace Phwang.Fabric
             if (group != null)
             {
                 group.SetRoomIdStr(room_id_str);
+                int session_array_size = group.GetSessionArraySize();
+                object[] session_array = group.GetSessionArray();
                 //group->setSessionTableArray((SessionClass**)phwangArrayMgrGetArrayTable(group->sessionArrayMgr(), &session_array_size));
                 //printf("++++++++++++++++++++++++++++++++++++++++++++%d\n", session_array_size);
-                //for (int i = 0; i < session_array_size; i++)
-                //{
-                    //SessionClass* session = group->sessionTableArray(0);
-                    //session->linkObject()->setPendingSessionSetup3(session->sessionIdIndex(), "");
-                //}
+                for (int i = 0; i < session_array_size; i++)
+                {
+                    SessionClass session = (SessionClass) session_array[i];
+                    SessionClass session1 = (SessionClass)session_array[i];
+                    //session.linkObject().setPendingSessionSetup3(session->sessionIdIndex(), "");
+                }
             }
         }
         private void processPutRoomDataResponse(string input_data_val)

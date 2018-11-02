@@ -25,6 +25,7 @@ namespace Phwang.PhwangUtils
         private int[] intArrayTable { get; set; }
         private char [] charArrayTable { get; set; }
 
+        public int ArraySize() { return this.arraySize; }
         public object[] ObjectArrayTable() { return this.objectArrayTable; }
         public string[] StringArrayTable() { return this.stringArrayTable; }
         public int[] IntArrayTable() { return this.intArrayTable; }

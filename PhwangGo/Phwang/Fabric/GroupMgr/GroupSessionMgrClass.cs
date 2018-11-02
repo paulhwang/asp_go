@@ -35,9 +35,17 @@ namespace Phwang.Fabric
         public void RemoveSession(SessionClass session_val)
         {
             this.arrayMgrObject.RemoveObjectElement(session_val);
+        }
 
-}
+        public int GetSessionArraySize()
+        {
+            return this.arrayMgrObject.ArraySize();
+        }
 
+        public object[] GetSessionArray()
+        {
+            return this.arrayMgrObject.ObjectArrayTable();
+        }
 
         private void debugIt(bool on_off_val, string str0_val, string str1_val)
         {
