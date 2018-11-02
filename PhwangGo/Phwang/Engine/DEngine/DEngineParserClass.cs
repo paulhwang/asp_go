@@ -27,6 +27,35 @@ namespace Phwang.Engine
         public void ParseInputPacket(string input_data_val)
         {
             this.debugIt(true, "ParseInputPacket", "data=" + input_data_val);
+
+            string command = input_data_val.Substring(0, 1);
+            string input_data = input_data_val.Substring(1);
+
+
+            if (command == Protocols.ThemeEngineProtocolClass.THEME_ENGINE_PROTOCOL_COMMAND_IS_SETUP_BASE)
+            {
+                this.processSetupBase(input_data);
+                return;
+            }
+
+            if (command == Protocols.ThemeEngineProtocolClass.THEME_ENGINE_PROTOCOL_COMMAND_IS_PUT_BASE_DATA)
+            {
+                this.processPutBaseData(input_data);
+                return;
+            }
+
+            this.abendIt("ParseInputPacket", input_data_val);
+        }
+
+        private void processSetupBase(string input_data_val)
+        {
+            this.debugIt(true, "processSetupBase", "data=" + input_data_val);
+
+        }
+        private void processPutBaseData(string input_data_val)
+        {
+            this.debugIt(true, "processPutBaseData", "data=" + input_data_val);
+
         }
 
         private void debugIt(bool on_off_val, string str0_val, string str1_val)
