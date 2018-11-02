@@ -20,13 +20,15 @@ namespace Phwang.Fabric
 
         private PhwangUtils.ListEntryClass listEntryObject;
         private int groupId { get; set; }
-        public string groupIdStr { get; set; }
+        private string groupIdStr { get; set; }
+        private string roomIdStr { get; set; }
         private string themeData { get; }
         private GroupSessionMgrClass groupSessionMgrObject { get; }
 
         public string ThemeData() { return this.themeData; }
         public int GroupId() { return this.groupId; }
         public string GroupIdStr() { return this.groupIdStr; }
+        public string RoomIdStr() { return this.roomIdStr; }
 
         public GroupClass(string theme_data_val)
         {
@@ -51,6 +53,11 @@ namespace Phwang.Fabric
         {
             this.groupSessionMgrObject.RemoveSession(session_val);
 
+        }
+
+        public void SetRoomIdStr(string room_id_str_val)
+        {
+            this.roomIdStr = room_id_str_val;
         }
 
         private void debugIt(bool on_off_val, string str0_val, string str1_val)

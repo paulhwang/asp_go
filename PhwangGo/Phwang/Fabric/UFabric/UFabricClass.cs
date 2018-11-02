@@ -28,6 +28,8 @@ namespace Phwang.Fabric
         public PhwangUtils.BinderClass binderObject { get; set; }
         private Thread receiveThread { get; set; }
 
+        public FabricRootClass FabricRootObject() { return this.fabricRootObject; }
+
 
         public UFabricClass(FabricRootClass fabric_root_class_val)
         {

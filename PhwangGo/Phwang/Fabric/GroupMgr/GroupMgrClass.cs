@@ -48,6 +48,25 @@ namespace Phwang.Fabric
 
         }
 
+        public GroupClass GetGroupByGroupIdStr(string group_id_str_val)
+        {
+            int group_id = PhwangUtils.EncodeNumberClass.DecodeNumber(group_id_str_val);
+
+            return this.GetGroupByGroupId(group_id);
+        }
+
+        public GroupClass GetGroupByGroupId(int group_id_val)
+        {
+            PhwangUtils.ListEntryClass list_entry = this.listMgr.GetEntryById(group_id_val);
+            if (list_entry == null)
+            {
+                return null;
+            }
+            GroupClass room_object = (GroupClass)list_entry.Data;
+
+            return room_object;
+        }
+
         public LinkClass GetLinkById(int id_val)
         {
             PhwangUtils.ListEntryClass list_entry = this.listMgr.GetEntryById(id_val);
