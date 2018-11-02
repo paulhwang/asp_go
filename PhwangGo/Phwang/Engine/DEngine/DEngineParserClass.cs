@@ -51,6 +51,30 @@ namespace Phwang.Engine
         {
             this.debugIt(true, "processSetupBase", "data=" + input_data_val);
 
+            string room_id_str = input_data_val.Substring(0, Protocols.ThemeEngineProtocolClass.THEME_ROOM_ID_SIZE);
+            string input_data = input_data_val.Substring(Protocols.ThemeEngineProtocolClass.THEME_ROOM_ID_SIZE);
+            string downlink_data = Protocols.ThemeEngineProtocolClass.THEME_ENGINE_PROTOCOL_RESPOND_IS_SETUP_BASE;
+
+            /*
+            GoBaseClass* go_base_object = this->theEngineObject->mallocGoBase(room_id_index_val + ROOM_MGR_PROTOCOL_ROOM_ID_INDEX_SIZE);
+            if (go_base_object == null)
+            {
+                this.abendIt("processSetupBase", "null go_base");
+                return;
+            }
+            go_base_object->setRoomIdIndex(room_id_index_val);
+
+            string downlink_data = data_ptr = (char*)phwangMalloc(BASE_MGR_DATA_BUFFER_SIZE + 4, "DESB");
+            *data_ptr++ = THEME_ENGINE_PROTOCOL_RESPOND_IS_SETUP_BASE;
+
+            memcpy(data_ptr, room_id_index_val, ROOM_MGR_PROTOCOL_ROOM_ID_INDEX_SIZE);
+            data_ptr += ROOM_MGR_PROTOCOL_ROOM_ID_INDEX_SIZE;
+
+            memcpy(data_ptr, go_base_object->goBaseIdIndex(), BASE_MGR_PROTOCOL_BASE_ID_INDEX_SIZE);
+            data_ptr += BASE_MGR_PROTOCOL_BASE_ID_INDEX_SIZE;
+            *data_ptr = 0;
+            */
+            this.dEngineObject.TransmitData(downlink_data);
         }
         private void processPutBaseData(string input_data_val)
         {
