@@ -64,6 +64,15 @@ namespace Phwang.Fabric
             */
 
         }
+        public string getPendingSessionSetup()
+        {
+            return (string) this.pendingSessionSetupQueue.DequeueData();
+        }
+
+        public string getPendingSessionSetup3()
+        {
+            return (string) this.pendingSessionSetupQueue3.DequeueData();
+        }
 
         private void debugIt(bool on_off_val, string str0_val, string str1_val)
         {

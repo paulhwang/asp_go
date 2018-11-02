@@ -135,7 +135,25 @@ namespace Phwang.Fabric
 
             string data = RESPONSE_IS_GET_LINK_DATA_NAME_LIST + this.FabricRootObject().NameListObject().NameListTagStr();
 
-            string response_data = this.dFabricResponseObject.GenerateGetLinkDataResponse(link.LinkIdStr, data);
+
+            string pending_session_setup = "";
+            string pending_session_str = link.getPendingSessionSetup();
+            if (pending_session_str != null)
+            {
+                pending_session_setup = pending_session_setup + Protocols.FabricFrontEndProtocolClass.WEB_FABRIC_PROTOCOL_RESPOND_IS_GET_LINK_DATA_PENDING_SESSION;
+                pending_session_setup = pending_session_setup + pending_session_str;
+            }
+
+            string pending_session_str3 = link.getPendingSessionSetup3();
+            if (pending_session_str3 != null)
+            {
+                pending_session_setup = pending_session_setup + Protocols.FabricFrontEndProtocolClass.WEB_FABRIC_PROTOCOL_RESPOND_IS_GET_LINK_DATA_PENDING_SESSION3;
+                pending_session_setup = pending_session_setup + pending_session_str3;
+            }
+
+            data = data + pending_session_setup;
+
+            string response_data = this.dFabricResponseObject.GenerateGetLinkDataResponse(link.LinkIdStr, data, pending_session_setup);
             return response_data;
         }
 

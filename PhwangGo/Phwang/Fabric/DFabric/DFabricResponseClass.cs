@@ -104,11 +104,11 @@ namespace Phwang.Fabric
             public string pending_session_setup { get; set; }
         }
 
-        public string GenerateGetLinkDataResponse(string link_id_str_val, string data_val)
+        public string GenerateGetLinkDataResponse(string link_id_str_val, string data_val, string pending_session_setup_val)
         {
             string downlink_data = this.fabricRootObject().NameListObject().NameListTagStr();
 
-            GetLinkDataResponseFormatClass raw_data = new GetLinkDataResponseFormatClass { link_id = link_id_str_val, interval = "1000", data = data_val, pending_session_setup = null };
+            GetLinkDataResponseFormatClass raw_data = new GetLinkDataResponseFormatClass { link_id = link_id_str_val, interval = "1000", data = data_val, pending_session_setup = pending_session_setup_val };
 
             this.debugIt(true, "GenerateGetLinkDataResponse", "");
             DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(GetLinkDataResponseFormatClass));
