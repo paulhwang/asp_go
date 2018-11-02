@@ -17,15 +17,18 @@ namespace Phwang.Fabric
     {
         private string objectName = "SessionClass";
 
+        private LinkClass linkObject { get; }
         private PhwangUtils.ListEntryClass listEntryObject;
         private int sessionId { get; set; }
         private string sessionIdStr { get; set; }
 
+        public LinkClass LinkObject() { return this.linkObject; }
         public int SessionId() { return this.sessionId; }
         public string SessionIdStr() { return this.sessionIdStr; }
 
-        public SessionClass()
+        public SessionClass(LinkClass link_object_val)
         {
+            this.linkObject = link_object_val;
         }
 
         public void BindListEntry(PhwangUtils.ListEntryClass list_entry_objectg_val)

@@ -64,7 +64,7 @@ namespace Phwang.Fabric
                 {
                     SessionClass session = (SessionClass) session_array[i];
                     SessionClass session1 = (SessionClass)session_array[i];
-                    //session.linkObject().setPendingSessionSetup3(session->sessionIdIndex(), "");
+                    session.LinkObject().SetPendingSessionSetup3(session.SessionIdStr(), "");
                 }
             }
         }

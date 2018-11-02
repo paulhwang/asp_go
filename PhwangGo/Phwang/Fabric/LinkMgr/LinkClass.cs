@@ -45,6 +45,11 @@ namespace Phwang.Fabric
             return this.sessionMgrObject.MallocSession();
         }
 
+        public void SetPendingSessionSetup3(string session_id_str_val, string aaa)
+        {
+
+        }
+
         private void debugIt(bool on_off_val, string str0_val, string str1_val)
         {
             if (on_off_val)

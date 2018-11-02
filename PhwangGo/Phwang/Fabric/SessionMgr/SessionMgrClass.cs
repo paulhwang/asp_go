@@ -31,7 +31,7 @@ namespace Phwang.Fabric
 
         public SessionClass MallocSession()
         {
-            SessionClass session = new SessionClass();
+            SessionClass session = new SessionClass(this.linkObject);
             PhwangUtils.ListEntryClass list_entry = this.listMgr.MallocEntry(session);
             session.BindListEntry(list_entry);
             return session;
