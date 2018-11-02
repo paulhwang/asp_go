@@ -13,18 +13,15 @@ using System.Threading.Tasks;
 
 namespace Phwang.Engine
 {
-    public class EngineRootClass
+    public class BaseMgrClass
     {
-        private string objectName = "EngineRootClass";
+        private string objectName = "BaseMgrClass";
 
-        private DEngineClass dEngineObject { get; }
-        private BaseMgrClass baseMgrObject { get; }
+        private EngineRootClass engineRootObject { get; }
 
-
-        public EngineRootClass()
+        public BaseMgrClass(EngineRootClass engine_root_object_val)
         {
-            this.dEngineObject = new DEngineClass(this);
-            this.baseMgrObject = new BaseMgrClass(this);
+            this.engineRootObject = engine_root_object_val;
         }
 
         private void debugIt(bool on_off_val, string str0_val, string str1_val)
