@@ -16,6 +16,7 @@ namespace Phwang.Fabric
     public class SessionMgrClass
     {
         private string objectName = "SessionMgrClass";
+        private const int FIRST_SESSION_ID = 3000;
 
         private LinkClass linkObject { get; }
         private PhwangUtils.ListMgrClass listMgr { get; }
@@ -25,7 +26,7 @@ namespace Phwang.Fabric
         public SessionMgrClass(LinkClass link_object_val)
         {
             this.linkObject = link_object_val;
-            this.listMgr = new PhwangUtils.ListMgrClass(this.objectName, 1000);
+            this.listMgr = new PhwangUtils.ListMgrClass(this.objectName, FIRST_SESSION_ID);
         }
 
         public SessionClass MallocSession()

@@ -33,10 +33,10 @@ namespace Phwang.PhwangUtils
         public int MaxIndex() { return this.maxIndex; }
         public ListEntryClass[] EntryTableArray() { return this.entryTableArray; }
 
-        public ListMgrClass(string caller_name_val, int init_global_id_val)
+        public ListMgrClass(string caller_name_val, int first_global_id_val)
         {
             this.theCallerName = caller_name_val;
-            this.globalId = init_global_id_val;
+            this.globalId = first_global_id_val;
             this.entryCount = 0;
             this.MaxIdIndexTableIndex = 0;
             this.maxIndex = 0;

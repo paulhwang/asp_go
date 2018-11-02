@@ -19,7 +19,11 @@ namespace Phwang.Engine
 
         private DEngineClass dEngineObject;
 
-        public DEngineParserClass(DEngineClass d_engine_object_val)
+        public EngineRootClass EngineRootObject() { return this.dEngineObject.EngineRootObject(); }
+        public BaseMgrClass BaseMgrObject() { return this.EngineRootObject().BaseMgrObject(); }
+
+
+    public DEngineParserClass(DEngineClass d_engine_object_val)
         {
             this.dEngineObject = d_engine_object_val;
         }
@@ -55,15 +59,15 @@ namespace Phwang.Engine
             string input_data = input_data_val.Substring(Protocols.ThemeEngineProtocolClass.THEME_ROOM_ID_SIZE);
             string downlink_data = Protocols.ThemeEngineProtocolClass.THEME_ENGINE_PROTOCOL_RESPOND_IS_SETUP_BASE;
 
-            /*
-            GoBaseClass* go_base_object = this->theEngineObject->mallocGoBase(room_id_index_val + ROOM_MGR_PROTOCOL_ROOM_ID_INDEX_SIZE);
+            GoBaseClass go_base_object = this.BaseMgrObject().MallocGoBase(room_id_str);
             if (go_base_object == null)
             {
                 this.abendIt("processSetupBase", "null go_base");
                 return;
             }
-            go_base_object->setRoomIdIndex(room_id_index_val);
+            //go_base_object.setRoomIdIndex(room_id_index_val);
 
+            /*
             string downlink_data = data_ptr = (char*)phwangMalloc(BASE_MGR_DATA_BUFFER_SIZE + 4, "DESB");
             *data_ptr++ = THEME_ENGINE_PROTOCOL_RESPOND_IS_SETUP_BASE;
 
@@ -74,6 +78,7 @@ namespace Phwang.Engine
             data_ptr += BASE_MGR_PROTOCOL_BASE_ID_INDEX_SIZE;
             *data_ptr = 0;
             */
+            downlink_data = downlink_data + go_base_object.RoomIdStr() + go_base_object.BaseIdStr();
             this.dEngineObject.TransmitData(downlink_data);
         }
         private void processPutBaseData(string input_data_val)

@@ -80,9 +80,8 @@ namespace Phwang.Theme
 
             strcpy(data_ptr, data_val);
             */
-            string room_id_str = "1234";
             string uplink_data = Protocols.ThemeEngineProtocolClass.THEME_ENGINE_PROTOCOL_COMMAND_IS_SETUP_BASE;
-            uplink_data = uplink_data + room_id_str + input_data;
+            uplink_data = uplink_data + room.RoomIdStr() + input_data;
             this.UThemeObject().TransmitData(uplink_data);
         }
 

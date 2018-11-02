@@ -18,6 +18,7 @@ namespace Phwang.Protocols
         public const int BASE_MGR_PROTOCOL_TRANSPORT_PORT_NUMBER = 8005;
 
         public const int THEME_ROOM_ID_SIZE = 4;
+        public const int ENGINE_BASE_ID_SIZE = 4;
 
         public const string THEME_ENGINE_PROTOCOL_COMMAND_IS_SETUP_BASE = "B";
         public const string THEME_ENGINE_PROTOCOL_RESPOND_IS_SETUP_BASE = "b";

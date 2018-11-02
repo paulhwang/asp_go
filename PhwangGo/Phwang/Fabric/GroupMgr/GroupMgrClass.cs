@@ -21,6 +21,8 @@ namespace Phwang.Fabric
     public class GroupMgrClass
     {
         private string objectName = "GroupMgrClass";
+        private const int FIRST_GROUP_ID = 5000;
+
 
         private FabricRootClass fabricRootObject { get; }
         private PhwangUtils.ListMgrClass listMgr { get; }
@@ -30,7 +32,7 @@ namespace Phwang.Fabric
         public GroupMgrClass(FabricRootClass root_fabric_object_val)
         {
             this.fabricRootObject = root_fabric_object_val;
-            this.listMgr = new PhwangUtils.ListMgrClass(this.objectName, 1000);
+            this.listMgr = new PhwangUtils.ListMgrClass(this.objectName, FIRST_GROUP_ID);
         }
 
         public GroupClass MallocGroup(string theme_data_val)

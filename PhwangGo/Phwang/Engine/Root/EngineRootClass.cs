@@ -20,6 +20,7 @@ namespace Phwang.Engine
         private DEngineClass dEngineObject { get; }
         private BaseMgrClass baseMgrObject { get; }
 
+        public BaseMgrClass BaseMgrObject() { return this.baseMgrObject; }
 
         public EngineRootClass()
         {

@@ -19,8 +19,4 @@
     <None Include="wwwroot\js\phwang_class.js" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Phwang\Engine\Go\" />
-  </ItemGroup>
-
 </Project>

@@ -23,6 +23,8 @@ namespace Phwang.Engine
         public PhwangUtils.BinderClass binderObject { get; set; }
         private Thread receiveThread { get; set; }
 
+        public EngineRootClass EngineRootObject() { return this.engineRootObject; }
+
         public DEngineClass(EngineRootClass engine_root_object_val)
         {
             this.debugIt(true, "DEngineClass", "init start");
