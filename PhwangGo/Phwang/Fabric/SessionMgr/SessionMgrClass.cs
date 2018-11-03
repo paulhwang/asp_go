@@ -35,7 +35,19 @@ namespace Phwang.Fabric
             PhwangUtils.ListEntryClass list_entry = this.listMgr.MallocEntry(session);
             session.BindListEntry(list_entry);
             return session;
-       }
+        }
+
+        public SessionClass GetSessionBySessionId(int id_val)
+        {
+            PhwangUtils.ListEntryClass list_entry = this.listMgr.GetEntryById(id_val);
+            if (list_entry == null)
+            {
+                return null;
+            }
+            SessionClass session = (SessionClass)list_entry.Data;
+
+            return session;
+        }
 
         private void debugIt(bool on_off_val, string str0_val, string str1_val)
         {

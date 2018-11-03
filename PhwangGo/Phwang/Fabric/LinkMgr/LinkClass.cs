@@ -27,6 +27,7 @@ namespace Phwang.Fabric
         public string MyName() { return this.myName; }
         public int LinkId() { return this.linkId; }
         public string LinkIdStr { get; set; }
+        public SessionMgrClass SessionMgrObject() { return this.sessionMgrObject; }
 
         public LinkClass(string my_name_val)
         {

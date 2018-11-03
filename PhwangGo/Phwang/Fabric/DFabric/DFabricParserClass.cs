@@ -79,6 +79,10 @@ namespace Phwang.Fabric
             {
                 response_data = this.processSetupSessionRequest(ajax_fabric_request.data);
             }
+            else if (ajax_fabric_request.command == "setup_session3")
+            {
+                response_data = this.processSetupSession3Request(ajax_fabric_request.data);
+            }
             else
             {
                 response_data = "command " + ajax_fabric_request.command + " not supported";
@@ -205,9 +209,9 @@ namespace Phwang.Fabric
             {
                 DataContractJsonSerializer deseralizer = new DataContractJsonSerializer(typeof(SetupSessionRequestFormat));
                 format_data = (SetupSessionRequestFormat)deseralizer.ReadObject(ms);// //反序列化ReadObject
-                this.debugIt(true, "processGetLinkDataRequest", "link_id = " + format_data.link_id);
-                this.debugIt(true, "processGetLinkDataRequest", "his_name = " + format_data.his_name);
-                this.debugIt(true, "processGetLinkDataRequest", "theme_data = " + format_data.theme_data);
+                this.debugIt(true, "processSetupSessionRequest", "link_id = " + format_data.link_id);
+                this.debugIt(true, "processSetupSessionRequest", "his_name = " + format_data.his_name);
+                this.debugIt(true, "processSetupSessionRequest", "theme_data = " + format_data.theme_data);
             }
 
             LinkClass link = this.LinkMgrObject().GetLinkById(format_data.link_id);
@@ -262,7 +266,46 @@ namespace Phwang.Fabric
             return response_data;
         }
 
+        [DataContract]
+        public class SetupSession3RequestFormat
+        {
+            [DataMember]
+            public int link_id { get; set; }
+
+            [DataMember]
+            public int session_id { get; set; }
+        }
+
         private string errorProcessSetupSession(int link_id_val, string error_msg_val)
+        {
+            return error_msg_val;
+        }
+
+        private string processSetupSession3Request(string input_data_var)
+        {
+            this.debugIt(true, "processSetupSession3Request", "input_data_var = " + input_data_var);
+            SetupSession3RequestFormat format_data;
+            using (var ms = new MemoryStream(Encoding.Unicode.GetBytes(input_data_var)))
+            {
+                DataContractJsonSerializer deseralizer = new DataContractJsonSerializer(typeof(SetupSession3RequestFormat));
+                format_data = (SetupSession3RequestFormat)deseralizer.ReadObject(ms);// //反序列化ReadObject
+                this.debugIt(true, "processSetupSession3Request", "link_id = " + format_data.link_id);
+                this.debugIt(true, "processSetupSession3Request", "session_id = " + format_data.session_id);
+            }
+
+            LinkClass link = this.LinkMgrObject().GetLinkById(format_data.link_id);
+            SessionClass session = link.SessionMgrObject().GetSessionBySessionId(format_data.session_id);
+            if (session == null)
+            {
+                return errorProcessSetupSession3(format_data.link_id, "null session");
+            }
+
+
+            string response_data = this.dFabricResponseObject.GenerateSetupSession3Response(link.LinkIdStr, session.SessionIdStr());
+            return response_data;
+        }
+
+        private string errorProcessSetupSession3(int link_id_val, string error_msg_val)
         {
             return error_msg_val;
         }
