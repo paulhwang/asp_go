@@ -95,6 +95,16 @@ namespace Phwang.Theme
         private void processPutBaseDataResponse(string input_data_val)
         {
             this.debugIt(true, "processPutBaseDataResponse", input_data_val);
+            string room_id_str = input_data_val.Substring(0, Protocols.ThemeEngineProtocolClass.THEME_ROOM_ID_SIZE);
+            string data = input_data_val.Substring(Protocols.ThemeEngineProtocolClass.THEME_ROOM_ID_SIZE);
+
+            RoomClass room_object = this.RoomMgrObject().GetRoomByRoomIdStr(room_id_str);
+            if (room_object == null)
+            {
+                this.abendIt("processPutBaseDataResponse", "null room");
+                return;
+            }
+
             /*
             char* downlink_data;
             char* data_ptr;
