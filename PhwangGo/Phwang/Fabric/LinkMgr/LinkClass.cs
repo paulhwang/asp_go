@@ -19,6 +19,7 @@ namespace Phwang.Fabric
 
         private PhwangUtils.ListEntryClass listEntryObject;
         private int linkId { get; set; }
+        private string linkIdStr { get; set; }
         private string myName { get; }
         private SessionMgrClass sessionMgrObject { get; }
         private PhwangUtils.ListQueueClass pendingSessionSetupQueue { get; }
@@ -26,7 +27,7 @@ namespace Phwang.Fabric
 
         public string MyName() { return this.myName; }
         public int LinkId() { return this.linkId; }
-        public string LinkIdStr { get; set; }
+        public string LinkIdStr() { return this.linkIdStr; }
         public SessionMgrClass SessionMgrObject() { return this.sessionMgrObject; }
 
         public LinkClass(string my_name_val)
@@ -42,7 +43,7 @@ namespace Phwang.Fabric
         {
             this.listEntryObject = list_entry_objectg_val;
             this.linkId = this.listEntryObject.Id;
-            this.LinkIdStr = PhwangUtils.EncodeNumberClass.EncodeNumber(this.linkId, Protocols.FabricFrontEndProtocolClass.LINK_MGR_PROTOCOL_LINK_ID_SIZE);
+            this.linkIdStr = PhwangUtils.EncodeNumberClass.EncodeNumber(this.linkId, Protocols.FabricFrontEndProtocolClass.LINK_MGR_PROTOCOL_LINK_ID_SIZE);
         }
 
         public SessionClass MallocSession()

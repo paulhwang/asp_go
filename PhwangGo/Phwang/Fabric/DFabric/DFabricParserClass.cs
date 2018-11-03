@@ -161,7 +161,7 @@ namespace Phwang.Fabric
 
             data = data + pending_session_setup;
 
-            string response_data = this.dFabricResponseObject.GenerateGetLinkDataResponse(link.LinkIdStr, data, pending_session_setup);
+            string response_data = this.dFabricResponseObject.GenerateGetLinkDataResponse(link.LinkIdStr(), data, pending_session_setup);
             return response_data;
         }
 
@@ -188,7 +188,7 @@ namespace Phwang.Fabric
 
             string name_list = this.FabricRootObject().NameListObject().GetNameList(format_data.name_list_tag);
 
-            string response_data = this.dFabricResponseObject.GenerateGetNameListResponse(link.LinkIdStr, name_list);
+            string response_data = this.dFabricResponseObject.GenerateGetNameListResponse(link.LinkIdStr(), name_list);
             return response_data;
         }
 
@@ -266,7 +266,7 @@ namespace Phwang.Fabric
             //strcpy(data_ptr, session->sessionIdIndex());
             //this->transmitFunction(tp_transfer_object_val, downlink_data);
 
-            string response_data = this.dFabricResponseObject.GenerateSetupSessionResponse(link.LinkIdStr, session.SessionIdStr());
+            string response_data = this.dFabricResponseObject.GenerateSetupSessionResponse(link.LinkIdStr(), session.SessionIdStr());
             return response_data;
         }
 
@@ -304,7 +304,7 @@ namespace Phwang.Fabric
                 return errorProcessSetupSession3(format_data.link_id, "null session");
             }
 
-            string response_data = this.dFabricResponseObject.GenerateSetupSession3Response(link.LinkIdStr, session.SessionIdStr());
+            string response_data = this.dFabricResponseObject.GenerateSetupSession3Response(link.LinkIdStr(), session.SessionIdStr());
             return response_data;
         }
 
