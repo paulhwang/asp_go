@@ -222,6 +222,12 @@ namespace Phwang.Fabric
             return response_data;
         }
 
+        public string GeneratePutSessionDataResponse(string link_id_str_val, string session_id_str_val, string result_data_val)
+        {
+            string response_data = null;
+            return response_data;
+        }
+
         private void debugIt(bool on_off_val, string str0_val, string str1_val)
         {
             if (on_off_val)

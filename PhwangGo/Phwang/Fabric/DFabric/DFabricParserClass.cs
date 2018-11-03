@@ -26,6 +26,7 @@ namespace Phwang.Fabric
         private DFabricResponseClass dFabricResponseObject { get; }
 
         public FabricRootClass FabricRootObject() { return this.dFabricObject.FabricRootObject(); }
+        private UFabricClass UFabricObject() { return this.FabricRootObject().UFabricObject(); }
         private LinkMgrClass LinkMgrObject() { return this.FabricRootObject().LinkMgrObject(); }
         private GroupMgrClass GroupMgrObject() { return this.FabricRootObject().GroupMgrObject(); }
 
@@ -355,7 +356,13 @@ namespace Phwang.Fabric
                 return this.errorProcessPutSessionData(format_data.link_id, "null room");
             }
 
-            string response_data = null;
+            /* transfer data up */
+            string uplink_data = Protocols.FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_COMMAND_IS_PUT_ROOM_DATA;
+            uplink_data = uplink_data + room_id_str + link.LinkIdStr() + session.SessionIdStr();
+            this.UFabricObject().TransmitData(uplink_data);
+
+            /* send the response down */
+            string response_data = this.dFabricResponseObject.GeneratePutSessionDataResponse(link.LinkIdStr(), session.SessionIdStr(), "job is done");
             return response_data;
         }
 
