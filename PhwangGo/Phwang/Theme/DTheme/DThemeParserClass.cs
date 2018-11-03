@@ -84,9 +84,22 @@ namespace Phwang.Theme
             this.UThemeObject().TransmitData(uplink_data);
         }
 
-        private void processPutRoomData(string data_val)
+        private void processPutRoomData(string input_data_val)
         {
+            this.debugIt(true, "processPutRoomData", input_data_val);
 
+            string room_id_str = input_data_val.Substring(0, Protocols.ThemeEngineProtocolClass.THEME_ROOM_ID_SIZE);
+            string input_data = input_data_val.Substring(Protocols.ThemeEngineProtocolClass.THEME_ROOM_ID_SIZE);
+            RoomClass room = this.RoomMgrObject().GetRoomByRoomIdStr(room_id_str);
+            if (room == null)
+            {
+                this.abendIt("processPutRoomData", "null room");
+                return;
+            }
+
+            string uplink_data = Protocols.ThemeEngineProtocolClass.THEME_ENGINE_PROTOCOL_COMMAND_IS_PUT_BASE_DATA;
+            uplink_data = uplink_data + room.EngineIdStr() + input_data;
+            this.UThemeObject().TransmitData(uplink_data);
         }
 
         private void debugIt(bool on_off_val, string str0_val, string str1_val)

@@ -21,9 +21,12 @@ namespace Phwang.Theme
         private string groupIdStr { get; }
         private int roomId { get; set; }
         private string roomIdStr { get; set; }
+        private string engineIdStr { get; set; }
 
         public string RoomIdStr() { return this.roomIdStr; }
         public string GroupIdStr() { return this.groupIdStr; }
+        public string EngineIdStr() { return this.engineIdStr; }
+
 
         public RoomClass(string group_id_str_val)
         {

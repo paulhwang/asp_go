@@ -358,7 +358,8 @@ namespace Phwang.Fabric
 
             /* transfer data up */
             string uplink_data = Protocols.FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_COMMAND_IS_PUT_ROOM_DATA;
-            uplink_data = uplink_data + room_id_str + link.LinkIdStr() + session.SessionIdStr();
+            //uplink_data = uplink_data + room_id_str + link.LinkIdStr() + session.SessionIdStr();
+            uplink_data = uplink_data + room_id_str + format_data.data;
             this.UFabricObject().TransmitData(uplink_data);
 
             /* send the response down */
