@@ -98,7 +98,7 @@ namespace Phwang.Theme
             }
 
             string uplink_data = Protocols.ThemeEngineProtocolClass.THEME_ENGINE_PROTOCOL_COMMAND_IS_PUT_BASE_DATA;
-            uplink_data = uplink_data + room.EngineIdStr() + input_data;
+            uplink_data = uplink_data + room.BaseIdStr() + input_data;
             this.UThemeObject().TransmitData(uplink_data);
         }
 

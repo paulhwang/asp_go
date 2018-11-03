@@ -21,11 +21,11 @@ namespace Phwang.Theme
         private string groupIdStr { get; }
         private int roomId { get; set; }
         private string roomIdStr { get; set; }
-        private string engineIdStr { get; set; }
+        private string baseIdStr { get; set; }
 
         public string RoomIdStr() { return this.roomIdStr; }
         public string GroupIdStr() { return this.groupIdStr; }
-        public string EngineIdStr() { return this.engineIdStr; }
+        public string BaseIdStr() { return this.baseIdStr; }
 
 
         public RoomClass(string group_id_str_val)
@@ -38,6 +38,11 @@ namespace Phwang.Theme
             this.listEntryObject = list_entry_objectg_val;
             this.roomId = this.listEntryObject.Id;
             this.roomIdStr = PhwangUtils.EncodeNumberClass.EncodeNumber(this.roomId, Protocols.FabricFrontEndProtocolClass.LINK_MGR_PROTOCOL_LINK_ID_SIZE);
+        }
+
+        public void PutBaseIdStr(string base_id_str_val)
+        {
+            this.baseIdStr = base_id_str_val;
         }
 
         private void debugIt(bool on_off_val, string str0_val, string str1_val)

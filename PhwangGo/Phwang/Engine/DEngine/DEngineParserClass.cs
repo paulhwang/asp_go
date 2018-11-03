@@ -84,7 +84,21 @@ namespace Phwang.Engine
         private void processPutBaseData(string input_data_val)
         {
             this.debugIt(true, "processPutBaseData", "data=" + input_data_val);
+            string base_id_str = input_data_val.Substring(0, Protocols.ThemeEngineProtocolClass.ENGINE_BASE_ID_SIZE);
+            string input_data = input_data_val.Substring(Protocols.ThemeEngineProtocolClass.ENGINE_BASE_ID_SIZE);
 
+            GoBaseClass go_base_object = this.BaseMgrObject().GetBaseByIdStr(base_id_str);
+            if (go_base_object == null)
+            {
+                this.abendIt("processPutBaseData", "null go_base");
+                return;
+
+            }
+
+            string downlink_data = Protocols.ThemeEngineProtocolClass.THEME_ENGINE_PROTOCOL_RESPOND_IS_PUT_BASE_DATA;
+            string output_data = "go data";
+            downlink_data = downlink_data + go_base_object.RoomIdStr() + output_data;
+            this.dEngineObject.TransmitData(downlink_data);
         }
 
         private void debugIt(bool on_off_val, string str0_val, string str1_val)

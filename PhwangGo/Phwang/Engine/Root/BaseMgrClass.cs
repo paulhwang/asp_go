@@ -41,6 +41,24 @@ namespace Phwang.Engine
         {
 
         }
+        public GoBaseClass GetBaseByIdStr(string base_id_str_val)
+        {
+            int base_id = PhwangUtils.EncodeNumberClass.DecodeNumber(base_id_str_val);
+
+            return this.GetBaseById(base_id);
+        }
+
+        public GoBaseClass GetBaseById(int id_val)
+        {
+            PhwangUtils.ListEntryClass list_entry = this.listMgr.GetEntryById(id_val);
+            if (list_entry == null)
+            {
+                return null;
+            }
+            GoBaseClass base_object = (GoBaseClass)list_entry.Data;
+
+            return base_object;
+        }
 
         private void debugIt(bool on_off_val, string str0_val, string str1_val)
         {

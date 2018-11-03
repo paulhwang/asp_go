@@ -53,8 +53,10 @@ namespace Phwang.Theme
             this.debugIt(true, "processSetupBaseResponse", input_data_val);
 
             string room_id_str = input_data_val.Substring(0, 4);
+            string base_id_str = input_data_val.Substring(4);
 
             RoomClass room_object = this.RoomMgrObject().GetRoomByRoomIdStr(room_id_str);
+            room_object.PutBaseIdStr(base_id_str);
             string downlink_data = Protocols.FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_RESPOND_IS_SETUP_ROOM;
             downlink_data = downlink_data + room_object.GroupIdStr() + room_object.RoomIdStr();
             this.DThemeObject().TransmitData(downlink_data);
