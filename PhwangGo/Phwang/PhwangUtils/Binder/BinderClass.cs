@@ -96,7 +96,7 @@ namespace Phwang.PhwangUtils
             this.debugIt(true, "transmitThreadFunc", "start");
             while (true)
             {
-                Thread.Sleep(1000);
+                Thread.Sleep(10000);
             }
         }
 
