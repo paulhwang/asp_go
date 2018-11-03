@@ -77,10 +77,12 @@ function PhwangAjaxClass(phwang_object_val) {
     };
     this.getLinkData = function(link_val) {
         var output = JSON.stringify({
-                        command: this.phwangAjaxProtocolObject().GET_LINK_DATA_COMMAND(),
-                        packet_id: this.ajaxPacketId(),
-                        link_id: link_val.linkId(),
-                        });
+            command: this.phwangAjaxProtocolObject().GET_LINK_DATA_COMMAND(),
+            packet_id: this.ajaxPacketId(),
+            data: JSON.stringify({
+                link_id: link_val.linkId(),
+            }),
+        });
         this.debug(false, "getLinkData", "output=" + output);
         this.transmitAjaxRequest(output);
     };
@@ -146,11 +148,13 @@ function PhwangAjaxClass(phwang_object_val) {
     };
     this.getNameList = function(link_val) {
         var output = JSON.stringify({
-                        command: this.phwangAjaxProtocolObject().GET_NAME_LIST_COMMAND(),
-                        packet_id: this.ajaxPacketId(),
-                        link_id: link_val.linkId(),
-                        name_list_tag: link_val.nameListTag(),
-                        });
+            command: this.phwangAjaxProtocolObject().GET_NAME_LIST_COMMAND(),
+            packet_id: this.ajaxPacketId(),
+            data: JSON.stringify({
+                link_id: link_val.linkId(),
+                name_list_tag: link_val.nameListTag(),
+            }),
+        });
         this.debug(true, "getNameList", "output=" + output);
         this.transmitAjaxRequest(output);
     };
@@ -236,13 +240,16 @@ function PhwangAjaxClass(phwang_object_val) {
     };
     this.putSessionData = function(session_val, data_val) {
         var output = JSON.stringify({
-                        command: this.phwangAjaxProtocolObject().PUT_SESSION_DATA_COMMAND(),
-                        packet_id: this.ajaxPacketId(),
-                        link_id: session_val.phwangLinkObject().linkId(),
-                        session_id: session_val.sessionId(),
-                        xmt_seq: session_val.xmtSeq(),
-                        data: data_val,
-                        });
+            command: this.phwangAjaxProtocolObject().PUT_SESSION_DATA_COMMAND(),
+            packet_id: this.ajaxPacketId(),
+            data: JSON.stringify({
+                link_id: session_val.phwangLinkObject().linkId(),
+                session_id: 3001,/////////////////////////////////////////////////////////////////
+                //session_id: session_val.sessionId(),
+                xmt_seq: session_val.xmtSeq(),
+                data: data_val,
+            }),
+        });
         session_val.incrementXmtSeq();
         this.debug(true, "putSessionData", "output=" + output);
         this.transmitAjaxRequest(output);
@@ -337,7 +344,6 @@ function PhwangAjaxClass(phwang_object_val) {
 }
 function PhwangAjaxEngineClass(phwang_ajax_object_val) {
     "use strict";
-    //this.ajaxRoute = function() {return "/django_go/go_ajax/";};
     this.ajaxRoute = function() {return "/Ajax/AjaxGetRequest/";};
     this.jsonContext = function() {return "application/json; charset=utf-8";}
     this.plainTextContext = function() {return "text/plain; charset=utf-8";}

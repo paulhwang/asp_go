@@ -83,6 +83,10 @@ namespace Phwang.Fabric
             {
                 response_data = this.processSetupSession3Request(ajax_fabric_request.data);
             }
+            else if (ajax_fabric_request.command == "put_session_data")
+            {
+                response_data = this.processPutSessionDataRequest(ajax_fabric_request.data);
+            }
             else
             {
                 response_data = "command " + ajax_fabric_request.command + " not supported";
@@ -307,6 +311,47 @@ namespace Phwang.Fabric
         private string errorProcessSetupSession3(int link_id_val, string error_msg_val)
         {
             return error_msg_val;
+        }
+
+        [DataContract]
+        public class PutSessionDataRequestFormat
+        {
+            [DataMember]
+            public int link_id { get; set; }
+
+            [DataMember]
+            public int session_id { get; set; }
+
+            [DataMember]
+            public int xmt_seq { get; set; }
+
+            [DataMember]
+            public string data { get; set; }
+        }
+
+        private string processPutSessionDataRequest(string input_data_val)
+        {
+            this.debugIt(true, "processPutSessionDataRequest", "input_data_val = " + input_data_val);
+            PutSessionDataRequestFormat format_data;
+            using (var ms = new MemoryStream(Encoding.Unicode.GetBytes(input_data_val)))
+            {
+                DataContractJsonSerializer deseralizer = new DataContractJsonSerializer(typeof(PutSessionDataRequestFormat));
+                format_data = (PutSessionDataRequestFormat)deseralizer.ReadObject(ms);// //反序列化ReadObject
+                this.debugIt(true, "processPutSessionDataRequest", "link_id = " + format_data.link_id);
+                this.debugIt(true, "processPutSessionDataRequest", "session_id = " + format_data.session_id);
+                this.debugIt(true, "processPutSessionDataRequest", "xmt_seq = " + format_data.xmt_seq);
+                this.debugIt(true, "processPutSessionDataRequest", "data = " + format_data.data);
+            }
+
+            LinkClass link = this.LinkMgrObject().GetLinkById(format_data.link_id);
+            SessionClass session = link.SessionMgrObject().GetSessionBySessionId(format_data.session_id);
+            if (session == null)
+            {
+                return errorProcessSetupSession3(format_data.link_id, "null session");
+            }
+
+            string response_data = null;
+            return response_data;
         }
 
         private void mallocRoom(GroupClass group_val, string theme_info_val)
