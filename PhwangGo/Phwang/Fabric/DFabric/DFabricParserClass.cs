@@ -48,16 +48,16 @@ namespace Phwang.Fabric
             public string data { get; set; }
         }
 
-        public void parseInputPacket(string input_data_var)
+        public void parseInputPacket(string input_data_val)
         {
-            string adax_id = input_data_var.Substring(0, Protocols.FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
-            string toDes = input_data_var.Substring(Protocols.FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
+            string adax_id = input_data_val.Substring(0, Protocols.FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
+            string toDes = input_data_val.Substring(Protocols.FabricFrontEndProtocolClass.AJAX_MAPING_ID_SIZE);
             AjaxFabricRequestFormatClass ajax_fabric_request;
             using (var ms = new MemoryStream(Encoding.Unicode.GetBytes(toDes)))
             {
                 DataContractJsonSerializer deseralizer = new DataContractJsonSerializer(typeof(AjaxFabricRequestFormatClass));
                 ajax_fabric_request = (AjaxFabricRequestFormatClass)deseralizer.ReadObject(ms);
-                this.debugIt(true, "ParseAjaxPacket", "input_data_var = " + input_data_var);
+                this.debugIt(true, "ParseAjaxPacket", "input_data_var = " + input_data_val);
                 this.debugIt(true, "ParseAjaxPacket", "command = " + ajax_fabric_request.command);
                 this.debugIt(true, "ParseAjaxPacket", "data = " + ajax_fabric_request.data);
             }
@@ -100,11 +100,11 @@ namespace Phwang.Fabric
             public string password { get; set; }
         }
 
-        private string processSetupLinkRequest(string input_data_var)
+        private string processSetupLinkRequest(string input_data_val)
         {
-            this.debugIt(true, "processSetupLinkRequest", "input_data_var = " + input_data_var);
+            this.debugIt(true, "processSetupLinkRequest", "input_data_val = " + input_data_val);
             SetupLinkRequestFormatClass format_data;
-            using (var ms = new MemoryStream(Encoding.Unicode.GetBytes(input_data_var)))
+            using (var ms = new MemoryStream(Encoding.Unicode.GetBytes(input_data_val)))
             {
                 DataContractJsonSerializer deseralizer = new DataContractJsonSerializer(typeof(SetupLinkRequestFormatClass));
                 format_data = (SetupLinkRequestFormatClass)deseralizer.ReadObject(ms);// //反序列化ReadObject
@@ -124,11 +124,11 @@ namespace Phwang.Fabric
             public int link_id { get; set; }
         }
 
-        private string processGetLinkDataRequest(string input_data_var)
+        private string processGetLinkDataRequest(string input_data_val)
         {
-            this.debugIt(true, "processGetLinkDataRequest", "input_data_var = " + input_data_var);
+            this.debugIt(true, "processGetLinkDataRequest", "input_data_val = " + input_data_val);
             GetLinkDataRequestFormat format_data;
-            using (var ms = new MemoryStream(Encoding.Unicode.GetBytes(input_data_var)))
+            using (var ms = new MemoryStream(Encoding.Unicode.GetBytes(input_data_val)))
             {
                 DataContractJsonSerializer deseralizer = new DataContractJsonSerializer(typeof(GetLinkDataRequestFormat));
                 format_data = (GetLinkDataRequestFormat)deseralizer.ReadObject(ms);// //反序列化ReadObject
@@ -169,11 +169,11 @@ namespace Phwang.Fabric
             public int name_list_tag { get; set; }
         }
 
-        private string processGetNameListRequest(string input_data_var)
+        private string processGetNameListRequest(string input_data_val)
         {
-            this.debugIt(true, "processGetNameListRequest", "input_data_var = " + input_data_var);
+            this.debugIt(true, "processGetNameListRequest", "input_data_val = " + input_data_val);
             GetNameListRequestFormat format_data;
-            using (var ms = new MemoryStream(Encoding.Unicode.GetBytes(input_data_var)))
+            using (var ms = new MemoryStream(Encoding.Unicode.GetBytes(input_data_val)))
             {
                 DataContractJsonSerializer deseralizer = new DataContractJsonSerializer(typeof(GetNameListRequestFormat));
                 format_data = (GetNameListRequestFormat)deseralizer.ReadObject(ms);// //反序列化ReadObject
@@ -201,11 +201,11 @@ namespace Phwang.Fabric
             public string theme_data { get; set; }
         }
 
-        private string processSetupSessionRequest(string input_data_var)
+        private string processSetupSessionRequest(string input_data_val)
         {
-            this.debugIt(true, "processSetupSessionRequest", "input_data_var = " + input_data_var);
+            this.debugIt(true, "processSetupSessionRequest", "input_data_val = " + input_data_val);
             SetupSessionRequestFormat format_data;
-            using (var ms = new MemoryStream(Encoding.Unicode.GetBytes(input_data_var)))
+            using (var ms = new MemoryStream(Encoding.Unicode.GetBytes(input_data_val)))
             {
                 DataContractJsonSerializer deseralizer = new DataContractJsonSerializer(typeof(SetupSessionRequestFormat));
                 format_data = (SetupSessionRequestFormat)deseralizer.ReadObject(ms);// //反序列化ReadObject
@@ -266,6 +266,11 @@ namespace Phwang.Fabric
             return response_data;
         }
 
+        private string errorProcessSetupSession(int link_id_val, string error_msg_val)
+        {
+            return error_msg_val;
+        }
+
         [DataContract]
         public class SetupSession3RequestFormat
         {
@@ -276,16 +281,11 @@ namespace Phwang.Fabric
             public int session_id { get; set; }
         }
 
-        private string errorProcessSetupSession(int link_id_val, string error_msg_val)
+        private string processSetupSession3Request(string input_data_val)
         {
-            return error_msg_val;
-        }
-
-        private string processSetupSession3Request(string input_data_var)
-        {
-            this.debugIt(true, "processSetupSession3Request", "input_data_var = " + input_data_var);
+            this.debugIt(true, "processSetupSession3Request", "input_data_val = " + input_data_val);
             SetupSession3RequestFormat format_data;
-            using (var ms = new MemoryStream(Encoding.Unicode.GetBytes(input_data_var)))
+            using (var ms = new MemoryStream(Encoding.Unicode.GetBytes(input_data_val)))
             {
                 DataContractJsonSerializer deseralizer = new DataContractJsonSerializer(typeof(SetupSession3RequestFormat));
                 format_data = (SetupSession3RequestFormat)deseralizer.ReadObject(ms);// //反序列化ReadObject
@@ -299,7 +299,6 @@ namespace Phwang.Fabric
             {
                 return errorProcessSetupSession3(format_data.link_id, "null session");
             }
-
 
             string response_data = this.dFabricResponseObject.GenerateSetupSession3Response(link.LinkIdStr, session.SessionIdStr());
             return response_data;
