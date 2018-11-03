@@ -21,10 +21,12 @@ namespace Phwang.Fabric
         private PhwangUtils.ListEntryClass listEntryObject;
         private int sessionId { get; set; }
         private string sessionIdStr { get; set; }
+        private GroupClass groupObject { get; set; }
 
         public LinkClass LinkObject() { return this.linkObject; }
         public int SessionId() { return this.sessionId; }
         public string SessionIdStr() { return this.sessionIdStr; }
+        public GroupClass GroupObject() { return this.groupObject; }
 
         public SessionClass(LinkClass link_object_val)
         {
@@ -38,9 +40,9 @@ namespace Phwang.Fabric
             this.sessionIdStr = PhwangUtils.EncodeNumberClass.EncodeNumber(this.sessionId, Protocols.FabricFrontEndProtocolClass.LINK_MGR_PROTOCOL_SESSION_ID_SIZE);
         }
 
-        public void BindGroup(GroupClass group_val)
+        public void BindGroup(GroupClass group_object_val)
         {
-
+            this.groupObject = group_object_val;
         }
 
         private void debugIt(bool on_off_val, string str0_val, string str1_val)

@@ -347,11 +347,21 @@ namespace Phwang.Fabric
             SessionClass session = link.SessionMgrObject().GetSessionBySessionId(format_data.session_id);
             if (session == null)
             {
-                return errorProcessSetupSession3(format_data.link_id, "null session");
+                return errorProcessPutSessionData(format_data.link_id, "null session");
+            }
+            string room_id_str = session.GroupObject().RoomIdStr();
+            if (room_id_str == null)
+            {
+                return this.errorProcessPutSessionData(format_data.link_id, "null room");
             }
 
             string response_data = null;
             return response_data;
+        }
+
+        private string errorProcessPutSessionData(int link_id_val, string error_msg_val)
+        {
+            return error_msg_val;
         }
 
         private void mallocRoom(GroupClass group_val, string theme_info_val)
