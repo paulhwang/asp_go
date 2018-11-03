@@ -230,8 +230,10 @@ function PhwangAjaxClass(phwang_object_val) {
         var output = JSON.stringify({
             command: this.phwangAjaxProtocolObject().SETUP_SESSION3_COMMAND(),
             packet_id: this.ajaxPacketId(),
-            link_id: link_val.linkId(),
-            session_id: session_id_val,
+            data: JSON.stringify({
+                link_id: link_val.linkId(),
+                session_id: session_id_val,
+            }),
         });
         this.debug(true, "setupSession3", "output=" + output);
         this.transmitAjaxRequest(output);
