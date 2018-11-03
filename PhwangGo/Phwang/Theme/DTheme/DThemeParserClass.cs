@@ -54,8 +54,8 @@ namespace Phwang.Theme
         {
             this.debugIt(true, "processSetupRoom", input_data_val);
 
-            string group_id_index = input_data_val.Substring(0, Protocols.FabricThemeProtocolClass.GROUP_MGR_PROTOCOL_GROUP_ID_STR_SIZE);
-            string input_data = input_data_val.Substring(Protocols.FabricThemeProtocolClass.GROUP_MGR_PROTOCOL_GROUP_ID_STR_SIZE);
+            string group_id_index = input_data_val.Substring(0, Protocols.FabricThemeProtocolClass.FABRIC_GROUP_ID_SIZE);
+            string input_data = input_data_val.Substring(Protocols.FabricThemeProtocolClass.FABRIC_GROUP_ID_SIZE);
 
             RoomClass room = this.RoomMgrObject().MallocRoom(group_id_index);
             if (room == null)

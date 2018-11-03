@@ -37,7 +37,7 @@ namespace Phwang.Fabric
         {
             this.listEntryObject = list_entry_objectg_val;
             this.sessionId = this.listEntryObject.Id;
-            this.sessionIdStr = PhwangUtils.EncodeNumberClass.EncodeNumber(this.sessionId, Protocols.FabricFrontEndProtocolClass.LINK_MGR_PROTOCOL_SESSION_ID_SIZE);
+            this.sessionIdStr = PhwangUtils.EncodeNumberClass.EncodeNumber(this.sessionId, Protocols.FabricFrontEndProtocolClass.FABRIC_SESSION_ID_SIZE);
         }
 
         public void BindGroup(GroupClass group_object_val)

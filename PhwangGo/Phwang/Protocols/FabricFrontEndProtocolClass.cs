@@ -27,11 +27,11 @@ namespace Phwang.Protocols
 
         //#define LINK_MGR_DATA_BUFFER_SIZE 512
 
-        public const int LINK_MGR_PROTOCOL_LINK_ID_SIZE = 4;
+        public const int FABRIC_LINK_ID_SIZE = 4;
         //public const int LINK_MGR_PROTOCOL_LINK_INDEX_SIZE = 4;
         //public const int LINK_MGR_PROTOCOL_LINK_ID_INDEX_SIZE = (LINK_MGR_PROTOCOL_LINK_ID_SIZE + LINK_MGR_PROTOCOL_LINK_INDEX_SIZE);
 
-        public const int LINK_MGR_PROTOCOL_SESSION_ID_SIZE = 4;
+        public const int FABRIC_SESSION_ID_SIZE = 4;
             //#define LINK_MGR_PROTOCOL_SESSION_INDEX_SIZE 4
             //#define LINK_MGR_PROTOCOL_SESSION_ID_INDEX_SIZE (LINK_MGR_PROTOCOL_SESSION_ID_SIZE + LINK_MGR_PROTOCOL_SESSION_INDEX_SIZE)
     }

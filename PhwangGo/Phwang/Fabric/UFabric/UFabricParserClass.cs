@@ -49,8 +49,8 @@ namespace Phwang.Fabric
         }
         private void processSetupRoomResponse(string input_data_val)
         {
-            string group_id_str = input_data_val.Substring(0, Protocols.FabricThemeProtocolClass.GROUP_MGR_PROTOCOL_GROUP_ID_STR_SIZE);
-            string room_id_str = input_data_val.Substring(Protocols.FabricThemeProtocolClass.GROUP_MGR_PROTOCOL_GROUP_ID_STR_SIZE);
+            string group_id_str = input_data_val.Substring(0, Protocols.FabricThemeProtocolClass.FABRIC_GROUP_ID_SIZE);
+            string room_id_str = input_data_val.Substring(Protocols.FabricThemeProtocolClass.FABRIC_GROUP_ID_SIZE);
 
             GroupClass group = this.GroupMgrObject().GetGroupByGroupIdStr(group_id_str);
             if (group != null)
