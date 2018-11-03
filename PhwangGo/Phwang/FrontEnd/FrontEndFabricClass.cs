@@ -74,7 +74,7 @@ namespace Phwang.FrontEnd
 
         public string ProcessAjaxRequestPacket(string input_data_val)
         {
-            this.debugIt(true, "ProcessAjaxRequestPacket", "input_data_var = " + input_data_val);
+            this.debugIt(true, "ProcessAjaxRequestPacket", "input_data_val = " + input_data_val);
             FrontEndJobClass job_entry = this.frontEndJobMgrObject.MallocJobObject();
             this.binderObject.TransmitData(job_entry.ajaxIdStr + input_data_val);
             string response_data = job_entry.ReadData();

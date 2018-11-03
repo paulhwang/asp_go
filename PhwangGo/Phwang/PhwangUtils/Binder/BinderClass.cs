@@ -78,10 +78,16 @@ namespace Phwang.PhwangUtils
             while (true)
             {
                 data = PhwangUtils.TcpServerClass.TcpReceiveData(this.networkStream);
-                this.debugIt(true, "receiveThreadFunc", "data = " + data);
-                this.receiveQueue.EnqueueData(data);
-                Thread.Sleep(10);
-
+                if (data != null)
+                {
+                    this.debugIt(false, "receiveThreadFunc", "data = " + data);
+                    this.receiveQueue.EnqueueData(data);
+                }
+                else
+                {
+                    this.abendIt("receiveThreadFunc", "data is null=====================================");
+                    Thread.Sleep(1);
+                }
             }
         }
 
@@ -90,7 +96,7 @@ namespace Phwang.PhwangUtils
             this.debugIt(true, "transmitThreadFunc", "start");
             while (true)
             {
-
+                Thread.Sleep(1000);
             }
         }
 
@@ -99,20 +105,20 @@ namespace Phwang.PhwangUtils
             string data = (string) this.receiveQueue.DequeueData();
             if (data != null)
             {
-                this.debugIt(true, "ReceivData", "data = " + data);
+                this.debugIt(false, "ReceivData", "data = " + data);
             }
             return data;
         }
 
         public void TransmitRawData(string data_var)
         {
-            this.debugIt(true, "TransmitData", "data = " + data_var);
+            this.debugIt(false, "TransmitData", "data = " + data_var);
             PhwangUtils.TcpServerClass.TcpTransmitData(this.networkStream, data_var);
         }
 
         public void TransmitData(string data_var)
         {
-            this.debugIt(true, "TransmitData", "data = " + data_var);
+            this.debugIt(false, "TransmitData", "data = " + data_var);
             this.TransmitRawData(data_var);
         }
 

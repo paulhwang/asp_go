@@ -51,7 +51,7 @@ namespace Phwang.PhwangUtils
 
         public void EnqueueData(object data_val)
         {
-            this.debugIt(true, "EnqueueData", (string) data_val);
+            this.debugIt(false, "EnqueueData", (string) data_val);
 
             /* queue is too big */
             if ((this.MaxQueueLength != 0) && (this.QueueLength > this.MaxQueueLength))
@@ -81,7 +81,7 @@ namespace Phwang.PhwangUtils
 
             this.AbendQueue("enqueueData end");
 
-            this.debugIt(true, "EnqueueData", "done");
+            this.debugIt(false, "EnqueueData", "done");
         }
         private void EnqueueEntry(QueueEntryClass entry)
         {
@@ -131,7 +131,7 @@ namespace Phwang.PhwangUtils
                         object data = entry.data;
                         entry = null;
 
-                        this.debugIt(true, "DequeueData", "data = " + (string)data);
+                        this.debugIt(false, "DequeueData", "data = " + (string)data);
                         return data;
                     }
                 }
