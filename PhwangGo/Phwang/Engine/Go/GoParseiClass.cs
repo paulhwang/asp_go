@@ -27,19 +27,20 @@ namespace Phwang.Go
             this.rootObject = go_root_object_val;
         }
 
-        public string ParseInputData(string input_data_val)
+        public void ParseInputData(string input_data_val)
         {
             int len = input_data_val.Length;//to be deleted
             switch (input_data_val[0])
             {
                 case GoProtocolClass.GO_PROTOCOL_MOVE_COMMAND:
                     GoMoveClass move = new GoMoveClass(input_data_val.Substring(1, 8));
-                    return this.GameObject().AddNewMoveAndFight(move);
+                    this.GameObject().AddNewMoveAndFight(move);
+                    return;
 
                 default:
                     string err_msg = "command " + input_data_val[1] + " not supported";
                     this.abendIt("ParseInputData", err_msg);
-                    return err_msg;
+                    return;
             }
         }
 

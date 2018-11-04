@@ -33,7 +33,7 @@ namespace Phwang.Go
 
             this.boardArray = new int[19,19];
             this.markedBoardArray = new int[19, 19];
-
+            this.ClearLastDeadStone();
         }
 
         private bool isEmptySpace(int x_val, int y_val)
@@ -47,6 +47,11 @@ namespace Phwang.Go
                 return false;
             }
             return true;
+        }
+        public void ClearLastDeadStone()
+        {
+            this.lastDeadX = 19;
+            this.lastDeadY = 19;
         }
 
         private void debugIt(bool on_off_val, string str0_val, string str1_val)

@@ -21,17 +21,20 @@ namespace Phwang.Go
         private GoBoardClass boardObject { get; }
         private GoGameClass gameObject { get; }
         private GoParseClass parseObject { get; }
+        private GoFightClass fightObject { get; }
 
         public GoConfigClass ConfigObject() { return this.configObject; }
         public GoBoardClass BoardObject() { return this.boardObject; }
         public GoGameClass GameObject() { return this.gameObject; }
         public GoParseClass ParseObject() { return this.parseObject; }
+        public GoFightClass FightObject() { return this.fightObject; }
 
         public GoRootClass()
         {
             this.configObject = new GoConfigClass(this);
             this.boardObject = new GoBoardClass(this);
             this.gameObject = new GoGameClass(this);
+            this.fightObject = new GoFightClass(this);
             this.parseObject = new GoParseClass(this);
         }
 
@@ -41,9 +44,9 @@ namespace Phwang.Go
             return null;
         }
 
-        public string ProcessInputData(string input_data_val)
+        public void ProcessInputData(string input_data_val)
         {
-            return this.parseObject.ParseInputData(input_data_val);
+            this.parseObject.ParseInputData(input_data_val);
        }
 
         private void debugIt(bool on_off_val, string str0_val, string str1_val)

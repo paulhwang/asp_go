@@ -24,6 +24,11 @@ namespace Phwang.Go
             this.goRootObject = go_root_object_val;
         }
 
+        public void EnterBattle(GoMoveClass move_val)
+        {
+
+        }
+
         private void debugIt(bool on_off_val, string str0_val, string str1_val)
         {
             if (on_off_val)
