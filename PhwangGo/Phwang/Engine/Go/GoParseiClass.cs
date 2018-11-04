@@ -17,11 +17,14 @@ namespace Phwang.Go
     {
         private string objectName = "GoParseClass";
 
-        private GoRootClass goRootObject { get; }
+        private GoRootClass rootObject { get; }
+
+        public GoGameClass GameObject() { return this.rootObject.GameObject(); }
+
 
     public GoParseClass(GoRootClass go_root_object_val)
         {
-            this.goRootObject = go_root_object_val;
+            this.rootObject = go_root_object_val;
         }
 
         //#define GO_PROTOCOL_GAME_INFO 'G'
@@ -44,11 +47,7 @@ namespace Phwang.Go
             {
                 case GO_PROTOCOL_MOVE_COMMAND:
                     GoMoveClass move = new GoMoveClass(input_data_val.Substring(1, 8));
-                    int x = (input_data_val[1] - '0') * 10 + (input_data_val[2] - '0');
-                    int y = (input_data_val[3] - '0') * 10 + (input_data_val[4] - '0');
-                    int color = input_data_val[5] - '0';
-                    int turn_index = (input_data_val[6] - '0') * 100 + (input_data_val[7] - '0') * 10 + (input_data_val[8] - '0');
-                    return "GO TBD";
+                    return this.GameObject().AddNewMoveAndFight(move);
 
                 default:
                     string err_msg = "command " + input_data_val[1] + " not supported";

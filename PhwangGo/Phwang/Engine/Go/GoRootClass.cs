@@ -19,16 +19,19 @@ namespace Phwang.Go
 
         private GoConfigClass configObject { get; }
         private GoBoardClass boardObject { get; }
+        private GoGameClass gameObject { get; }
         private GoParseClass parseObject { get; }
 
         public GoConfigClass ConfigObject() { return this.configObject; }
         public GoBoardClass BoardObject() { return this.boardObject; }
+        public GoGameClass GameObject() { return this.gameObject; }
         public GoParseClass ParseObject() { return this.parseObject; }
 
         public GoRootClass()
         {
             this.configObject = new GoConfigClass(this);
             this.boardObject = new GoBoardClass(this);
+            this.gameObject = new GoGameClass(this);
             this.parseObject = new GoParseClass(this);
         }
 

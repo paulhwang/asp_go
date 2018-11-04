@@ -21,7 +21,12 @@ namespace Phwang.Go
         private int yY { get; set; }
         private int myColor { get; set; }
         private int turnIndex { get; set; }
-        private string moveInfo { get; }
+        //private string moveInfo { get; }
+
+        public int XX() { return this.xX; }
+        public int YY() { return this.yY; }
+        public int MyColor() { return this.myColor; }
+        public int TurnIndex() { return this.turnIndex; }
 
         public GoMoveClass(string encoded_move_val)
         {
@@ -34,7 +39,6 @@ namespace Phwang.Go
             this.yY = (encoded_move_val[2] - '0') * 10 + (encoded_move_val[3] - '0');
             this.myColor = encoded_move_val[4] - '0';
             this.turnIndex = (encoded_move_val[5] - '0') * 100 + (encoded_move_val[6] - '0') * 10 + (encoded_move_val[7] - '0');
-
         }
     }
 }
