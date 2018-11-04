@@ -65,8 +65,10 @@ namespace Phwang.Engine
                 return;
             }
 
+            string output_data = go_base_object.SetupBase(input_data);
+
             string downlink_data = Protocols.ThemeEngineProtocolClass.THEME_ENGINE_PROTOCOL_RESPOND_IS_SETUP_BASE;
-            downlink_data = downlink_data + go_base_object.RoomIdStr() + go_base_object.BaseIdStr();
+            downlink_data = downlink_data + go_base_object.RoomIdStr() + go_base_object.BaseIdStr() + output_data;
             this.dEngineObject.TransmitData(downlink_data);
         }
 
@@ -84,8 +86,9 @@ namespace Phwang.Engine
 
             }
 
+            string output_data = go_base_object.ProcessInputData(input_data);
+
             string downlink_data = Protocols.ThemeEngineProtocolClass.THEME_ENGINE_PROTOCOL_RESPOND_IS_PUT_BASE_DATA;
-            string output_data = "go data";
             downlink_data = downlink_data + go_base_object.RoomIdStr() + output_data;
             this.dEngineObject.TransmitData(downlink_data);
         }
