@@ -17,11 +17,36 @@ namespace Phwang.Go
     {
         private string objectName = "GoBoardClass";
 
-        private GoRootClass goRootObject { get; }
+        private int[,] boardArray { get; }
+        private int[,] markedBoardArray { get; }
+        //char theBoardOutputBuffer[1 + 3 + 1 + 19 * 19 + 3 * 2 + 2 * 2 + 32];
+        int blackCapturedStones { get; set; }
+        int whiteCapturedStones { get; set; }
+        int lastDeadX { get; set; }
+        int lastDeadY { get; set; }
 
-        public GoBoardClass(GoRootClass go_root_object_val)
+        private GoRootClass rootObject { get; }
+
+        public GoBoardClass(GoRootClass root_object_val)
         {
-            this.goRootObject = go_root_object_val;
+            this.rootObject = root_object_val;
+
+            this.boardArray = new int[19,19];
+            this.markedBoardArray = new int[19, 19];
+
+        }
+
+        private bool isEmptySpace(int x_val, int y_val)
+        {
+            if (!this.rootObject.ConfigObject().IsValidCoordinates(x_val, y_val))
+            {
+                return false;
+            }
+            if (this.boardArray[x_val, y_val] != GoDefineClass.GO_EMPTY_STONE)
+            {
+                return false;
+            }
+            return true;
         }
 
         private void debugIt(bool on_off_val, string str0_val, string str1_val)

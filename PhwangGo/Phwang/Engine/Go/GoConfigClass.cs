@@ -47,6 +47,15 @@ namespace Phwang.Go
             string name = input_data_val.Substring(10);//to be deleted
         }
 
+        private bool isValidCoordinate(int coordinate_val)
+        {
+            return (0 <= coordinate_val) && (coordinate_val < this.boardSize);
+        }
+        public bool IsValidCoordinates(int x_val, int y_val)
+        {
+            return this.isValidCoordinate(x_val) && this.isValidCoordinate(y_val);
+        }
+
         private void debugIt(bool on_off_val, string str0_val, string str1_val)
         {
             if (on_off_val)
