@@ -16,6 +16,7 @@ namespace Phwang.Go
     public class GoBoardClass
     {
         private string objectName = "GoBoardClass";
+        private const int MAX_BOARD_SIZE = 19;
 
         private int[,] boardArray { get; }
         private int[,] markedBoardArray { get; }
@@ -27,12 +28,14 @@ namespace Phwang.Go
 
         private GoRootClass rootObject { get; }
 
+        public GoConfigClass ConfigObject() { return this.rootObject.ConfigObject(); }
+
         public GoBoardClass(GoRootClass root_object_val)
         {
             this.rootObject = root_object_val;
 
-            this.boardArray = new int[19,19];
-            this.markedBoardArray = new int[19, 19];
+            this.boardArray = new int[MAX_BOARD_SIZE, MAX_BOARD_SIZE];
+            this.markedBoardArray = new int[MAX_BOARD_SIZE, MAX_BOARD_SIZE];
             this.ClearLastDeadStone();
         }
 
@@ -48,6 +51,27 @@ namespace Phwang.Go
             }
             return true;
         }
+        public void ResetBoardObjectData()
+        {
+            int board_size = this.ConfigObject().BoardSize();
+            for (int i = 0; i < board_size; i++)
+            {
+                for (int j = 0; j < board_size; j++)
+                {
+                    this.boardArray[i, j] = GoDefineClass.GO_EMPTY_STONE;
+                    this.markedBoardArray[i, j] = GoDefineClass.GO_EMPTY_STONE;
+                }
+            }
+            this.blackCapturedStones = 0;
+            this.whiteCapturedStones = 0;
+            this.ClearLastDeadStone();
+        }
+
+        public void ResetMarkedBoardObjectData()
+        {
+
+        }
+
         public void ClearLastDeadStone()
         {
             this.lastDeadX = 19;
