@@ -26,7 +26,7 @@ namespace Phwang.Go
 
         public string AddNewMoveAndFight(GoMoveClass move_val)
         {
-
+            this.debugIt(true, "AddNewMoveAndFight", "Move = " + move_val.MoveInfo());
             return null;
         }
 
