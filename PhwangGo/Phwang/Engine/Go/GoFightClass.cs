@@ -225,18 +225,16 @@ namespace Phwang.Go
 
         private void removeDeadGroup(GoGroupClass group)
         {
-            /*
-            group->removeDeadStoneFromBoard();
-            if (group->myColor() == GO_BLACK_STONE)
+            group.RemoveDeadStoneFromBoard();
+            if (group.MyColor() == GoDefineClass.GO_BLACK_STONE)
             {
-                this->blackGroupList()->removeGroupFromGroupList(group);
+                this.blackGroupList().RemoveGroupFromGroupList(group);
             }
             else
             {
-                this->whiteGroupList()->removeGroupFromGroupList(group);
+                this.whiteGroupList().RemoveGroupFromGroupList(group);
             }
-            */
-        }
+         }
 
         private void markLastDeadInfo(GoGroupClass group_val)
         {

@@ -21,16 +21,17 @@ namespace Phwang.Go
         private int minX { get; set; }
         private int maxY { get; set; }
         private int minY { get; set; }
-        //int theDeadMatrix[19][19];
         private int indexNumber { get; set; }
         int stoneCount;
-        int theMyColor;
+        private int myColor { get; }
         int hisColor { get; set; }
         private bool[,] existMatrix { get; }
         private bool[,] deadMatrix { get; }
 
         public int HisColor() { return this.hisColor; }
+        public int MyColor() { return this.myColor; }
         public int StoneCount() { return this.stoneCount; }
+        public int IndexNumber() { return this.indexNumber; }
         public bool ExistMatrix(int x_val, int y_val) { return this.existMatrix[x_val, y_val]; }
         public void SetIndexNumber(int val) { this.indexNumber = val; }
         public void SetGroupListObject(GoGroupListClass group_list_val) { this.groupListObject = group_list_val; }
@@ -179,6 +180,25 @@ namespace Phwang.Go
                 i += 1;
             }
             return false;
+        }
+
+        public void RemoveDeadStoneFromBoard()
+        {
+            int i = this.minX;
+            while (i <= this.maxX)
+            {
+                int j = this.minY;
+                while (j <= this.maxY)
+                {
+                    if (this.existMatrix[i, j])
+                    {
+                        this.groupListObject.FightObject().BoardObject().SetBoardArray(i, j, GoDefineClass.GO_EMPTY_STONE);
+                        //this.debug(false, "removeDeadStoneFromBoard", "(" + i + "," + j + ")");
+                    }
+                    j += 1;
+                }
+                i += 1;
+            }
         }
 
         private void debugIt(bool on_off_val, string str0_val, string str1_val)

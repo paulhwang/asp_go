@@ -92,15 +92,13 @@ namespace Phwang.Go
 
         public void RemoveGroupFromGroupList(GoGroupClass group_val)
         {
-            /*
-            this->theGroupCount--;
-            if (group_val->indexNumber() != this->theGroupCount)
+            this.groupCount--;
+            if (group_val.IndexNumber() != this.groupCount)
             {
-                this->theGroupArray[this->theGroupCount]->setIndexNumber(group_val->indexNumber());
-                this->theGroupArray[group_val->indexNumber()] = this->theGroupArray[this->theGroupCount];
+                this.groupArray[this.groupCount].SetIndexNumber(group_val.IndexNumber());
+                this.groupArray[group_val.IndexNumber()] = this.groupArray[this.groupCount];
             }
-            this->theGroupArray[this->theGroupCount] = 0;
-            */
+            this.groupArray[this.groupCount] = null;
         }
 
         private void debugIt(bool on_off_val, string str0_val, string str1_val)
