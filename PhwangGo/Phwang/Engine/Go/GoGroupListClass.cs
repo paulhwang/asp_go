@@ -26,7 +26,7 @@ namespace Phwang.Go
         private string bigStoneColor { get; }
         private string smallStoneColor { get; }
         private int isMarkedDead { get; }
-        private int groupCount { get; }
+        private int groupCount { get; set; }
         private GoGroupClass[] groupArray { get; }
 
         public GoFightClass FightObject() { return this.fightObject; }
@@ -53,12 +53,10 @@ namespace Phwang.Go
 
         public void InsertGroupToGroupList(GoGroupClass group_val)
         {
-            /*
-            this->theGroupArray[this->theGroupCount] = group_val;
-            group_val->setIndexNumber(this->theGroupCount);
-            this->theGroupCount++;
-            group_val->setGroupListObject(this);
-            */
+            this.groupArray[this.groupCount] = group_val;
+            group_val.SetIndexNumber(this.groupCount);
+            this.groupCount++;
+            group_val.SetGroupListObject(this);
         }
 
         public GoGroupClass FindCandidateGroup(int x_val, int y_val)

@@ -22,7 +22,7 @@ namespace Phwang.Go
         private int maxY { get; set; }
         private int minY { get; set; }
         //int theDeadMatrix[19][19];
-        int theIndexNumber;
+        private int indexNumber { get; set; }
         int stoneCount;
         int theMyColor;
         int hisColor { get; set; }
@@ -31,6 +31,8 @@ namespace Phwang.Go
         public int HisColor() { return this.hisColor; }
         public int StoneCount() { return this.stoneCount; }
         public bool ExistMatrix(int x_val, int y_val) { return this.existMatrix[x_val, y_val]; }
+        public void SetIndexNumber(int val) { this.indexNumber = val; }
+        public void SetGroupListObject(GoGroupListClass group_list_val) { this.groupListObject = group_list_val; }
 
 
         public GoGroupClass(GoGroupListClass group_list_object_val)
