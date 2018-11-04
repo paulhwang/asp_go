@@ -1,13 +1,21 @@
-﻿using System;
+﻿/*
+ ******************************************************************************
+ *                                       
+ *  Copyright (c) 2018 phwang. All rights reserved.
+ *
+ ******************************************************************************
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Phwang.Engine
 {
-    public class GoBaseClass
+    public class BaseClass
     {
-        private string objectName = "GoBaseClass";
+        private string objectName = "BaseClass";
 
         private PhwangUtils.ListEntryClass listEntryObject;
         private string roomIdStr { get; }
@@ -18,7 +26,7 @@ namespace Phwang.Engine
         public string RoomIdStr() { return this.roomIdStr; }
         public string BaseIdStr() { return this.baseIdStr; }
 
-        public GoBaseClass(string room_id_str_val)
+        public BaseClass(string room_id_str_val)
         {
             this.roomIdStr = room_id_str_val;
         }

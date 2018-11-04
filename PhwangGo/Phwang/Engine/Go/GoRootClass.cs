@@ -18,14 +18,17 @@ namespace Phwang.Go
         private string objectName = "GoRootClass";
 
         private GoApiClass apiObject { get; }
+        private GoConfigClass goConfigObject { get; }
 
 
         public GoRootClass()
         {
+            this.goConfigObject = new GoConfigClass(this);
         }
 
         public string DoSetup(string input_data_val)
         {
+            this.goConfigObject.ConfigIt(input_data_val);
             return null;
         }
 

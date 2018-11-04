@@ -29,33 +29,33 @@ namespace Phwang.Engine
             this.listMgr = new PhwangUtils.ListMgrClass(this.objectName, FIRST_BASE_ID);
         }
 
-        public GoBaseClass MallocGoBase(string room_id_val)
+        public BaseClass MallocGoBase(string room_id_val)
         {
-            GoBaseClass go_base = new GoBaseClass(room_id_val);
+            BaseClass go_base = new BaseClass(room_id_val);
             PhwangUtils.ListEntryClass list_entry = this.listMgr.MallocEntry(go_base);
             go_base.BindListEntry(list_entry);
             return go_base;
         }
 
-        public void FreeGoBase(GoBaseClass link_val)
+        public void FreeGoBase(BaseClass link_val)
         {
 
         }
-        public GoBaseClass GetBaseByIdStr(string base_id_str_val)
+        public BaseClass GetBaseByIdStr(string base_id_str_val)
         {
             int base_id = PhwangUtils.EncodeNumberClass.DecodeNumber(base_id_str_val);
 
             return this.GetBaseById(base_id);
         }
 
-        public GoBaseClass GetBaseById(int id_val)
+        public BaseClass GetBaseById(int id_val)
         {
             PhwangUtils.ListEntryClass list_entry = this.listMgr.GetEntryById(id_val);
             if (list_entry == null)
             {
                 return null;
             }
-            GoBaseClass base_object = (GoBaseClass)list_entry.Data;
+            BaseClass base_object = (BaseClass)list_entry.Data;
 
             return base_object;
         }

@@ -58,7 +58,7 @@ namespace Phwang.Engine
             string room_id_str = input_data_val.Substring(0, Protocols.ThemeEngineProtocolClass.THEME_ROOM_ID_SIZE);
             string input_data = input_data_val.Substring(Protocols.ThemeEngineProtocolClass.THEME_ROOM_ID_SIZE);
 
-            GoBaseClass go_base_object = this.BaseMgrObject().MallocGoBase(room_id_str);
+            BaseClass go_base_object = this.BaseMgrObject().MallocGoBase(room_id_str);
             if (go_base_object == null)
             {
                 this.abendIt("processSetupBase", "null go_base");
@@ -78,12 +78,11 @@ namespace Phwang.Engine
             string base_id_str = input_data_val.Substring(0, Protocols.ThemeEngineProtocolClass.ENGINE_BASE_ID_SIZE);
             string input_data = input_data_val.Substring(Protocols.ThemeEngineProtocolClass.ENGINE_BASE_ID_SIZE);
 
-            GoBaseClass go_base_object = this.BaseMgrObject().GetBaseByIdStr(base_id_str);
+            BaseClass go_base_object = this.BaseMgrObject().GetBaseByIdStr(base_id_str);
             if (go_base_object == null)
             {
                 this.abendIt("processPutBaseData", "null go_base");
                 return;
-
             }
 
             string output_data = go_base_object.ProcessInputData(input_data);
