@@ -17,13 +17,15 @@ namespace Phwang.Go
     {
         private string objectName = "GoRootClass";
 
-        private GoApiClass apiObject { get; }
+        private GoParseClass parseObject { get; }
         private GoConfigClass goConfigObject { get; }
+        private GoParseClass goParseObject { get; }
 
 
         public GoRootClass()
         {
             this.goConfigObject = new GoConfigClass(this);
+            this.goParseObject = new GoParseClass(this);
         }
 
         public string DoSetup(string input_data_val)
@@ -34,8 +36,8 @@ namespace Phwang.Go
 
         public string ProcessInputData(string input_data_val)
         {
-            return "GO TBD";
-        }
+            return this.goParseObject.ParseInputData(input_data_val);
+       }
 
         private void debugIt(bool on_off_val, string str0_val, string str1_val)
         {
