@@ -108,54 +108,51 @@ namespace Phwang.Go
 
         private GoGroupClass insertStoneToGroupList(GoMoveClass move_val)
         {
-            /*
-            GoGroupListClass* g_list;
+            GoGroupListClass g_list;
 
-            if (move_val->myColor() == GO_BLACK_STONE)
+            if (move_val.MyColor() == GoDefineClass.GO_BLACK_STONE)
             {
-                g_list = this->blackGroupList();
+                g_list = this.blackGroupList();
             }
-            else if (move_val->myColor() == GO_WHITE_STONE)
+            else if (move_val.MyColor() == GoDefineClass.GO_WHITE_STONE)
             {
-                g_list = this->whiteGroupList();
+                g_list = this.whiteGroupList();
             }
             else
             {
-                this->abend("insertStoneToGroupList", move_val->moveInfo());
-                return 0;
+                this.abendIt("insertStoneToGroupList", move_val.MoveInfo());
+                return null;
             }
 
-            GoGroupClass* group = g_list->findCandidateGroup(move_val->xX(), move_val->yY());
-            if (!group)
+            GoGroupClass group = g_list.FindCandidateGroup(move_val.XX(), move_val.YY());
+            if (group == null)
             {
                 group = new GoGroupClass(g_list);
-                group->insertStoneToGroup(move_val->xX(), move_val->yY(), false);
-                g_list->insertGroupToGroupList(group);
+                group.InsertStoneToGroup(move_val.XX(), move_val.YY(), false);
+                g_list.InsertGroupToGroupList(group);
                 return group;
             }
 
-            group->insertStoneToGroup(move_val->xX(), move_val->yY(), false);
+            group.InsertStoneToGroup(move_val.XX(), move_val.YY(), false);
 
             int dummy_count = 0;
-            GoGroupClass* group2;
-            while (1)
+            GoGroupClass group2;
+            while (true)
             {
-                group2 = g_list->findOtherCandidateGroup(group, move_val->xX(), move_val->yY());
-                if (!group2)
+                group2 = g_list.FindOtherCandidateGroup(group, move_val.XX(), move_val.YY());
+                if (group2 == null)
                 {
                     break;
                 }
                 dummy_count += 1;
-                group->mergeWithOtherGroup(group2);
-                g_list->removeGroupFromGroupList(group2);
+                group.MergeWithOtherGroup(group2);
+                g_list.RemoveGroupFromGroupList(group2);
             }
             if (dummy_count > 3)
             {
-                this->abend("insertStoneToGroupList", "dummy_count");
+                this.abendIt("insertStoneToGroupList", "dummy_count");
             }
             return group;
-            */
-            return null;
         }
 
         private int killOtherColorGroups(GoMoveClass move_val, GoGroupClass my_group_val)

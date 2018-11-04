@@ -51,6 +51,60 @@ namespace Phwang.Go
             this.isMarkedDead = 0;
         }
 
+        public void InsertGroupToGroupList(GoGroupClass group_val)
+        {
+            /*
+            this->theGroupArray[this->theGroupCount] = group_val;
+            group_val->setIndexNumber(this->theGroupCount);
+            this->theGroupCount++;
+            group_val->setGroupListObject(this);
+            */
+        }
+
+        public GoGroupClass FindCandidateGroup(int x_val, int y_val)
+        {
+            int i = 0;
+            while (i < this.groupCount)
+            {
+                if (this.groupArray[i].IsCandidateGroup(x_val, y_val))
+                {
+                    return this.groupArray[i];
+                }
+                i += 1;
+            }
+            return null;
+        }
+
+        public GoGroupClass FindOtherCandidateGroup(GoGroupClass group_val, int x_val, int y_val)
+        {
+            int i = 0;
+            while (i < this.groupCount)
+            {
+                if (this.groupArray[i] != group_val)
+                {
+                    if (this.groupArray[i].IsCandidateGroup(x_val, y_val))
+                    {
+                        return this.groupArray[i];
+                    }
+                }
+                i += 1;
+            }
+            return null;
+        }
+
+        public void RemoveGroupFromGroupList(GoGroupClass group_val)
+        {
+            /*
+            this->theGroupCount--;
+            if (group_val->indexNumber() != this->theGroupCount)
+            {
+                this->theGroupArray[this->theGroupCount]->setIndexNumber(group_val->indexNumber());
+                this->theGroupArray[group_val->indexNumber()] = this->theGroupArray[this->theGroupCount];
+            }
+            this->theGroupArray[this->theGroupCount] = 0;
+            */
+        }
+
         private void debugIt(bool on_off_val, string str0_val, string str1_val)
         {
             if (on_off_val)
