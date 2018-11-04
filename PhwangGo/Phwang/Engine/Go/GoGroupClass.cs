@@ -23,10 +23,14 @@ namespace Phwang.Go
         private int minY { get; set; }
         //int theDeadMatrix[19][19];
         int theIndexNumber;
-        int theStoneCount;
+        int stoneCount;
         int theMyColor;
-        int theHisColor;
+        int hisColor { get; set; }
         private bool[,] existMatrix { get; }
+
+        public int HisColor() { return this.hisColor; }
+        public int StoneCount() { return this.stoneCount; }
+        public bool ExistMatrix(int x_val, int y_val) { return this.existMatrix[x_val, y_val]; }
 
 
         public GoGroupClass(GoGroupListClass group_list_object_val)

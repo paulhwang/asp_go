@@ -28,6 +28,9 @@ namespace Phwang.Go
         private GoRootClass rootObject { get; }
 
         public GoConfigClass ConfigObject() { return this.rootObject.ConfigObject(); }
+        public int BoardArray(int x_val, int y_val) { return this.boardArray[x_val, y_val]; }
+        public void AddBlackCapturedStones(int val) { this.blackCapturedStones += val; }
+        public void AddWhiteCapturedStones(int val) { this.whiteCapturedStones += val; }
 
         public GoBoardClass(GoRootClass root_object_val)
         {
@@ -81,16 +84,6 @@ namespace Phwang.Go
                 return true;
             }
             return false;
-        }
-
-        public void AddBlackCapturedStones(int val)
-        {
-            this.blackCapturedStones += val;
-        }
-
-        public void AddWhiteCapturedStones(int val)
-        {
-            this.whiteCapturedStones += val;
         }
 
         public void ResetBoardObjectData()

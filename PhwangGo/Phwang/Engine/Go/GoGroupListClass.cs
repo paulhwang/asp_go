@@ -30,6 +30,8 @@ namespace Phwang.Go
         private GoGroupClass[] groupArray { get; }
 
         public GoFightClass FightObject() { return this.fightObject; }
+        public int GroupCount() { return this.groupCount; }
+        public GoGroupClass GroupArray(int index_val) { return this.groupArray[index_val]; }
 
         public GoGroupListClass(GoFightClass fight_object_val,
                        int index_val,

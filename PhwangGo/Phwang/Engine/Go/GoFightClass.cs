@@ -26,6 +26,15 @@ namespace Phwang.Go
 
         public GoRootClass RootObject() { return this.rootObject; }
         public GoBoardClass BoardObject() { return this.rootObject.BoardObject(); }
+        public GoConfigClass ConfigObject() { return this.rootObject.ConfigObject(); }
+
+        GoGroupListClass emptyGroupList() { return this.groupListArray[0]; }
+        GoGroupListClass blackGroupList() { return this.groupListArray[1]; }
+        GoGroupListClass whiteGroupList() { return this.groupListArray[2]; }
+        GoGroupListClass blackDeadGroupList() { return this.groupListArray[3]; }
+        GoGroupListClass whiteDeadGroupList() { return this.groupListArray[4]; }
+        GoGroupListClass blackEmptyGroupList() { return this.groupListArray[5]; }
+        GoGroupListClass whiteEmptyGroupList() { return this.groupListArray[6]; }
 
         public GoFightClass(GoRootClass go_root_object_val)
         {
@@ -151,15 +160,70 @@ namespace Phwang.Go
 
         private int killOtherColorGroups(GoMoveClass move_val, GoGroupClass my_group_val)
         {
-            /*
             int count;
-            count = this->killOtherColorGroup(my_group_val, move_val->xX() - 1, move_val->yY());
-            count += this->killOtherColorGroup(my_group_val, move_val->xX() + 1, move_val->yY());
-            count += this->killOtherColorGroup(my_group_val, move_val->xX(), move_val->yY() - 1);
-            count += this->killOtherColorGroup(my_group_val, move_val->xX(), move_val->yY() + 1);
+            count = this.killOtherColorGroup(my_group_val, move_val.XX() - 1, move_val.YY());
+            count += this.killOtherColorGroup(my_group_val, move_val.XX() + 1, move_val.YY());
+            count += this.killOtherColorGroup(my_group_val, move_val.XX(), move_val.YY() - 1);
+            count += this.killOtherColorGroup(my_group_val, move_val.XX(), move_val.YY() + 1);
             return count;
-            */
-            return 0;
+        }
+
+        private int killOtherColorGroup(GoGroupClass my_group_val, int x_val, int y_val)
+        {
+            GoGroupClass his_group;
+
+            if (!this.ConfigObject().IsValidCoordinates(x_val, y_val))
+            {
+                return 0;
+            }
+
+            if (this.BoardObject().BoardArray(x_val, y_val) != my_group_val.HisColor())
+            {
+                return 0;
+            }
+
+            his_group = this.getGroupByCoordinate(x_val, y_val, my_group_val.HisColor());
+            if (his_group == null)
+            {
+                this.abendIt("killOtherColorGroup", "null his_group");
+                return 0;
+            }
+
+            if (his_group.GroupHasAir())
+            {
+                return 0;
+            }
+
+            int dead_count = his_group.StoneCount();
+            if ((my_group_val.StoneCount() == 1) && (his_group.StoneCount() == 1))
+            {
+                this.markLastDeadInfo(his_group);
+            }
+
+            this.removeDeadGroup(his_group);
+            return dead_count;
+        }
+
+        private GoGroupClass getGroupByCoordinate(int x_val, int y_val, int color_val)
+        {
+            GoGroupListClass g_list;
+            if ((color_val == GoDefineClass.GO_BLACK_STONE) || (color_val == GoDefineClass.GO_MARKED_DEAD_BLACK_STONE))
+            {
+                g_list = this.blackGroupList();
+            }
+            else
+            {
+                g_list = this.whiteGroupList();
+            }
+
+            for (int i = 0; i < g_list.GroupCount(); i++)
+            {
+                if (g_list.GroupArray(i).ExistMatrix(x_val, y_val))
+                {
+                    return g_list.GroupArray(i);
+                }
+            }
+            return null;
         }
 
         private void removeDeadGroup(GoGroupClass group)
@@ -173,6 +237,26 @@ namespace Phwang.Go
             else
             {
                 this->whiteGroupList()->removeGroupFromGroupList(group);
+            }
+            */
+        }
+
+        private void markLastDeadInfo(GoGroupClass group_val)
+        {
+            /*
+            this->theBaseObject->boardObject()->setLastDeadStone(group_val->maxX(), group_val->maxY());
+
+            if (group_val->maxX() != group_val->minX())
+            {
+                this->abend("markLastDeadInfo", "bad x");
+            }
+            if (group_val->maxY() != group_val->minY())
+            {
+                this->abend("markLastDeadInfo", "bad y");
+            }
+            if (!group_val->existMatrix(group_val->maxX(), group_val->maxY()))
+            {
+                this->abend("markLastDeadInfo", "exist_matrix");
             }
             */
         }
