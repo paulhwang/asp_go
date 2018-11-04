@@ -27,6 +27,7 @@ namespace Phwang.Go
         int theMyColor;
         int hisColor { get; set; }
         private bool[,] existMatrix { get; }
+        private bool[,] deadMatrix { get; }
 
         public int HisColor() { return this.hisColor; }
         public int StoneCount() { return this.stoneCount; }
@@ -39,47 +40,46 @@ namespace Phwang.Go
         {
             this.groupListObject = group_list_object_val;
             this.existMatrix = new bool[GoDefineClass.MAX_BOARD_SIZE, GoDefineClass.MAX_BOARD_SIZE];
+            this.deadMatrix = new bool[GoDefineClass.MAX_BOARD_SIZE, GoDefineClass.MAX_BOARD_SIZE];
         }
 
         public void InsertStoneToGroup(int x_val, int y_val, bool dead_val)
         {
-            /*
-            if (this->theExistMatrix[x_val][y_val])
+            if (this.existMatrix[x_val, y_val])
             {
-                this->abend("insertStoneToGroup", "stone already exists in group");
+                this.abendIt("insertStoneToGroup", "stone already exists in group");
             }
 
-            if (this->theStoneCount == 0)
+            if (this.stoneCount == 0)
             {
-                this->theMaxX = x_val;
-                this->theMinX = x_val;
-                this->theMaxY = y_val;
-                this->theMinY = y_val;
+                this.maxX = x_val;
+                this.minX = x_val;
+                this.maxY = y_val;
+                this.minY = y_val;
             }
             else
             {
-                if (x_val > this->theMaxX)
+                if (x_val > this.maxX)
                 {
-                    this->theMaxX = x_val;
+                    this.maxX = x_val;
                 }
-                if (x_val < this->theMinX)
+                if (x_val < this.minX)
                 {
-                    this->theMinX = x_val;
+                    this.minX = x_val;
                 }
-                if (y_val > this->theMaxY)
+                if (y_val > this.maxY)
                 {
-                    this->theMaxY = y_val;
+                    this.maxY = y_val;
                 }
-                if (y_val < this->theMinY)
+                if (y_val < this.minY)
                 {
-                    this->theMinY = y_val;
+                    this.minY = y_val;
                 }
             }
 
-            this->theStoneCount++;
-            this->theExistMatrix[x_val][y_val] = true;
-            this->theDeadMatrix[x_val][y_val] = dead_val;
-            */
+            this.stoneCount++;
+            this.existMatrix[x_val, y_val] = true;
+            this.deadMatrix[x_val, y_val] = dead_val;
         }
 
         public bool IsCandidateGroup(int x_val, int y_val)
@@ -107,58 +107,56 @@ namespace Phwang.Go
 
         public void MergeWithOtherGroup(GoGroupClass group2)
         {
-            /*
-            this->debug(false, "mergeWithOtherGroup", "");
-            int i = group2->theMinX;
-            while (i <= group2->theMaxX)
+            this.debugIt(false, "mergeWithOtherGroup", "");
+            int i = group2.minX;
+            while (i <= group2.maxX)
             {
-                int j = group2->theMinY;
-                while (j <= group2->theMaxY)
+                int j = group2.minY;
+                while (j <= group2.maxY)
                 {
-                    if (group2->theExistMatrix[i][j])
+                    if (group2.existMatrix[i, j])
                     {
                         //this.debug(false, "mergeWithOtherGroup", "i=" + i + " j=" + j);
-                        if (this->theExistMatrix[i][j])
+                        if (this.existMatrix[i, j])
                         {
-                            this->abend("mergeWithOtherGroup", "already exist");
+                            this.abendIt("mergeWithOtherGroup", "already exist");
                         }
-                        this->theExistMatrix[i][j] = group2->theExistMatrix[i][j];
-                        this->theStoneCount++;
+                        this.existMatrix[i, j] = group2.existMatrix[i, j];
+                        this.stoneCount++;
 
-                        group2->theExistMatrix[i][j] = 0;
-                        group2->theStoneCount--;
+                        group2.existMatrix[i, j] = false;
+                        group2.stoneCount--;
                     }
                     j += 1;
                 }
                 i += 1;
             }
-            if (group2->theStoneCount)
+            if (group2.stoneCount != 0)
             {
-                this->abend("mergeWithOtherGroup", "theStoneCount");
+                this.abendIt("mergeWithOtherGroup", "theStoneCount");
             }
 
-            if (this->theMaxX < group2->theMaxX)
+            if (this.maxX < group2.maxX)
             {
-                this->theMaxX = group2->theMaxX;
+                this.maxX = group2.maxX;
             }
-            if (this->theMinX > group2->theMinX)
+            if (this.minX > group2.minX)
             {
-                this->theMinX = group2->theMinX;
+                this.minX = group2.minX;
             }
-            if (this->theMaxY < group2->theMaxY)
+            if (this.maxY < group2.maxY)
             {
-                this->theMaxY = group2->theMaxY;
+                this.maxY = group2.maxY;
             }
-            if (this->theMinY > group2->theMinY)
+            if (this.minY > group2.minY)
             {
-                this->theMinY = group2->theMinY;
+                this.minY = group2.minY;
             }
 
-            if (group2->theGroupListObject->groupArray(group2->theIndexNumber) != group2)
+            if (group2.groupListObject.GroupArray(group2.indexNumber) != group2)
             {
-                this->abend("mergeWithOtherGroup", "group2");
+                this.abendIt("mergeWithOtherGroup", "group2");
             }
-            */
         }
 
         public bool GroupHasAir()
