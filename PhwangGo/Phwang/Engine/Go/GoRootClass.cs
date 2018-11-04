@@ -24,6 +24,16 @@ namespace Phwang.Go
         {
         }
 
+        public string DoSetup(string input_data_val)
+        {
+            return null;
+        }
+
+        public string ProcessInputData(string input_data_val)
+        {
+            return "GO TBD";
+        }
+
         private void debugIt(bool on_off_val, string str0_val, string str1_val)
         {
             if (on_off_val)
