@@ -43,6 +43,7 @@ namespace Phwang.Go
             switch (input_data_val[0])
             {
                 case GO_PROTOCOL_MOVE_COMMAND:
+                    GoMoveClass move = new GoMoveClass(input_data_val.Substring(1, 8));
                     int x = (input_data_val[1] - '0') * 10 + (input_data_val[2] - '0');
                     int y = (input_data_val[3] - '0') * 10 + (input_data_val[4] - '0');
                     int color = input_data_val[5] - '0';
