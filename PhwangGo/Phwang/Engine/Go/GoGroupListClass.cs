@@ -29,6 +29,8 @@ namespace Phwang.Go
         private int groupCount { get; }
         private GoGroupClass[] groupArray { get; }
 
+        public GoFightClass FightObject() { return this.fightObject; }
+
         public GoGroupListClass(GoFightClass fight_object_val,
                        int index_val,
                        int color_val,

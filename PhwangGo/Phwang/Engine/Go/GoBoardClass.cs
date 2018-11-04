@@ -16,7 +16,6 @@ namespace Phwang.Go
     public class GoBoardClass
     {
         private string objectName = "GoBoardClass";
-        private const int MAX_BOARD_SIZE = 19;
 
         private int[,] boardArray { get; }
         private int[,] markedBoardArray { get; }
@@ -34,9 +33,20 @@ namespace Phwang.Go
         {
             this.rootObject = root_object_val;
 
-            this.boardArray = new int[MAX_BOARD_SIZE, MAX_BOARD_SIZE];
-            this.markedBoardArray = new int[MAX_BOARD_SIZE, MAX_BOARD_SIZE];
+            this.boardArray = new int[GoDefineClass.MAX_BOARD_SIZE, GoDefineClass.MAX_BOARD_SIZE];
+            this.markedBoardArray = new int[GoDefineClass.MAX_BOARD_SIZE, GoDefineClass.MAX_BOARD_SIZE];
             this.ClearLastDeadStone();
+        }
+
+        public void AddStoneToBoard(int x_val, int y_val, int color_val)
+        {
+            if (!this.ConfigObject().IsValidCoordinates(x_val, y_val))
+            {
+                this.abendIt("addStoneToBoard", "bad coordinate");
+                return;
+            }
+
+            this.boardArray[x_val, y_val] = color_val;
         }
 
         private bool isEmptySpace(int x_val, int y_val)
@@ -51,6 +61,38 @@ namespace Phwang.Go
             }
             return true;
         }
+
+        public bool StoneHasAir(int x_val, int y_val)
+        {
+            if (this.isEmptySpace(x_val, y_val - 1))
+            {
+                return true;
+            }
+            if (this.isEmptySpace(x_val, y_val + 1))
+            {
+                return true;
+            }
+            if (this.isEmptySpace(x_val - 1, y_val))
+            {
+                return true;
+            }
+            if (this.isEmptySpace(x_val + 1, y_val))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public void AddBlackCapturedStones(int val)
+        {
+            this.blackCapturedStones += val;
+        }
+
+        public void AddWhiteCapturedStones(int val)
+        {
+            this.whiteCapturedStones += val;
+        }
+
         public void ResetBoardObjectData()
         {
             int board_size = this.ConfigObject().BoardSize();

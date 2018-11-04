@@ -15,6 +15,8 @@ namespace Phwang.Go
 {
     public class GoDefineClass
     {
+        public const int MAX_BOARD_SIZE = 19;
+
         public const int GO_EMPTY_STONE = 0;
         public const int GO_BLACK_STONE = 1;
         public const int GO_WHITE_STONE = 2;
