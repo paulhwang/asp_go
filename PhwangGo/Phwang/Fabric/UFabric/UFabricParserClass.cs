@@ -70,10 +70,16 @@ namespace Phwang.Fabric
         }
         private void processPutRoomDataResponse(string input_data_val)
         {
+            string group_id_str = input_data_val.Substring(0, Protocols.FabricThemeProtocolClass.FABRIC_GROUP_ID_SIZE);
+            string input_data = input_data_val.Substring(Protocols.FabricThemeProtocolClass.FABRIC_GROUP_ID_SIZE);
+            GroupClass group = this.GroupMgrObject().GetGroupByGroupIdStr(group_id_str);
+            if (group != null)
+            {
+            }
 
         }
 
-        private void debugIt(bool on_off_val, string str0_val, string str1_val)
+            private void debugIt(bool on_off_val, string str0_val, string str1_val)
         {
             if (on_off_val)
                 this.logitIt(str0_val, str1_val);

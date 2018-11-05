@@ -26,9 +26,9 @@ namespace Phwang.Theme
             this.themeRootObject = theme_root_object_val;
             this.listMgr = new PhwangUtils.ListMgrClass(this.objectName, FIRST_ROOM_ID);
         }
-        public RoomClass MallocRoom(string room_id_index_val)
+        public RoomClass MallocRoom(string group_id_str_val)
         {
-            RoomClass room = new RoomClass(room_id_index_val);
+            RoomClass room = new RoomClass(group_id_str_val);
             PhwangUtils.ListEntryClass list_entry = this.listMgr.MallocEntry(room);
             room.BindListEntry(list_entry);
             return room;

@@ -60,8 +60,8 @@ namespace Phwang.Engine
 
             switch (input_data_val[0]) {
                 case 'G':
-                    this.goRootObject.ProcessInputData(input_data);
-                    return null;//////////to be done!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                    string output_data = this.goRootObject.ProcessInputData(input_data);
+                    return output_data;
 
                 default:
                     string err_msg = "command " + input_data_val[0] + " not supported";

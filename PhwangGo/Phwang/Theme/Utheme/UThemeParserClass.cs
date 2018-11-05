@@ -105,6 +105,10 @@ namespace Phwang.Theme
                 return;
             }
 
+            string downlink_data = Protocols.FabricThemeProtocolClass.FABRIC_THEME_PROTOCOL_RESPOND_IS_PUT_ROOM_DATA;
+            downlink_data = downlink_data + room_object.GroupIdStr() + data;
+            this.DThemeObject().TransmitData(downlink_data);
+
             /*
             char* downlink_data;
             char* data_ptr;
