@@ -182,6 +182,7 @@ namespace Phwang.Go
             his_group = this.getGroupByCoordinate(x_val, y_val, my_group_val.HisColor());
             if (his_group == null)
             {
+                //this.debugIt(true, "killOtherColorGroup", "my_color=" + this.myColor + " his_color=" + this.hisColor);
                 this.abendIt("killOtherColorGroup", "null his_group");
                 return 0;
             }

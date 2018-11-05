@@ -32,6 +32,8 @@ namespace Phwang.Go
         public GoFightClass FightObject() { return this.fightObject; }
         public GoRootClass RootObject() { return this.fightObject.RootObject(); }
         public GoBoardClass BoardObject() { return RootObject().BoardObject(); }
+        public GoConfigClass ConfigObject() { return RootObject().ConfigObject(); }
+        public int MyColor() { return this.myColor; }
         public int GroupCount() { return this.groupCount; }
         public GoGroupClass GroupArray(int index_val) { return this.groupArray[index_val]; }
 
@@ -130,6 +132,36 @@ namespace Phwang.Go
 
         public void AbendGroupList()
         {
+            int i = 0;
+            while (i < this.groupCount)
+            {
+                GoGroupClass group = this.groupArray[i];
+                if (group == null)
+                {
+                    this.abendIt("abendGroupList", "null group");
+                    return;
+                }
+                if (group.GroupListObject() != this)
+                {
+                    this.abendIt("abendGroupList", "groupListObject");
+                    return;
+                }
+                if (group.IndexNumber() != i)
+                {
+                    this.abendIt("abendGroupList", "index ");
+                    return;
+                }
+
+                group.AbendGroup();
+
+                int j = i + 1;
+                while (j < this.groupCount)
+                {
+                    group.AbendOnGroupConflict(this.groupArray[j]);
+                    j = j + 1;
+                }
+                i += 1;
+            }
 
         }
 

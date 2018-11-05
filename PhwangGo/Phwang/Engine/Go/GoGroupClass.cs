@@ -28,6 +28,8 @@ namespace Phwang.Go
         private bool[,] existMatrix { get; }
         private bool[,] deadMatrix { get; }
 
+        public GoGroupListClass GroupListObject() { return this.groupListObject; }
+        public GoConfigClass ConfigObject() { return this.groupListObject.ConfigObject(); }
         public int HisColor() { return this.hisColor; }
         public int MyColor() { return this.myColor; }
         public int StoneCount() { return this.stoneCount; }
@@ -40,8 +42,15 @@ namespace Phwang.Go
         public GoGroupClass(GoGroupListClass group_list_object_val)
         {
             this.groupListObject = group_list_object_val;
+            this.indexNumber = this.groupListObject.GroupCount();
+            this.myColor = this.groupListObject.MyColor();
+            this.stoneCount = 0;
+
             this.existMatrix = new bool[GoDefineClass.MAX_BOARD_SIZE, GoDefineClass.MAX_BOARD_SIZE];
             this.deadMatrix = new bool[GoDefineClass.MAX_BOARD_SIZE, GoDefineClass.MAX_BOARD_SIZE];
+            this.hisColor = (this.myColor == GoDefineClass.GO_EMPTY_STONE)
+                ? GoDefineClass.GO_EMPTY_STONE
+                : GoDefineClass.GetOppositeColor(this.myColor);
         }
 
         public void InsertStoneToGroup(int x_val, int y_val, bool dead_val)
@@ -216,6 +225,46 @@ namespace Phwang.Go
             if (!this.existMatrix[this.maxX, this.maxY])
             {
                 this.abendIt("MarkLastDeadInfo", "exist_matrix");
+            }
+        }
+
+        public void AbendGroup()
+        {
+            int count = 0;
+            int board_size = this.ConfigObject().BoardSize();
+            for (int i = 0; i < board_size; i++)
+            {
+                for (int j = 0; j < board_size; j++)
+                {
+                    if (this.existMatrix[i, j])
+                    {
+                        count++;
+                    }
+                }
+            }
+            if (this.stoneCount != count)
+            {
+                this.abendIt("AbendGroup", "stone count");
+            }
+        }
+
+        public void AbendOnGroupConflict(GoGroupClass other_group_val)
+        {
+            int board_size = this.ConfigObject().BoardSize();
+            for (int i = 0; i < board_size; i++)
+            {
+                for (int j = 0; j < board_size; j++)
+                {
+                    if (this.existMatrix[i, j])
+                    {
+                        if (other_group_val.existMatrix[i, j])
+                        {
+                            this.abendIt("AbendOnGroupConflict", "stone  exists in 2 groups");
+                            //this->abend("abendOnGroupConflict", "stone (" + i + "," + j + ") exists in 2 groups: (" + this.myColor() + ":" + this.indexNumber() + ":" + this.stoneCount() + ") ("
+                            //    + other_group_val.myColor() + ":" + other_group_val.indexNumber() + ":" + other_group_val.stoneCount() + ")");
+                        }
+                    }
+                }
             }
         }
 

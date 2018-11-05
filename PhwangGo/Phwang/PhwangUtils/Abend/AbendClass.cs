@@ -15,7 +15,15 @@ namespace Phwang.PhwangUtils
 
         static public void phwangAbend(string str0_val, string str1_val)
         {
+            Debug.WriteLine("Abend+++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
             Debug.WriteLine(str0_val + " " + str1_val);
+            Debug.WriteLine("Abend+++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+            Junk junk = null;
+            junk.data = 1;
+        }
+        private class Junk
+        {
+            public int data;
         }
     }
 }
