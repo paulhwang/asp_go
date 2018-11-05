@@ -44,10 +44,13 @@ namespace Phwang.Go
             return null;
         }
 
-        public void ProcessInputData(string input_data_val)
+        public string ProcessInputData(string input_data_val)
         {
             this.parseObject.ParseInputData(input_data_val);
-       }
+            this.boardObject.EncodeBoard();
+            this.debugIt(true, "transmitBoardData", this.boardObject.BoardOutputBuffer());
+            return this.boardObject.BoardOutputBuffer();
+        }
 
         private void debugIt(bool on_off_val, string str0_val, string str1_val)
         {

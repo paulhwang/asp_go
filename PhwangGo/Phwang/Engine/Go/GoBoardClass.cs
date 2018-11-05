@@ -19,7 +19,7 @@ namespace Phwang.Go
 
         private int[,] boardArray { get; }
         private int[,] markedBoardArray { get; }
-        //char theBoardOutputBuffer[1 + 3 + 1 + 19 * 19 + 3 * 2 + 2 * 2 + 32];
+        private string boardOutputBuffer;/////[1 + 3 + 1 + 19 * 19 + 3 * 2 + 2 * 2 + 32];
         int blackCapturedStones { get; set; }
         int whiteCapturedStones { get; set; }
         int lastDeadX { get; set; }
@@ -28,6 +28,8 @@ namespace Phwang.Go
         private GoRootClass rootObject { get; }
 
         public GoConfigClass ConfigObject() { return this.rootObject.ConfigObject(); }
+        public GoGameClass GameObject() { return this.rootObject.GameObject(); }
+        public string BoardOutputBuffer() { return this.boardOutputBuffer; }
         public int BoardArray(int x_val, int y_val) { return this.boardArray[x_val, y_val]; }
         public void AddBlackCapturedStones(int val) { this.blackCapturedStones += val; }
         public void AddWhiteCapturedStones(int val) { this.whiteCapturedStones += val; }
@@ -41,6 +43,33 @@ namespace Phwang.Go
             this.boardArray = new int[GoDefineClass.MAX_BOARD_SIZE, GoDefineClass.MAX_BOARD_SIZE];
             this.markedBoardArray = new int[GoDefineClass.MAX_BOARD_SIZE, GoDefineClass.MAX_BOARD_SIZE];
             this.ClearLastDeadStone();
+        }
+
+        const char GO_PROTOCOL_GAME_INFO = 'G';
+
+        public void EncodeBoard()
+        {
+            this.boardOutputBuffer = "";
+            this.boardOutputBuffer = this.boardOutputBuffer + GO_PROTOCOL_GAME_INFO;
+            this.boardOutputBuffer = this.boardOutputBuffer + PhwangUtils.EncodeNumberClass.EncodeNumber(this.GameObject().TotalMoves(), 3);
+            this.boardOutputBuffer = this.boardOutputBuffer + PhwangUtils.EncodeNumberClass.EncodeNumber(this.GameObject().NextColor(), 1);
+
+            int board_size = this.ConfigObject().BoardSize();
+            for (int i = 0; i < board_size; i++)
+            {
+                for (int j = 0; j < board_size; j++)
+                {
+                    this.boardOutputBuffer = this.boardOutputBuffer + this.boardArray[i, j] + '0';
+                }
+            }
+
+            this.boardOutputBuffer = this.boardOutputBuffer + PhwangUtils.EncodeNumberClass.EncodeNumber(this.blackCapturedStones, 3);
+            this.boardOutputBuffer = this.boardOutputBuffer + PhwangUtils.EncodeNumberClass.EncodeNumber(this.whiteCapturedStones, 3);
+
+            this.boardOutputBuffer = this.boardOutputBuffer + PhwangUtils.EncodeNumberClass.EncodeNumber(this.lastDeadX, 2);
+            this.boardOutputBuffer = this.boardOutputBuffer + PhwangUtils.EncodeNumberClass.EncodeNumber(this.lastDeadY, 2);
+
+            this.debugIt(false, "encodeBoard", this.boardOutputBuffer);
         }
 
         public void AddStoneToBoard(int x_val, int y_val, int color_val)

@@ -28,7 +28,8 @@ namespace Phwang.Go
 
         public GoBoardClass BoardObject() { return this.rootObject.BoardObject(); }
         public GoFightClass FightObject() { return this.rootObject.FightObject(); }
-        
+        public int TotalMoves() { return this.totalMoves; }
+        public int NextColor() { return this.nextColor; }
 
         public GoGameClass(GoRootClass go_root_object_val)
         {
