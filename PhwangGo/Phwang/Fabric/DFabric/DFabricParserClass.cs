@@ -88,6 +88,10 @@ namespace Phwang.Fabric
             {
                 response_data = this.processPutSessionDataRequest(ajax_fabric_request.data);
             }
+            else if (ajax_fabric_request.command == "get_session_data")
+            {
+                response_data = this.processGetSessionDataRequest(ajax_fabric_request.data);
+            }
             else
             {
                 response_data = "command " + ajax_fabric_request.command + " not supported";
@@ -408,8 +412,53 @@ namespace Phwang.Fabric
             string response_data = this.dFabricResponseObject.GeneratePutSessionDataResponse(link.LinkIdStr(), session.SessionIdStr(), "job is done");
             return response_data;
         }
-
         private string errorProcessPutSessionData(int link_id_val, string error_msg_val)
+        {
+            return error_msg_val;
+        }
+
+        [DataContract]
+        public class GetSessionDataRequestFormat
+        {
+            [DataMember]
+            public string link_id { get; set; }
+
+            [DataMember]
+            public string session_id { get; set; }
+        }
+
+        private string processGetSessionDataRequest(string input_data_val)
+        {
+            this.debugIt(true, "processGetSessionDataRequest", "input_data_val = " + input_data_val);
+            GetSessionDataRequestFormat format_data;
+            using (var ms = new MemoryStream(Encoding.Unicode.GetBytes(input_data_val)))
+            {
+                DataContractJsonSerializer deseralizer = new DataContractJsonSerializer(typeof(GetSessionDataRequestFormat));
+                format_data = (GetSessionDataRequestFormat)deseralizer.ReadObject(ms);// //反序列化ReadObject
+                this.debugIt(true, "processGetSessionDataRequest", "link_id = " + format_data.link_id);
+                this.debugIt(true, "processGetSessionDataRequest", "session_id = " + format_data.session_id);
+            }
+
+            string link_id_str = format_data.link_id.Substring(0, 4);
+            string session_id_str = format_data.link_id.Substring(4, 4);
+            LinkClass link = this.LinkMgrObject().GetLinkByIdStr(link_id_str);
+            if (link == null)
+            {
+                return errorProcessGetSessionData(link_id_str, "null link");
+            }
+
+            SessionClass session = link.SessionMgrObject().GetSessionByIdStr(session_id_str);
+            if (session == null)
+            {
+                return errorProcessGetSessionData(session_id_str, "null session");
+            }
+            string data = session.GetPendingDownLinkData();
+            /* send the response down */
+            string response_data = this.dFabricResponseObject.GenerateGetSessionDataResponse(link.LinkIdStr(), session.SessionIdStr(), data);
+            return response_data;
+        }
+
+        private string errorProcessGetSessionData(string link_id_val, string error_msg_val)
         {
             return error_msg_val;
         }

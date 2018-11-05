@@ -43,6 +43,12 @@ namespace Phwang.Fabric
         {
 
         }
+        public LinkClass GetLinkByIdStr(string link_id_str_val)
+        {
+            int link_id = PhwangUtils.EncodeNumberClass.DecodeNumber(link_id_str_val);
+
+            return this.GetLinkById(link_id);
+        }
 
         public LinkClass GetLinkById(int id_val)
         {

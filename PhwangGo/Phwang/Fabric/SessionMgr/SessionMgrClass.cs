@@ -39,6 +39,13 @@ namespace Phwang.Fabric
             return session;
         }
 
+        public SessionClass GetSessionByIdStr(string session_id_str_val)
+        {
+            int session_id = PhwangUtils.EncodeNumberClass.DecodeNumber(session_id_str_val);
+
+            return this.GetSessionBySessionId(session_id);
+        }
+
         public SessionClass GetSessionBySessionId(int id_val)
         {
             PhwangUtils.ListEntryClass list_entry = this.listMgr.GetEntryById(id_val);
