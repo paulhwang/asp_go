@@ -82,7 +82,6 @@ namespace Phwang.Fabric
                     session.EnqueuePendingDownLinkData(input_data);
                 }
             }
-
         }
 
         private void debugIt(bool on_off_val, string str0_val, string str1_val)

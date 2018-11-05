@@ -36,7 +36,7 @@ namespace Phwang.Theme
         public void BindListEntry(PhwangUtils.ListEntryClass list_entry_objectg_val)
         {
             this.listEntryObject = list_entry_objectg_val;
-            this.roomId = this.listEntryObject.Id;
+            this.roomId = this.listEntryObject.Id();
             this.roomIdStr = PhwangUtils.EncodeNumberClass.EncodeNumber(this.roomId, Protocols.FabricFrontEndProtocolClass.FABRIC_LINK_ID_SIZE);
         }
 

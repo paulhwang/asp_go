@@ -30,6 +30,9 @@ namespace Phwang.Fabric
         public string LinkIdStr() { return this.linkIdStr; }
         public SessionMgrClass SessionMgrObject() { return this.sessionMgrObject; }
 
+        public int GetSessionArrayMaxIndex() { return this.sessionMgrObject.GetSessionArrayMaxIndex(); }
+        public PhwangUtils.ListEntryClass[] GetSessionArrayEntryTable() { return this.sessionMgrObject.GetSessionArrayEntryTable(); }
+
         public LinkClass(string my_name_val)
         {
             this.myName = my_name_val;
@@ -42,7 +45,7 @@ namespace Phwang.Fabric
         public void BindListEntry(PhwangUtils.ListEntryClass list_entry_objectg_val)
         {
             this.listEntryObject = list_entry_objectg_val;
-            this.linkId = this.listEntryObject.Id;
+            this.linkId = this.listEntryObject.Id();
             this.linkIdStr = PhwangUtils.EncodeNumberClass.EncodeNumber(this.linkId, Protocols.FabricFrontEndProtocolClass.FABRIC_LINK_ID_SIZE);
         }
 

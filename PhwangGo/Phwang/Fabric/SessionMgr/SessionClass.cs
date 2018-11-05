@@ -39,7 +39,7 @@ namespace Phwang.Fabric
         public void BindListEntry(PhwangUtils.ListEntryClass list_entry_objectg_val)
         {
             this.listEntryObject = list_entry_objectg_val;
-            this.sessionId = this.listEntryObject.Id;
+            this.sessionId = this.listEntryObject.Id();
             this.sessionIdStr = PhwangUtils.EncodeNumberClass.EncodeNumber(this.sessionId, Protocols.FabricFrontEndProtocolClass.FABRIC_SESSION_ID_SIZE);
         }
 
@@ -51,6 +51,11 @@ namespace Phwang.Fabric
         public void EnqueuePendingDownLinkData(string data_val)
         {
             this.pendingDownLinkDataQueue.EnqueueData(data_val);
+        }
+
+        public string GetPendingDownLinkData()
+        {
+            return (string) this.pendingDownLinkDataQueue.DequeueData();
         }
 
         private void debugIt(bool on_off_val, string str0_val, string str1_val)

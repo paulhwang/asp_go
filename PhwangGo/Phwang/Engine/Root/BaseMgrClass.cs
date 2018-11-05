@@ -55,7 +55,7 @@ namespace Phwang.Engine
             {
                 return null;
             }
-            BaseClass base_object = (BaseClass)list_entry.Data;
+            BaseClass base_object = (BaseClass)list_entry.Data();
 
             return base_object;
         }

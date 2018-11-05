@@ -51,7 +51,7 @@ namespace Phwang.Fabric
             {
                 return null;
             }
-            LinkClass link = (LinkClass) list_entry.Data;
+            LinkClass link = (LinkClass) list_entry.Data();
 
             return link;
         }

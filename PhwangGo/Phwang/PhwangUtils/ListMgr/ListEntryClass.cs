@@ -15,15 +15,19 @@ namespace Phwang.PhwangUtils
 {
     public class ListEntryClass
     {
-        public int Id { get; set; }
-        public object Data { get; set; }
-        public int Index { get; set; }
+        private int theId { get; set; }
+        private object theData { get; set; }
+        private int theIndex { get; set; }
+
+        public int Id() { return this.theId; }
+        public object Data() { return this.theData; }
+        public int Index() { return this.theIndex; }
 
         public void SetData(int id_val, object data_val, int index_val)
         {
-            this.Id = id_val;
-            this.Data = data_val;
-            this.Index = index_val;
+            this.theId = id_val;
+            this.theData = data_val;
+            this.theIndex = index_val;
         }
 
     }

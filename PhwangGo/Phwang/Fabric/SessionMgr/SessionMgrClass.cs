@@ -22,6 +22,8 @@ namespace Phwang.Fabric
         private PhwangUtils.ListMgrClass listMgr { get; }
 
         //public PhwangUtils.ListMgrClass ListMgr() { return this.listMgr; }
+        public int GetSessionArrayMaxIndex() { return this.listMgr.MaxIndex(); }
+        public PhwangUtils.ListEntryClass[] GetSessionArrayEntryTable() { return this.listMgr.EntryTableArray(); }
 
         public SessionMgrClass(LinkClass link_object_val)
         {
@@ -44,7 +46,7 @@ namespace Phwang.Fabric
             {
                 return null;
             }
-            SessionClass session = (SessionClass)list_entry.Data;
+            SessionClass session = (SessionClass)list_entry.Data();
 
             return session;
         }

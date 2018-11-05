@@ -144,6 +144,52 @@ namespace Phwang.Fabric
 
             string data = RESPONSE_IS_GET_LINK_DATA_NAME_LIST + this.FabricRootObject().NameListObject().NameListTagStr();
 
+            int max_session_table_array_index = link.GetSessionArrayMaxIndex();
+            PhwangUtils.ListEntryClass[] session_table_array = link.GetSessionArrayEntryTable();
+            string pending_session_data = "";
+            for (int i = 0; i <= max_session_table_array_index; i++)
+            {
+                PhwangUtils.ListEntryClass list_entry = session_table_array[i];
+                SessionClass session = (SessionClass)list_entry.Data();
+                if (session != null)
+                {
+                    string pending_downlink_data = session.GetPendingDownLinkData();
+                    if (pending_downlink_data != null)
+                    {
+                        pending_session_data = pending_session_data + Protocols.FabricFrontEndProtocolClass.WEB_FABRIC_PROTOCOL_RESPOND_IS_GET_LINK_DATA_PENDING_DATA;
+                        session.EnqueuePendingDownLinkData(pending_downlink_data);
+                        pending_session_data = pending_session_data + link.LinkIdStr();
+                        pending_session_data = pending_session_data + session.SessionIdStr();
+                    }
+                }
+            }
+
+            /*
+
+            int max_session_table_array_index = phwnagListMgrGetMaxIndex(link->sessionListMgrObject(), "DFabricClass::processGetLinkDataRequest()");
+            SessionClass** session_table_array = (SessionClass**)phwangListMgrGetEntryTableArray(link->sessionListMgrObject());
+            for (int i = 0; i <= max_session_table_array_index; i++)
+            {
+                SessionClass* session = session_table_array[i];
+                if (session)
+                {
+                    char* pending_downlink_data = session->getPendingDownLinkData();
+                    if (pending_downlink_data)
+                    {
+                        *data_ptr++ = WEB_FABRIC_PROTOCOL_RESPOND_IS_GET_LINK_DATA_PENDING_DATA;
+                        session->enqueuePendingDownLinkData(pending_downlink_data);
+                        strcpy(data_ptr, link->linkIdIndex());
+                        data_ptr += LINK_MGR_PROTOCOL_LINK_ID_INDEX_SIZE;
+                        strcpy(data_ptr, session->sessionIdIndex());
+                        data_ptr += LINK_MGR_PROTOCOL_SESSION_ID_INDEX_SIZE;
+                        this->debug(true, "==================processGetLinkData getPendingDownLinkData", downlink_data);
+                    }
+                }
+            }
+            */
+
+
+
 
             string pending_session_setup = "";
             string pending_session_str = link.getPendingSessionSetup();

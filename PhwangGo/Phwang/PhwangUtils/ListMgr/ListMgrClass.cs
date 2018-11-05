@@ -39,7 +39,7 @@ namespace Phwang.PhwangUtils
             this.globalId = first_global_id_val;
             this.entryCount = 0;
             this.MaxIdIndexTableIndex = 0;
-            this.maxIndex = 0;
+            this.maxIndex = -1;
             this.theLock = new object();
 
 
@@ -116,7 +116,7 @@ namespace Phwang.PhwangUtils
             this.abendListMgrClass("before FreeEntry");
             lock (this.theLock)
             {
-                this.entryTableArray[entry_val.Index] = null;
+                this.entryTableArray[entry_val.Index()] = null;
             this.entryCount--;
             }
             this.abendListMgrClass("after FreeEntry");
@@ -132,7 +132,7 @@ namespace Phwang.PhwangUtils
             {
                 for (int i = 0; i <= maxIndex; i++)
                 {
-                    if (entryTableArray[i].Id == id_val)
+                    if (entryTableArray[i].Id() == id_val)
                     {
                         entry = entryTableArray[i];
                         break;

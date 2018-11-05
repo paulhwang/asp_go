@@ -57,7 +57,7 @@ namespace Phwang.Fabric
             {
                 return null;
             }
-            GroupClass room_object = (GroupClass)list_entry.Data;
+            GroupClass room_object = (GroupClass)list_entry.Data();
 
             return room_object;
         }
@@ -69,7 +69,7 @@ namespace Phwang.Fabric
             {
                 return null;
             }
-            LinkClass link = (LinkClass)list_entry.Data;
+            LinkClass link = (LinkClass)list_entry.Data();
 
             return link;
         }

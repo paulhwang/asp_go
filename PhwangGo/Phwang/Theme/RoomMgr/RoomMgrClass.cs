@@ -48,7 +48,7 @@ namespace Phwang.Theme
             {
                 return null;
             }
-            RoomClass room_object = (RoomClass)list_entry.Data;
+            RoomClass room_object = (RoomClass)list_entry.Data();
 
             return room_object;
         }
