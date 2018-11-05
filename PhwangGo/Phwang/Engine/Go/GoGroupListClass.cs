@@ -30,6 +30,8 @@ namespace Phwang.Go
         private GoGroupClass[] groupArray { get; }
 
         public GoFightClass FightObject() { return this.fightObject; }
+        public GoRootClass RootObject() { return this.fightObject.RootObject(); }
+        public GoBoardClass BoardObject() { return RootObject().BoardObject(); }
         public int GroupCount() { return this.groupCount; }
         public GoGroupClass GroupArray(int index_val) { return this.groupArray[index_val]; }
 
@@ -49,6 +51,16 @@ namespace Phwang.Go
             this.smallStoneColor = small_stone_val;
             this.groupCount = 0;
             this.isMarkedDead = 0;
+        }
+
+        public int TotalStoneCount()
+        {
+            int count = 0;
+            for (int i = 0; i < this.groupCount; i++)
+            {
+                count += this.groupArray[i].StoneCount();
+            }
+            return count;
         }
 
         public void InsertGroupToGroupList(GoGroupClass group_val)
@@ -99,6 +111,26 @@ namespace Phwang.Go
                 this.groupArray[group_val.IndexNumber()] = this.groupArray[this.groupCount];
             }
             this.groupArray[this.groupCount] = null;
+        }
+
+        public bool StoneExistWithinMe(int x_val, int y_val)
+        {
+            int i = 0;
+            while (i < this.groupCount)
+            {
+                GoGroupClass group = this.groupArray[i];
+                if (group.ExistMatrix(x_val, y_val))
+                {
+                    return true;
+                }
+                i += 1;
+            }
+            return false;
+        }
+
+        public void AbendGroupList()
+        {
+
         }
 
         private void debugIt(bool on_off_val, string str0_val, string str1_val)

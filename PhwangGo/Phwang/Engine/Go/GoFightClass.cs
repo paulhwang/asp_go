@@ -194,7 +194,7 @@ namespace Phwang.Go
             int dead_count = his_group.StoneCount();
             if ((my_group_val.StoneCount() == 1) && (his_group.StoneCount() == 1))
             {
-                this.markLastDeadInfo(his_group);
+                his_group.MarkLastDeadInfo();
             }
 
             this.removeDeadGroup(his_group);
@@ -236,7 +236,7 @@ namespace Phwang.Go
             }
          }
 
-        private void markLastDeadInfo(GoGroupClass group_val)
+        private void markLastDeadInfo1111111111111111(GoGroupClass group_val)
         {
             /*
             this->theBaseObject->boardObject()->setLastDeadStone(group_val->maxX(), group_val->maxY());
@@ -258,6 +258,126 @@ namespace Phwang.Go
 
         private void abendEngine()
         {
+            if (!this.abendEngineOn)
+            {
+                return;
+            }
+            this.debugIt(false, "abendEngine", "is ON ***");
+
+            /*
+            int stones_count = 0;
+            int i = 0;
+            while (i < GO_FIGHT_CLASS_GROUP_LIST_ARRAY_SIZE) {
+                GoGroupListClass *group_list = this->theGroupListArray[i];
+                stones_count += group_list->theTotalStoneCount;
+                i += 1;
+            }
+            */
+
+            /* check if a stone exist in both black and white group_lists */
+            int black_stone_count = 0;
+            int white_stone_count = 0;
+            int board_size = this.ConfigObject().BoardSize();
+
+            for (int x = 0; x < board_size; x++)
+            {
+                for (int y = 0; y < board_size; y++)
+                {
+                    if (this.BoardObject().BoardArray(x, y) == GoDefineClass.GO_BLACK_STONE)
+                    {
+                        black_stone_count++;
+                        if (!this.blackGroupList().StoneExistWithinMe(x, y))
+                        {
+                            this.abendIt("abendEngine", "black stone does not exist in blackGroupList");
+                        }
+                    }
+                    else if (this.BoardObject().BoardArray(x, y) == GoDefineClass.GO_WHITE_STONE)
+                    {
+                        white_stone_count++;
+                        if (!this.whiteGroupList().StoneExistWithinMe(x, y))
+                        {
+                            this.abendIt("abendEngine", "white stone does not exist in whiteGroupList");
+                        }
+                    }
+                    else if (this.BoardObject().BoardArray(x, y) == GoDefineClass.GO_EMPTY_STONE)
+                    {
+                    }
+                    else
+                    {
+                        this.abendIt("abendEngine", "bad color in theBoardArray");
+                    }
+                }
+            }
+
+            int black_stone_count1 = 0;
+            int white_stone_count1 = 0;
+            for (int x = 0; x < board_size; x++)
+            {
+                for (int y = 0; y < board_size; y++)
+                {
+                    if (this.blackGroupList().StoneExistWithinMe(x, y))
+                    {
+                        black_stone_count1++;
+
+                        if (this.BoardObject().BoardArray(x, y) != GoDefineClass.GO_BLACK_STONE)
+                        {
+                            this.abendIt("abendEngine", "black stone does not exist in theBoardArray");
+                        }
+
+                        if (this.whiteGroupList().StoneExistWithinMe(x, y))
+                        {
+                            this.abendIt("abendEngine", "balck exist in wrong group list");
+                        }
+                    }
+                    if (this.whiteGroupList().StoneExistWithinMe(x, y))
+                    {
+                        white_stone_count1++;
+
+                        if (this.BoardObject().BoardArray(x, y) != GoDefineClass.GO_WHITE_STONE)
+                        {
+                            this.abendIt("abendEngine", "black stone does not exist in theBoardArray");
+                        }
+                    }
+                }
+            }
+
+            if (black_stone_count != black_stone_count1)
+            {
+                this.abendIt("abendEngine", "black_stone_count does not match");
+            }
+            if (white_stone_count != white_stone_count1)
+            {
+                this.abendIt("abendEngine", "white_stone_count does not match");
+            }
+
+            if (this.blackGroupList().TotalStoneCount() != black_stone_count)
+            {
+                //printf("abendEngine   %d\n", this->blackGroupList()->totalStoneCount());
+                //printf("abendEngine   %d\n", black_stone_count);
+                this.abendIt("abendEngine", "black_stone count does not match");
+            }
+            if (this.whiteGroupList().TotalStoneCount() != white_stone_count)
+            {
+                //printf("abendEngine   %d\n", this->whiteGroupList()->totalStoneCount());
+                //printf("abendEngine   %d\n", white_stone_count);
+                this.abendIt("abendEngine", "white count does not match");
+            }
+            /*
+
+                    //this.goLog("abendEngine", this.gameObject().gameIsOver());
+                    if (this.gameObject().gameIsOver()) {
+                        if (this.boardSize() * this.boardSize() !== stones_count) {
+                            this.abend("abendEngine", "stones_count=" + stones_count);
+                        }
+                    }
+            */
+            this.emptyGroupList().AbendGroupList();
+            this.blackGroupList().AbendGroupList();
+            this.whiteGroupList().AbendGroupList();
+            this.blackDeadGroupList().AbendGroupList();
+            this.whiteDeadGroupList().AbendGroupList();
+            this.blackEmptyGroupList().AbendGroupList();
+            this.whiteEmptyGroupList().AbendGroupList();
         }
 
         private void debugIt(bool on_off_val, string str0_val, string str1_val)

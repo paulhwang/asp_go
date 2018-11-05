@@ -32,6 +32,7 @@ namespace Phwang.Go
         public void AddBlackCapturedStones(int val) { this.blackCapturedStones += val; }
         public void AddWhiteCapturedStones(int val) { this.whiteCapturedStones += val; }
         public void SetBoardArray(int x_val, int y_val, int data_val) { this.boardArray[x_val, y_val] = data_val; }
+        public void SetLastDeadStone(int x_val, int y_val) { this.lastDeadX = x_val; this.lastDeadY = y_val; }
 
         public GoBoardClass(GoRootClass root_object_val)
         {

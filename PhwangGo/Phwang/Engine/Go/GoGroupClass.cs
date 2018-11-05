@@ -201,6 +201,24 @@ namespace Phwang.Go
             }
         }
 
+        public void MarkLastDeadInfo()
+        {
+             this.groupListObject.BoardObject().SetLastDeadStone(this.maxX, this.maxY);
+
+            if (this.maxX != this.minX)
+            {
+                this.abendIt("MarkLastDeadInfo", "bad x");
+            }
+            if (this.maxY != this.minY)
+            {
+                this.abendIt("MarkLastDeadInfo", "bad y");
+            }
+            if (!this.existMatrix[this.maxX, this.maxY])
+            {
+                this.abendIt("MarkLastDeadInfo", "exist_matrix");
+            }
+        }
+
         private void debugIt(bool on_off_val, string str0_val, string str1_val)
         {
             if (on_off_val)
