@@ -94,7 +94,7 @@ namespace Phwang.Go
                     if (this.existMatrix[i, j])
                     {
                         //this.debug(false, "isCandidateGroup", "(" + x_val + "," + y_val + ") (" + i + "," + j + ")");
-                        if (GoDefineClass.isNeighborStone(i, j, x_val, y_val))
+                        if (GoStaticClass.isNeighborStone(i, j, x_val, y_val))
                         {
                             return true;
                         }
