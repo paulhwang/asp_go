@@ -58,6 +58,11 @@ namespace Phwang.Fabric
             return (string) this.pendingDownLinkDataQueue.DequeueData();
         }
 
+        public int GetPendingDownLinkDataCount()
+        {
+            return this.pendingDownLinkDataQueue.GetQueueLength();
+        }
+
         private void debugIt(bool on_off_val, string str0_val, string str1_val)
         {
             if (on_off_val)

@@ -142,7 +142,7 @@ namespace Phwang.Fabric
 
             LinkClass link = this.LinkMgrObject().GetLinkById(format_data.link_id);
 
-            string data = RESPONSE_IS_GET_LINK_DATA_NAME_LIST + this.FabricRootObject().NameListObject().NameListTagStr();
+            string downlink_data = RESPONSE_IS_GET_LINK_DATA_NAME_LIST + this.FabricRootObject().NameListObject().NameListTagStr();
 
             int max_session_table_array_index = link.GetSessionArrayMaxIndex();
             PhwangUtils.ListEntryClass[] session_table_array = link.GetSessionArrayEntryTable();
@@ -153,13 +153,9 @@ namespace Phwang.Fabric
                 SessionClass session = (SessionClass)list_entry.Data();
                 if (session != null)
                 {
-                    string pending_downlink_data = session.GetPendingDownLinkData();
-                    if (pending_downlink_data != null)
+                   if (session.GetPendingDownLinkDataCount() > 0)
                     {
-                        pending_session_data = pending_session_data + Protocols.FabricFrontEndProtocolClass.WEB_FABRIC_PROTOCOL_RESPOND_IS_GET_LINK_DATA_PENDING_DATA;
-                        session.EnqueuePendingDownLinkData(pending_downlink_data);
-                        pending_session_data = pending_session_data + link.LinkIdStr();
-                        pending_session_data = pending_session_data + session.SessionIdStr();
+                        downlink_data = downlink_data + Protocols.FabricFrontEndProtocolClass.WEB_FABRIC_PROTOCOL_RESPOND_IS_GET_LINK_DATA_PENDING_DATA + link.LinkIdStr() + session.SessionIdStr();
                     }
                 }
             }
@@ -206,9 +202,9 @@ namespace Phwang.Fabric
                 pending_session_setup = pending_session_setup + pending_session_str3;
             }
 
-            data = data + pending_session_setup;
+            downlink_data = downlink_data + pending_session_setup;
 
-            string response_data = this.dFabricResponseObject.GenerateGetLinkDataResponse(link.LinkIdStr(), data, pending_session_setup);
+            string response_data = this.dFabricResponseObject.GenerateGetLinkDataResponse(link.LinkIdStr(), downlink_data, pending_session_setup);
             return response_data;
         }
 
