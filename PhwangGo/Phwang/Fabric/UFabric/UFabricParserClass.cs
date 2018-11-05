@@ -63,7 +63,6 @@ namespace Phwang.Fabric
                 for (int i = 0; i < session_array_size; i++)
                 {
                     SessionClass session = (SessionClass) session_array[i];
-                    SessionClass session1 = (SessionClass)session_array[i];
                     session.LinkObject().SetPendingSessionSetup3(session.SessionIdStr(), "");
                 }
             }
@@ -75,11 +74,18 @@ namespace Phwang.Fabric
             GroupClass group = this.GroupMgrObject().GetGroupByGroupIdStr(group_id_str);
             if (group != null)
             {
+                int session_array_size = group.GetSessionArraySize();
+                object[] session_array = group.GetSessionArray();
+                for (int i = 0; i < session_array_size; i++)
+                {
+                    SessionClass session = (SessionClass)session_array[i];
+                    session.EnqueuePendingDownLinkData(input_data);
+                }
             }
 
         }
 
-            private void debugIt(bool on_off_val, string str0_val, string str1_val)
+        private void debugIt(bool on_off_val, string str0_val, string str1_val)
         {
             if (on_off_val)
                 this.logitIt(str0_val, str1_val);

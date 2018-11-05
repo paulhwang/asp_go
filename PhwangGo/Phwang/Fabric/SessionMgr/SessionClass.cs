@@ -22,15 +22,18 @@ namespace Phwang.Fabric
         private int sessionId { get; set; }
         private string sessionIdStr { get; set; }
         private GroupClass groupObject { get; set; }
+        PhwangUtils.ListQueueClass pendingDownLinkDataQueue;
 
         public LinkClass LinkObject() { return this.linkObject; }
         public int SessionId() { return this.sessionId; }
         public string SessionIdStr() { return this.sessionIdStr; }
         public GroupClass GroupObject() { return this.groupObject; }
+        PhwangUtils.ListQueueClass PendingDownLinkDataQueue() { return this.pendingDownLinkDataQueue; }
 
         public SessionClass(LinkClass link_object_val)
         {
             this.linkObject = link_object_val;
+            this.pendingDownLinkDataQueue = new PhwangUtils.ListQueueClass(false, 0);
         }
 
         public void BindListEntry(PhwangUtils.ListEntryClass list_entry_objectg_val)
@@ -43,6 +46,11 @@ namespace Phwang.Fabric
         public void BindGroup(GroupClass group_object_val)
         {
             this.groupObject = group_object_val;
+        }
+
+        public void EnqueuePendingDownLinkData(string data_val)
+        {
+            this.pendingDownLinkDataQueue.EnqueueData(data_val);
         }
 
         private void debugIt(bool on_off_val, string str0_val, string str1_val)
