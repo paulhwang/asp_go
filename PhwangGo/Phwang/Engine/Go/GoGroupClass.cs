@@ -16,7 +16,7 @@ namespace Phwang.Go
     public class GoGroupClass
     {
         private string objectName = "GoGroupClass";
-        GoGroupListClass groupListObject;
+        GoGroupListClass theGroupListObject;
         private int maxX { get; set; }
         private int minX { get; set; }
         private int maxY { get; set; }
@@ -28,22 +28,22 @@ namespace Phwang.Go
         private bool[,] existMatrix { get; }
         private bool[,] deadMatrix { get; }
 
-        public GoGroupListClass GroupListObject() { return this.groupListObject; }
-        public GoConfigClass ConfigObject() { return this.groupListObject.ConfigObject(); }
+        public GoGroupListClass GroupListObject() { return this.theGroupListObject; }
+        public GoConfigClass ConfigObject() { return this.theGroupListObject.ConfigObject(); }
         public int HisColor() { return this.hisColor; }
         public int MyColor() { return this.myColor; }
         public int StoneCount() { return this.stoneCount; }
         public int IndexNumber() { return this.indexNumber; }
         public bool ExistMatrix(int x_val, int y_val) { return this.existMatrix[x_val, y_val]; }
         public void SetIndexNumber(int val) { this.indexNumber = val; }
-        public void SetGroupListObject(GoGroupListClass group_list_val) { this.groupListObject = group_list_val; }
+        public void SetGroupListObject(GoGroupListClass group_list_val) { this.theGroupListObject = group_list_val; }
 
 
         public GoGroupClass(GoGroupListClass group_list_object_val)
         {
-            this.groupListObject = group_list_object_val;
-            this.indexNumber = this.groupListObject.GroupCount();
-            this.myColor = this.groupListObject.MyColor();
+            this.theGroupListObject = group_list_object_val;
+            this.indexNumber = this.theGroupListObject.GroupCount();
+            this.myColor = this.theGroupListObject.MyColor();
             this.stoneCount = 0;
 
             this.existMatrix = new bool[GoDefineClass.MAX_BOARD_SIZE, GoDefineClass.MAX_BOARD_SIZE];
@@ -163,7 +163,7 @@ namespace Phwang.Go
                 this.minY = group2.minY;
             }
 
-            if (group2.groupListObject.GroupArray(group2.indexNumber) != group2)
+            if (group2.theGroupListObject.GroupArray(group2.indexNumber) != group2)
             {
                 this.abendIt("mergeWithOtherGroup", "group2");
             }
@@ -179,7 +179,7 @@ namespace Phwang.Go
                 {
                     if (this.existMatrix[i, j])
                     {
-                        if (this.groupListObject.FightObject().RootObject().BoardObject().StoneHasAir(i, j))
+                        if (this.theGroupListObject.FightObject().RootObject().BoardObject().StoneHasAir(i, j))
                         {
                             return true;
                         }
@@ -201,7 +201,7 @@ namespace Phwang.Go
                 {
                     if (this.existMatrix[i, j])
                     {
-                        this.groupListObject.FightObject().BoardObject().SetBoardArray(i, j, GoDefineClass.GO_EMPTY_STONE);
+                        this.theGroupListObject.FightObject().BoardObject().SetBoardArray(i, j, GoDefineClass.GO_EMPTY_STONE);
                         //this.debug(false, "removeDeadStoneFromBoard", "(" + i + "," + j + ")");
                     }
                     j += 1;
@@ -212,7 +212,7 @@ namespace Phwang.Go
 
         public void MarkLastDeadInfo()
         {
-             this.groupListObject.BoardObject().SetLastDeadStone(this.maxX, this.maxY);
+             this.theGroupListObject.BoardObject().SetLastDeadStone(this.maxX, this.maxY);
 
             if (this.maxX != this.minX)
             {

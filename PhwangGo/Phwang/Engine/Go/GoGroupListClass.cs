@@ -18,7 +18,7 @@ namespace Phwang.Go
         private string objectName = "GoGroupListClass";
         private const int GO_GROUP_LIST_CLASS_GROUP_ARRAY_SIZE = 400;
 
-        private GoFightClass fightObject { get; }
+        private GoFightClass theFightObject { get; }
         private int indexNumber { get; }
         private int myColor { get; }
         int theHisColor;
@@ -29,8 +29,8 @@ namespace Phwang.Go
         private int groupCount { get; set; }
         private GoGroupClass[] groupArray { get; }
 
-        public GoFightClass FightObject() { return this.fightObject; }
-        public GoRootClass RootObject() { return this.fightObject.RootObject(); }
+        public GoFightClass FightObject() { return this.theFightObject; }
+        public GoRootClass RootObject() { return this.theFightObject.RootObject(); }
         public GoBoardClass BoardObject() { return RootObject().BoardObject(); }
         public GoConfigClass ConfigObject() { return RootObject().ConfigObject(); }
         public int MyColor() { return this.myColor; }
@@ -44,7 +44,7 @@ namespace Phwang.Go
                        string big_stone_val,
                        string small_stone_val)
         {
-            this.fightObject = fight_object_val;
+            this.theFightObject = fight_object_val;
             this.groupArray = new GoGroupClass[GO_GROUP_LIST_CLASS_GROUP_ARRAY_SIZE];
             this.indexNumber = index_val;
             this.myColor = color_val;

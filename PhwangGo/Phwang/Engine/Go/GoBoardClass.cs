@@ -24,11 +24,10 @@ namespace Phwang.Go
         int theWhiteCapturedStones { get; set; }
         int theLastDeadX { get; set; }
         int theLastDeadY { get; set; }
+        private GoRootClass theRootObject { get; }
 
-        private GoRootClass rootObject { get; }
-
-        public GoConfigClass ConfigObject() { return this.rootObject.ConfigObject(); }
-        public GoGameClass GameObject() { return this.rootObject.GameObject(); }
+        public GoConfigClass ConfigObject() { return this.theRootObject.ConfigObject(); }
+        public GoGameClass GameObject() { return this.theRootObject.GameObject(); }
         public string BoardOutputBuffer() { return this.theBoardOutputBuffer; }
         public int BoardArray(int x_val, int y_val) { return this.theBoardArray[x_val, y_val]; }
         public void AddBlackCapturedStones(int val) { this.theBlackCapturedStones += val; }
@@ -38,7 +37,7 @@ namespace Phwang.Go
 
         public GoBoardClass(GoRootClass root_object_val)
         {
-            this.rootObject = root_object_val;
+            this.theRootObject = root_object_val;
 
             this.theBoardArray = new int[GoDefineClass.MAX_BOARD_SIZE, GoDefineClass.MAX_BOARD_SIZE];
             this.theMarkedBoardArray = new int[GoDefineClass.MAX_BOARD_SIZE, GoDefineClass.MAX_BOARD_SIZE];
@@ -91,7 +90,7 @@ namespace Phwang.Go
 
         private bool isEmptySpace(int x_val, int y_val)
         {
-            if (!this.rootObject.ConfigObject().IsValidCoordinates(x_val, y_val))
+            if (!this.theRootObject.ConfigObject().IsValidCoordinates(x_val, y_val))
             {
                 return false;
             }

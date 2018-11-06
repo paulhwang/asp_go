@@ -17,7 +17,7 @@ namespace Phwang.Go
     {
         private string objectName = "GoConfigClass";
 
-        private GoRootClass goRootObject { get; }
+        private GoRootClass theRootObject { get; }
         private int boardSize { get; set; }
         private int handicapPoint { get; set; }
         private int komiPoint { get; set; }
@@ -26,9 +26,9 @@ namespace Phwang.Go
         public int HandicapPoint() { return this.handicapPoint; }
         public int KomiPoint() { return this.komiPoint; }
 
-        public GoConfigClass(GoRootClass go_root_object_val)
+        public GoConfigClass(GoRootClass root_object_val)
         {
-            this.goRootObject = go_root_object_val;
+            this.theRootObject = root_object_val;
         }
 
         public void ConfigIt(string input_data_val)

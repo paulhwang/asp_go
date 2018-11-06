@@ -17,14 +17,14 @@ namespace Phwang.Go
     {
         private string objectName = "GoParseClass";
 
-        private GoRootClass rootObject { get; }
+        private GoRootClass theRootObject { get; }
 
-        public GoGameClass GameObject() { return this.rootObject.GameObject(); }
+        public GoGameClass GameObject() { return this.theRootObject.GameObject(); }
 
 
     public GoParseClass(GoRootClass go_root_object_val)
         {
-            this.rootObject = go_root_object_val;
+            this.theRootObject = go_root_object_val;
         }
 
         public void ParseInputData(string input_data_val)

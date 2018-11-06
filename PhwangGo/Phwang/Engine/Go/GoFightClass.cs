@@ -18,15 +18,15 @@ namespace Phwang.Go
         private string objectName = "GoFightClass";
         private const int GO_FIGHT_CLASS_GROUP_LIST_ARRAY_SIZE = 7;
 
-        private GoRootClass rootObject { get; }
+        private GoRootClass theRootObject { get; }
         private bool abendEngineOn { get; }
         GoGroupListClass[] theGroupListArray;
         string theCaptureCount { get; set; }
         string theLastDeadStone { get; set; }
 
-        public GoRootClass RootObject() { return this.rootObject; }
-        public GoBoardClass BoardObject() { return this.rootObject.BoardObject(); }
-        public GoConfigClass ConfigObject() { return this.rootObject.ConfigObject(); }
+        public GoRootClass RootObject() { return this.theRootObject; }
+        public GoBoardClass BoardObject() { return this.theRootObject.BoardObject(); }
+        public GoConfigClass ConfigObject() { return this.theRootObject.ConfigObject(); }
 
         GoGroupListClass emptyGroupList() { return this.theGroupListArray[0]; }
         GoGroupListClass blackGroupList() { return this.theGroupListArray[1]; }
@@ -38,7 +38,7 @@ namespace Phwang.Go
 
         public GoFightClass(GoRootClass go_root_object_val)
         {
-            this.rootObject = go_root_object_val;
+            this.theRootObject = go_root_object_val;
             this.theGroupListArray = new GoGroupListClass[GO_FIGHT_CLASS_GROUP_LIST_ARRAY_SIZE];
             this.resetEngineObjectData();
         }
