@@ -37,6 +37,22 @@ namespace Phwang.Go
                     this.GameObject().AddNewMoveAndFight(move);
                     return;
 
+                case GoProtocolClass.GO_PROTOCOL_BACKWARD_COMMAND:
+                    this.GameObject().ProcessBackwardMove();
+                    return;
+
+                case GoProtocolClass.GO_PROTOCOL_DOUBLE_BACKWARD_COMMAND:
+                    return;
+
+                case GoProtocolClass.GO_PROTOCOL_FORWARD_COMMAND:
+                    return;
+
+                case GoProtocolClass.GO_PROTOCOL_DOUBLE_FORWARD_COMMAND:
+                    return;
+
+                case GoProtocolClass.GO_PROTOCOL_PASS_COMMAND:
+                    return;
+
                 default:
                     string err_msg = "command " + input_data_val[1] + " not supported";
                     this.abendIt("ParseInputData", err_msg);

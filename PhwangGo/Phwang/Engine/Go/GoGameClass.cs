@@ -18,53 +18,90 @@ namespace Phwang.Go
         private string objectName = "GoGameClass";
         private const int GO_GAME_CLASS_MAX_MOVES_ARRAY_SIZE = 1024;
 
-        private GoRootClass rootObject { get; }
-        private int totalMoves { get; set; }
+        private GoRootClass theRootObject { get; }
+        private int theTotalMoves { get; set; }
         private int maxMove { get; set; }
-        private int nextColor { get; set; }
-        private bool passReceived { get; set; }
-        private bool gameIsOver { get; set; }
-        private GoMoveClass[] movesArray { get; }
+        private int theNextColor { get; set; }
+        private bool thePassReceived { get; set; }
+        private bool theGameIsOver { get; set; }
+        private GoMoveClass[] theMovesArray { get; }
 
-        public GoBoardClass BoardObject() { return this.rootObject.BoardObject(); }
-        public GoFightClass FightObject() { return this.rootObject.FightObject(); }
-        public int TotalMoves() { return this.totalMoves; }
-        public int NextColor() { return this.nextColor; }
+        public GoConfigClass ConfigObject() { return this.theRootObject.ConfigObject();  }
+        public GoBoardClass BoardObject() { return this.theRootObject.BoardObject(); }
+        public GoFightClass FightObject() { return this.theRootObject.FightObject(); }
+        public int TotalMoves() { return this.theTotalMoves; }
+        public int NextColor() { return this.theNextColor; }
 
         public GoGameClass(GoRootClass go_root_object_val)
         {
-            this.rootObject = go_root_object_val;
-            this.movesArray = new GoMoveClass[GO_GAME_CLASS_MAX_MOVES_ARRAY_SIZE];
+            this.theRootObject = go_root_object_val;
+            this.theMovesArray = new GoMoveClass[GO_GAME_CLASS_MAX_MOVES_ARRAY_SIZE];
+        }
+
+        private void resetGameObjectPartialData()
+        {
+            this.theNextColor = GoDefineClass.GO_BLACK_STONE;
+            this.thePassReceived = false;
+            this.theGameIsOver = false;
         }
 
         public void AddNewMoveAndFight(GoMoveClass move_val)
         {
             this.debugIt(true, "AddNewMoveAndFight", "Move = " + move_val.MoveInfo());
 
-            if (move_val.TurnIndex() != this.totalMoves + 1)
+            if (move_val.TurnIndex() != this.theTotalMoves + 1)
             {
                 this.logitIt("AddNewMoveAndFight", "duplicated move received *****************");
                 return;
             }
 
-            if (this.gameIsOver)
+            if (this.theGameIsOver)
             {
                 this.abendIt("AddNewMoveAndFight", "theGameIsOver");
                 return;
             }
 
-            this.passReceived = false;
+            this.thePassReceived = false;
             this.BoardObject().ClearLastDeadStone();
             this.insertMoveToMoveList(move_val);
             this.FightObject().EnterBattle(move_val);
-            this.nextColor = GoDefineClass.GetOppositeColor(move_val.MyColor());
+            this.theNextColor = GoDefineClass.GetOppositeColor(move_val.MyColor());
         }
 
         private void insertMoveToMoveList(GoMoveClass move_val)
         {
-            this.movesArray[this.totalMoves] = move_val;
-            this.totalMoves++;
-            this.maxMove = this.totalMoves;
+            this.theMovesArray[this.theTotalMoves] = move_val;
+            this.theTotalMoves++;
+            this.maxMove = this.theTotalMoves;
+        }
+
+        public void ProcessBackwardMove()
+        {
+            this.debugIt(true, "processBackwardMove", "");
+
+            this.thePassReceived = false;
+            if (this.theTotalMoves <= this.ConfigObject().HandicapPoint())
+            {
+                return;
+            }
+            this.theTotalMoves--;
+            this.processTheWholeMoveList();
+        }
+
+        private void processTheWholeMoveList()
+        {
+            this.BoardObject().ResetBoardObjectData();
+            this.FightObject().ResetEngineObjectData();
+            this.resetGameObjectPartialData();
+
+            int i = 0;
+            while (i < this.theTotalMoves)
+            {
+                GoMoveClass move = this.theMovesArray[i];
+                this.FightObject().EnterBattle(move);
+                this.theNextColor = GoDefineClass.GetOppositeColor(move.MyColor());
+                i += 1;
+            }
         }
 
         private void debugIt(bool on_off_val, string str0_val, string str1_val)

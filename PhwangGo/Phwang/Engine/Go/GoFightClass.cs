@@ -20,26 +20,26 @@ namespace Phwang.Go
 
         private GoRootClass rootObject { get; }
         private bool abendEngineOn { get; }
-        GoGroupListClass[] groupListArray;
-        string captureCount { get; set; }
-        string lastDeadStone;////////////////to be removed
+        GoGroupListClass[] theGroupListArray;
+        string theCaptureCount { get; set; }
+        string theLastDeadStone { get; set; }
 
         public GoRootClass RootObject() { return this.rootObject; }
         public GoBoardClass BoardObject() { return this.rootObject.BoardObject(); }
         public GoConfigClass ConfigObject() { return this.rootObject.ConfigObject(); }
 
-        GoGroupListClass emptyGroupList() { return this.groupListArray[0]; }
-        GoGroupListClass blackGroupList() { return this.groupListArray[1]; }
-        GoGroupListClass whiteGroupList() { return this.groupListArray[2]; }
-        GoGroupListClass blackDeadGroupList() { return this.groupListArray[3]; }
-        GoGroupListClass whiteDeadGroupList() { return this.groupListArray[4]; }
-        GoGroupListClass blackEmptyGroupList() { return this.groupListArray[5]; }
-        GoGroupListClass whiteEmptyGroupList() { return this.groupListArray[6]; }
+        GoGroupListClass emptyGroupList() { return this.theGroupListArray[0]; }
+        GoGroupListClass blackGroupList() { return this.theGroupListArray[1]; }
+        GoGroupListClass whiteGroupList() { return this.theGroupListArray[2]; }
+        GoGroupListClass blackDeadGroupList() { return this.theGroupListArray[3]; }
+        GoGroupListClass whiteDeadGroupList() { return this.theGroupListArray[4]; }
+        GoGroupListClass blackEmptyGroupList() { return this.theGroupListArray[5]; }
+        GoGroupListClass whiteEmptyGroupList() { return this.theGroupListArray[6]; }
 
         public GoFightClass(GoRootClass go_root_object_val)
         {
             this.rootObject = go_root_object_val;
-            this.groupListArray = new GoGroupListClass[GO_FIGHT_CLASS_GROUP_LIST_ARRAY_SIZE];
+            this.theGroupListArray = new GoGroupListClass[GO_FIGHT_CLASS_GROUP_LIST_ARRAY_SIZE];
             this.resetEngineObjectData();
         }
 
@@ -47,26 +47,26 @@ namespace Phwang.Go
         {
             this.BoardObject().ResetBoardObjectData();
 
-            this.groupListArray[1] = new GoGroupListClass(this, 1, GoDefineClass.GO_BLACK_STONE, false, null, null);
-            this.groupListArray[2] = new GoGroupListClass(this, 2, GoDefineClass.GO_WHITE_STONE, false, null, null);
+            this.theGroupListArray[1] = new GoGroupListClass(this, 1, GoDefineClass.GO_BLACK_STONE, false, null, null);
+            this.theGroupListArray[2] = new GoGroupListClass(this, 2, GoDefineClass.GO_WHITE_STONE, false, null, null);
             this.resetMarkedGroupLists();
             this.resetEmptyGroupLists();
 
-            this.captureCount = null;
-            this.lastDeadStone = null;
+            this.theCaptureCount = null;
+            this.theLastDeadStone = null;
         }
         private void resetMarkedGroupLists()
         {
-            this.groupListArray[3] = new GoGroupListClass(this, 3, GoDefineClass.GO_BLACK_STONE, true, "black", "gray");
-            this.groupListArray[4] = new GoGroupListClass(this, 4, GoDefineClass.GO_WHITE_STONE, true, "white", "gray");
+            this.theGroupListArray[3] = new GoGroupListClass(this, 3, GoDefineClass.GO_BLACK_STONE, true, "black", "gray");
+            this.theGroupListArray[4] = new GoGroupListClass(this, 4, GoDefineClass.GO_WHITE_STONE, true, "white", "gray");
             this.BoardObject().ResetMarkedBoardObjectData();
         }
 
         private void resetEmptyGroupLists()
         {
-            this.groupListArray[0] = new GoGroupListClass(this, 0, GoDefineClass.GO_EMPTY_STONE, false, null, null);
-            this.groupListArray[5] = new GoGroupListClass(this, 5, GoDefineClass.GO_EMPTY_STONE, false, null, "black");
-            this.groupListArray[6] = new GoGroupListClass(this, 6, GoDefineClass.GO_EMPTY_STONE, false, null, "white");
+            this.theGroupListArray[0] = new GoGroupListClass(this, 0, GoDefineClass.GO_EMPTY_STONE, false, null, null);
+            this.theGroupListArray[5] = new GoGroupListClass(this, 5, GoDefineClass.GO_EMPTY_STONE, false, null, "black");
+            this.theGroupListArray[6] = new GoGroupListClass(this, 6, GoDefineClass.GO_EMPTY_STONE, false, null, "white");
         }
 
         public void EnterBattle(GoMoveClass move_val)
@@ -255,6 +255,19 @@ namespace Phwang.Go
                 this->abend("markLastDeadInfo", "exist_matrix");
             }
             */
+        }
+
+        public void ResetEngineObjectData()
+        {
+            this.BoardObject().ResetBoardObjectData();
+
+            this.theGroupListArray[1] = new GoGroupListClass(this, 1, GoDefineClass.GO_BLACK_STONE, false, null, null);
+            this.theGroupListArray[2] = new GoGroupListClass(this, 2, GoDefineClass.GO_WHITE_STONE, false, null, null);
+            this.resetMarkedGroupLists();
+            this.resetEmptyGroupLists();
+
+            this.theCaptureCount = null;
+            this.theLastDeadStone = null;
         }
 
         private void abendEngine()
