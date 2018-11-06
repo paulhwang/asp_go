@@ -73,7 +73,7 @@ namespace Phwang.Go
         {
             this.debugIt(true, "enterBattle", move_val.MoveInfo());
 
-            this.BoardObject().AddStoneToBoard(move_val.XX(), move_val.YY(), move_val.MyColor());
+            this.BoardObject().AddStoneToBoard(move_val.X(), move_val.Y(), move_val.MyColor());
             GoGroupClass my_group = this.insertStoneToGroupList(move_val);
             if (my_group == null)
             {
@@ -124,22 +124,22 @@ namespace Phwang.Go
                 return null;
             }
 
-            GoGroupClass group = g_list.FindCandidateGroup(move_val.XX(), move_val.YY());
+            GoGroupClass group = g_list.FindCandidateGroup(move_val.X(), move_val.Y());
             if (group == null)
             {
                 group = new GoGroupClass(g_list);
-                group.InsertStoneToGroup(move_val.XX(), move_val.YY(), false);
+                group.InsertStoneToGroup(move_val.X(), move_val.Y(), false);
                 g_list.InsertGroupToGroupList(group);
                 return group;
             }
 
-            group.InsertStoneToGroup(move_val.XX(), move_val.YY(), false);
+            group.InsertStoneToGroup(move_val.X(), move_val.Y(), false);
 
             int dummy_count = 0;
             GoGroupClass group2;
             while (true)
             {
-                group2 = g_list.FindOtherCandidateGroup(group, move_val.XX(), move_val.YY());
+                group2 = g_list.FindOtherCandidateGroup(group, move_val.X(), move_val.Y());
                 if (group2 == null)
                 {
                     break;
@@ -158,10 +158,10 @@ namespace Phwang.Go
         private int killOtherColorGroups(GoMoveClass move_val, GoGroupClass my_group_val)
         {
             int count;
-            count = this.killOtherColorGroup(my_group_val, move_val.XX() - 1, move_val.YY());
-            count += this.killOtherColorGroup(my_group_val, move_val.XX() + 1, move_val.YY());
-            count += this.killOtherColorGroup(my_group_val, move_val.XX(), move_val.YY() - 1);
-            count += this.killOtherColorGroup(my_group_val, move_val.XX(), move_val.YY() + 1);
+            count = this.killOtherColorGroup(my_group_val, move_val.X() - 1, move_val.Y());
+            count += this.killOtherColorGroup(my_group_val, move_val.X() + 1, move_val.Y());
+            count += this.killOtherColorGroup(my_group_val, move_val.X(), move_val.Y() - 1);
+            count += this.killOtherColorGroup(my_group_val, move_val.X(), move_val.Y() + 1);
             return count;
         }
 
