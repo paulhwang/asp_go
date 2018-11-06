@@ -38,10 +38,9 @@ namespace Phwang.Go
         public GoBoardClass(GoRootClass root_object_val)
         {
             this.theRootObject = root_object_val;
-
             this.theBoardArray = new int[GoDefineClass.MAX_BOARD_SIZE, GoDefineClass.MAX_BOARD_SIZE];
             this.theMarkedBoardArray = new int[GoDefineClass.MAX_BOARD_SIZE, GoDefineClass.MAX_BOARD_SIZE];
-            this.ClearLastDeadStone();
+            this.ResetBoardObjectData();
         }
 
         const char GO_PROTOCOL_GAME_INFO = 'G';
