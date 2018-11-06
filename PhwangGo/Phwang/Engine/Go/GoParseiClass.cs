@@ -42,12 +42,15 @@ namespace Phwang.Go
                     return;
 
                 case GoProtocolClass.GO_PROTOCOL_DOUBLE_BACKWARD_COMMAND:
+                    this.GameObject().ProcessDoubleBackwardMove();
                     return;
 
                 case GoProtocolClass.GO_PROTOCOL_FORWARD_COMMAND:
+                    this.GameObject().ProcessForwardMove();
                     return;
 
                 case GoProtocolClass.GO_PROTOCOL_DOUBLE_FORWARD_COMMAND:
+                    this.GameObject().ProcessDoubleForwardMove();
                     return;
 
                 case GoProtocolClass.GO_PROTOCOL_PASS_COMMAND:

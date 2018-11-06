@@ -20,7 +20,7 @@ namespace Phwang.Go
 
         private GoRootClass theRootObject { get; }
         private int theTotalMoves { get; set; }
-        private int maxMove { get; set; }
+        private int theMaxMove { get; set; }
         private int theNextColor { get; set; }
         private bool thePassReceived { get; set; }
         private bool theGameIsOver { get; set; }
@@ -72,12 +72,12 @@ namespace Phwang.Go
         {
             this.theMovesArray[this.theTotalMoves] = move_val;
             this.theTotalMoves++;
-            this.maxMove = this.theTotalMoves;
+            this.theMaxMove = this.theTotalMoves;
         }
 
         public void ProcessBackwardMove()
         {
-            this.debugIt(true, "processBackwardMove", "");
+            this.debugIt(true, "ProcessBackwardMove", "");
 
             this.thePassReceived = false;
             if (this.theTotalMoves <= this.ConfigObject().HandicapPoint())
@@ -85,6 +85,55 @@ namespace Phwang.Go
                 return;
             }
             this.theTotalMoves--;
+            this.processTheWholeMoveList();
+        }
+
+        public void ProcessDoubleBackwardMove()
+        {
+            this.debugIt(true, "ProcessDoubleBackwardMove", "");
+
+            this.thePassReceived = false;
+            if (this.theTotalMoves <= this.ConfigObject().HandicapPoint())
+            {
+                return;
+            }
+            this.theTotalMoves = this.ConfigObject().HandicapPoint();
+            this.processTheWholeMoveList();
+        }
+
+        public void ProcessForwardMove()
+        {
+            this.debugIt(true, "ProcessForwardMove", "");
+
+            this.thePassReceived = false;
+            if (this.theTotalMoves > this.theMaxMove)
+            {
+                this.abendIt("ProcessForwardMove", "totalMoves > maxMove=");
+                return;
+            }
+            if (this.theTotalMoves == this.theMaxMove)
+            {
+                return;
+            }
+            this.theTotalMoves++;
+            this.processTheWholeMoveList();
+        }
+
+        public void ProcessDoubleForwardMove()
+        {
+            this.debugIt(true, "ProcessDoubleForwardMove", "");
+
+            this.thePassReceived = false;
+            if (this.theTotalMoves > this.theMaxMove)
+            {
+                this.abendIt("ProcessDoubleForwardMove", "totalMoves > maxMove=");
+                return;
+            }
+            if (this.theTotalMoves == this.theMaxMove)
+            {
+                return;
+            }
+            this.theTotalMoves = this.theMaxMove;
             this.processTheWholeMoveList();
         }
 
