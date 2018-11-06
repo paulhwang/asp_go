@@ -265,12 +265,12 @@ namespace Phwang.Fabric
             public string session_id { get; set; }
 
             [DataMember]
-            public string data { get; set; }
+            public string c_data { get; set; }
         }
 
         public string GenerateGetSessionDataResponse(string link_id_str_val, string session_id_str_val, string data_val)
         {
-            GetSessionDataResponseFormatClass raw_data = new GetSessionDataResponseFormatClass { link_id = link_id_str_val, session_id = session_id_str_val, data = data_val };
+            GetSessionDataResponseFormatClass raw_data = new GetSessionDataResponseFormatClass { link_id = link_id_str_val, session_id = session_id_str_val, c_data = data_val };
 
             this.debugIt(true, "GeneratePutSessionDataResponse", "");
             DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(GetSessionDataResponseFormatClass));
