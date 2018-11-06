@@ -59,7 +59,13 @@ namespace Phwang.Go
             {
                 for (int j = 0; j < board_size; j++)
                 {
-                    this.boardOutputBuffer = this.boardOutputBuffer + this.boardArray[i, j] + '0';
+                    char c = '0';
+                    switch (this.boardArray[i, j])
+                    {
+                        case 1: c = '1'; break;
+                        case 2: c = '2'; break;
+                    }
+                    this.boardOutputBuffer = this.boardOutputBuffer + c;
                 }
             }
 
