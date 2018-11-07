@@ -18,16 +18,16 @@ namespace Phwang.Fabric
         private string objectName = "LinkClass";
 
         private PhwangUtils.ListEntryClass listEntryObject;
-        private int linkId { get; set; }
-        private string linkIdStr { get; set; }
+        private int theLinkId { get; set; }
+        private string theLinkIdStr { get; set; }
         private string myName { get; }
         private SessionMgrClass sessionMgrObject { get; }
         private PhwangUtils.ListQueueClass pendingSessionSetupQueue { get; }
         private PhwangUtils.ListQueueClass pendingSessionSetupQueue3 { get; }
 
         public string MyName() { return this.myName; }
-        public int LinkId() { return this.linkId; }
-        public string LinkIdStr() { return this.linkIdStr; }
+        public int LinkId() { return this.theLinkId; }
+        public string LinkIdStr() { return this.theLinkIdStr; }
         public SessionMgrClass SessionMgrObject() { return this.sessionMgrObject; }
 
         public int GetSessionArrayMaxIndex() { return this.sessionMgrObject.GetSessionArrayMaxIndex(); }
@@ -45,8 +45,8 @@ namespace Phwang.Fabric
         public void BindListEntry(PhwangUtils.ListEntryClass list_entry_objectg_val)
         {
             this.listEntryObject = list_entry_objectg_val;
-            this.linkId = this.listEntryObject.Id();
-            this.linkIdStr = PhwangUtils.EncodeNumberClass.EncodeNumber(this.linkId, Protocols.FabricFrontEndProtocolClass.FABRIC_LINK_ID_SIZE);
+            this.theLinkId = this.listEntryObject.Id();
+            this.theLinkIdStr = PhwangUtils.EncodeNumberClass.EncodeNumber(this.theLinkId, Protocols.FabricFrontEndProtocolClass.FABRIC_LINK_ID_SIZE);
         }
 
         public SessionClass MallocSession()
@@ -54,8 +54,10 @@ namespace Phwang.Fabric
             return this.sessionMgrObject.MallocSession();
         }
 
-        public void SetPendingSessionSetup(string session_id_index_val, string theme_data_val)
+        public void SetPendingSessionSetup(string link_session_id_str_val, string theme_data_val)
         {
+            string data = link_session_id_str_val + theme_data_val;
+            this.pendingSessionSetupQueue.EnqueueData(data);
             /*
             char* buf, *data_ptr;
 
@@ -67,9 +69,9 @@ namespace Phwang.Fabric
             */
         }
 
-        public void SetPendingSessionSetup3(string session_id_str_val, string theme_data_val)
+        public void SetPendingSessionSetup3(string link_session_id_str_val, string theme_data_val)
         {
-            string data = session_id_str_val + theme_data_val;
+            string data = link_session_id_str_val + theme_data_val;
             this.pendingSessionSetupQueue3.EnqueueData(data);
             /*
             char* buf, *data_ptr;

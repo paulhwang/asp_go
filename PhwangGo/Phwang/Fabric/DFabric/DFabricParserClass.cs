@@ -295,7 +295,7 @@ namespace Phwang.Fabric
                 group.InsertSession(his_session);
                 his_session.BindGroup(group);
 
-                his_link.SetPendingSessionSetup(his_session.SessionIdStr(), format_data.theme_data);
+                his_link.SetPendingSessionSetup(his_link.LinkIdStr() + his_session.SessionIdStr(), format_data.theme_data);
             }
             //char* data_ptr;
             //char* downlink_data = data_ptr = (char*)phwangMalloc(LINK_MGR_DATA_BUFFER_SIZE + 4, "DFS1");
