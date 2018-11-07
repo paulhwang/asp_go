@@ -80,6 +80,10 @@ namespace Phwang.Fabric
             {
                 response_data = this.processSetupSessionRequest(ajax_fabric_request.data);
             }
+            else if (ajax_fabric_request.command == "setup_session2")
+            {
+                response_data = this.processSetupSession2Request(ajax_fabric_request.data);
+            }
             else if (ajax_fabric_request.command == "setup_session3")
             {
                 response_data = this.processSetupSession3Request(ajax_fabric_request.data);
@@ -310,6 +314,55 @@ namespace Phwang.Fabric
         }
 
         private string errorProcessSetupSession(int link_id_val, string error_msg_val)
+        {
+            return error_msg_val;
+        }
+
+        [DataContract]
+        public class SetupSession2RequestFormat
+        {
+            [DataMember]
+            public int link_id { get; set; }
+
+            [DataMember]
+            public int session_id { get; set; }
+            [DataMember]
+            public string accept { get; set; }
+
+            [DataMember]
+            public string theme_data { get; set; }
+        }
+
+        private string processSetupSession2Request(string input_data_val)
+        {
+            this.debugIt(true, "processSetupSession3Request", "input_data_val = " + input_data_val);
+            SetupSession2RequestFormat format_data;
+            using (var ms = new MemoryStream(Encoding.Unicode.GetBytes(input_data_val)))
+            {
+                DataContractJsonSerializer deseralizer = new DataContractJsonSerializer(typeof(SetupSession2RequestFormat));
+                format_data = (SetupSession2RequestFormat)deseralizer.ReadObject(ms);// //反序列化ReadObject
+                this.debugIt(true, "processSetupSession3Request", "link_id = " + format_data.link_id);
+                this.debugIt(true, "processSetupSession3Request", "session_id = " + format_data.session_id);
+                this.debugIt(true, "processSetupSession3Request", "accept = " + format_data.accept);
+                this.debugIt(true, "processSetupSession3Request", "theme_data = " + format_data.theme_data);
+            }
+
+            LinkClass link = this.LinkMgrObject().GetLinkById(format_data.link_id);
+            if (link == null)
+            {
+                return errorProcessSetupSession2(format_data.link_id, "null link");
+            }
+            SessionClass session = link.SessionMgrObject().GetSessionBySessionId(format_data.session_id);
+            if (session == null)
+            {
+                return errorProcessSetupSession2(format_data.link_id, "null session");
+            }
+
+            string response_data = this.dFabricResponseObject.GenerateSetupSession2Response(link.LinkIdStr(), session.SessionIdStr());
+            return response_data;
+        }
+
+        private string errorProcessSetupSession2(int link_id_val, string error_msg_val)
         {
             return error_msg_val;
         }
