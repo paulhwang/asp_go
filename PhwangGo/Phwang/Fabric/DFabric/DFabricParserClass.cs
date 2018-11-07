@@ -279,16 +279,14 @@ namespace Phwang.Fabric
             {
                 this.mallocRoom(group, format_data.theme_data);
             }
-            /*
             else
             {
-                LinkClass his_link = this.LinkMgrObject().SearchLinkByName(his_name_val);
-                if (!his_link)
+                LinkClass his_link = this.LinkMgrObject().GetLinkByMyName(format_data.his_name);
+                if (his_link == null)
                 {
-                    this->errorProcessSetupSession(tp_transfer_object_val, ajax_id, "his_link does not exist");
-                    return;
+                    return this.errorProcessSetupSession(format_data.link_id, "his_link does not exist");
                 }
-
+                /*
                 SessionClass* his_session = his_link->mallocSession();
                 if (!his_session)
                 {
@@ -303,8 +301,8 @@ namespace Phwang.Fabric
                 memcpy(theme_data, theme_info_val, theme_len);
                 theme_data[theme_len] = 0;
                 his_link->setPendingSessionSetup(his_session->sessionIdIndex(), theme_data);
+                */
             }
-            */
             //char* data_ptr;
             //char* downlink_data = data_ptr = (char*)phwangMalloc(LINK_MGR_DATA_BUFFER_SIZE + 4, "DFS1");
             //*data_ptr++ = WEB_FABRIC_PROTOCOL_RESPOND_IS_SETUP_SESSION;

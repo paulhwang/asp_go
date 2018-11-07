@@ -62,9 +62,20 @@ namespace Phwang.Fabric
             return link;
         }
 
+        private bool CompareMyNameFunc(object object_val, string my_name_val)
+        {
+            LinkClass link = (LinkClass) object_val;
+            return (link.MyName() == my_name_val);
+        }
+
         public LinkClass GetLinkByMyName(string my_name_val)
         {
-            LinkClass link = null;
+            PhwangUtils.ListEntryClass list_entry = this.listMgr.GetEntryByCompare(CompareMyNameFunc, my_name_val);
+            if (list_entry == null)
+            {
+                return null;
+            }
+            LinkClass link = (LinkClass)list_entry.Data();
 
             return link;
         }

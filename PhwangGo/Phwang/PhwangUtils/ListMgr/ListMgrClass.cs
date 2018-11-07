@@ -144,6 +144,29 @@ namespace Phwang.PhwangUtils
             return entry;
         }
 
+        public delegate bool CompareStringFunc(object obj_val, string str_val);
+        public ListEntryClass GetEntryByCompare(CompareStringFunc compare_func_val, string string_val)
+        {
+            ListEntryClass entry = null;
+
+            this.abendListMgrClass("before GetEntryById");
+            lock (this.theLock)
+            {
+                for (int i = 0; i <= maxIndex; i++)
+                {
+                    if (compare_func_val(entryTableArray[i].Data(), string_val))
+                    {
+                        entry = entryTableArray[i];
+                        break;
+                    }
+                }
+            }
+            this.abendListMgrClass("after GetEntryById");
+
+            return entry;
+        }
+
+
         private void abendListMgrClass(string msg_val)
         {
             lock (this.theLock)

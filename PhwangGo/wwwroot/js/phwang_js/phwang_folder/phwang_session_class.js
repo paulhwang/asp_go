@@ -43,7 +43,7 @@ function PhwangSessionClass(link_object_val) {
 }
 function PhwangSessionStorageObject(phwang_session_object_val) {
     "use strict";
-    this.storage = function() {return localStorage;};
+    this.storage = function() {return sessionStorage;};
     this.init__ = function(phwang_session_object_val) {
         this.thePhwangSessionObject = phwang_session_object_val;
         this.resetSessionStorage();
