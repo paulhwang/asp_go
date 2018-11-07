@@ -357,6 +357,12 @@ namespace Phwang.Fabric
             {
                 return errorProcessSetupSession2(format_data.link_id, "null session");
             }
+            GroupClass group = session.GroupObject();
+            if (group == null)
+            {
+                return errorProcessSetupSession2(format_data.link_id, "null group");
+            }
+            this.mallocRoom(group, format_data.theme_data);
 
             string response_data = this.dFabricResponseObject.GenerateSetupSession2Response(link.LinkIdStr(), session.SessionIdStr());
             return response_data;
