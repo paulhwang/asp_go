@@ -54,6 +54,19 @@ namespace Phwang.Fabric
             return this.sessionMgrObject.MallocSession();
         }
 
+        public void SetPendingSessionSetup(string session_id_index_val, string theme_data_val)
+        {
+            /*
+            char* buf, *data_ptr;
+
+            buf = data_ptr = (char*)malloc(LINK_MGR_DATA_BUFFER_SIZE);
+            memcpy(data_ptr, session_id_index_val, SESSION_MGR_PROTOCOL_SESSION_ID_INDEX_SIZE);
+            data_ptr += SESSION_MGR_PROTOCOL_SESSION_ID_INDEX_SIZE;
+            strcpy(data_ptr, theme_data_val);
+            phwangEnqueue(this->thePendingSessionSetupQueue, buf);
+            */
+        }
+
         public void SetPendingSessionSetup3(string session_id_str_val, string theme_data_val)
         {
             string data = session_id_str_val + theme_data_val;

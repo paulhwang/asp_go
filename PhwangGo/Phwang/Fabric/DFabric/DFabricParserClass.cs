@@ -286,22 +286,16 @@ namespace Phwang.Fabric
                 {
                     return this.errorProcessSetupSession(format_data.link_id, "his_link does not exist");
                 }
-                /*
-                SessionClass* his_session = his_link->mallocSession();
-                if (!his_session)
+                SessionClass his_session = his_link.MallocSession();
+                if (his_session == null)
                 {
-                    this->errorProcessSetupSession(tp_transfer_object_val, ajax_id, "null his_session");
-                    return;
+                    return this.errorProcessSetupSession(format_data.link_id, "null his_session");
                 }
 
-                group->insertSession(his_session);
-                his_session->bindGroup(group);
+                group.InsertSession(his_session);
+                his_session.BindGroup(group);
 
-                char* theme_data = (char*)malloc(32);
-                memcpy(theme_data, theme_info_val, theme_len);
-                theme_data[theme_len] = 0;
-                his_link->setPendingSessionSetup(his_session->sessionIdIndex(), theme_data);
-                */
+                his_link.SetPendingSessionSetup(his_session.SessionIdStr(), format_data.theme_data);
             }
             //char* data_ptr;
             //char* downlink_data = data_ptr = (char*)phwangMalloc(LINK_MGR_DATA_BUFFER_SIZE + 4, "DFS1");
