@@ -431,20 +431,20 @@ namespace Phwang.Fabric
                 this.debugIt(true, "processGetSessionDataRequest", "session_id = " + format_data.session_id);
             }
 
-            string link_id_str = format_data.link_id.Substring(0, 4);
-            string session_id_str = format_data.link_id.Substring(4, 4);
-            LinkClass link = this.LinkMgrObject().GetLinkByIdStr(link_id_str);
+            LinkClass link = this.LinkMgrObject().GetLinkByIdStr(format_data.link_id);
             if (link == null)
             {
-                return errorProcessGetSessionData(link_id_str, "null link");
+                return errorProcessGetSessionData(format_data.link_id, "null link");
             }
 
-            SessionClass session = link.SessionMgrObject().GetSessionByIdStr(session_id_str);
+            SessionClass session = link.SessionMgrObject().GetSessionByIdStr(format_data.session_id);
             if (session == null)
             {
-                return errorProcessGetSessionData(session_id_str, "null session");
+                return errorProcessGetSessionData(format_data.session_id, "null session");
             }
+
             string data = session.GetPendingDownLinkData();
+
             /* send the response down */
             string response_data = this.dFabricResponseObject.GenerateGetSessionDataResponse(link.LinkIdStr(), session.SessionIdStr(), data);
             return response_data;
