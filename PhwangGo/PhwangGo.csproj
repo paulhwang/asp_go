@@ -14,8 +14,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\js\phwang_js\account\account_sign_in.js" />
-    <None Include="wwwroot\js\phwang_js\account\account_sign_up.js" />
+    <None Include="wwwroot\js\phwang_js\account_folder\account_sign_in.js" />
+    <None Include="wwwroot\js\phwang_js\account_folder\account_sign_up.js" />
   </ItemGroup>
 
 </Project>
