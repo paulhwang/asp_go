@@ -51,7 +51,7 @@ function GoPlayGameObject(root_object_val) {
         return result;
     };
     this.isMyTurn = function() {
-        this.debug(true, "isMyTurn", "nextColor=" + this.nextColor() + ", myColor=" + this.configObject().myColor());
+        this.debug(true, "isMyTurn", "nextColor=" + this.nextColor() + ", myColor=" + this.configObject().myColor() + ", playBothSides=" + this.playBothSides());
         return (this.playBothSides()) || (this.nextColor() === this.configObject().myColor());
     };
     this.totalMoves = function() {return this.theTotalMoves;};
