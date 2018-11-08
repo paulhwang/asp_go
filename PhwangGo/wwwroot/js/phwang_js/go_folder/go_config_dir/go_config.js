@@ -85,7 +85,7 @@ function GoConfigStorageObject(root_val) {
         return buf;
     };
 
-    this.storage = function() {return localStorage;};
+    this.storage = function() {return sessionStorage;};
     this.myColor = function() {return Number(this.storage().go_my_color);};
     this.setMyColor = function(val) {if (val === "black") {this.storage().go_my_color = GO.BLACK_STONE();} else if (val === "white") {this.storage().go_my_color = GO.WHITE_STONE();} else {this.abend("setMyColor", val);}};
     this.setMyColor_ = function(val) {this.storage().go_my_color = val;};
