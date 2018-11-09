@@ -2,16 +2,50 @@
   Copyrights reserved
   Written by Paul Hwang
 */
+/*
+<body>
+    <section class="go_canvas_section">
+        <canvas id="go_canvas">
+    </section>
+        <section>
+            <p id="black_score">Black: 0</p>
+        </section>
+        <section>
+            <p id="white_score">White: 0</p>
+        </section>
+</body>
+*/
+
 
 class Hello extends React.Component {
     render() {
         return React.createElement(
             "body",
             null,
+            /*
             React.createElement(
-                "h2",
+                "section",
                 null,
-                "Account Sign In"
+                React.createElement(
+                    "canvas",
+                    { "id": "go_canvas" },
+                    null
+                )
+            ),
+ */
+            React.createElement(
+                "section",
+                null,
+                React.createElement(
+                    "p",
+                    { "id": "black_score" },
+                    "Black 0"
+                ),
+                React.createElement(
+                    "p",
+                    { "id": "white_score" },
+                   "White 0"
+                )
             ),
             React.createElement(
                 "section",
@@ -24,16 +58,6 @@ class Hello extends React.Component {
                         type: "text",
                         "className": "login_name",
                         placeholder: "Enter your name"
-                    })
-                ),
-                React.createElement(
-                    "p",
-                    null,
-                    "Password:",
-                    React.createElement("input", {
-                        type: "text",
-                        "className": "login_password",
-                        placeholder: "Enter your password"
                     })
                 ),
                 React.createElement(
