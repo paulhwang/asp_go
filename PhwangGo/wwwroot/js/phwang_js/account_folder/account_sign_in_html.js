@@ -1,4 +1,8 @@
-﻿
+﻿/*
+  Copyrights reserved
+  Written by Paul Hwang
+*/
+
 class Hello extends React.Component {
     render() {
         return React.createElement(
@@ -11,14 +15,14 @@ class Hello extends React.Component {
             ),
             React.createElement(
                 "section",
-                { "class": "login_section" },
+                { "className": "login_section" },
                 React.createElement(
                     "p",
                     null,
                     "Name:",
                     React.createElement("input", {
                         type: "text",
-                        "class": "login_name",
+                        "className": "login_name",
                         placeholder: "Enter your name"
                     })
                 ),
@@ -28,13 +32,13 @@ class Hello extends React.Component {
                     "Password:",
                     React.createElement("input", {
                         type: "text",
-                        "class": "login_password",
+                        "className": "login_password",
                         placeholder: "Enter your password"
                     })
                 ),
                 React.createElement(
                     "button",
-                    { "class": "login_button" },
+                    { "className": "login_button" },
                     "Login"
                 )
             )
