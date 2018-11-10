@@ -3,8 +3,8 @@
   Written by Paul Hwang
 */
 
-class AccountSignInPage extends React.Component {
-    render() {
+function AccountSignInPage() {
+    //render() {
         return React.createElement(
             "body",
             null,
@@ -43,11 +43,8 @@ class AccountSignInPage extends React.Component {
                 )
             )
         );
-    }
+    //}
 }
 
-ReactDOM.render(
-    React.createElement(AccountSignInPage, null, null),
-    document.getElementById('account_sign_in_html')
-);
+ReactDOM.render(AccountSignInPage(), document.getElementById('account_sign_in_html'));
 
