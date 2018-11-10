@@ -3,7 +3,7 @@
   Written by Paul Hwang
 */
 
-class GoConfigPage extends React.Component {
+class GoConfigComponentClass extends React.Component {
     render() {
         return React.createElement(
             "body",
@@ -124,8 +124,5 @@ class GoConfigPage extends React.Component {
     }
 }
 
-ReactDOM.render(
-    React.createElement(GoConfigPage, null, null),
-    document.getElementById('go_config_html')
-);
+ReactDOM.render(React.createElement(GoConfigComponentClass, null, null), document.getElementById('go_config_html'));
 
