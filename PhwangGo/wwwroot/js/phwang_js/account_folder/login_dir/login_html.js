@@ -3,7 +3,7 @@
   Written by Paul Hwang
 */
 
-class LoginComponent extends React.Component {
+class LoginHtmlClass extends React.Component {
     render() {
         return React.createElement(
             "body",

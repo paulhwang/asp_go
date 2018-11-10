@@ -31,7 +31,7 @@ function LoginHtmlObject(root_object_val) {
     this.gotoNextPage = function() { window.open(this.phwangObject().serverHttpHeader() + "Go/GoSetup", "_self")};
     this.init__ = function (root_object_val) { this.theRootObject = root_object_val; this.setupHtmlInput();};
     this.setupHtmlInput = function() {
-        ReactDOM.render(React.createElement(LoginComponent, null, null), document.getElementById(this.componentName()));
+        ReactDOM.render(React.createElement(LoginHtmlClass, null, null), document.getElementById(this.componentName()));
         var this0 = this;
         $(".login_section .login_button").on("click", function () {
             this0.phwangLinkObject().setMyName($(".login_section .login_name").val());
