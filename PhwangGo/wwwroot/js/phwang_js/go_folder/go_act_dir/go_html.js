@@ -22,7 +22,6 @@ class Hello extends React.Component {
         return React.createElement(
             "body",
             null,
-            /*
             React.createElement(
                 "section",
                 null,
@@ -32,7 +31,7 @@ class Hello extends React.Component {
                     null
                 )
             ),
- */
+
             React.createElement(
                 "section",
                 null,
