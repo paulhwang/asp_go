@@ -3,7 +3,7 @@
   Written by Paul Hwang
 */
 
-class Hello extends React.Component {
+class GoConfigPage extends React.Component {
     render() {
         return React.createElement(
             "body",
@@ -11,8 +11,20 @@ class Hello extends React.Component {
             React.createElement(
                 "h2",
                 null,
-                "Account Sign In"
+                "GoSetup"
             ),
+
+            React.createElement(
+                "p",
+                { "className": "peer_name_paragraph" },
+                "Peer Name:",
+                React.createElement(
+                    "select",
+                    { "name": "opponent"},
+                    null
+                )
+            ),
+
             React.createElement(
                 "section",
                 { "className": "login_section" },
@@ -26,6 +38,11 @@ class Hello extends React.Component {
                         React.createElement("option", { "value": "Go" }, "Go"),
                         React.createElement("option", { "value": "game1" }, "game1"),
                         React.createElement("option", { "value": "game2" }, "game2")
+                    ),
+                    React.createElement(
+                        "button",
+                        null,
+                        "Select"
                     )
                 ),
 
@@ -108,7 +125,7 @@ class Hello extends React.Component {
 }
 
 ReactDOM.render(
-    React.createElement(Hello, null, null),
+    React.createElement(GoConfigPage, null, null),
     document.getElementById('go_config_html')
 );
 
