@@ -3,7 +3,7 @@
   Written by Paul Hwang
 */
 
-class AccountSignInComponent extends React.Component {
+class LoginComponent extends React.Component {
     render() {
         return React.createElement(
             "body",
@@ -45,9 +45,4 @@ class AccountSignInComponent extends React.Component {
         );
     }
 }
-
-ReactDOM.render(
-    React.createElement(AccountSignInComponent, null, null),
-    document.getElementById('account_sign_in_html')
-);
 
