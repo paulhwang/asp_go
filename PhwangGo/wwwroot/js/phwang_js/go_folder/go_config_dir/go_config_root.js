@@ -2,6 +2,7 @@
   Copyrights reserved
   Written by Paul Hwang
 */
+
 function ConfigRootObject() {
     "use strict";
     this.init__ = function() {
@@ -32,12 +33,15 @@ function ConfigRootObject() {
 }
 function ConfigHtmlObject(root_object_val) {
     "use strict";
+    this.componentName = function () { return "go_config_html"; };
+    this.gotoNextPage = function () { window.open(this.phwangObject().serverHttpHeader() + "Go/GoPlay", "_self") };
     this.init__ = function(root_object_val) {
         this.theRootObject = root_object_val;
         this.setupHtmlInputFunction();
         this.debug(true, "init__", "");
     };
     this.setupHtmlInputFunction = function() {
+        ReactDOM.render(React.createElement(GoConfigComponentClass, null, null), document.getElementById(this.componentName()));
         this.renderNameList();
         var this0 = this;
         $(".config_section .config_button").on("click", function() {
@@ -56,7 +60,6 @@ function ConfigHtmlObject(root_object_val) {
             $('.peer_name_paragraph select').append($('<option>', {value:this.phwangLinkObject().nameListElement(i), text:this.phwangLinkObject().nameListElement(i)}));
         }
     };
-    this.gotoNextPage = function() {window.open(this.phwangObject().serverHttpHeader() + "Go/GoPlay", "_self")};
     this.objectName = function() {return "ConfigHtmlObject";};
     this.rootObject = function() {return this.theRootObject;};
     this.phwangObject = function() {return this.rootObject().phwangObject();};

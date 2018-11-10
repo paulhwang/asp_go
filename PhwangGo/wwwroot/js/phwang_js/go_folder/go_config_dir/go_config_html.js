@@ -124,5 +124,3 @@ class GoConfigComponentClass extends React.Component {
     }
 }
 
-ReactDOM.render(React.createElement(GoConfigComponentClass, null, null), document.getElementById('go_config_html'));
-
