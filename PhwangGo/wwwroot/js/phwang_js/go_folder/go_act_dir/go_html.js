@@ -46,25 +46,6 @@ class Hello extends React.Component {
                     { "id": "white_score" },
                    "White 0"
                 )
-            ),
-            React.createElement(
-                "section",
-                { "className": "login_section" },
-                React.createElement(
-                    "p",
-                    null,
-                    "Name:",
-                    React.createElement("input", {
-                        type: "text",
-                        "className": "login_name",
-                        placeholder: "Enter your name"
-                    })
-                ),
-                React.createElement(
-                    "button",
-                    { "className": "login_button" },
-                    "Login"
-                )
             )
         );
     }
