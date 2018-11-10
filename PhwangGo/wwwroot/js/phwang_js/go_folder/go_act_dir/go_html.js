@@ -17,7 +17,7 @@
 */
 
 
-class Hello extends React.Component {
+class GoBoardPage extends React.Component {
     render() {
         return React.createElement(
             "body",
@@ -51,7 +51,7 @@ class Hello extends React.Component {
 }
 
 ReactDOM.render(
-    React.createElement(Hello, null, null),
+    React.createElement(GoBoardPage, null, null),
     document.getElementById('go_html')
 );
 

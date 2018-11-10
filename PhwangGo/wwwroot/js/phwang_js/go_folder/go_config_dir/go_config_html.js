@@ -15,19 +15,19 @@ class GoConfigPage extends React.Component {
             ),
 
             React.createElement(
-                "p",
-                { "className": "peer_name_paragraph" },
-                "Peer Name:",
-                React.createElement(
-                    "select",
-                    { "name": "opponent"},
-                    null
-                )
-            ),
-
-            React.createElement(
                 "section",
-                { "className": "login_section" },
+                { "className": "config_section" },
+                React.createElement(
+                    "p",
+                    { "className": "peer_name_paragraph" },
+                    "Peer Name:",
+                    React.createElement(
+                        "select",
+                        { "name": "opponent" },
+                        null
+                    )
+                ),
+
                 React.createElement(
                     "p",
                     { "className": "peer_game_paragraph" },
