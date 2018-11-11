@@ -8,15 +8,15 @@ function GoPlayRootObject() {
         this.thePhwangObject = new PhwangClass(this);
         this.phwangObject().initObject();
         this.phwangAjaxObject().startWatchDog(this.phwangLinkObject());
-        this.theAjaxObject = new GoAjaxClass(this);
+        this.theAjaxObject = new GoGameAjaxClass(this);
         this.theConfigStorageObject = new GoConfigStorageObject(this);
         this.theConfigObject = new GoPlayConfigObject(this);
-        this.theBoardObject = new GoPlayBoardObject(this);
-        this.thePortObject = new GoPlayPortObject(this);
-        this.theGameObject = new GoPlayGameObject(this);
-        this.theHtmlObject = new GoPlayHtmlObject(this);
-        this.theInputObject = new GoPlayInputObject(this);
-        this.theDisplayObject = new GoPlayDisplayObject(this);
+        this.theBoardObject = new GoGameBoardObject(this);
+        this.thePortObject = new GoGamePortObject(this);
+        this.theGameObject = new GoGamePlayObject(this);
+        this.theHtmlObject = new GoGameHtmlObject(this);
+        this.theInputObject = new GoGameInputObject(this);
+        this.theDisplayObject = new GoGameDisplayObject(this);
         this.thePhwangSessionObject = this.phwangLinkObject().mallocSessionAndInsert(this.phwangSessionObject().sessionId());
         this.phwangLinkObject().insertSession(this.phwangSessionObject());
         this.phwangSessionObject().setThemeObject(this.portObject());
@@ -44,7 +44,7 @@ function GoPlayRootObject() {
     this.abend_ = function(str1_val, str2_val) {this.phwangObject().ABEND(str1_val, str2_val);};
     this.init__();
 }
-function GoPlayHtmlObject(root_object_val) {
+function GoGameHtmlObject(root_object_val) {
     "use strict";
     this.componentName = function () { return "go_html"; };
     this.init__ = function (root_object_val) {
@@ -55,7 +55,7 @@ function GoPlayHtmlObject(root_object_val) {
         this.debug(true, "init__", "");
     };
     this.initElements = function() {
-        ReactDOM.render(React.createElement(GoBoardComponentClass, null, null), document.getElementById(this.componentName()));
+        ReactDOM.render(React.createElement(GoGameBoardComponentClass, null, null), document.getElementById(this.componentName()));
         this.theCanvasElement = window.document.getElementById("go_canvas");
         if (this.canvasElement() === null) {
             this.abend("GoUiObject", "null canvasElement");
@@ -89,7 +89,7 @@ function GoPlayHtmlObject(root_object_val) {
             this0.inputObject().uiMouseMove(event.clientX, event.clientY);
         });
     };
-    this.objectName = function() {return "GoPlayHtmlObject";};
+    this.objectName = function () { return "GoGameHtmlObject";};
     this.rootObject = function() {return this.theRootObject;};
     this.phwangObject = function() {return this.rootObject().phwangObject();};
     this.configObject = function() {return this.rootObject().configObject();};
@@ -108,7 +108,7 @@ function GoPlayHtmlObject(root_object_val) {
     this.abend = function(str1_val, str2_val) {this.rootObject().abend_(this.objectName() + "." + str1_val, str2_val);};
     this.init__(root_object_val);
 }
-function GoAjaxClass(root_object_val) {
+function GoGameAjaxClass(root_object_val) {
     "use strict";
     this.init__ = function (root_object_val) {this.theRootObject = root_object_val;};
     this.receiveSetupLinkResponse = function(result_val) {};
@@ -118,7 +118,7 @@ function GoAjaxClass(root_object_val) {
     this.receiveSetupSession3Response = function(result_val) {};
     this.receivePutSessionDataResponse = function (result_val) {};
     this.receiveGetSessionDataResponse = function (result_val, data_val) {};
-    this.objectName = function() {return "GoAjaxClass";};
+    this.objectName = function () { return "GoGameAjaxClass";};
     this.rootObject = function() {return this.theRootObject;};
     this.phwangObject = function() {return this.rootObject().phwangObject();};
     this.htmlObject = function() {return this.rootObject().htmlObject();};
@@ -129,3 +129,5 @@ function GoAjaxClass(root_object_val) {
 }
 var go_play_main = function() {"use strict"; new GoPlayRootObject();};
 $(document).ready(go_play_main);
+
+// Html Ajax

@@ -3,7 +3,7 @@
   Written by Paul Hwang
 */
 
-function GoPlayDisplayObject(root_object_val) {
+function GoGameDisplayObject(root_object_val) {
     "use strict";
     this.init__ = function (root_object_val) {
         this.theRootObject = root_object_val;
@@ -233,7 +233,7 @@ function GoPlayDisplayObject(root_object_val) {
     this.whiteScoreElement = function() {return this.htmlObject().whiteScoreElement();};
     this.getGridLength = function() {return this.htmlObject().getGridLength();};
     this.getArrowUnitLength = function() {return this.htmlObject().getArrowUnitLength();};
-    this.objectName = function() {return "GoPlayDisplayObject";};
+    this.objectName = function () { return "GoGameDisplayObject";};
     this.rootObject = function() {return this.theRootObject;};
     this.configObject = function() {return this.rootObject().configObject();};
     this.htmlObject = function() {return this.rootObject().htmlObject();};
@@ -245,7 +245,7 @@ function GoPlayDisplayObject(root_object_val) {
     this.abend = function(str1_val, str2_val) {this.rootObject().abend_(this.objectName() + "." + str1_val, str2_val);};
     this.init__(root_object_val);
 }
-function GoPlayInputObject(root_object_val) {
+function GoGameInputObject(root_object_val) {
     "use strict";
     this.init__ = function(root_object_val) {
         this.theRootObject = root_object_val;
@@ -348,7 +348,7 @@ function GoPlayInputObject(root_object_val) {
     this.setLastMouseX = function (val) {this.theLastMouseX = val;};
     this.lastMouseY = function() {return this.theLastMouseY;};
     this.setLastMouseY = function (val) {this.theLastMouseY = val;};
-    this.objectName = function() {return "GoPlayInputObject";};
+    this.objectName = function () { return "GoGameInputObject";};
     this.rootObject = function() {return this.theRootObject;};
     this.configObject = function() {return this.rootObject().configObject();};
     this.htmlObject = function() {return this.rootObject().htmlObject();};
@@ -360,3 +360,5 @@ function GoPlayInputObject(root_object_val) {
     this.abend = function(str1_val, str2_val) {this.rootObject().abend_(this.objectName() + "." + str1_val, str2_val);};
     this.init__(root_object_val);
 }
+
+// Display Input

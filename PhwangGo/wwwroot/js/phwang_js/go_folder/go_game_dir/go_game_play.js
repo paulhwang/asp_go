@@ -3,7 +3,7 @@
   Written by Paul Hwang
 */
 
-function GoPlayGameObject(root_object_val) {
+function GoGamePlayObject(root_object_val) {
     "use strict";
     this.init__ = function(root_object_val) {
         this.theRootObject = root_object_val;
@@ -73,7 +73,7 @@ function GoPlayGameObject(root_object_val) {
     this.setWhiteScoreString = function(val) {this.theWhiteScoreString = val;}
     this.finalScoreString = function() {return this.theFinalScoreString;}
     this.setFinalScoreString = function(val) {this.theFinalScoreString = val;}
-    this.objectName = function() {return "GoPlayGameObject";};
+    this.objectName = function () { return "GoGamePlayObject";};
     this.rootObject = function() {return this.theRootObject;};
     this.phwangObject = function() {return this.rootObject().phwangObject();};
     this.phwangLinkObject = function() {return this.phwangObject().phwangLinkObject();};
@@ -88,7 +88,7 @@ function GoPlayGameObject(root_object_val) {
     this.abend = function(str1_val, str2_val) {this.rootObject().abend_(this.objectName() + "." + str1_val, str2_val);};
     this.init__(root_object_val);
 }
-function GoPlayPortObject(root_val) {
+function GoGamePortObject(root_val) {
     "use strict";
     this.GO_PROTOCOL_GAME_INFO = function() {return "G";};
     this.GO_PROTOCOL_TIME_INFO = function() {return "T";};
@@ -140,7 +140,7 @@ function GoPlayPortObject(root_val) {
         this.boardObject().decodeBoard(data_val);
         this.displayObject().drawBoard();
     };
-    this.objectName = function() {return "GoPlayPortObject";};
+    this.objectName = function () { return "GoGamePortObject";};
     this.rootObject = function() {return this.theRootObject;};
     this.ajxObject = function() {return this.rootObject().ajxObject();};
     this.configObject = function() {return this.rootObject().configObject(); };
@@ -198,7 +198,7 @@ function GoMoveObject(str_val, x_val, y_val, color_val, turn_val, root_object_va
     this.abend = function(str1_val, str2_val) {this.rootObject().abend_(this.objectName() + "." + str1_val, str2_val);};
     this.init__(str_val, x_val, y_val, color_val, root_object_val);
 }
-function GoPlayBoardObject(root_val) {
+function GoGameBoardObject(root_val) {
     "use strict";
     this.init__ = function (root_val) {
         this.theRootObject = root_val;
@@ -296,7 +296,7 @@ function GoPlayBoardObject(root_val) {
     this.markedBoardArray = function (x_val, y_val) {return this.theMarkedBoardArray[x_val][y_val];};
     this.setBoardArray = function (x_val, y_val, data_val) {this.theBoardArray[x_val][y_val] = data_val;};
     this.setMarkedBoardArray = function (x_val, y_val, data_val) {this.theMarkedBoardArray[x_val][y_val] = data_val;};
-    this.objectName = function() {return "GoPlayBoardObject";};
+    this.objectName = function () { return "GoGameBoardObject";};
     this.rootObject = function() {return this.theRootObject;};
     this.configObject = function() {return this.rootObject().configObject();};
     this.gameObject = function() {return this.rootObject().gameObject();};
@@ -305,3 +305,5 @@ function GoPlayBoardObject(root_val) {
     this.abend = function(str1_val, str2_val) {this.rootObject().abend_(this.objectName() + "." + str1_val, str2_val);};
     this.init__(root_val);
 }
+
+//Play Port Move Board

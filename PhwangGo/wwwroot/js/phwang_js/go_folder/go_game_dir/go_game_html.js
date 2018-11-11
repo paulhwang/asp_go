@@ -17,7 +17,7 @@
 */
 
 
-class GoBoardComponentClass extends React.Component {
+class GoGameBoardComponentClass extends React.Component {
     render() {
         return React.createElement(
             "body",
