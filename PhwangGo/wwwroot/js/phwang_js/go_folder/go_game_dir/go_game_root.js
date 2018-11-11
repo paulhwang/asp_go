@@ -2,7 +2,7 @@
   Copyrights reserved
   Written by Paul Hwang
 */
-function GoPlayRootObject() {
+function GoGameRootObject() {
     "use strict";
     this.init__ = function() {
         this.thePhwangObject = new PhwangClass(this);
@@ -23,7 +23,7 @@ function GoPlayRootObject() {
         this.debug(true, "init__", "myName=" + this.phwangLinkObject().myName() + " linkId=" + this.phwangLinkObject().linkId() + " sessionId=" + this.phwangSessionObject().sessionId());
         this.debug(true, "init__", "boardSize=" + this.configObject().boardSize() + " stoneColor=" + this.configStorageObject().myColor() + " komi=" + this.configObject().komiPoint() + " handicap=" + this.configObject().handicapPoint());
     };
-    this.objectName = function() {return "GoPlayRootObject";};
+    this.objectName = function () { return "GoGameRootObject";};
     this.phwangObject = function() {return this.thePhwangObject;};
     this.phwangAjaxObject = function() {return this.phwangObject().phwangAjaxObject();};
     this.phwangLinkObject = function() {return this.phwangObject().phwangLinkObject();};
@@ -127,7 +127,7 @@ function GoGameAjaxClass(root_object_val) {
     this.abend = function(str1_val, str2_val) {return this.phwangObject().ABEND(this.objectName() + "." + str1_val, str2_val);};
     this.init__(root_object_val);
 }
-var go_play_main = function() {"use strict"; new GoPlayRootObject();};
+var go_play_main = function () { "use strict"; new GoGameRootObject();};
 $(document).ready(go_play_main);
 
-// Html Ajax
+// Root Html Ajax
