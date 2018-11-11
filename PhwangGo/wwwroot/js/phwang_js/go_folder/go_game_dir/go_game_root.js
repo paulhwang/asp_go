@@ -55,7 +55,7 @@ function GoGameHtmlObject(root_object_val) {
         this.debug(true, "init__", "");
     };
     this.initElements = function() {
-        ReactDOM.render(React.createElement(GoGameBoardComponentClass, null, null), document.getElementById(this.componentName()));
+        ReactDOM.render(React.createElement(GoGameComponentClass, null, null), document.getElementById(this.componentName()));
         this.theCanvasElement = window.document.getElementById("go_canvas");
         if (this.canvasElement() === null) {
             this.abend("GoUiObject", "null canvasElement");
