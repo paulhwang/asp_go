@@ -16,4 +16,3 @@ class PhwangPreludeComponentClass extends React.Component {
     }
 }
 
-ReactDOM.render(React.createElement(PhwangPreludeComponentClass, null, null), document.getElementById("phwang_prelude"));
