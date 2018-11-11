@@ -46,6 +46,7 @@ function GoPlayRootObject() {
 }
 function GoPlayHtmlObject(root_object_val) {
     "use strict";
+    this.componentName = function () { return "go_html"; };
     this.init__ = function (root_object_val) {
         this.theRootObject = root_object_val;
         this.theCanvasWidth = 432;
@@ -54,6 +55,7 @@ function GoPlayHtmlObject(root_object_val) {
         this.debug(true, "init__", "");
     };
     this.initElements = function() {
+        ReactDOM.render(React.createElement(GoBoardComponentClass, null, null), document.getElementById(this.componentName()));
         this.theCanvasElement = window.document.getElementById("go_canvas");
         if (this.canvasElement() === null) {
             this.abend("GoUiObject", "null canvasElement");

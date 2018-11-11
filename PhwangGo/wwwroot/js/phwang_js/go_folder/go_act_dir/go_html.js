@@ -17,7 +17,7 @@
 */
 
 
-class GoBoardPage extends React.Component {
+class GoBoardComponentClass extends React.Component {
     render() {
         return React.createElement(
             "body",
@@ -50,8 +50,4 @@ class GoBoardPage extends React.Component {
     }
 }
 
-ReactDOM.render(
-    React.createElement(GoBoardPage, null, null),
-    document.getElementById('go_html')
-);
 
