@@ -46,7 +46,7 @@ function GoGameRootObject() {
 }
 function GoGameHtmlObject(root_object_val) {
     "use strict";
-    this.componentName = function () { return "go_html"; };
+    this.componentName = function () { return "go_game_html"; };
     this.init__ = function (root_object_val) {
         this.theRootObject = root_object_val;
         this.theCanvasWidth = 432;
