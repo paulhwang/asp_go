@@ -3,7 +3,7 @@
  * Written by Paul Hwang
  */
 
-function GoPlayConfigObject(root_val) {
+function GoConfigObject(root_val) {
     "use strict";
     this.init__ = function(root_val) {
         this.theRootObject = root_val;
@@ -28,7 +28,7 @@ function GoPlayConfigObject(root_val) {
     this.realKomiPoint = function() {if (!this.komiPoint()) {return 0;} return this.komiPoint() + 0.5;};
     this.isValidCoordinates = function(x_val, y_val) {return this.isValidCoordinate(x_val) && this.isValidCoordinate(y_val);};
     this.isValidCoordinate = function(coordinate_val) {return (0 <= coordinate_val) && (coordinate_val < this.boardSize());};
-    this.objectName = function() {return "GoPlayConfigObject";};
+    this.objectName = function () { return "GoConfigObject";};
     this.rootObject = function() {return this.theRootObject;};
     this.configStorageObject = function() {return this.rootObject().configStorageObject();};
     this.phwangLinkObject = function() {return this.rootObject().phwangLinkObject();};

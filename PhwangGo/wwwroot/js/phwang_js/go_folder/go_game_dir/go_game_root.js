@@ -10,7 +10,7 @@ function GoGameRootObject() {
         this.phwangAjaxObject().startWatchDog(this.phwangLinkObject());
         this.theAjaxObject = new GoGameAjaxClass(this);
         this.theConfigStorageObject = new GoConfigStorageObject(this);
-        this.theConfigObject = new GoPlayConfigObject(this);
+        this.theConfigObject = new GoConfigObject(this);
         this.theBoardObject = new GoGameBoardObject(this);
         this.thePortObject = new GoGamePortObject(this);
         this.theGameObject = new GoGamePlayObject(this);

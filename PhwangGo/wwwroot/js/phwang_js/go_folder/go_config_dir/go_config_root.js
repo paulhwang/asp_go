@@ -10,7 +10,7 @@ function GoConfigRootObject() {
         this.phwangObject().initObject();
         this.phwangAjaxObject().startWatchDog(this.phwangLinkObject());
         this.theConfigStorageObject = new GoConfigStorageObject(this);
-        this.theConfigObject = new GoPlayConfigObject(this);
+        this.theConfigObject = new GoConfigObject(this);
         this.theAjaxObject = new GoConfigAjaxClass(this);
         this.theHtmlObject = new GoConfigHtmlObject(this);
         this.debug(true, "init__", "myName=" + this.phwangLinkObject().myName() + " linkId=" + this.phwangLinkObject().linkId());
