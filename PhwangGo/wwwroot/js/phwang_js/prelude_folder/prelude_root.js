@@ -8,8 +8,24 @@ function PreludeRootObject() {
         this.thePhwangObject = new PhwangClass(this);
         this.phwangObject().initObject();
         this.theAjaxObject = new LoginAjaxClass(this);
-        this.theHtmlObject = new LoginHtmlObject(this);
+        this.renderPreludePage();
         this.debug(true, "init__", "myName=" + this.phwangLinkObject().myName() + " linkId=" + this.phwangLinkObject().linkId());
+    };
+    this.renderPreludePage = function() {
+        ReactDOM.render(React.createElement(PhwangPreludeComponentClass, null, null), document.getElementById("phwang_prelude"));
+        var this0 = this;
+        $(".prelude_section .sign_up_button").on("click", function () {
+            this0.debug(true, "renderPreludePage click function", ".prelude_section .sign_up_button");
+            this0.renderSignUpPage();
+        });
+    };
+    this.renderSignUpPage = function() {
+        ReactDOM.render(React.createElement(SignUpComponentClass, null, null), document.getElementById("phwang_prelude"));
+        var this0 = this;
+        $(".sign_up_section .sign_up_button").on("click", function () {
+            this0.debug(true, "renderSignUpPage click function", ".sign_up_section .sign_up_button");
+            this0.renderPreludePage();
+        });
     };
     this.objectName = function () { return "PreludeRootObject"; };
     this.phwangObject = function () { return this.thePhwangObject; };
@@ -35,6 +51,17 @@ function LoginHtmlObject(root_object_val) {
         var this0 = this;
         $(".prelude_section .sign_up_button").on("click", function () {
             this0.debug(true, "click function", ".prelude_section .sign_up_button");
+            ReactDOM.render(React.createElement(SignUpComponentClass, null, null), document.getElementById("phwang_prelude"));
+            $(".sign_up_section .sign_up_button").on("click", function () {
+                this0.debug(true, "click function", ".sign_up_section .sign_up_button");
+                ReactDOM.render(React.createElement(PhwangPreludeComponentClass, null, null), document.getElementById("phwang_prelude"));
+
+            });
+
+        });
+        $(".sign_up_section .sign_up_button").on("click", function () {
+            this0.debug(true, "click function", ".sign_up_section .sign_up_button");
+            ReactDOM.render(React.createElement(PhwangPreludeComponentClass, null, null), document.getElementById("phwang_prelude"));
 
         });
     };
