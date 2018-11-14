@@ -32,6 +32,11 @@ function LoginHtmlObject(root_object_val) {
     this.init__ = function (root_object_val) { this.theRootObject = root_object_val; this.setupHtmlInput(); };
     this.setupHtmlInput = function () {
         ReactDOM.render(React.createElement(PhwangPreludeComponentClass, null, null), document.getElementById("phwang_prelude"));
+        var this0 = this;
+        $(".prelude_section .sign_up_button").on("click", function () {
+            this0.debug(true, "click function", ".prelude_section .sign_up_button");
+
+        });
     };
     this.objectName = function () { return "LoginHtmlObject"; };
     this.rootObject = function () { return this.theRootObject; };
