@@ -36,6 +36,15 @@ function PreludeRootObject() {
         var this0 = this;
         $(".sign_in_section .sign_in_button").on("click", function () {
             this0.debug(true, "renderSignUpPage click function", ".sign_in_section .sign_in_button");
+            this0.phwangLinkObject().setMyName($(".login_section .login_name").val());
+            var password = $(".login_section .login_password").val();
+            this0.debug(true, "renderSignInPage", "myName=" + this0.phwangLinkObject().myName() + " password=" + password);
+            if (this0.phwangLinkObject().myName()) {
+                this0.phwangAjaxObject().setupLink(this0.phwangLinkObject(), password);
+            }
+
+
+
             this0.renderPreludePage();
         });
     };
@@ -91,7 +100,10 @@ function LoginHtmlObject(root_object_val) {
 function LoginAjaxClass(root_object_val) {
     "use strict";
     this.init__ = function (root_object_val) { this.theRootObject = root_object_val; };
-    this.receiveSetupLinkResponse = function (result_val) { this.htmlObject().gotoNextPage(); };
+    this.receiveSetupLinkResponse = function (result_val) {
+        //this.htmlObject().gotoNextPage();
+        window.open(this.phwangObject().serverHttpHeader() + "Go/GoSetup", "_self");
+    };
     this.receiveGetNameListResponse = function (result_val) { };
     this.receiveSetupSessionResponse = function (result_val) { };
     this.receiveSetupSession2Response = function (result_val) { };
