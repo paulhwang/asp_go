@@ -46,7 +46,7 @@ function PreludeRootObject() {
             if (this0.phwangLinkObject().myName()) {
                 this0.phwangAjaxObject().setupLink(this0.phwangLinkObject(), password);
             }
-            this0.renderPreludePage();
+            //this0.renderThemePage();
         });
     };
     this.renderThemePage = function () {
@@ -58,7 +58,7 @@ function PreludeRootObject() {
         });
     };
     this.renderGoPage = function () {
-
+        window.open(this.phwangObject().serverHttpHeader() + "Go/GoSetup", "_self");
     };
     this.objectName = function () { return "PreludeRootObject"; };
     this.phwangObject = function () { return this.thePhwangObject; };
@@ -114,7 +114,8 @@ function LoginAjaxClass(root_object_val) {
     this.init__ = function (root_object_val) { this.theRootObject = root_object_val; };
     this.receiveSetupLinkResponse = function (result_val) {
         //this.htmlObject().gotoNextPage();
-        window.open(this.phwangObject().serverHttpHeader() + "Go/GoSetup", "_self");
+        //window.open(this.phwangObject().serverHttpHeader() + "Go/GoSetup", "_self");
+        this.rootObject().renderThemePage();
     };
     this.receiveGetNameListResponse = function (result_val) { };
     this.receiveSetupSessionResponse = function (result_val) { };
