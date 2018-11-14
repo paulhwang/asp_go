@@ -22,6 +22,10 @@ function PreludeRootObject() {
             this0.debug(true, "renderPreludePage click function", ".prelude_section .sign_in_button");
             this0.renderSignInPage();
         });
+        $(".prelude_section .theme_button").on("click", function () {
+            this0.debug(true, "renderPreludePage click function", ".prelude_section .theme_button");
+            this0.renderThemePage();
+        });
     };
     this.renderSignUpPage = function() {
         ReactDOM.render(React.createElement(SignUpComponentClass, null, null), document.getElementById("phwang_prelude"));
@@ -42,11 +46,19 @@ function PreludeRootObject() {
             if (this0.phwangLinkObject().myName()) {
                 this0.phwangAjaxObject().setupLink(this0.phwangLinkObject(), password);
             }
-
-
-
             this0.renderPreludePage();
         });
+    };
+    this.renderThemePage = function () {
+        ReactDOM.render(React.createElement(ThemeComponentClass, null, null), document.getElementById("phwang_prelude"));
+        var this0 = this;
+        $(".theme_section .go_button").on("click", function () {
+            this0.debug(true, "renderThemePage click function", ".theme_section .go_button");
+            this0.renderGoPage();
+        });
+    };
+    this.renderGoPage = function () {
+
     };
     this.objectName = function () { return "PreludeRootObject"; };
     this.phwangObject = function () { return this.thePhwangObject; };
