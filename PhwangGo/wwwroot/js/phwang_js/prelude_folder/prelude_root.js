@@ -18,12 +18,24 @@ function PreludeRootObject() {
             this0.debug(true, "renderPreludePage click function", ".prelude_section .sign_up_button");
             this0.renderSignUpPage();
         });
+        $(".prelude_section .sign_in_button").on("click", function () {
+            this0.debug(true, "renderPreludePage click function", ".prelude_section .sign_in_button");
+            this0.renderSignInPage();
+        });
     };
     this.renderSignUpPage = function() {
         ReactDOM.render(React.createElement(SignUpComponentClass, null, null), document.getElementById("phwang_prelude"));
         var this0 = this;
         $(".sign_up_section .sign_up_button").on("click", function () {
             this0.debug(true, "renderSignUpPage click function", ".sign_up_section .sign_up_button");
+            this0.renderPreludePage();
+        });
+    };
+    this.renderSignInPage = function () {
+        ReactDOM.render(React.createElement(SignInComponentClass, null, null), document.getElementById("phwang_prelude"));
+        var this0 = this;
+        $(".sign_in_section .sign_in_button").on("click", function () {
+            this0.debug(true, "renderSignUpPage click function", ".sign_in_section .sign_in_button");
             this0.renderPreludePage();
         });
     };
