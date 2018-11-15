@@ -115,19 +115,22 @@ function PreludeRootObject() {
         this.theDispalySwitch.go_game_on = false;
     }
     this.renderGoConfigPage = function () {
+        this.theConfigStorageObject = new GoConfigStorageObject(this);/////////////////////////////move to go area
+        this.theConfigObject = new GoConfigObject(this);//////////////////////////////////////
+
         this.setupGoConfigSwitch();
         ReactDOM.render(React.createElement(PhwangPreludeComponentClass, this.dispalySwitch()), document.getElementById("phwang_prelude"));
         this.renderNameList();
         var this0 = this;
         $(".config_section .config_button").on("click", function () {
-            //this0.configStorageObject().setHisName($(".peer_name_paragraph select").val());
-            //this0.configStorageObject().setMyColor($(".config_section .go_config_section .stone_color").val());
-            //this0.configStorageObject().setBoardSize($(".config_section .go_config_section .board_size").val());
-            //this0.configStorageObject().setKomiPoint($(".config_section .go_config_section .komi").val());
-            //this0.configStorageObject().setHandicapPoint($(".config_section .go_config_section .handicap").val());
-            //var encoded_config = this0.configStorageObject().encodeConfig(this0.phwangLinkObject().myName());
-            //this0.debug(true, "setupHtmlInput", "boardSize=" + this0.configStorageObject().boardSize() + " myColor=" + this0.configStorageObject().myColor() + " komi=" + this0.configStorageObject().komiPoint() + " handicap=" + this0.configStorageObject().handicapPoint());
-            //this0.phwangAjaxObject().setupSession(this0.phwangLinkObject(), this0.configStorageObject().hisName(), encoded_config);
+            this0.configStorageObject().setHisName($(".peer_name_paragraph select").val());
+            this0.configStorageObject().setMyColor($(".config_section .go_config_section .stone_color").val());
+            this0.configStorageObject().setBoardSize($(".config_section .go_config_section .board_size").val());
+            this0.configStorageObject().setKomiPoint($(".config_section .go_config_section .komi").val());
+            this0.configStorageObject().setHandicapPoint($(".config_section .go_config_section .handicap").val());
+            var encoded_config = this0.configStorageObject().encodeConfig(this0.phwangLinkObject().myName());
+            this0.debug(true, "setupHtmlInput", "boardSize=" + this0.configStorageObject().boardSize() + " myColor=" + this0.configStorageObject().myColor() + " komi=" + this0.configStorageObject().komiPoint() + " handicap=" + this0.configStorageObject().handicapPoint());
+            this0.phwangAjaxObject().setupSession(this0.phwangLinkObject(), this0.configStorageObject().hisName(), encoded_config);
             this0.renderGoGamePage();
         });
         //window.open(this.phwangObject().serverHttpHeader() + "Go/GoSetup", "_self");
@@ -162,6 +165,10 @@ function PreludeRootObject() {
     this.abend = function (str1_val, str2_val) { return this.abend_(this.objectName() + "." + str1_val, str2_val); };
     this.logit_ = function (str1_val, str2_val) { this.phwangObject().LOG_IT(str1_val, str2_val); };
     this.abend_ = function (str1_val, str2_val) { this.phwangObject().ABEND(str1_val, str2_val); };
+
+    this.configStorageObject = function () { return this.theConfigStorageObject; };/////////////////////////////////////move to go area
+    this.configObject = function () { return this.theConfigObject; };///////////////////////////////////////
+
     this.init__();
 }
 function LoginHtmlObject(root_object_val) {
