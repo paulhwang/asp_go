@@ -12,13 +12,20 @@ function PreludeRootObject() {
         this.debug(true, "init__", "myName=" + this.phwangLinkObject().myName() + " linkId=" + this.phwangLinkObject().linkId());
     };
     this.theDispalySwitch = {
-        prelude_on: true,
+        prelude_on: false,
         sign_up_on: false,
         sign_in_on: false,
         theme_on: false
     }
     this.dispalySwitch = function () { return this.theDispalySwitch;}
+    this.setupPreludeSwitch = function () {
+        this.theDispalySwitch.prelude_on = true;
+        this.theDispalySwitch.sign_up_on = false;
+        this.theDispalySwitch.sign_in_on = false;
+        this.theDispalySwitch.theme_on = false;
+    }
     this.renderPreludePage = function() {
+        this.setupPreludeSwitch();
         ReactDOM.render(React.createElement(PhwangPreludeComponentClass, this.dispalySwitch()), document.getElementById("phwang_prelude"));
         var this0 = this;
         $(".prelude_section .sign_up_button").on("click", function () {
@@ -34,16 +41,32 @@ function PreludeRootObject() {
             this0.renderThemePage();
         });
     };
+    this.setupSignUpSwitch = function () {
+        this.theDispalySwitch.prelude_on = false;
+        this.theDispalySwitch.sign_up_on = true;
+        this.theDispalySwitch.sign_in_on = false;
+        this.theDispalySwitch.theme_on = false;
+     }
     this.renderSignUpPage = function() {
-        ReactDOM.render(React.createElement(SignUpComponentClass, null, null), document.getElementById("phwang_prelude"));
+        //ReactDOM.render(React.createElement(SignUpComponentClass, null, null), document.getElementById("phwang_prelude"));
+        this.setupSignUpSwitch();
+        ReactDOM.render(React.createElement(PhwangPreludeComponentClass, this.dispalySwitch()), document.getElementById("phwang_prelude"));
         var this0 = this;
         $(".sign_up_section .sign_up_button").on("click", function () {
             this0.debug(true, "renderSignUpPage click function", ".sign_up_section .sign_up_button");
             this0.renderPreludePage();
         });
     };
+    this.setupSignInSwitch = function () {
+        this.theDispalySwitch.prelude_on = false;
+        this.theDispalySwitch.sign_up_on = false;
+        this.theDispalySwitch.sign_in_on = true;
+        this.theDispalySwitch.theme_on = false;
+    }
     this.renderSignInPage = function () {
-        ReactDOM.render(React.createElement(SignInComponentClass, null, null), document.getElementById("phwang_prelude"));
+        //ReactDOM.render(React.createElement(SignInComponentClass, null, null), document.getElementById("phwang_prelude"));
+        this.setupSignInSwitch();
+        ReactDOM.render(React.createElement(PhwangPreludeComponentClass, this.dispalySwitch()), document.getElementById("phwang_prelude"));
         var this0 = this;
         $(".sign_in_section .sign_in_button").on("click", function () {
             this0.debug(true, "renderSignUpPage click function", ".sign_in_section .sign_in_button");
@@ -56,8 +79,16 @@ function PreludeRootObject() {
             //this0.renderThemePage();
         });
     };
+    this.setupThemeSwitch = function () {
+        this.theDispalySwitch.prelude_on = false;
+        this.theDispalySwitch.sign_up_on = false;
+        this.theDispalySwitch.sign_in_on = false;
+        this.theDispalySwitch.theme_on = true;
+    }
     this.renderThemePage = function () {
-        ReactDOM.render(React.createElement(ThemeComponentClass, null, null), document.getElementById("phwang_prelude"));
+        //ReactDOM.render(React.createElement(ThemeComponentClass, null, null), document.getElementById("phwang_prelude"));
+        this.setupThemeSwitch();
+        ReactDOM.render(React.createElement(PhwangPreludeComponentClass, this.dispalySwitch()), document.getElementById("phwang_prelude"));
         var this0 = this;
         $(".theme_section .go_button").on("click", function () {
             this0.debug(true, "renderThemePage click function", ".theme_section .go_button");
