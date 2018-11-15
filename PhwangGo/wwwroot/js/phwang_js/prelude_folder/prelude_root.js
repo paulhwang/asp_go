@@ -11,7 +11,7 @@ function PreludeRootObject() {
         this.renderPreludePage();
         this.debug(true, "init__", "myName=" + this.phwangLinkObject().myName() + " linkId=" + this.phwangLinkObject().linkId());
     };
-    this.prelude_switch = function () { return { switch_on: false };}
+    this.prelude_switch = function () { return { prelude_on: true };}
     this.renderPreludePage = function() {
         ReactDOM.render(React.createElement(PhwangPreludeComponentClass, this.prelude_switch()), document.getElementById("phwang_prelude"));
         var this0 = this;
