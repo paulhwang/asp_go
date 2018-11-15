@@ -32,7 +32,7 @@ function preludeComponent(props) {
 }
 
 function signUpComponent(props) {
-    if (props.prelude_on) {
+    if (props.sign_up_on) {
         return React.createElement(
             "section",
             { "className": "sign_up_section" },
@@ -88,47 +88,52 @@ function signUpComponent(props) {
 }
 
 function signInComponent(props) {
-    return React.createElement(
-        "section",
-        { "className": "sign_in_section" },
-        React.createElement(
-            "h2",
-            null,
-            "Account Sign In"
-        ),
+    if (props.sign_in_on) {
+        return React.createElement(
+            "section",
+            { "className": "sign_in_section" },
+            React.createElement(
+                "h2",
+                null,
+                "Account Sign In"
+            ),
 
-        React.createElement(
-            "p",
-            null,
-            "Name:",
-            React.createElement("input", {
-                type: "text",
-                "className": "sign_in_name",
-                placeholder: "Enter your account name"
-            })
-        ),
+            React.createElement(
+                "p",
+                null,
+                "Name:",
+                React.createElement("input", {
+                    type: "text",
+                    "className": "sign_in_name",
+                    placeholder: "Enter your account name"
+                })
+            ),
 
-        React.createElement(
-            "p",
-            null,
-            "Password:",
-            React.createElement("input", {
-                type: "text",
-                "className": "sign_in_password",
-                placeholder: "Enter your password"
-            })
-        ),
+            React.createElement(
+                "p",
+                null,
+                "Password:",
+                React.createElement("input", {
+                    type: "text",
+                    "className": "sign_in_password",
+                    placeholder: "Enter your password"
+                })
+            ),
 
-        React.createElement(
-            "button",
-            { "className": "sign_in_button" },
-            "Sign in"
-        )
-    );
+            React.createElement(
+                "button",
+                { "className": "sign_in_button" },
+                "Sign in"
+            )
+        );
+    }
+    else {
+        return null;
+    }
 }
 
 function themeComponent(props) {
-    if (props.prelude_on) {
+    if (props.theme_on) {
         return React.createElement("section", { "className": "theme_section" },
             React.createElement("h1", null, "Select the Theme"),
             React.createElement("button", { "className": "go_button" }, "Play Go"),

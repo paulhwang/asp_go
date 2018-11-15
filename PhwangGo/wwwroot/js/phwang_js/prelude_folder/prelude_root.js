@@ -11,9 +11,15 @@ function PreludeRootObject() {
         this.renderPreludePage();
         this.debug(true, "init__", "myName=" + this.phwangLinkObject().myName() + " linkId=" + this.phwangLinkObject().linkId());
     };
-    this.prelude_switch = function () { return { prelude_on: true };}
+    this.theDispalySwitch = {
+        prelude_on: true,
+        sign_up_on: false,
+        sign_in_on: false,
+        theme_on: false
+    }
+    this.dispalySwitch = function () { return this.theDispalySwitch;}
     this.renderPreludePage = function() {
-        ReactDOM.render(React.createElement(PhwangPreludeComponentClass, this.prelude_switch()), document.getElementById("phwang_prelude"));
+        ReactDOM.render(React.createElement(PhwangPreludeComponentClass, this.dispalySwitch()), document.getElementById("phwang_prelude"));
         var this0 = this;
         $(".prelude_section .sign_up_button").on("click", function () {
             this0.debug(true, "renderPreludePage click function", ".prelude_section .sign_up_button");
