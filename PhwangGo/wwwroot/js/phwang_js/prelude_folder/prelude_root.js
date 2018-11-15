@@ -96,6 +96,7 @@ function PreludeRootObject() {
         this.theDispalySwitch.go_game_on = false;
     }
     this.renderThemePage = function () {
+        this.phwangAjaxObject().startWatchDog(this.phwangLinkObject());
         //ReactDOM.render(React.createElement(ThemeComponentClass, null, null), document.getElementById("phwang_prelude"));
         this.setupThemeSwitch();
         ReactDOM.render(React.createElement(PhwangPreludeComponentClass, this.dispalySwitch()), document.getElementById("phwang_prelude"));
@@ -116,7 +117,7 @@ function PreludeRootObject() {
     this.renderGoConfigPage = function () {
         this.setupGoConfigSwitch();
         ReactDOM.render(React.createElement(PhwangPreludeComponentClass, this.dispalySwitch()), document.getElementById("phwang_prelude"));
-        //this.renderNameList();
+        this.renderNameList();
         var this0 = this;
         $(".config_section .config_button").on("click", function () {
             //this0.configStorageObject().setHisName($(".peer_name_paragraph select").val());
@@ -130,6 +131,11 @@ function PreludeRootObject() {
             this0.renderGoGamePage();
         });
         //window.open(this.phwangObject().serverHttpHeader() + "Go/GoSetup", "_self");
+    };
+    this.renderNameList = function () {
+        for (var i = 0; i < this.phwangLinkObject().nameListLength(); i++) {
+            $('.peer_name_paragraph select').append($('<option>', { value: this.phwangLinkObject().nameListElement(i), text: this.phwangLinkObject().nameListElement(i) }));
+        }
     };
     this.setupGoGameSwitch = function () {
         this.theDispalySwitch.prelude_on = false;
