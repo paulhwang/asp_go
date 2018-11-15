@@ -78,8 +78,8 @@ function PreludeRootObject() {
         var this0 = this;
         $(".sign_in_section .sign_in_button").on("click", function () {
             this0.debug(true, "renderSignUpPage click function", ".sign_in_section .sign_in_button");
-            this0.phwangLinkObject().setMyName($(".login_section .login_name").val());
-            var password = $(".login_section .login_password").val();
+            this0.phwangLinkObject().setMyName($(".sign_in_section .sign_in_name").val());
+            var password = $(".sign_in_section .sign_in_password").val();
             this0.debug(true, "renderSignInPage", "myName=" + this0.phwangLinkObject().myName() + " password=" + password);
             if (this0.phwangLinkObject().myName()) {
                 this0.phwangAjaxObject().setupLink(this0.phwangLinkObject(), password);
