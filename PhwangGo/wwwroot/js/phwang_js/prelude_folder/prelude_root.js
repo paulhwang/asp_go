@@ -115,9 +115,7 @@ function PreludeRootObject() {
         this.theDispalySwitch.go_game_on = false;
     }
     this.renderGoConfigPage = function () {
-        this.theConfigStorageObject = new GoConfigStorageObject(this);/////////////////////////////move to go area
-        this.theConfigObject = new GoConfigObject(this);//////////////////////////////////////
-
+        this.init_go();
         this.setupGoConfigSwitch();
         ReactDOM.render(React.createElement(PhwangPreludeComponentClass, this.dispalySwitch()), document.getElementById("phwang_prelude"));
         this.renderNameList();
@@ -151,6 +149,7 @@ function PreludeRootObject() {
     this.renderGoGamePage = function () {
         this.setupGoGameSwitch();
         ReactDOM.render(React.createElement(PhwangPreludeComponentClass, this.dispalySwitch()), document.getElementById("phwang_prelude"));
+        this.theGoGameBaseObject = new GoGameBaseObject(this);
 
     };
     this.objectName = function () { return "PreludeRootObject"; };
@@ -166,9 +165,14 @@ function PreludeRootObject() {
     this.logit_ = function (str1_val, str2_val) { this.phwangObject().LOG_IT(str1_val, str2_val); };
     this.abend_ = function (str1_val, str2_val) { this.phwangObject().ABEND(str1_val, str2_val); };
 
-    this.configStorageObject = function () { return this.theConfigStorageObject; };/////////////////////////////////////move to go area
-    this.configObject = function () { return this.theConfigObject; };///////////////////////////////////////
-
+    ////////////////////////////////////////////////////////////////////////////move to go area
+    this.configStorageObject = function () { return this.theConfigStorageObject; };
+    this.configObject = function () { return this.theConfigObject; };
+    this.init_go = function () {
+        this.theConfigStorageObject = new GoConfigStorageObject(this);
+        this.theConfigObject = new GoConfigObject(this);
+    };
+    ////////////////////////////////////////////////////////////////////////////////////////////////
     this.init__();
 }
 function LoginHtmlObject(root_object_val) {

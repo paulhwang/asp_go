@@ -285,9 +285,17 @@ function PhwangAjaxClass(phwang_object_val) {
         var data = JSON.parse(json_data_val);
         if (data) {
             var session = this.phwangLinkObject().getSession(data.session_id);
+            this.debug(true, "getSessionDataResponse", "session=" + session);
+            if (!session) {
+                session = this.phwangSessionObject();
+            }
+            this.debug(true, "getSessionDataResponse", "session=" + session);
             if (session) {
                 session.receiveData(data.c_data);
             }
+            else
+                this.debug(true, "getSessionDataResponse", "null session");
+
         }
     };
     this.transmitAjaxRequest = function(output_val) {
