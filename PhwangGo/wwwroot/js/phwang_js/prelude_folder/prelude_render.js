@@ -5,7 +5,7 @@
 
 function PreludeRenderObject(root_object_val) {
     "use strict";
-    this.init__ = function (){
+    this.init__ = function (root_object_val){
         this.theRootObject = root_object_val;
     }
     this.theDispalySwitch = {
@@ -161,6 +161,6 @@ function PreludeRenderObject(root_object_val) {
     this.abend = function (str1_val, str2_val) { return this.abend_(this.objectName() + "." + str1_val, str2_val); };
     this.logit_ = function (str1_val, str2_val) { this.phwangObject().LOG_IT(str1_val, str2_val); };
     this.abend_ = function (str1_val, str2_val) { this.phwangObject().ABEND(str1_val, str2_val); };
-    this.init__();
+    this.init__(root_object_val);
 }
 
