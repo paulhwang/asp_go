@@ -5,6 +5,7 @@
 function PreludeRootObject(){"use strict";
     this.init__ = function(){
         this.thePhwangObject = new PhwangClass(this);
+        this.thePreludeRenderObject = new PreludeRenderObject(this);
         this.phwangObject().initObject();
         this.theAjaxObject = new PreludeAjaxClass(this);
         this.renderPreludePage();
@@ -151,7 +152,8 @@ function PreludeRootObject(){"use strict";
         this.goBaseObject().init_game();
     };
     this.objectName = function(){return "PreludeRootObject";};
-    this.phwangObject = function(){return this.thePhwangObject;};
+    this.phwangObject = function () { return this.thePhwangObject; };
+    this.preludeRenderObject = function () { return this.thePreludeRenderObject;};
     this.phwangAjaxObject = function(){return this.phwangObject().phwangAjaxObject();};
     this.phwangLinkObject = function(){return this.phwangObject().phwangLinkObject();};
     this.phwangSessionObject = function(){return this.phwangObject().phwangSessionObject();};
