@@ -8,7 +8,7 @@ function PhwangClass(root_val) {
     this.init__ = function(root_val) {this.theRootObject = root_val;};
     this.initObject = function() {
         this.thePhwangAjaxObject = new PhwangAjaxClass(this);
-        this.theLinkObject = new PhwangLinkClass(this);
+        this.theLinkObject = new LinkClass(this);
         this.thePhwangPortObject = new PhwangPortClass(this);
         this.debug(true, "initObject", "");
     };
