@@ -16,7 +16,7 @@ function PreludeRootObject() {
     this.preludeRenderObject = function () { return this.thePreludeRenderObject;};
     this.phwangAjaxObject = function(){return this.phwangObject().phwangAjaxObject();};
     this.phwangLinkObject = function(){return this.phwangObject().phwangLinkObject();};
-    this.phwangSessionObject = function(){return this.phwangObject().phwangSessionObject();};
+    this.phwangSessionObject = function () { return this.phwangLinkObject().phwangSessionObject();};
     this.htmlObject = function(){return this.theHtmlObject;};
     this.ajaxResponseObject = function(){return this.theAjaxResponseObject;};
     this.debug = function(debug_val, str1_val, str2_val){if (debug_val){ this.logit(str1_val, str2_val);}};

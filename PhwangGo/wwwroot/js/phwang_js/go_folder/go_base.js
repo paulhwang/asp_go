@@ -33,7 +33,7 @@ function GoBaseObject(root_object_val) {
     this.phwangObject = function() {return this.rootObject().phwangObject(); };
     this.phwangAjaxObject = function() {return this.phwangObject().phwangAjaxObject(); };
     this.phwangLinkObject = function() {return this.phwangObject().phwangLinkObject(); };
-    this.phwangSessionObject = function() {return this.phwangObject().phwangSessionObject(); };
+    this.phwangSessionObject = function () { return this.phwangLinkObject().phwangSessionObject(); };
     this.ajaxObject = function() {return this.theAjaxObject; };
     this.htmlObject = function() {return this.theHtmlObject; };
     this.configStorageObject = function() {return this.theConfigStorageObject; };
