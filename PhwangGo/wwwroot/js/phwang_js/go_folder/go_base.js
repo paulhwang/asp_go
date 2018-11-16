@@ -2,7 +2,7 @@
   Copyrights reserved
   Written by Paul Hwang
 */
-function GoGameBaseObject(root_object_val) {
+function GoBaseObject(root_object_val) {
     "use strict";
     this.init__ = function () {
         this.theRootObject = root_object_val;
@@ -27,7 +27,7 @@ function GoGameBaseObject(root_object_val) {
         this.theInputObject = new GoGameInputObject(this);
         this.theDisplayObject = new GoGameDisplayObject(this);
     };
-    this.objectName = function () { return "GoGameBaseObject"; };
+    this.objectName = function () { return "GoBaseObject"; };
     this.rootObject = function () { return this.theRootObject; };
     this.phwangObject = function () { return this.rootObject().phwangObject(); };
     this.phwangAjaxObject = function () { return this.phwangObject().phwangAjaxObject(); };

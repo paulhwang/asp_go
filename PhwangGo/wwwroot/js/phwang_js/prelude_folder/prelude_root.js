@@ -149,7 +149,7 @@ function PreludeRootObject() {
     this.renderGoGamePage = function () {
         this.setupGoGameSwitch();
         ReactDOM.render(React.createElement(PhwangPreludeComponentClass, this.dispalySwitch()), document.getElementById("phwang_prelude"));
-        this.theGoGameBaseObject = new GoGameBaseObject(this);
+        this.theGoBaseObject = new GoBaseObject(this);
 
     };
     this.objectName = function () { return "PreludeRootObject"; };
