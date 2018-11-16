@@ -115,7 +115,7 @@ function PreludeRootObject() {
         this.theDispalySwitch.go_game_on = false;
     }
     this.renderGoConfigPage = function () {
-        this.init_go();
+        this.startGoGame();
         this.setupGoConfigSwitch();
         ReactDOM.render(React.createElement(PhwangPreludeComponentClass, this.dispalySwitch()), document.getElementById("phwang_prelude"));
         this.renderNameList();
@@ -168,7 +168,7 @@ function PreludeRootObject() {
     ////////////////////////////////////////////////////////////////////////////move to go area
     this.configStorageObject = function () { return this.theConfigStorageObject; };
     this.configObject = function () { return this.theConfigObject; };
-    this.init_go = function () {
+    this.startGoGame = function () {
         this.theConfigStorageObject = new GoConfigStorageObject(this);
         this.theConfigObject = new GoConfigObject(this);
     };
