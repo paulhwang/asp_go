@@ -16,7 +16,7 @@ function GoConfigObject(root_val) {
         this.setPlayBothSides();
     }
     this.playBothSides = function() {return this.thePlayBothSides;};
-    this.setPlayBothSides = function() {this.thePlayBothSides = (this.phwangLinkObject().myName() === this.hisName());};
+    this.setPlayBothSides = function() {this.thePlayBothSides = (this.linkObject().myName() === this.hisName());};
     this.boardSize = function() {return this.theBoardSize;};
     this.setBoardSize = function(val) {this.theBoardSize = val;};
     this.myColor = function() {return this.theMyColor;};
@@ -31,7 +31,7 @@ function GoConfigObject(root_val) {
     this.objectName = function () { return "GoConfigObject";};
     this.rootObject = function() {return this.theRootObject;};
     this.configStorageObject = function() {return this.rootObject().configStorageObject();};
-    this.phwangLinkObject = function() {return this.rootObject().phwangLinkObject();};
+    this.linkObject = function() {return this.rootObject().linkObject();};
     this.debug = function(debug_val, str1_val, str2_val) {if (debug_val) {this.logit(str1_val, str2_val);}};
     this.logit = function(str1_val, str2_val) {this.rootObject().logit_(this.objectName() + "." + str1_val, str2_val);};
     this.abend = function(str1_val, str2_val) {this.rootObject().abend_(this.objectName() + "." + str1_val, str2_val);};

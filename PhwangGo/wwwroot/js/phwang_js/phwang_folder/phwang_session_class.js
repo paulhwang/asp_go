@@ -6,7 +6,7 @@
 function PhwangSessionClass(link_object_val) {
     "use strict";
     this.init__ = function (link_object_val) {
-        this.thePhwangLinkObject = link_object_val;
+        this.theLinkObject = link_object_val;
         this.thePhwangSessionStorageObject = new PhwangSessionStorageObject(this);
         this.theXmtSeq = 0;
         this.theRcvSeq = 0;
@@ -29,9 +29,9 @@ function PhwangSessionClass(link_object_val) {
     this.themeObject = function() {return this.theThemeObject;};
     this.setThemeObject = function(val) {this.theThemeObject = val;};
     this.objectName = function() {return "PhwangSessionClass";};
-    this.phwangLinkObject = function() {return this.thePhwangLinkObject;};
+    this.linkObject = function() {return this.theLinkObject;};
     this.phwangSessionStorageObject = function() {return this.thePhwangSessionStorageObject;};
-    this.phwangObject = function() {return this.phwangLinkObject().phwangObject();};
+    this.phwangObject = function() {return this.linkObject().phwangObject();};
     this.rootObject = function() {return this.phwangObject().rootObject();};
     this.phwangAjaxObject = function() {return this.phwangObject().phwangAjaxObject();};
     this.debug = function(debug_val, str1_val, str2_val) {if (debug_val) {this.logit(str1_val, str2_val);}};

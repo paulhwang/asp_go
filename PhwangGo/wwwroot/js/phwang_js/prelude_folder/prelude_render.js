@@ -75,11 +75,11 @@ function PreludeRenderObject(root_object_val) {
         var this0 = this;
         $(".sign_in_section .sign_in_button").on("click", function () {
             this0.debug(true, "renderSignUpPage click function", ".sign_in_section .sign_in_button");
-            this0.phwangLinkObject().setMyName($(".sign_in_section .sign_in_name").val());
+            this0.linkObject().setMyName($(".sign_in_section .sign_in_name").val());
             var password = $(".sign_in_section .sign_in_password").val();
-            this0.debug(true, "renderSignInPage", "myName=" + this0.phwangLinkObject().myName() + " password=" + password);
-            if (this0.phwangLinkObject().myName()) {
-                this0.phwangAjaxObject().setupLink(this0.phwangLinkObject(), password);
+            this0.debug(true, "renderSignInPage", "myName=" + this0.linkObject().myName() + " password=" + password);
+            if (this0.linkObject().myName()) {
+                this0.phwangAjaxObject().setupLink(this0.linkObject(), password);
             }
             //this0.renderThemePage();
         });
@@ -93,7 +93,7 @@ function PreludeRenderObject(root_object_val) {
         this.theDispalySwitch.go_game_on = false;
     }
     this.renderThemePage = function () {
-        this.phwangAjaxObject().startWatchDog(this.phwangLinkObject());
+        this.phwangAjaxObject().startWatchDog(this.linkObject());
         //ReactDOM.render(React.createElement(ThemeComponentClass, null, null), document.getElementById("phwang_prelude"));
         this.setupThemeSwitch();
         ReactDOM.render(React.createElement(PhwangPreludeComponentClass, this.dispalySwitch()), document.getElementById("phwang_prelude"));
@@ -123,16 +123,16 @@ function PreludeRenderObject(root_object_val) {
             this0.configStorageObject().setBoardSize($(".config_section .go_config_section .board_size").val());
             this0.configStorageObject().setKomiPoint($(".config_section .go_config_section .komi").val());
             this0.configStorageObject().setHandicapPoint($(".config_section .go_config_section .handicap").val());
-            var encoded_config = this0.configStorageObject().encodeConfig(this0.phwangLinkObject().myName());
+            var encoded_config = this0.configStorageObject().encodeConfig(this0.linkObject().myName());
             this0.debug(true, "setupHtmlInput", "boardSize=" + this0.configStorageObject().boardSize() + " myColor=" + this0.configStorageObject().myColor() + " komi=" + this0.configStorageObject().komiPoint() + " handicap=" + this0.configStorageObject().handicapPoint());
-            this0.phwangAjaxObject().setupSession(this0.phwangLinkObject(), this0.configStorageObject().hisName(), encoded_config);
+            this0.phwangAjaxObject().setupSession(this0.linkObject(), this0.configStorageObject().hisName(), encoded_config);
             this0.renderGoGamePage();
         });
         //window.open(this.phwangObject().serverHttpHeader() + "Go/GoSetup", "_self");
     };
     this.renderNameList = function () {
-        for (var i = 0; i < this.phwangLinkObject().nameListLength(); i++) {
-            $('.peer_name_paragraph select').append($('<option>', { value: this.phwangLinkObject().nameListElement(i), text: this.phwangLinkObject().nameListElement(i) }));
+        for (var i = 0; i < this.linkObject().nameListLength(); i++) {
+            $('.peer_name_paragraph select').append($('<option>', { value: this.linkObject().nameListElement(i), text: this.linkObject().nameListElement(i) }));
         }
     };
     this.setupGoGameSwitch = function () {
@@ -152,7 +152,7 @@ function PreludeRenderObject(root_object_val) {
     this.rootObject = function () { return this.theRootObject; };
     this.phwangObject = function () { return this.rootObject().phwangObject(); };
     this.phwangAjaxObject = function () { return this.phwangObject().phwangAjaxObject(); };
-    this.phwangLinkObject = function () { return this.phwangObject().phwangLinkObject(); };
+    this.linkObject = function () { return this.phwangObject().linkObject(); };
     this.goBaseObject = function () { return this.rootObject().goBaseObject(); };
     this.configStorageObject = function () { return this.goBaseObject().configStorageObject(); };
     this.configObject = function () { return this.goBaseObject().configObject(); };

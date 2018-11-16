@@ -90,7 +90,7 @@ function PhwangLinkClass(phwang_object_val) {
 function PhwangLinkStorageObject(phwang_link_object_val) {
     "use strict";
     this.storage = function() {return sessionStorage;};
-    this.init__ = function(phwang_link_object_val) {this.thePhwangLinkObject = phwang_link_object_val;};
+    this.init__ = function(phwang_link_object_val) {this.thelinkObject = phwang_link_object_val;};
     this.resetLinkStorage = function() {
         this.resetLinkId();
         this.resetMyName();
@@ -104,8 +104,8 @@ function PhwangLinkStorageObject(phwang_link_object_val) {
     this.setLinkId = function(val) {this.storage().link_id = val;};
     this.resetLinkId = function() {this.setLinkId("");};
     this.objectName = function() {return "PhwangLinkStorageObject";};
-    this.phwangLinkObject = function() {return this.thePhwangLinkObject;};
-    this.phwangObject = function() {return this.phwangLinkObject().phwangObject();};
+    this.linkObject = function() {return this.thelinkObject;};
+    this.phwangObject = function() {return this.linkObject().phwangObject();};
     this.debug = function(debug_val, str1_val, str2_val) {if (debug_val) {this.logit(str1_val, str2_val);}};
     this.logit = function(str1_val, str2_val) {return this.phwangObject().LOG_IT(this.objectName() + "." + str1_val, str2_val);};
     this.abend = function(str1_val, str2_val) {return this.phwangObject().ABEND(this.objectName() + "." + str1_val, str2_val);};

@@ -8,7 +8,7 @@ function PhwangClass(root_val) {
     this.init__ = function(root_val) {this.theRootObject = root_val;};
     this.initObject = function() {
         this.thePhwangAjaxObject = new PhwangAjaxClass(this);
-        this.thePhwangLinkObject = new PhwangLinkClass(this);
+        this.theLinkObject = new PhwangLinkClass(this);
         this.thePhwangPortObject = new PhwangPortClass(this);
         this.debug(true, "initObject", "");
     };
@@ -25,7 +25,7 @@ function PhwangClass(root_val) {
     this.objectName = function() {return "PhwangClass";};
     this.rootObject = function() {return this.theRootObject;};
     this.phwangAjaxObject = function() {return this.thePhwangAjaxObject;};
-    this.phwangLinkObject = function() {return this.thePhwangLinkObject;};
+    this.linkObject = function() {return this.theLinkObject;};
     this.phwangPortObject = function() {return this.thePhwangPortObject;};
     this.debug = function(debug_val, str1_val, str2_val) {if (debug_val) {this.logit(str1_val, str2_val);}};
     this.logit = function(str1_val, str2_val) {return this.LOG_IT(this.objectName() + "." + str1_val, str2_val);};

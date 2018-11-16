@@ -43,8 +43,8 @@ function GoGamePlayObject(root_object_val){
         return true;
     };
     this.playBothSides=function(){
-        this.debug(false, "playBothSides", "myName=" + this.phwangLinkObject().myName() + " hisName=" + this.configObject().hisName());
-        var result = (this.phwangLinkObject().myName() === this.configObject().hisName());
+        this.debug(false, "playBothSides", "myName=" + this.linkObject().myName() + " hisName=" + this.configObject().hisName());
+        var result = (this.linkObject().myName() === this.configObject().hisName());
         if (this.configObject().playBothSides() !== result){
             this.abend("playBothSides", "not match");
         }
@@ -76,7 +76,7 @@ function GoGamePlayObject(root_object_val){
     this.objectName=function(){ return "GoGamePlayObject";};
     this.rootObject=function(){return this.theRootObject;};
     this.phwangObject=function(){return this.rootObject().phwangObject();};
-    this.phwangLinkObject=function(){return this.phwangObject().phwangLinkObject();};
+    this.linkObject=function(){return this.phwangObject().linkObject();};
     this.phwangSessionObject=function(){return this.phwangObject().phwangSessionObject();};
     this.storageObject=function(){return this.rootObject().storageObject();};
     this.configObject=function(){return this.rootObject().configObject();};

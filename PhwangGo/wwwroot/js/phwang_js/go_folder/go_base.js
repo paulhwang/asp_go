@@ -8,12 +8,12 @@ function GoBaseObject(root_object_val) {
         this.theRootObject = root_object_val;
         //this.thePhwangObject = new PhwangClass(this);
         //this.phwangObject().initObject();
-        //this.phwangAjaxObject().startWatchDog(this.phwangLinkObject());
+        //this.phwangAjaxObject().startWatchDog(this.linkObject());
         this.theAjaxObject = new GoGameAjaxClass(this);
         this.theConfigStorageObject = new GoConfigStorageObject(this);
         this.theConfigObject = new GoConfigObject(this);
         //this.init_game();
-        this.debug(true, "init__", "myName=" + this.phwangLinkObject().myName() + " linkId=" + this.phwangLinkObject().linkId() + " sessionId=" + this.phwangSessionObject().sessionId());
+        this.debug(true, "init__", "myName=" + this.linkObject().myName() + " linkId=" + this.linkObject().linkId() + " sessionId=" + this.phwangSessionObject().sessionId());
         this.debug(true, "init__", "boardSize=" + this.configObject().boardSize() + " stoneColor=" + this.configStorageObject().myColor() + " komi=" + this.configObject().komiPoint() + " handicap=" + this.configObject().handicapPoint());
     };
     this.init_game = function() {
@@ -24,16 +24,16 @@ function GoBaseObject(root_object_val) {
         this.theHtmlObject = new GoGameHtmlObject(this);
         this.theInputObject = new GoGameInputObject(this);
         this.theDisplayObject = new GoGameDisplayObject(this);
-        this.thePhwangSessionObject = this.phwangLinkObject().mallocSessionAndInsert(this.phwangSessionObject().sessionId());
-        this.phwangLinkObject().insertSession(this.phwangSessionObject());
+        this.thePhwangSessionObject = this.linkObject().mallocSessionAndInsert(this.phwangSessionObject().sessionId());
+        this.linkObject().insertSession(this.phwangSessionObject());
         this.phwangSessionObject().setThemeObject(this.portObject());
     };
     this.objectName = function() {return "GoBaseObject"; };
     this.rootObject = function() {return this.theRootObject; };
     this.phwangObject = function() {return this.rootObject().phwangObject(); };
     this.phwangAjaxObject = function() {return this.phwangObject().phwangAjaxObject(); };
-    this.phwangLinkObject = function() {return this.phwangObject().phwangLinkObject(); };
-    this.phwangSessionObject = function () { return this.phwangLinkObject().phwangSessionObject(); };
+    this.linkObject = function() {return this.phwangObject().linkObject(); };
+    this.phwangSessionObject = function () { return this.linkObject().phwangSessionObject(); };
     this.ajaxObject = function() {return this.theAjaxObject; };
     this.htmlObject = function() {return this.theHtmlObject; };
     this.configStorageObject = function() {return this.theConfigStorageObject; };
