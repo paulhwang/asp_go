@@ -49,9 +49,6 @@ function LinkClass(phwang_object_val) {
     this.mallocSessionAndInsert = function(session_id_val) {
         this.phwangSessionObject().setSessionId(session_id_val);
         var session = new PhwangSessionClass(this);
-        if (!session) {
-            return null;
-        }
         return session;
     };
     this.insertSession = function(session_val) {
