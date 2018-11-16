@@ -115,7 +115,7 @@ function PreludeRootObject() {
         this.theDispalySwitch.go_game_on = false;
     }
     this.renderGoConfigPage = function () {
-        this.startGoGame();
+        this.startNewGoGame();
         this.setupGoConfigSwitch();
         ReactDOM.render(React.createElement(PhwangPreludeComponentClass, this.dispalySwitch()), document.getElementById("phwang_prelude"));
         this.renderNameList();
@@ -149,7 +149,7 @@ function PreludeRootObject() {
     this.renderGoGamePage = function () {
         this.setupGoGameSwitch();
         ReactDOM.render(React.createElement(PhwangPreludeComponentClass, this.dispalySwitch()), document.getElementById("phwang_prelude"));
-        this.theGoBaseObject = new GoBaseObject(this);
+        this.goBaseObject().init_game();
 
     };
     this.objectName = function () { return "PreludeRootObject"; };
@@ -166,11 +166,13 @@ function PreludeRootObject() {
     this.abend_ = function (str1_val, str2_val) { this.phwangObject().ABEND(str1_val, str2_val); };
 
     ////////////////////////////////////////////////////////////////////////////move to go area
-    this.configStorageObject = function () { return this.theConfigStorageObject; };
-    this.configObject = function () { return this.theConfigObject; };
-    this.startGoGame = function () {
-        this.theConfigStorageObject = new GoConfigStorageObject(this);
-        this.theConfigObject = new GoConfigObject(this);
+    this.goBaseObject=function(){return this.theGoBaseObject;};
+    this.configStorageObject = function () { return this.goBaseObject().configStorageObject(); };
+    this.configObject = function () { return this.goBaseObject().configObject(); };
+    this.startNewGoGame = function() {
+        this.theGoBaseObject = new GoBaseObject(this);
+        //this.theConfigStorageObject = new GoConfigStorageObject(this);
+        //this.theConfigObject = new GoConfigObject(this);
     };
     ////////////////////////////////////////////////////////////////////////////////////////////////
     this.init__();

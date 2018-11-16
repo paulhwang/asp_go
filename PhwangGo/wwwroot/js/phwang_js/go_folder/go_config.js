@@ -7,7 +7,7 @@ function GoConfigObject(root_val) {
     "use strict";
     this.init__ = function(root_val) {
         this.theRootObject = root_val;
-        this.cacheConfig();
+        //this.cacheConfig();
         this.debug(true, "init__", "myColor=" + this.myColor() + " boardSize=" + this.boardSize() + " hisName=" + this.hisName() + " handicapPoint=" + this.handicapPoint() + " komiPoint=" + this.komiPoint());
     };
     this.cacheConfig = function() {

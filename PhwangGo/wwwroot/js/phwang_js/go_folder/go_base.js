@@ -12,11 +12,12 @@ function GoBaseObject(root_object_val) {
         this.theAjaxObject = new GoGameAjaxClass(this);
         this.theConfigStorageObject = new GoConfigStorageObject(this);
         this.theConfigObject = new GoConfigObject(this);
-        this.init_game();
+        //this.init_game();
         this.debug(true, "init__", "myName=" + this.phwangLinkObject().myName() + " linkId=" + this.phwangLinkObject().linkId() + " sessionId=" + this.phwangSessionObject().sessionId());
         this.debug(true, "init__", "boardSize=" + this.configObject().boardSize() + " stoneColor=" + this.configStorageObject().myColor() + " komi=" + this.configObject().komiPoint() + " handicap=" + this.configObject().handicapPoint());
     };
     this.init_game = function () {
+        this.configObject().cacheConfig();
         this.theBoardObject = new GoGameBoardObject(this);
         this.thePortObject = new GoGamePortObject(this);
         this.theGameObject = new GoGamePlayObject(this);
