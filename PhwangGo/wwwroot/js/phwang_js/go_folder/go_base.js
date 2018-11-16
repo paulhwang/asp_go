@@ -26,8 +26,8 @@ function GoBaseObject(root_object_val) {
         this.theDisplayObject = new GoGameDisplayObject(this);
     };
     this.bindSession = function (session_val) {
-        this.thePhwangSessionObject = this.linkObject().mallocSessionAndInsert(this.phwangSessionObject().sessionId());
-        this.linkObject().insertSession(this.phwangSessionObject());
+        //this.thePhwangSessionObject = this.linkObject().mallocSessionAndInsert(this.phwangSessionObject().sessionId());
+        //this.linkObject().insertSession(this.phwangSessionObject());
         this.phwangSessionObject().setThemeObject(this.portObject());
     };
     this.objectName = function() {return "GoBaseObject"; };
