@@ -2,12 +2,11 @@
   Copyrights reserved
   Written by Paul Hwang
 */
-function PreludeRootObject(){
-    "use strict";
+function PreludeRootObject(){"use strict";
     this.init__ = function(){
         this.thePhwangObject = new PhwangClass(this);
         this.phwangObject().initObject();
-        this.theAjaxObject = new LoginAjaxClass(this);
+        this.theAjaxObject = new PreludeAjaxClass(this);
         this.renderPreludePage();
         this.debug(true, "init__", "myName=" + this.phwangLinkObject().myName() + " linkId=" + this.phwangLinkObject().linkId());
     };
@@ -176,8 +175,7 @@ function PreludeRootObject(){
     ////////////////////////////////////////////////////////////////////////////////////////////////
     this.init__();
 }
-function LoginHtmlObject(root_object_val){
-    "use strict";
+function LoginHtmlObject(root_object_val){"use strict";
     this.componentName = function(){return "account_sign_in_html";};
     this.gotoNextPage = function(){ window.open(this.phwangObject().serverHttpHeader() + "Go/GoSetup", "_self") };
     this.init__ = function(root_object_val){ this.theRootObject = root_object_val; this.setupHtmlInput();};
@@ -210,21 +208,16 @@ function LoginHtmlObject(root_object_val){
     this.abend = function(str1_val, str2_val){return this.rootObject().abend_(this.objectName() + "." + str1_val, str2_val);};
     this.init__(root_object_val);
 }
-function LoginAjaxClass(root_object_val){
-    "use strict";
+function PreludeAjaxClass(root_object_val){"use strict";
     this.init__ = function(root_object_val){ this.theRootObject = root_object_val;};
-    this.receiveSetupLinkResponse = function(result_val){
-        //this.htmlObject().gotoNextPage();
-        //window.open(this.phwangObject().serverHttpHeader() + "Go/GoSetup", "_self");
-        this.rootObject().renderThemePage();
-    };
-    this.receiveGetNameListResponse = function(result_val){ };
-    this.receiveSetupSessionResponse = function(result_val){ };
-    this.receiveSetupSession2Response = function(result_val){ };
-    this.receiveSetupSession3Response = function(result_val){ };
-    this.receivePutSessionDataResponse = function(result_val){ };
-    this.receiveGetSessionDataResponse = function(result_val, data_val){};
-    this.objectName = function(){return "LoginAjaxClass";};
+    this.receiveSetupLinkResponse = function(result_val){this.rootObject().renderThemePage();};
+    this.receiveGetNameListResponse = function(result_val){};
+    this.receiveSetupSessionResponse = function(result_val){};
+    this.receiveSetupSession2Response = function(result_val){};
+    this.receiveSetupSession3Response = function(result_val){};
+    this.receivePutSessionDataResponse = function(result_val){this.abend("receivePutSessionDataResponse", "");};
+    this.receiveGetSessionDataResponse = function(result_val, data_val){ this.abend("receiveGetSessionDataResponse", "");};
+    this.objectName = function(){return "PreludeAjaxClass";};
     this.rootObject = function(){return this.theRootObject;};
     this.phwangObject = function(){return this.rootObject().phwangObject();};
     this.htmlObject = function(){return this.rootObject().htmlObject();};
@@ -233,6 +226,6 @@ function LoginAjaxClass(root_object_val){
     this.abend = function(str1_val, str2_val){return this.rootObject().abend_(this.objectName() + "." + str1_val, str2_val);};
     this.init__(root_object_val);
 }
-var login_main = function(){ "use strict"; new PreludeRootObject();};
+var login_main = function(){"use strict"; new PreludeRootObject();};
 //$(document).ready(login_main);
 window.onload = login_main;
