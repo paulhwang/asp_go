@@ -58,7 +58,8 @@ function PhwangLinkClass(phwang_object_val) {
         this.sessionIndexArray().push(session_val.sessionId());
         this.sessionTableArray().push(session_val);
     };
-    this.getSession = function(session_id_val) {
+    this.getSession = function (session_id_val) {
+        return this.phwangSessionObject();
         var index = this.sessionIndexArray().indexOf(session_id_val);
         if (index === -1) {
             return null;

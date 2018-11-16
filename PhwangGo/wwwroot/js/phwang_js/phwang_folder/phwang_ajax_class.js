@@ -18,32 +18,26 @@ function PhwangAjaxClass(phwang_object_val) {
     };
     this.parseAndSwitchAjaxResponse = function(json_response_val) {
         var response = JSON.parse(json_response_val);
-
         if (response.command !== this.phwangAjaxProtocolObject().GET_LINK_DATA_COMMAND()) {
             this.debug(true, "parseAndSwitchAjaxResponse", "command=" + response.command + " data=" + response.data);
         }
-
         if (response.command !== this.pendingAjaxRequestCommand()) {
             this.abend("parseAndSwitchAjaxResponse", "commands not match: " + this.pendingAjaxRequestCommand() + ", " + response.command);
             return;
         }
-
         var data = JSON.parse(response.data);
         if (!data) {
             return;
         }
-
         if ((response.command !== this.phwangAjaxProtocolObject().SETUP_LINK_COMMAND()) && (!this.phwangLinkObject().verifyLinkIdIndex(data.link_id))) {
             this.abend("parseAndSwitchAjaxResponse", "link_id=" + data.link_id);
             return;
         }
-
         var func = this.switchTable()[response.command];
         if (!func) {
             this.abend("parseAndSwitchAjaxResponse", "bad command=" + response.command);
             return;
         }
-
         this.clearPendingAjaxRequestCommand();
         func.bind(this)(response.data);
     };
@@ -104,8 +98,6 @@ function PhwangAjaxClass(phwang_object_val) {
                         data = data.slice(this.phwangAjaxProtocolObject().WEB_FABRIC_PROTOCOL_NAME_LIST_TAG_SIZE());
                         continue;
                     }
-
-
                     if (data.charAt(0) === this.phwangAjaxProtocolObject().WEB_FABRIC_PROTOCOL_RESPOND_IS_GET_LINK_DATA_PENDING_SESSION()) {
                         this.debug(true, "getLinkDataResponse", "pending_session_data=" + data);
                         var link_id = data.slice(1, 1 + this.phwangAjaxProtocolObject().WEB_FABRIC_PROTOCOL_LINK_ID_SIZE());
@@ -122,7 +114,6 @@ function PhwangAjaxClass(phwang_object_val) {
                         this.setupSession2(this.phwangLinkObject(), theme_data, session_id);
                         continue;
                     }
-
                     if (data.charAt(0) === this.phwangAjaxProtocolObject().WEB_FABRIC_PROTOCOL_RESPOND_IS_GET_LINK_DATA_PENDING_SESSION3()) {
                         this.debug(true, "getLinkDataResponse", "pending_session_data3=" + data);
                         var session_id = data.slice(1, this.phwangAjaxProtocolObject().WEB_FABRIC_PROTOCOL_SESSION_ID_SIZE() + 1);
@@ -131,7 +122,6 @@ function PhwangAjaxClass(phwang_object_val) {
                         this.setupSession3(this.phwangLinkObject(), session_id);
                         continue;
                     }
-
                     if (data.charAt(0) === this.phwangAjaxProtocolObject().WEB_FABRIC_PROTOCOL_RESPOND_IS_GET_LINK_DATA_PENDING_DATA()) {
                         var link_session_id = data.slice(1, this.phwangAjaxProtocolObject().WEB_FABRIC_PROTOCOL_LINK_SESSION_ID_SIZE() + 1);
                         this.debug(true, "getLinkDataResponse", "link_session_id=" + link_session_id);
@@ -139,11 +129,9 @@ function PhwangAjaxClass(phwang_object_val) {
                         data = data.slice(this.phwangAjaxProtocolObject().WEB_FABRIC_PROTOCOL_LINK_SESSION_ID_SIZE() + 1);
                         continue;
                     }
-
                     this.abend("getLinkDataResponse", "not supported command: " + data);
                     data = data.slice(data.length);
                 }
-
                 if (data.length !== 0) {
                     this.abend("getLinkDataResponse", "length=" + data.length);
                 }
@@ -169,7 +157,6 @@ function PhwangAjaxClass(phwang_object_val) {
             if (data.c_name_list) {
                 var name_list_tag  = this.phwangObject().decodeNumber(data.c_name_list, 3);
                 this.phwangLinkObject().setNameListTag(name_list_tag);
-
                 var name_list = data.c_name_list.slice(3);
                 this.debug(true, "getNameListResponse", "name_list_tag=" + name_list_tag);
                 this.debug(true, "getNameListResponse", "name_list=" + name_list);
@@ -197,7 +184,7 @@ function PhwangAjaxClass(phwang_object_val) {
         this.debug(true, "setupSessionResponse", "input_val=" + input_val);
         var data = JSON.parse(input_val);
         if (data) {
-            this.phwangSessionObject().setSessionId(data.session_id);
+            this.phwangLinkObject().phwangSessionObject().setSessionId(data.session_id);
             this.phwangPortObject().receiveSetupSessionResponse(data.result);
         }
     };
@@ -215,7 +202,6 @@ function PhwangAjaxClass(phwang_object_val) {
         this.debug(true, "setupSession2", "output=" + output);
         this.transmitAjaxRequest(output);
     };
-
     this.setupSession2Response = function(json_data_val) {
         this.debug(true, "setupSession2Response", "data=" + json_data_val);
         var data = JSON.parse(json_data_val);
@@ -239,13 +225,12 @@ function PhwangAjaxClass(phwang_object_val) {
         this.debug(true, "setupSession3", "output=" + output);
         this.transmitAjaxRequest(output);
     };
-
     this.setupSession3Response = function(json_data_val) {
         this.debug(true, "setupSession3Response", "data=" + json_data_val);
         var data = JSON.parse(json_data_val);
         if (data) {
-            this.phwangSessionObject().setSessionId(data.session_id);
-            this.debug(true, "setupSession3Response", "sessionId=" + this.phwangSessionObject().sessionId());
+            this.phwangLinkObject().phwangSessionObject().setSessionId(data.session_id);
+            this.debug(true, "setupSession3Response", "sessionId=" + this.phwangLinkObject().phwangSessionObject().sessionId());
             this.phwangPortObject().receiveSetupSession3Response();
         }
     };
@@ -287,16 +272,12 @@ function PhwangAjaxClass(phwang_object_val) {
         if (data) {
             var session = this.phwangLinkObject().getSession(data.session_id);
             this.debug(true, "getSessionDataResponse", "session=" + session);
-            if (!session) {
-                session = this.phwangSessionObject();
-            }
-            this.debug(true, "getSessionDataResponse", "session=" + session);
             if (session) {
                 session.receiveData(data.c_data);
             }
-            else
+            else {
                 this.debug(true, "getSessionDataResponse", "null session");
-
+            }
         }
     };
     this.transmitAjaxRequest = function(output_val) {
@@ -354,7 +335,6 @@ function PhwangAjaxClass(phwang_object_val) {
     this.phwangObject = function() {return this.thePhwangObject;};
     this.rootObject = function() {return this.phwangObject().rootObject();};
     this.phwangLinkObject = function() {return this.phwangObject().phwangLinkObject();};
-    this.phwangSessionObject = function() {return this.rootObject().phwangSessionObject();};
     this.phwangPortObject = function() {return this.phwangObject().phwangPortObject();};
     this.debug = function(debug_val, str1_val, str2_val) {if (debug_val) {this.logit(str1_val, str2_val);}};
     this.logit = function(str1_val, str2_val) {return this.phwangObject().LOG_IT(this.objectName() + "." + str1_val, str2_val);};
