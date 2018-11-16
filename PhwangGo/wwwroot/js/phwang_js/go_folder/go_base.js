@@ -13,7 +13,7 @@ function GoBaseObject(root_object_val) {
         this.theConfigStorageObject = new GoConfigStorageObject(this);
         this.theConfigObject = new GoConfigObject(this);
         //this.init_game();
-        this.debug(true, "init__", "myName=" + this.linkObject().myName() + " linkId=" + this.linkObject().linkId() + " sessionId=" + this.phwangSessionObject().sessionId());
+        this.debug(true, "init__", "myName=" + this.linkObject().myName() + " linkId=" + this.linkObject().linkId());
         this.debug(true, "init__", "boardSize=" + this.configObject().boardSize() + " stoneColor=" + this.configStorageObject().myColor() + " komi=" + this.configObject().komiPoint() + " handicap=" + this.configObject().handicapPoint());
     };
     this.init_game = function() {
@@ -24,6 +24,9 @@ function GoBaseObject(root_object_val) {
         this.theHtmlObject = new GoGameHtmlObject(this);
         this.theInputObject = new GoGameInputObject(this);
         this.theDisplayObject = new GoGameDisplayObject(this);
+        this.bindSession();
+    };
+    this.bindSession = function () {
         this.thePhwangSessionObject = this.linkObject().mallocSessionAndInsert(this.phwangSessionObject().sessionId());
         this.linkObject().insertSession(this.phwangSessionObject());
         this.phwangSessionObject().setThemeObject(this.portObject());
