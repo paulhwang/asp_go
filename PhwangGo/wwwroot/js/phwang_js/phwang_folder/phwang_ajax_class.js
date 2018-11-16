@@ -209,7 +209,7 @@ function PhwangAjaxClass(phwang_object_val) {
             this.debug(true, "setupSession2Response", "sessionId=" + this.phwangSessionObject().sessionId());
             this.phwangPortObject().receiveSetupSession2Response();
             this.rootObject().configObject().cacheConfig();
-            this.rootObject().renderGoGamePage();
+            this.rootObject().preludeRenderObject().renderGoGamePage();
         }
     };
     this.setupSession3 = function(link_val, session_id_val) {
@@ -231,6 +231,7 @@ function PhwangAjaxClass(phwang_object_val) {
             this.linkObject().phwangSessionObject().setSessionId(data.session_id);
             this.debug(true, "setupSession3Response", "sessionId=" + this.linkObject().phwangSessionObject().sessionId());
             this.phwangPortObject().receiveSetupSession3Response();
+            this.rootObject().preludeRenderObject().renderGoGamePage();
         }
     };
     this.putSessionData = function(session_val, data_val) {

@@ -126,7 +126,7 @@ function PreludeRenderObject(root_object_val) {
             var encoded_config = this0.configStorageObject().encodeConfig(this0.linkObject().myName());
             this0.debug(true, "setupHtmlInput", "boardSize=" + this0.configStorageObject().boardSize() + " myColor=" + this0.configStorageObject().myColor() + " komi=" + this0.configStorageObject().komiPoint() + " handicap=" + this0.configStorageObject().handicapPoint());
             this0.phwangAjaxObject().setupSession(this0.linkObject(), this0.configStorageObject().hisName(), encoded_config);
-            this0.renderGoGamePage();
+            //this0.renderGoGamePage();
         });
         //window.open(this.phwangObject().serverHttpHeader() + "Go/GoSetup", "_self");
     };
@@ -147,6 +147,7 @@ function PreludeRenderObject(root_object_val) {
         this.setupGoGameSwitch();
         ReactDOM.render(React.createElement(PhwangPreludeComponentClass, this.dispalySwitch()), document.getElementById("phwang_prelude"));
         this.goBaseObject().init_game();
+        this.goBaseObject().bindSession();
     };
     this.objectName = function () { return "PreludeRenderObject"; };
     this.rootObject = function () { return this.theRootObject; };
