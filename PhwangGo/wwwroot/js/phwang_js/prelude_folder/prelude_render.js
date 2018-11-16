@@ -147,7 +147,6 @@ function PreludeRenderObject(root_object_val) {
         this.setupGoGameSwitch();
         ReactDOM.render(React.createElement(PhwangPreludeComponentClass, this.dispalySwitch()), document.getElementById("phwang_prelude"));
         this.goBaseObject().init_game();
-        this.goBaseObject().bindSession();
     };
     this.objectName = function () { return "PreludeRenderObject"; };
     this.rootObject = function () { return this.theRootObject; };

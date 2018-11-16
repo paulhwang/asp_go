@@ -24,9 +24,8 @@ function GoBaseObject(root_object_val) {
         this.theHtmlObject = new GoGameHtmlObject(this);
         this.theInputObject = new GoGameInputObject(this);
         this.theDisplayObject = new GoGameDisplayObject(this);
-        //this.bindSession();
     };
-    this.bindSession = function () {
+    this.bindSession = function (session_val) {
         this.thePhwangSessionObject = this.linkObject().mallocSessionAndInsert(this.phwangSessionObject().sessionId());
         this.linkObject().insertSession(this.phwangSessionObject());
         this.phwangSessionObject().setThemeObject(this.portObject());
