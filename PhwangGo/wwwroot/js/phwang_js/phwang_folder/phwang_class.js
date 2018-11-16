@@ -39,13 +39,13 @@ function PhwangClass(root_val) {
 function PhwangPortClass(phwang_object_val) {
     "use strict";
     this.init__ = function (phwang_object_val) {this.thePhwangObject = phwang_object_val;};
-    this.receiveSetupLinkResponse = function(result_val) {this.rootObject().ajaxObject().receiveSetupLinkResponse(result_val);};
-    this.receiveGetNameListResponse = function(result_val) {this.rootObject().ajaxObject().receiveGetNameListResponse(result_val);};
-    this.receiveSetupSessionResponse = function(result_val) {this.rootObject().ajaxObject().receiveSetupSessionResponse(result_val);};
-    this.receiveSetupSession2Response = function(result_val) {this.rootObject().ajaxObject().receiveSetupSession2Response(result_val);};
-    this.receiveSetupSession3Response = function(result_val) {this.rootObject().ajaxObject().receiveSetupSession3Response(result_val);};
-    this.receivePutSessionDataResponse = function(result_val) {this.rootObject().ajaxObject().receivePutSessionDataResponse(result_val, data_val);};
-    this.receiveGetSessionDataResponse = function(result_val, data_val) {this.rootObject().ajaxObject().receiveSetupSessionResponse(result_val, data_val);};
+    this.receiveSetupLinkResponse = function(result_val) {this.rootObject().ajaxResponseObject().receiveSetupLinkResponse(result_val);};
+    this.receiveGetNameListResponse = function (result_val) { this.rootObject().ajaxResponseObject().receiveGetNameListResponse(result_val);};
+    this.receiveSetupSessionResponse = function (result_val) { this.rootObject().ajaxResponseObject().receiveSetupSessionResponse(result_val);};
+    this.receiveSetupSession2Response = function (result_val) { this.rootObject().ajaxResponseObject().receiveSetupSession2Response(result_val);};
+    this.receiveSetupSession3Response = function (result_val) { this.rootObject().ajaxResponseObject().receiveSetupSession3Response(result_val);};
+    this.receivePutSessionDataResponse = function (result_val) { this.rootObject().ajaxResponseObject().receivePutSessionDataResponse(result_val, data_val);};
+    this.receiveGetSessionDataResponse = function (result_val, data_val) { this.rootObject().ajaxResponseObject().receiveSetupSessionResponse(result_val, data_val);};
     this.objectName = function() {return "PhwangPortClass";};
     this.phwangObject = function() {return this.thePhwangObject;};
     this.rootObject = function() {return this.phwangObject().rootObject();};

@@ -8,7 +8,7 @@ function PreludeRootObject() {
         this.thePhwangObject = new PhwangClass(this);
         this.thePreludeRenderObject = new PreludeRenderObject(this);
         this.phwangObject().initObject();
-        this.theAjaxObject = new PreludeAjaxClass(this);
+        this.theAjaxResponseObject = new PreludeAjaxResponseClass(this);
         this.preludeRenderObject().renderPreludePage();
     };
     this.objectName = function(){return "PreludeRootObject";};
@@ -18,7 +18,7 @@ function PreludeRootObject() {
     this.phwangLinkObject = function(){return this.phwangObject().phwangLinkObject();};
     this.phwangSessionObject = function(){return this.phwangObject().phwangSessionObject();};
     this.htmlObject = function(){return this.theHtmlObject;};
-    this.ajaxObject = function(){return this.theAjaxObject;};
+    this.ajaxResponseObject = function(){return this.theAjaxResponseObject;};
     this.debug = function(debug_val, str1_val, str2_val){if (debug_val){ this.logit(str1_val, str2_val);}};
     this.logit = function(str1_val, str2_val){return this.logit_(this.objectName() + "." + str1_val, str2_val);};
     this.abend = function(str1_val, str2_val){return this.abend_(this.objectName() + "." + str1_val, str2_val);};
@@ -35,7 +35,7 @@ function PreludeRootObject() {
     ////////////////////////////////////////////////////////////////////////////////////////////////
     this.init__();
 }
-function PreludeAjaxClass(root_object_val) {
+function PreludeAjaxResponseClass(root_object_val) {
     "use strict";
     this.init__ = function(root_object_val){ this.theRootObject = root_object_val;};
     this.receiveSetupLinkResponse = function (result_val) { this.preludeRenderObject().renderThemePage();};
