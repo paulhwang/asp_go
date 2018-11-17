@@ -112,12 +112,12 @@ function PreludeRenderObject(root_object_val) {
         this.theDispalySwitch.go_game_on = false;
     }
     this.renderGoConfigPage = function () {
-        var theme = this.themeMgrObject().mallocThemeAndInsert();
         this.setupGoConfigSwitch();
         ReactDOM.render(React.createElement(PhwangPreludeComponentClass, this.dispalySwitch()), document.getElementById("phwang_prelude"));
         this.renderNameList();
         var this0 = this;
         $(".config_section .config_button").on("click", function () {
+            var theme = this0.themeMgrObject().mallocThemeAndInsert();
             theme.configStorageObject().setHisName($(".peer_name_paragraph select").val());
             theme.configStorageObject().setMyColor($(".config_section .go_config_section .stone_color").val());
             theme.configStorageObject().setBoardSize($(".config_section .go_config_section .board_size").val());

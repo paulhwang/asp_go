@@ -109,10 +109,12 @@ function PhwangAjaxClass(phwang_object_val) {
                         this.debug(true, "getLinkDataResponse", "theme_data=" + theme_data);
                         var config_len = this.phwangObject().decodeNumber(theme_data.slice(1), 3);
                         var theme_data = theme_data.slice(0, config_len);
-                        var theme = this.themeMgrObject().getTheme();
+                        this.debug(true, "getLinkDataResponse", "theme_data=" + theme_data);
+                        var theme = this.themeMgrObject().mallocThemeAndInsert();
+                        //var theme = this.themeMgrObject().getTheme(null);
                         theme.configStorageObject().decodeConfig(theme_data);
                         data = data.slice(config_len);
-                        this.setupSession2(this.linkObject(), theme_data, session_id);
+                        this.setupSession2(this.linkObject(), theme_data, session_id, theme.themeIdStr());
                         continue;
                     }
                     if (data.charAt(0) === this.phwangAjaxProtocolObject().WEB_FABRIC_PROTOCOL_RESPOND_IS_GET_LINK_DATA_PENDING_SESSION3()) {
@@ -191,7 +193,7 @@ function PhwangAjaxClass(phwang_object_val) {
             this.phwangPortObject().receiveSetupSessionResponse(data.result);
         }
     };
-    this.setupSession2 = function(link_val, theme_data_val, session_id_val) {
+    this.setupSession2 = function(link_val, theme_data_val, session_id_val, theme_id_str_val) {
         var output = JSON.stringify({
             command: this.phwangAjaxProtocolObject().SETUP_SESSION2_COMMAND(),
             packet_id: this.ajaxPacketId(),
@@ -200,6 +202,7 @@ function PhwangAjaxClass(phwang_object_val) {
                 accept: "yes",
                 session_id: session_id_val,
                 theme_data: theme_data_val,
+                theme_id_str: theme_id_str_val
             }),
         });
         this.debug(true, "setupSession2", "output=" + output);
@@ -208,17 +211,21 @@ function PhwangAjaxClass(phwang_object_val) {
     this.setupSession2Response = function(json_data_val) {
         this.debug(true, "setupSession2Response", "data=" + json_data_val);
         var data = JSON.parse(json_data_val);
-        if (data) {
-            var session = this.linkObject().mallocSessionAndInsert(data.session_id.slice(8));
-            //this.phwangSessionObject().setSessionId(data.session_id.slice(8));
-            //var session = this.linkObject().phwangSessionObject();
-            this.debug(true, "setupSession2Response", "sessionId=" + session.sessionId());
-            this.phwangPortObject().receiveSetupSession2Response();
-            this.rootObject().configObject().cacheConfig();
-            this.rootObject().preludeRenderObject().renderGoGamePage();
-            var theme = this.themeMrgObject().getTheme(null);
-            theme.bindSession(session);
+        if (!data) {
+            this.abend("setupSession2Response", "null data");
+            return;
         }
+        this.debug(true, "setupSession2Response", "link_id=" + data.link_id + " session_id=" + data.session_id + " theme_id_str=" + data.theme_id_str);
+        var session = this.linkObject().mallocSessionAndInsert(data.session_id);
+        //this.phwangSessionObject().setSessionId(data.session_id.slice(8));
+        //var session = this.linkObject().phwangSessionObject();
+        this.debug(true, "setupSession2Response", "sessionId=" + session.sessionId());
+        this.phwangPortObject().receiveSetupSession2Response();
+        var theme = this.themeMgrObject().getTheme(data.theme_id_str);
+        theme.configObject().cacheConfig();
+        //this.rootObject().configObject().cacheConfig();
+        this.rootObject().preludeRenderObject().renderGoGamePage(data.theme_id_str);
+        theme.bindSession(session);
     };
     this.setupSession3 = function(link_val, session_id_val) {
         var output = JSON.stringify({

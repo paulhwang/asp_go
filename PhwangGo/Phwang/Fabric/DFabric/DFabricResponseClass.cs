@@ -199,14 +199,17 @@ namespace Phwang.Fabric
 
             [DataMember]
             public string session_id { get; set; }
+
+            [DataMember]
+            public string theme_id_str { get; set; }
         }
 
-        public string GenerateSetupSession2Response(string link_id_str_val, string session_id_str_val)
+        public string GenerateSetupSession2Response(string link_id_str_val, string session_id_str_val, string theme_id_str_val)
         {
-            SetupSession3ResponseFormatClass raw_data = new SetupSession3ResponseFormatClass { link_id = link_id_str_val, session_id = session_id_str_val };
+            SetupSession2ResponseFormatClass raw_data = new SetupSession2ResponseFormatClass { link_id = link_id_str_val, session_id = session_id_str_val, theme_id_str = theme_id_str_val };
 
             this.debugIt(true, "GenerateSetupSession2Response", "");
-            DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(SetupSession3ResponseFormatClass));
+            DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(SetupSession2ResponseFormatClass));
             MemoryStream msObj = new MemoryStream();
 
             js.WriteObject(msObj, raw_data);

@@ -330,6 +330,10 @@ namespace Phwang.Fabric
 
             [DataMember]
             public int session_id { get; set; }
+
+            [DataMember]
+            public string theme_id_str { get; set; }
+
             [DataMember]
             public string accept { get; set; }
 
@@ -347,6 +351,7 @@ namespace Phwang.Fabric
                 format_data = (SetupSession2RequestFormat)deseralizer.ReadObject(ms);// //反序列化ReadObject
                 this.debugIt(true, "processSetupSession3Request", "link_id = " + format_data.link_id);
                 this.debugIt(true, "processSetupSession3Request", "session_id = " + format_data.session_id);
+                this.debugIt(true, "processSetupSession3Request", "theme_id = " + format_data.theme_id_str);
                 this.debugIt(true, "processSetupSession3Request", "accept = " + format_data.accept);
                 this.debugIt(true, "processSetupSession3Request", "theme_data = " + format_data.theme_data);
             }
@@ -361,6 +366,7 @@ namespace Phwang.Fabric
             {
                 return errorProcessSetupSession2(format_data.link_id, "null session");
             }
+            session.SetBrowserThemeIdStr(format_data.theme_id_str);
             GroupClass group = session.GroupObject();
             if (group == null)
             {
@@ -368,7 +374,7 @@ namespace Phwang.Fabric
             }
             this.mallocRoom(group, format_data.theme_data);
 
-            string response_data = this.dFabricResponseObject.GenerateSetupSession2Response(link.LinkIdStr(), session.SessionIdStr());
+            string response_data = this.dFabricResponseObject.GenerateSetupSession2Response(link.LinkIdStr(), session.SessionIdStr(), session.BrowserThemeIdStr());
             return response_data;
         }
 

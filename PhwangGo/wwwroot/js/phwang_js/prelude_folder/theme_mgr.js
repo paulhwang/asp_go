@@ -25,6 +25,7 @@ function ThemeMgrClass(root_object_val) {
         this.themeTableArray().push(theme_val);
     };
     this.getTheme = function (theme_id_str_val) {
+        this.debug(true, "getTheme", "theThemeObject=" + this.theThemeObject);
         if (theme_id_str_val === null) {
             this.abend("getTheme", "null");
             return this.theThemeObject;
