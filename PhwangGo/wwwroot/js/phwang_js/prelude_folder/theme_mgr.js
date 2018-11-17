@@ -27,8 +27,22 @@ function ThemeMgrClass(root_object_val) {
     this.getTheme = function (theme_id_str_val) {
         if (theme_id_str_val === null) {
             this.abend("getTheme", "null");
+            return this.theThemeObject;
         }
-        return this.theThemeObject;
+        if (theme_id_str_val === "undifined") {
+            this.abend("getTheme", "null");
+            return this.theThemeObject;
+        }
+
+        this.debug(true, "getTheme", "theme_id_str_val=" + theme_id_str_val);
+        var index = this.themeIndexArray().indexOf(theme_id_str_val);
+        if (index === -1) {
+            this.abend("getTheme", "not found");
+            return null;
+        } else {
+            var theme = this.themeTableArray()[index];
+            return theme;
+        }
     };
     this.assignThemeId = function () {
         this.theGlobalThemeId++;

@@ -143,10 +143,10 @@ function PreludeRenderObject(root_object_val) {
         this.theDispalySwitch.go_config_on = false;
         this.theDispalySwitch.go_game_on = true;
     }
-    this.renderGoGamePage = function () {
+    this.renderGoGamePage = function (theme_id_str_val) {
         this.setupGoGameSwitch();
         ReactDOM.render(React.createElement(PhwangPreludeComponentClass, this.dispalySwitch()), document.getElementById("phwang_prelude"));
-        var theme = this.themeMgrObject().getTheme();
+        var theme = this.themeMgrObject().getTheme(theme_id_str_val);
         theme.init_game();
     };
     this.objectName = function () { return "PreludeRenderObject"; };

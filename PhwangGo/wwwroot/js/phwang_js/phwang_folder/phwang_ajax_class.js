@@ -239,7 +239,7 @@ function PhwangAjaxClass(phwang_object_val) {
             var session = this.linkObject().mallocSessionAndInsert(data.session_id);
             this.debug(true, "setupSession3Response", "sessionId=" + session.sessionId());
             this.phwangPortObject().receiveSetupSession3Response();
-            this.rootObject().preludeRenderObject().renderGoGamePage();
+            this.rootObject().preludeRenderObject().renderGoGamePage(data.theme_id);
             var theme = this.themeMgrObject().getTheme(data.theme_id);
             theme.bindSession(session);
         }
