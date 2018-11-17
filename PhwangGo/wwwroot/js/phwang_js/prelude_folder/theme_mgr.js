@@ -17,7 +17,6 @@ function ThemeMgrClass(root_object_val) {
     this.mallocThemeAndInsert = function () {
         var theme = new GoBaseObject(this.rootObject(), this.phwangObject().encodeNumber(this.assignThemeId(), this.THEME_ID_STR_SIZE()));
         this.insertTheme(theme);
-        this.theThemeObject = theme;
         return theme;
     };
     this.insertTheme = function (theme_val) {
@@ -25,16 +24,6 @@ function ThemeMgrClass(root_object_val) {
         this.themeTableArray().push(theme_val);
     };
     this.getTheme = function (theme_id_str_val) {
-        this.debug(true, "getTheme", "theThemeObject=" + this.theThemeObject);
-        if (theme_id_str_val === null) {
-            this.abend("getTheme", "null");
-            return this.theThemeObject;
-        }
-        if (theme_id_str_val === "undifined") {
-            this.abend("getTheme", "null");
-            return this.theThemeObject;
-        }
-
         this.debug(true, "getTheme", "theme_id_str_val=" + theme_id_str_val);
         var index = this.themeIndexArray().indexOf(theme_id_str_val);
         if (index === -1) {

@@ -2,7 +2,6 @@
  * Copyrights phwang
  * Written by Paul Hwang
  */
-
 function GoConfigObject(root_val) {
     "use strict";
     this.init__ = function(root_val) {
@@ -37,14 +36,12 @@ function GoConfigObject(root_val) {
     this.abend = function(str1_val, str2_val) {this.rootObject().abend_(this.objectName() + "." + str1_val, str2_val);};
     this.init__(root_val);
 }
-
 function GoConfigStorageObject(root_val) {
     "use strict";
     this.init__ = function (root_val) {
         this.theRootObject = root_val;
         this.debug(true, "init__", "myColor=" + this.myColor() + " boardSize=" + this.boardSize() + " hisName=" + this.hisName() + " handicapPoint=" + this.handicapPoint() + " komiPoint=" + this.komiPoint());
     };
-
     this.decodeConfig = function(encoded_val) {
         this.debug(true, "decodeConfig", encoded_val);
         if ((encoded_val === undefined) || (encoded_val === "")) {
@@ -53,7 +50,6 @@ function GoConfigStorageObject(root_val) {
             this.setKomiPoint(0);
             return;
         }
-
         var data;
         if (encoded_val.charAt(0) != 'G') {
             this.abend("decodeConfig", "not G");
@@ -71,8 +67,8 @@ function GoConfigStorageObject(root_val) {
         data = encoded_val.charAt(index++) - '0';
         this.setMyColor_(data);
         this.setHisName(encoded_val.slice(index));
+        this.debug(true, "decodeConfig", "myColor=" + this.myColor() + " boardSize=" + this.boardSize() + " hisName=" + this.hisName() + " handicapPoint=" + this.handicapPoint() + " komiPoint=" + this.komiPoint());
     };
-
     this.encodeConfig = function(my_name_val) {
         var len = 11 + my_name_val.length;
         var buf = "G";
@@ -84,7 +80,6 @@ function GoConfigStorageObject(root_val) {
         buf = buf + my_name_val;
         return buf;
     };
-
     this.storage = function() {return sessionStorage;};
     this.myColor = function() {return Number(this.storage().go_my_color);};
     this.setMyColor = function(val) {if (val === "black") {this.storage().go_my_color = GO.BLACK_STONE();} else if (val === "white") {this.storage().go_my_color = GO.WHITE_STONE();} else {this.abend("setMyColor", val);}};
@@ -107,7 +102,6 @@ function GoConfigStorageObject(root_val) {
     this.abend = function (str1_val, str2_val) {this.rootObject().abend_(this.objectName() + "." + str1_val, str2_val);};
     this.init__(root_val);
 }
-
 var GO = new GoDefineObject;
 function GoDefineObject() {
     this.EMPTY_STONE = function() {return 0;};

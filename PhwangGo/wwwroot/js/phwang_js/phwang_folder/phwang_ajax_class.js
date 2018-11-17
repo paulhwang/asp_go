@@ -2,7 +2,6 @@
   Copyrights reserved
   Written by Paul Hwang
 */
-
 function PhwangAjaxClass(phwang_object_val) {
     "use strict";
     this.init__ = function(phwang_object_val) {
@@ -100,18 +99,17 @@ function PhwangAjaxClass(phwang_object_val) {
                     }
                     if (data.charAt(0) === this.phwangAjaxProtocolObject().WEB_FABRIC_PROTOCOL_RESPOND_IS_GET_LINK_DATA_PENDING_SESSION()) {
                         this.debug(true, "getLinkDataResponse", "pending_session_data=" + data);
-                        var link_id = data.slice(1, 1 + this.phwangAjaxProtocolObject().WEB_FABRIC_PROTOCOL_LINK_ID_SIZE());
-                        this.debug(true, "getLinkDataResponse", "link_id=" + link_id);
-                        var session_id = data.slice(1 + this.phwangAjaxProtocolObject().WEB_FABRIC_PROTOCOL_LINK_ID_SIZE(), 1 + this.phwangAjaxProtocolObject().WEB_FABRIC_PROTOCOL_LINK_SESSION_ID_SIZE());
-                        this.debug(true, "getLinkDataResponse", "session_id=" + session_id);
-                        data = data.slice(1 + this.phwangAjaxProtocolObject().WEB_FABRIC_PROTOCOL_LINK_SESSION_ID_SIZE());
-                        var theme_data = data;
-                        this.debug(true, "getLinkDataResponse", "theme_data=" + theme_data);
-                        var config_len = this.phwangObject().decodeNumber(theme_data.slice(1), 3);
-                        var theme_data = theme_data.slice(0, config_len);
+                        data = data.slice(1);
+                        var link_id = data.slice(0, this.phwangAjaxProtocolObject().WEB_FABRIC_PROTOCOL_LINK_ID_SIZE());
+                        this.debug(false, "getLinkDataResponse", "link_id=" + link_id);
+                        data = data.slice(this.phwangAjaxProtocolObject().WEB_FABRIC_PROTOCOL_LINK_ID_SIZE());
+                        var session_id = data.slice(0, this.phwangAjaxProtocolObject().WEB_FABRIC_PROTOCOL_SESSION_ID_SIZE());
+                        this.debug(false, "getLinkDataResponse", "session_id=" + session_id);
+                        data = data.slice(this.phwangAjaxProtocolObject().WEB_FABRIC_PROTOCOL_SESSION_ID_SIZE());
+                        var config_len = this.phwangObject().decodeNumber(data.slice(1), 3);
+                        var theme_data = data.slice(0, config_len);
                         this.debug(true, "getLinkDataResponse", "theme_data=" + theme_data);
                         var theme = this.themeMgrObject().mallocThemeAndInsert();
-                        //var theme = this.themeMgrObject().getTheme(null);
                         theme.configStorageObject().decodeConfig(theme_data);
                         data = data.slice(config_len);
                         this.setupSession2(this.linkObject(), theme_data, session_id, theme.themeIdStr());
