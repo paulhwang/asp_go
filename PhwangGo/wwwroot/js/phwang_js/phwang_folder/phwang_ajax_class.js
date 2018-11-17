@@ -206,7 +206,7 @@ function PhwangAjaxClass(phwang_object_val) {
         var data = JSON.parse(json_data_val);
         if (data) {
             var session = this.linkObject().mallocSessionAndInsert(data.session_id.slice(8));
-            this.linkObject().insertSession(session);
+            //this.linkObject().insertSession(session);
             //this.phwangSessionObject().setSessionId(data.session_id.slice(8));
             //var session = this.linkObject().phwangSessionObject();
             this.debug(true, "setupSession2Response", "sessionId=" + session.sessionId());
@@ -233,7 +233,7 @@ function PhwangAjaxClass(phwang_object_val) {
         var data = JSON.parse(json_data_val);
         if (data) {
             var session = this.linkObject().mallocSessionAndInsert(data.session_id);
-            this.linkObject().insertSession(session);
+            //this.linkObject().insertSession(session);
             this.debug(true, "setupSession3Response", "sessionId=" + session.sessionId());
             this.phwangPortObject().receiveSetupSession3Response();
             this.rootObject().preludeRenderObject().renderGoGamePage();
