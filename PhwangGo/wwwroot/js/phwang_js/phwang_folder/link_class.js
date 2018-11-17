@@ -7,7 +7,6 @@ function LinkClass(phwang_object_val) {
     this.init__ = function(phwang_object_val) {
         this.thePhwangObject = phwang_object_val;
         this.thePhwangLinkStorageObject = new PhwangLinkStorageObject(this);
-        //this.thePhwangSessionObject = new PhwangSessionClass(this);
         this.theNameList = [];
         this.theNameListTag = 0;
         this.theServerNameListTag = 0;
@@ -58,7 +57,6 @@ function LinkClass(phwang_object_val) {
     };
     this.getSession = function (session_id_val) {
         this.debug(true, "getSession", "session_id=" + session_id_val);
-        //return this.phwangSessionObject();
         var index = this.sessionIndexArray().indexOf(session_id_val);
         if (index === -1) {
             this.abend("getSession", "not found");
@@ -81,7 +79,6 @@ function LinkClass(phwang_object_val) {
     this.phwangLinkStorageObject = function() {return this.thePhwangLinkStorageObject;};
     this.phwangObject = function() {return this.thePhwangObject;};
     this.phwangAjaxObject = function() {return this.phwangObject().phwangAjaxObject();};
-    //this.phwangSessionObject = function () { return this.thePhwangSessionObject; };
     this.debug = function(debug_val, str1_val, str2_val) {if (debug_val) {this.logit(str1_val, str2_val);}};
     this.logit = function(str1_val, str2_val) {return this.phwangObject().LOG_IT(this.objectName() + "." + str1_val, str2_val);};
     this.abend = function(str1_val, str2_val) {return this.phwangObject().ABEND(this.objectName() + "." + str1_val, str2_val);};
