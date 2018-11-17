@@ -112,20 +112,20 @@ function PreludeRenderObject(root_object_val) {
         this.theDispalySwitch.go_game_on = false;
     }
     this.renderGoConfigPage = function () {
-        this.rootObject().startNewGoGame();
+        var theme = this.rootObject().startNewGoGame();
         this.setupGoConfigSwitch();
         ReactDOM.render(React.createElement(PhwangPreludeComponentClass, this.dispalySwitch()), document.getElementById("phwang_prelude"));
         this.renderNameList();
         var this0 = this;
         $(".config_section .config_button").on("click", function () {
-            this0.configStorageObject().setHisName($(".peer_name_paragraph select").val());
-            this0.configStorageObject().setMyColor($(".config_section .go_config_section .stone_color").val());
-            this0.configStorageObject().setBoardSize($(".config_section .go_config_section .board_size").val());
-            this0.configStorageObject().setKomiPoint($(".config_section .go_config_section .komi").val());
-            this0.configStorageObject().setHandicapPoint($(".config_section .go_config_section .handicap").val());
-            var encoded_config = this0.configStorageObject().encodeConfig(this0.linkObject().myName());
-            this0.debug(true, "setupHtmlInput", "boardSize=" + this0.configStorageObject().boardSize() + " myColor=" + this0.configStorageObject().myColor() + " komi=" + this0.configStorageObject().komiPoint() + " handicap=" + this0.configStorageObject().handicapPoint());
-            this0.phwangAjaxObject().setupSession(this0.linkObject(), this0.configStorageObject().hisName(), encoded_config);
+            theme.configStorageObject().setHisName($(".peer_name_paragraph select").val());
+            theme.configStorageObject().setMyColor($(".config_section .go_config_section .stone_color").val());
+            theme.configStorageObject().setBoardSize($(".config_section .go_config_section .board_size").val());
+            theme.configStorageObject().setKomiPoint($(".config_section .go_config_section .komi").val());
+            theme.configStorageObject().setHandicapPoint($(".config_section .go_config_section .handicap").val());
+            var encoded_config = theme.configStorageObject().encodeConfig(this0.linkObject().myName());
+            this0.debug(true, "setupHtmlInput", "boardSize=" + theme.configStorageObject().boardSize() + " myColor=" + theme.configStorageObject().myColor() + " komi=" + theme.configStorageObject().komiPoint() + " handicap=" + theme.configStorageObject().handicapPoint());
+            this0.phwangAjaxObject().setupSession(this0.linkObject(), theme.configStorageObject().hisName(), encoded_config);
             //this0.renderGoGamePage();
         });
         //window.open(this.phwangObject().serverHttpHeader() + "Go/GoSetup", "_self");
@@ -146,16 +146,15 @@ function PreludeRenderObject(root_object_val) {
     this.renderGoGamePage = function () {
         this.setupGoGameSwitch();
         ReactDOM.render(React.createElement(PhwangPreludeComponentClass, this.dispalySwitch()), document.getElementById("phwang_prelude"));
-        this.goBaseObject().init_game();
+        var theme = this.themeMgrObject().getTheme();
+        theme.init_game();
     };
     this.objectName = function () { return "PreludeRenderObject"; };
     this.rootObject = function () { return this.theRootObject; };
     this.phwangObject = function () { return this.rootObject().phwangObject(); };
     this.phwangAjaxObject = function () { return this.phwangObject().phwangAjaxObject(); };
     this.linkObject = function () { return this.phwangObject().linkObject(); };
-    this.goBaseObject = function () { return this.rootObject().goBaseObject(); };
-    this.configStorageObject = function () { return this.goBaseObject().configStorageObject(); };
-    this.configObject = function () { return this.goBaseObject().configObject(); };
+    this.themeMgrObject = function () { return this.rootObject().themeMgrObject(); };
     this.debug = function (debug_val, str1_val, str2_val) { if (debug_val) { this.logit(str1_val, str2_val); } };
     this.logit = function (str1_val, str2_val) { return this.logit_(this.objectName() + "." + str1_val, str2_val); };
     this.abend = function (str1_val, str2_val) { return this.abend_(this.objectName() + "." + str1_val, str2_val); };

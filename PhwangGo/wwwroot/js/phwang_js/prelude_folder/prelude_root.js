@@ -12,6 +12,10 @@ function PreludeRootObject() {
         this.theThemeMgrObject = new ThemeMgrClass(this);
         this.preludeRenderObject().renderPreludePage();
     };
+    this.startNewGoGame = function () {
+        var theme = this.themeMgrObject().mallocThemeAndInsert();
+        return theme;
+    };
     this.objectName = function(){return "PreludeRootObject";};
     this.phwangObject = function () { return this.thePhwangObject; };
     this.preludeRenderObject = function () { return this.thePreludeRenderObject;};
@@ -25,15 +29,6 @@ function PreludeRootObject() {
     this.abend = function(str1_val, str2_val){return this.abend_(this.objectName() + "." + str1_val, str2_val);};
     this.logit_ = function(str1_val, str2_val){this.phwangObject().LOG_IT(str1_val, str2_val);};
     this.abend_ = function(str1_val, str2_val){this.phwangObject().ABEND(str1_val, str2_val);};
-
-    ////////////////////////////////////////////////////////////////////////////move to go area
-    this.goBaseObject=function(){return this.theGoBaseObject;};
-    this.startNewGoGame = function () {
-        var theme = this.themeMgrObject().mallocThemeAndInsert();
-        this.theGoBaseObject = theme;
-        return theme;
-    };
-    ////////////////////////////////////////////////////////////////////////////////////////////////
     this.init__();
 }
 function PreludeAjaxResponseClass(root_object_val) {
