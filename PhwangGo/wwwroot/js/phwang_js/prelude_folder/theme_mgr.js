@@ -14,7 +14,10 @@ function ThemeMgrClass(root_object_val) {
         this.theThemeObject = theme;
         return theme;
     };
-    this.getTheme = function () {
+    this.getTheme = function (theme_id_str_val) {
+        if (theme_id_str_val === null) {
+            this.abend("getTheme", "null");
+        }
         return this.theThemeObject;
     };
     this.assignThemeId = function () {

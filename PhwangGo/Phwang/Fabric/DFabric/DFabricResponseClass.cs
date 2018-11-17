@@ -230,11 +230,14 @@ namespace Phwang.Fabric
 
             [DataMember]
             public string session_id { get; set; }
+
+            [DataMember]
+            public string theme_id { get; set; }
         }
 
-        public string GenerateSetupSession3Response(string link_id_str_val, string session_id_str_val)
+        public string GenerateSetupSession3Response(string link_id_str_val, string session_id_str_val, string theme_id_str_val)
         {
-            SetupSession3ResponseFormatClass raw_data = new SetupSession3ResponseFormatClass { link_id = link_id_str_val, session_id = session_id_str_val };
+            SetupSession3ResponseFormatClass raw_data = new SetupSession3ResponseFormatClass { link_id = link_id_str_val, session_id = session_id_str_val, theme_id = theme_id_str_val };
 
             this.debugIt(true, "GenerateSetupSession3Response", "");
             DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(SetupSession3ResponseFormatClass));

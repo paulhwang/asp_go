@@ -216,7 +216,7 @@ function PhwangAjaxClass(phwang_object_val) {
             this.phwangPortObject().receiveSetupSession2Response();
             this.rootObject().configObject().cacheConfig();
             this.rootObject().preludeRenderObject().renderGoGamePage();
-            var theme = this.themeMrgObject().getTheme();
+            var theme = this.themeMrgObject().getTheme(null);
             theme.bindSession(session);
         }
     };
@@ -240,7 +240,7 @@ function PhwangAjaxClass(phwang_object_val) {
             this.debug(true, "setupSession3Response", "sessionId=" + session.sessionId());
             this.phwangPortObject().receiveSetupSession3Response();
             this.rootObject().preludeRenderObject().renderGoGamePage();
-            var theme = this.themeMgrObject().getTheme();
+            var theme = this.themeMgrObject().getTheme(data.theme_id);
             theme.bindSession(session);
         }
     };

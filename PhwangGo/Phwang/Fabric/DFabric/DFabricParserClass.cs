@@ -406,7 +406,7 @@ namespace Phwang.Fabric
                 return errorProcessSetupSession3(format_data.link_id, "null session");
             }
 
-            string response_data = this.dFabricResponseObject.GenerateSetupSession3Response(link.LinkIdStr(), session.SessionIdStr());
+            string response_data = this.dFabricResponseObject.GenerateSetupSession3Response(link.LinkIdStr(), session.SessionIdStr(), session.BrowserThemeIdStr());
             return response_data;
         }
 
