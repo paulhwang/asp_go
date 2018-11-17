@@ -63,7 +63,7 @@ namespace Phwang.Fabric
                 for (int i = 0; i < session_array_size; i++)
                 {
                     SessionClass session = (SessionClass) session_array[i];
-                    session.LinkObject().SetPendingSessionSetup3(session.SessionIdStr(), "");
+                    session.LinkObject().SetPendingSessionSetup3(session.BrowserThemeIdStr(), session.SessionIdStr(), "");
                 }
             }
         }

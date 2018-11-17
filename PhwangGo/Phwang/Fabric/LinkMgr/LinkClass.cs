@@ -69,9 +69,9 @@ namespace Phwang.Fabric
             */
         }
 
-        public void SetPendingSessionSetup3(string link_session_id_str_val, string theme_data_val)
+        public void SetPendingSessionSetup3(string browser_theme_id_str_val, string session_id_str_val, string theme_data_val)
         {
-            string data = link_session_id_str_val + theme_data_val;
+            string data = browser_theme_id_str_val + session_id_str_val + theme_data_val;
             this.pendingSessionSetupQueue3.EnqueueData(data);
             /*
             char* buf, *data_ptr;
