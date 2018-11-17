@@ -20,6 +20,15 @@ function PhwangClass(root_val) {
         }
         return output;
     };
+    this.encodeNumber = function (number_val, size_val) {
+        var str = number_val.toString();
+        var buf = "";
+        for (var i = str.length; i < size_val; i++) {
+            buf = buf + "0";
+        }
+        buf = buf + str;
+        return buf;
+    };
     this.serverHttpHeader = function() {return "http://" + window.location.hostname + ":" + window.location.port + "/";};
     this.serverHttpsHeader = function() {return "https://" + window.location.hostname + ":" + window.location.port + "/";};
     this.objectName = function() {return "PhwangClass";};

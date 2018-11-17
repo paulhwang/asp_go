@@ -269,9 +269,12 @@ namespace Phwang.Fabric
                 this.debugIt(true, "processSetupSessionRequest", "theme_data = " + format_data.theme_data);
             }
 
+            string theme_id_str = format_data.theme_data.Substring(0, Protocols.FabricFrontEndProtocolClass.FABRIC_SESSION_ID_SIZE);
+            string theme_data = format_data.theme_data.Substring(Protocols.FabricFrontEndProtocolClass.FABRIC_SESSION_ID_SIZE);
+
             LinkClass link = this.LinkMgrObject().GetLinkById(format_data.link_id);
             SessionClass session = link.MallocSession();
-            GroupClass group = this.GroupMgrObject().MallocGroup(format_data.theme_data);
+            GroupClass group = this.GroupMgrObject().MallocGroup(theme_data);
             if (group == null)
             {
                 return this.errorProcessSetupSession(format_data.link_id, "null group");
@@ -281,7 +284,7 @@ namespace Phwang.Fabric
 
             if (format_data.his_name == link.MyName())
             {
-                this.mallocRoom(group, format_data.theme_data);
+                this.mallocRoom(group, theme_data);
             }
             else
             {
@@ -299,7 +302,7 @@ namespace Phwang.Fabric
                 group.InsertSession(his_session);
                 his_session.BindGroup(group);
 
-                his_link.SetPendingSessionSetup(his_link.LinkIdStr() + his_session.SessionIdStr(), format_data.theme_data);
+                his_link.SetPendingSessionSetup(his_link.LinkIdStr() + his_session.SessionIdStr(), theme_data);
             }
             //char* data_ptr;
             //char* downlink_data = data_ptr = (char*)phwangMalloc(LINK_MGR_DATA_BUFFER_SIZE + 4, "DFS1");

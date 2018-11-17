@@ -2,10 +2,11 @@
   Copyrights reserved
   Written by Paul Hwang
 */
-function GoBaseObject(root_object_val) {
+function GoBaseObject(root_object_val, theme_id_str_val) {
     "use strict";
     this.init__ = function() {
         this.theRootObject = root_object_val;
+        this.theThemeIdStr = theme_id_str_val;
         this.theAjaxObject = new GoGameAjaxClass(this);
         this.theConfigStorageObject = new GoConfigStorageObject(this);
         this.theConfigObject = new GoConfigObject(this);
@@ -39,7 +40,8 @@ function GoBaseObject(root_object_val) {
     this.configObject = function() {return this.theConfigObject; };
     this.boardObject = function() {return this.theBoardObject; };
     this.gameObject = function() {return this.theGameObject; };
-    this.portObject = function() {return this.thePortObject; };
+    this.portObject = function () { return this.thePortObject; };
+    this.themeIdStr = function () { return this.theThemeIdStr; };
     this.debug = function (debug_val, str1_val, str2_val) { if (debug_val) { this.logit(str1_val, str2_val); } };
     this.logit = function (str1_val, str2_val) { this.logit_(this.objectName() + "." + str1_val, str2_val); };
     this.abend = function (str1_val, str2_val) { this.abend_(this.objectName() + "." + str1_val, str2_val); };

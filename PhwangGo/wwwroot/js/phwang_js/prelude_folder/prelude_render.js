@@ -125,7 +125,7 @@ function PreludeRenderObject(root_object_val) {
             theme.configStorageObject().setHandicapPoint($(".config_section .go_config_section .handicap").val());
             var encoded_config = theme.configStorageObject().encodeConfig(this0.linkObject().myName());
             this0.debug(true, "setupHtmlInput", "boardSize=" + theme.configStorageObject().boardSize() + " myColor=" + theme.configStorageObject().myColor() + " komi=" + theme.configStorageObject().komiPoint() + " handicap=" + theme.configStorageObject().handicapPoint());
-            this0.phwangAjaxObject().setupSession(this0.linkObject(), theme.configStorageObject().hisName(), encoded_config);
+            this0.phwangAjaxObject().setupSession(this0.linkObject(), theme.configStorageObject().hisName(), theme.themeIdStr() + encoded_config);
             //this0.renderGoGamePage();
         });
         //window.open(this.phwangObject().serverHttpHeader() + "Go/GoSetup", "_self");
