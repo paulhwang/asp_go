@@ -28,8 +28,6 @@ function PreludeRootObject() {
 
     ////////////////////////////////////////////////////////////////////////////move to go area
     this.goBaseObject=function(){return this.theGoBaseObject;};
-    this.configStorageObject = function(){return this.goBaseObject().configStorageObject();};
-    this.configObject = function(){return this.goBaseObject().configObject();};
     this.startNewGoGame = function () {
         var theme = this.themeMgrObject().mallocThemeAndInsert();
         this.theGoBaseObject = theme;
