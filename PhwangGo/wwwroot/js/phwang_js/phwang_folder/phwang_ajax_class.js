@@ -118,8 +118,8 @@ function PhwangAjaxClass(phwang_object_val) {
                     if (data.charAt(0) === this.phwangAjaxProtocolObject().WEB_FABRIC_PROTOCOL_RESPOND_IS_GET_LINK_DATA_PENDING_SESSION3()) {
                         this.debug(true, "getLinkDataResponse", "pending_session_data3=" + data);
                         data = data.slice(1);
-                        var theme_id_str = data.slice(0, 4);
-                        data = data.slice(4);
+                        var theme_id_str = data.slice(0, this.phwangAjaxProtocolObject().WEB_FABRIC_PROTOCOL_THEME_ID_SIZE());
+                        data = data.slice(this.phwangAjaxProtocolObject().WEB_FABRIC_PROTOCOL_THEME_ID_SIZE());
                         var session_id = data.slice(0, this.phwangAjaxProtocolObject().WEB_FABRIC_PROTOCOL_SESSION_ID_SIZE());
                         this.debug(true, "getLinkDataResponse", "session_id=" + session_id);
                         data = data.slice(this.phwangAjaxProtocolObject().WEB_FABRIC_PROTOCOL_SESSION_ID_SIZE());
@@ -438,6 +438,7 @@ function PhwangAjaxProtocolClass() {
     this.WEB_FABRIC_PROTOCOL_RESPOND_IS_GET_LINK_DATA_PENDING_DATA = function() {return 'D';}
     this.WEB_FABRIC_PROTOCOL_RESPOND_IS_GET_LINK_DATA_NAME_LIST = function() {return 'N';}
     this.WEB_FABRIC_PROTOCOL_NAME_LIST_TAG_SIZE = function() {return 3;}
+    this.WEB_FABRIC_PROTOCOL_THEME_ID_SIZE = function () { return 4; }
     this.WEB_FABRIC_PROTOCOL_LINK_ID_SIZE = function() {return 4;}
     this.WEB_FABRIC_PROTOCOL_SESSION_ID_SIZE = function() {return 4;}
     this.WEB_FABRIC_PROTOCOL_LINK_SESSION_ID_SIZE = function() {return this.WEB_FABRIC_PROTOCOL_LINK_ID_SIZE() + this.WEB_FABRIC_PROTOCOL_SESSION_ID_SIZE();}
