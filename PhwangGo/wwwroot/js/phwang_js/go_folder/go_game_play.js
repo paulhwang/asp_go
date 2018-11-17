@@ -146,7 +146,7 @@ function GoGamePortObject(root_val){
     this.configObject=function(){return this.rootObject().configObject();};
     this.gameObject=function(){return this.rootObject().gameObject();};
     this.inputObject=function(){return this.rootObject().inputObject();};
-    this.phwangSessionObject=function(){return this.rootObject().phwangSessionObject();};
+    this.phwangSessionObject=function(){return this.rootObject().sessionObject();};
     this.boardObject=function(){return this.rootObject().boardObject();};
     this.displayObject=function(){return this.rootObject().displayObject();};
     this.debug=function(debug_val, str1_val, str2_val){if (debug_val){this.logit(str1_val, str2_val);}};
