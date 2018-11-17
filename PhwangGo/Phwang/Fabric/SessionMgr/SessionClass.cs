@@ -21,12 +21,14 @@ namespace Phwang.Fabric
         private PhwangUtils.ListEntryClass listEntryObject;
         private int sessionId { get; set; }
         private string sessionIdStr { get; set; }
+        private string browserThemeIdStr { get; set; }
         private GroupClass groupObject { get; set; }
         PhwangUtils.ListQueueClass pendingDownLinkDataQueue;
 
         public LinkClass LinkObject() { return this.linkObject; }
         public int SessionId() { return this.sessionId; }
         public string SessionIdStr() { return this.sessionIdStr; }
+        public string BrowserThemeIdStr() { return this.browserThemeIdStr; }
         public GroupClass GroupObject() { return this.groupObject; }
         PhwangUtils.ListQueueClass PendingDownLinkDataQueue() { return this.pendingDownLinkDataQueue; }
 
@@ -46,6 +48,11 @@ namespace Phwang.Fabric
         public void BindGroup(GroupClass group_object_val)
         {
             this.groupObject = group_object_val;
+        }
+
+        public void SetBrowserThemeIdStr(string str_val)
+        {
+            this.browserThemeIdStr = str_val;
         }
 
         public void EnqueuePendingDownLinkData(string data_val)
