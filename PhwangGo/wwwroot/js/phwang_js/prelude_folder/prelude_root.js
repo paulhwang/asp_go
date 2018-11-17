@@ -31,7 +31,9 @@ function PreludeRootObject() {
     this.configStorageObject = function(){return this.goBaseObject().configStorageObject();};
     this.configObject = function(){return this.goBaseObject().configObject();};
     this.startNewGoGame = function () {
-        this.theGoBaseObject = this.themeMgrObject().mallocThemeAndInsert();
+        var theme = this.themeMgrObject().mallocThemeAndInsert();
+        this.theGoBaseObject = theme;
+        return theme;
     };
     ////////////////////////////////////////////////////////////////////////////////////////////////
     this.init__();

@@ -109,6 +109,8 @@ function PhwangAjaxClass(phwang_object_val) {
                         this.debug(true, "getLinkDataResponse", "theme_data=" + theme_data);
                         var config_len = this.phwangObject().decodeNumber(theme_data.slice(1), 3);
                         var theme_data = theme_data.slice(0, config_len);
+                        var theme = this.themeMgrObject().getTheme();
+                        //theme.configStorageObject().decodeConfig(theme_data);
                         this.rootObject().configStorageObject().decodeConfig(theme_data);
                         data = data.slice(config_len);
                         this.setupSession2(this.linkObject(), theme_data, session_id);
