@@ -112,7 +112,7 @@ function PreludeRenderObject(root_object_val) {
         this.theDispalySwitch.go_game_on = false;
     }
     this.renderGoConfigPage = function () {
-        var theme = this.rootObject().startNewGoGame();
+        var theme = this.themeMgrObject().mallocThemeAndInsert();
         this.setupGoConfigSwitch();
         ReactDOM.render(React.createElement(PhwangPreludeComponentClass, this.dispalySwitch()), document.getElementById("phwang_prelude"));
         this.renderNameList();

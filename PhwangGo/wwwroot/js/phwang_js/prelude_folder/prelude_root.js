@@ -12,10 +12,6 @@ function PreludeRootObject() {
         this.theThemeMgrObject = new ThemeMgrClass(this);
         this.preludeRenderObject().renderPreludePage();
     };
-    this.startNewGoGame = function () {
-        var theme = this.themeMgrObject().mallocThemeAndInsert();
-        return theme;
-    };
     this.objectName = function(){return "PreludeRootObject";};
     this.phwangObject = function () { return this.thePhwangObject; };
     this.preludeRenderObject = function () { return this.thePreludeRenderObject;};
