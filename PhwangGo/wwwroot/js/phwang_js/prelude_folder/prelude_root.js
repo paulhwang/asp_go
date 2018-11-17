@@ -9,6 +9,7 @@ function PreludeRootObject() {
         this.thePreludeRenderObject = new PreludeRenderObject(this);
         this.phwangObject().initObject();
         this.theAjaxResponseObject = new PreludeAjaxResponseClass(this);
+        this.theThemeMgrObject = new ThemeMgrClass(this);
         this.preludeRenderObject().renderPreludePage();
     };
     this.objectName = function(){return "PreludeRootObject";};
@@ -17,7 +18,8 @@ function PreludeRootObject() {
     this.phwangAjaxObject = function(){return this.phwangObject().phwangAjaxObject();};
     this.phwangLinkObject = function(){return this.phwangObject().phwangLinkObject();};
     this.htmlObject = function(){return this.theHtmlObject;};
-    this.ajaxResponseObject = function(){return this.theAjaxResponseObject;};
+    this.ajaxResponseObject = function () { return this.theAjaxResponseObject;};
+    this.themeMgrObject = function () { return this.theThemeMgrObject; };
     this.debug = function(debug_val, str1_val, str2_val){if (debug_val){ this.logit(str1_val, str2_val);}};
     this.logit = function(str1_val, str2_val){return this.logit_(this.objectName() + "." + str1_val, str2_val);};
     this.abend = function(str1_val, str2_val){return this.abend_(this.objectName() + "." + str1_val, str2_val);};
