@@ -212,7 +212,8 @@ function PhwangAjaxClass(phwang_object_val) {
             this.phwangPortObject().receiveSetupSession2Response();
             this.rootObject().configObject().cacheConfig();
             this.rootObject().preludeRenderObject().renderGoGamePage();
-            this.rootObject().goBaseObject().bindSession(session);
+            var theme = this.themeMrgObject().getTheme();
+            theme.bindSession(session);
         }
     };
     this.setupSession3 = function(link_val, session_id_val) {
@@ -235,7 +236,8 @@ function PhwangAjaxClass(phwang_object_val) {
             this.debug(true, "setupSession3Response", "sessionId=" + session.sessionId());
             this.phwangPortObject().receiveSetupSession3Response();
             this.rootObject().preludeRenderObject().renderGoGamePage();
-            this.rootObject().goBaseObject().bindSession(session);
+            var theme = this.themeMgrObject().getTheme();
+            theme.bindSession(session);
         }
     };
     this.putSessionData = function(session_val, data_val) {
@@ -338,7 +340,8 @@ function PhwangAjaxClass(phwang_object_val) {
     this.phwangObject = function() {return this.thePhwangObject;};
     this.rootObject = function() {return this.phwangObject().rootObject();};
     this.linkObject = function() {return this.phwangObject().linkObject();};
-    this.phwangPortObject = function() {return this.phwangObject().phwangPortObject();};
+    this.phwangPortObject = function () { return this.phwangObject().phwangPortObject();};
+    this.themeMgrObject = function () { return this.rootObject().themeMgrObject(); };
     this.debug = function(debug_val, str1_val, str2_val) {if (debug_val) {this.logit(str1_val, str2_val);}};
     this.logit = function(str1_val, str2_val) {return this.phwangObject().LOG_IT(this.objectName() + "." + str1_val, str2_val);};
     this.abend = function(str1_val, str2_val) {return this.phwangObject().ABEND(this.objectName() + "." + str1_val, str2_val);};

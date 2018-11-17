@@ -8,6 +8,14 @@ function ThemeMgrClass(root_object_val) {
         this.theRootObject = root_object_val;
         //this.theGoMgrObject = new GoMgrClass(this);
     };
+    this.mallocThemeAndInsert = function () {
+        var theme = new GoBaseObject(this.rootObject());
+        this.theThemeObject = theme;
+        return theme;
+    };
+    this.getTheme = function () {
+        return this.theThemeObject;
+    };
     this.objectName = function () { return "ThemeMgrClass"; };
     this.rootObject = function () { return this.theRootObject; };
     this.phwangObject = function () { return this.rootObject().phwangObject(); };
