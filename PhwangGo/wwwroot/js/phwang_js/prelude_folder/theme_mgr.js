@@ -7,12 +7,22 @@ function ThemeMgrClass(root_object_val) {
     this.init__ = function (root_object_val) {
         this.theRootObject = root_object_val;
         this.theGlobalThemeId = this.INITIAL_THEME_ID();
-        //this.theGoMgrObject = new GoMgrClass(this);
+        this.theThemeIndexArray = [0];
+        this.theThemeTableArray = [null];
     };
+    this.themeIndexArray = function () { return this.theThemeIndexArray; };
+    this.themeTableArray = function () { return this.theThemeTableArray; };
+    this.themeTableArrayLength = function () { return this.themeTableArray().length; };
+    this.themeTableArrayElement = function (val) { return this.themeTableArray()[val]; };
     this.mallocThemeAndInsert = function () {
         var theme = new GoBaseObject(this.rootObject(), this.phwangObject().encodeNumber(this.assignThemeId(), this.THEME_ID_STR_SIZE()));
+        this.insertTheme(theme);
         this.theThemeObject = theme;
         return theme;
+    };
+    this.insertTheme = function (theme_val) {
+        this.themeIndexArray().push(theme_val.themeIdStr());
+        this.themeTableArray().push(theme_val);
     };
     this.getTheme = function (theme_id_str_val) {
         if (theme_id_str_val === null) {

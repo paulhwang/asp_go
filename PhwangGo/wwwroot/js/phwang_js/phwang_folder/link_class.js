@@ -23,18 +23,10 @@ function LinkClass(phwang_object_val) {
         }
         this.phwangLinkStorageObject().setLinkId(val);
     };
-    this.sessionIndexArray = function() {
-        return this.theSessionIndexArray;
-    };
-    this.sessionTableArray = function() {
-        return this.theSessionTableArray;
-    };
-    this.sessionTableArrayLength = function() {
-        return this.sessionTableArray().length;
-    };
-    this.sessionTableArrayElement = function(val) {
-        return this.sessionTableArray()[val];
-    };
+    this.sessionIndexArray = function() { return this.theSessionIndexArray; };
+    this.sessionTableArray = function() { return this.theSessionTableArray; };
+    this.sessionTableArrayLength = function() { return this.sessionTableArray().length; };
+    this.sessionTableArrayElement = function(val) { return this.sessionTableArray()[val]; };
     this.verifyLinkIdIndex = function(id_val) {
         if (this.linkId() === id_val) {
             return true;
