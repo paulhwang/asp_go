@@ -56,9 +56,11 @@ function LinkClass(phwang_object_val) {
         this.sessionTableArray().push(session_val);
     };
     this.getSession = function (session_id_val) {
-        return this.phwangSessionObject();
+        this.debug(true, "getSession", "session_id=" + session_id_val);
+        //return this.phwangSessionObject();
         var index = this.sessionIndexArray().indexOf(session_id_val);
         if (index === -1) {
+            this.abend("getSession", "not found");
             return null;
         } else {
             var session =this.sessionTableArray()[index];
