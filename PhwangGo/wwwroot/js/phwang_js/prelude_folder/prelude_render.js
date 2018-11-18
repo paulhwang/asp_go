@@ -131,6 +131,7 @@ function PreludeRenderObject(root_object_val) {
         //window.open(this.phwangObject().serverHttpHeader() + "Go/GoSetup", "_self");
     };
     this.renderNameList = function () {
+        $('.peer_name_paragraph select').empty();
         for (var i = 0; i < this.linkObject().nameListLength(); i++) {
             $('.peer_name_paragraph select').append($('<option>', { value: this.linkObject().nameListElement(i), text: this.linkObject().nameListElement(i) }));
         }

@@ -167,6 +167,7 @@ function PhwangAjaxClass(phwang_object_val) {
                 var array = JSON.parse("[" + name_list + "]");
                 this.debug(true, "getNameListResponse", "array=" + array);
                 this.linkObject().setNameList(array);
+                this.preludeRenderObject().renderNameList();
                 this.phwangPortObject().receiveGetNameListResponse();
             }
         }
@@ -342,6 +343,7 @@ function PhwangAjaxClass(phwang_object_val) {
     this.linkObject = function() {return this.phwangObject().linkObject();};
     this.phwangPortObject = function () { return this.phwangObject().phwangPortObject();};
     this.themeMgrObject = function () { return this.rootObject().themeMgrObject(); };
+    this.preludeRenderObject = function () { return this.rootObject().preludeRenderObject(); };
     this.debug = function(debug_val, str1_val, str2_val) {if (debug_val) {this.logit(str1_val, str2_val);}};
     this.logit = function(str1_val, str2_val) {return this.phwangObject().LOG_IT(this.objectName() + "." + str1_val, str2_val);};
     this.abend = function(str1_val, str2_val) {return this.phwangObject().ABEND(this.objectName() + "." + str1_val, str2_val);};
