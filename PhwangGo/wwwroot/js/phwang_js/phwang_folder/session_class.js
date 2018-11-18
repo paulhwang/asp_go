@@ -27,7 +27,7 @@ function PhwangSessionClass(link_object_val) {
     this.transmitData = function(data_val) {this.phwangAjaxObject().putSessionData(this, data_val);};
     this.receiveData = function(c_data_val) {this.themeObject().receiveData(c_data_val);};
     this.themeObject = function() {return this.theThemeObject;};
-    this.setThemeObject = function(val) {this.theThemeObject = val;};
+    this.setThemeObject = function (val) { this.assert(val, "setThemeObject", "null"); this.theThemeObject = val;};
     this.objectName = function() {return "PhwangSessionClass";};
     this.linkObject = function() {return this.theLinkObject;};
     this.phwangSessionStorageObject = function() {return this.thePhwangSessionStorageObject;};
@@ -36,6 +36,7 @@ function PhwangSessionClass(link_object_val) {
     this.phwangAjaxObject = function() {return this.phwangObject().phwangAjaxObject();};
     this.debug = function(debug_val, str1_val, str2_val) {if (debug_val) {this.logit(str1_val, str2_val);}};
     this.logit = function(str1_val, str2_val) {return this.phwangObject().LOG_IT(this.objectName() + "." + str1_val, str2_val);};
+    this.assert = function (val, str1_val, str2_val) { return this.phwangObject().ASSERT(val, this.objectName() + "." + str1_val, str2_val); };
     this.abend = function(str1_val, str2_val) {return this.phwangObject().ABEND(this.objectName() + "." + str1_val, str2_val);};
     this.sessionId = function() {return this.phwangSessionStorageObject().sessionId();};
     this.setSessionId = function(val) {this.phwangSessionStorageObject().setSessionId(val);};

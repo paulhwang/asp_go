@@ -22,8 +22,10 @@ function PreludeRootObject() {
     this.themeMgrObject = function () { return this.theThemeMgrObject; };
     this.debug = function(debug_val, str1_val, str2_val){if (debug_val){ this.logit(str1_val, str2_val);}};
     this.logit = function(str1_val, str2_val){return this.logit_(this.objectName() + "." + str1_val, str2_val);};
+    this.assert = function (val, str1_val, str2_val) { return this.assert_(val, this.objectName() + "." + str1_val, str2_val); };
     this.abend = function(str1_val, str2_val){return this.abend_(this.objectName() + "." + str1_val, str2_val);};
     this.logit_ = function(str1_val, str2_val){this.phwangObject().LOG_IT(str1_val, str2_val);};
+    this.assert_ = function (val, str1_val, str2_val) { this.phwangObject().ASSERT(val, str1_val, str2_val); };
     this.abend_ = function(str1_val, str2_val){this.phwangObject().ABEND(str1_val, str2_val);};
     this.init__();
 }

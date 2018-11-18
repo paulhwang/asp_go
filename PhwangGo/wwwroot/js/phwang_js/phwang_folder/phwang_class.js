@@ -39,7 +39,8 @@ function PhwangClass(root_val) {
     this.debug = function(debug_val, str1_val, str2_val) {if (debug_val) {this.logit(str1_val, str2_val);}};
     this.logit = function(str1_val, str2_val) {return this.LOG_IT(this.objectName() + "." + str1_val, str2_val);};
     this.abend = function(str1_val, str2_val) {return this.ABEND(this.objectName() + "." + str1_val, str2_val);};
-    this.LOG_IT = function(str1_val, str2_val) {window.console.log(str1_val + "() " + str2_val);};
+    this.LOG_IT = function (str1_val, str2_val) { window.console.log(str1_val + "() " + str2_val); };
+    this.ASSERT = function (val, str1_val, str2_val) { if((val == null) || (val == "undefined")) this.ABEND(str1_val, str2_val + ":" + val); };
     this.ABEND = function(str1_val, str2_val) {window.console.log("***ABEND*** " + str1_val + "() " + str2_val); window.alert("***ABEND*** " + str1_val + "() " + str2_val); var x = junk;};
     this.init__(root_val);
 }
