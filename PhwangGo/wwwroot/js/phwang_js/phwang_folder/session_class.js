@@ -25,9 +25,9 @@ function PhwangSessionClass(link_object_val) {
         this.theRcvSeq += 1;
     };
     this.transmitData = function(data_val) {this.phwangAjaxObject().putSessionData(this, data_val);};
-    this.receiveData = function(c_data_val) {this.themeObject().receiveData(c_data_val);};
+    this.receiveData = function (c_data_val) { this.assert(this.themeObject(), "receiveData", "null themeObject"); this.themeObject().receiveData(c_data_val);};
     this.themeObject = function() {return this.theThemeObject;};
-    this.setThemeObject = function (val) { this.assert(val, "setThemeObject", "null"); this.theThemeObject = val;};
+    this.setThemeObject = function (val) { this.assert(val, "setThemeObject", "null val"); this.theThemeObject = val;};
     this.objectName = function() {return "PhwangSessionClass";};
     this.linkObject = function() {return this.theLinkObject;};
     this.phwangSessionStorageObject = function() {return this.thePhwangSessionStorageObject;};

@@ -214,13 +214,13 @@ function PhwangAjaxClass(phwang_object_val) {
             return;
         }
         this.debug(true, "setupSession2Response", "link_id=" + data.link_id + " session_id=" + data.session_id + " theme_id_str=" + data.theme_id_str);
-        var session = this.linkObject().mallocSessionAndInsert(data.session_id);
-        this.debug(true, "setupSession2Response", "sessionId=" + session.sessionId());
+        //var session = this.linkObject().mallocSessionAndInsert(data.session_id);
+        //this.debug(true, "setupSession2Response", "sessionId=" + session.sessionId());
         this.phwangPortObject().receiveSetupSession2Response();
         var theme = this.themeMgrObject().getTheme(data.theme_id_str);
         theme.configObject().cacheConfig();
-        this.rootObject().preludeRenderObject().renderGoGamePage(data.theme_id_str);
-        theme.bindSession(session);
+        //this.rootObject().preludeRenderObject().renderGoGamePage(data.theme_id_str);
+        //theme.bindSession(session);
     };
     this.setupSession3 = function(link_val, session_id_val) {
         var output = JSON.stringify({

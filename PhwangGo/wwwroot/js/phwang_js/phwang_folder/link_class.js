@@ -37,7 +37,10 @@ function LinkClass(phwang_object_val) {
     this.resetLinkStorage = function() {
         this.phwangLinkStorageObject().resetLinkStorage();
     };
-    this.mallocSessionAndInsert = function(session_id_val) {
+    this.mallocSessionAndInsert = function (session_id_val) {
+        if (this.getSession(session_id_val)) {
+            this.abend("mallocSessionAndInsert", "session exists: " + session_id_val);
+        }
         var session = new PhwangSessionClass(this);
         session.setSessionId(session_id_val);
         this.insertSession(session);
@@ -51,7 +54,6 @@ function LinkClass(phwang_object_val) {
         this.debug(true, "getSession", "session_id=" + session_id_val);
         var index = this.sessionIndexArray().indexOf(session_id_val);
         if (index === -1) {
-            this.abend("getSession", "not found");
             return null;
         } else {
             var session =this.sessionTableArray()[index];
