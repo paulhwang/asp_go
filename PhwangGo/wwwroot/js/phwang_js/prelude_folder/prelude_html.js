@@ -16,14 +16,18 @@ function PhwangPreludeComponentClass (props) {
         );
 }
 
+function H1(props) { return React.createElement("h1", null, props); }
+function H2(props) { return React.createElement("h2", null, props); }
+function P(props) { return React.createElement("p", { className: props.class }, props.text); }
+function Button(props) { return React.createElement("button", { className: props.class }, props.text);}
 function preludeComponent(props) {
     if (props.prelude_on) {
         return React.createElement("section", { className: "prelude_section" },
-            React.createElement("h1", null, "Let's Play Go!"),
-            React.createElement("p", { className: "lead" }, "Let's Play Go is a free web platform to play Go Game with people in the world."),
-            React.createElement("button", { className: "sign_up_button" }, "Sign up"),
-            React.createElement("button", { className: "sign_in_button" }, "Sign in"),
-            React.createElement("button", { className: "theme_button" }, "Theme"),
+            H1("Let's Play Go!"),
+            P({ class: "lead", text: "Let's Play Go is a free web platform to play Go Game with people in the world." }),
+            Button({ class: "sign_up_button", text: "Sign up"} ),
+            Button({ class: "sign_in_button", text: "Sign in"} ),
+            Button({ class: "theme_button", text: "Theme"} ),
             React.createElement("p", null, React.createElement("a", { "href": "http://localhost:8168/Account/AccountSignIn", "className": "btn btn-primary btn-lg" }, "Sign in")),
             //<p><a href="http://localhost:8168/Account/AccountSignUp" class="btn btn-primary btn-lg">Sign up &raquo;</a></p>
         );
@@ -38,11 +42,7 @@ function signUpComponent(props) {
         return React.createElement(
             "section",
             { "className": "sign_up_section" },
-            React.createElement(
-                "h2",
-                null,
-                "Account Sign Up"
-            ),
+            H2("Account Sign Up"),
 
             React.createElement(
                 "p",
@@ -89,48 +89,22 @@ function signUpComponent(props) {
     }
 }
 
+function Input(props) { return React.createElement("input", { type: "text", className: props.class, placeholder: props.placeholder }, null); }
+function PP(props) { return React.createElement("p", null, props.text, props.e); }
+function Section4(props) { return React.createElement("section", { className: props.class }, props.e1, props.e2, props.e3, props.e4); }
+
 function signInComponent(props) {
-    if (props.sign_in_on) {
-        return React.createElement(
-            "section",
-            { "className": "sign_in_section" },
-            React.createElement(
-                "h2",
-                null,
-                "Account Sign In"
-            ),
-
-            React.createElement(
-                "p",
-                null,
-                "Name:",
-                React.createElement("input", {
-                    type: "text",
-                    "className": "sign_in_name",
-                    placeholder: "Enter your account name"
-                })
-            ),
-
-            React.createElement(
-                "p",
-                null,
-                "Password:",
-                React.createElement("input", {
-                    type: "text",
-                    "className": "sign_in_password",
-                    placeholder: "Enter your password"
-                })
-            ),
-
-            React.createElement(
-                "button",
-                { "className": "sign_in_button" },
-                "Sign in"
-            )
-        );
+    if (!props.sign_in_on) {
+        return null;
     }
     else {
-        return null;
+        return Section4({
+            class: "sign_in_section",
+            e1: H2("Account Sign In"),
+            e2: PP({ text: "Name:", e: Input({ class: "sign_in_name", placeholder: "Enter your account name" }) }),
+            e3: PP({ text: "Password:", e: Input({ class: "sign_in_password", placeholder: "Enter your password" }) }),
+            e4: Button({ class: "sign_in_button", text: "Sign in" })
+        });
     }
 }
 
@@ -270,6 +244,7 @@ function goConfigComponent(props) {
     }
 }
 
+Canvas = function (props) { return React.createElement("canvas", { id: props.id });}
 function goGameComponent(props) {
     if (props.go_game_on) {
         return React.createElement(
@@ -278,11 +253,14 @@ function goGameComponent(props) {
             React.createElement(
                 "section",
                 null,
+                Canvas({ id: "go_canvas" })
+                /*
                 React.createElement(
                     "canvas",
                     { "id": "go_canvas" },
                     null
                 )
+                */
             ),
 
             React.createElement(
