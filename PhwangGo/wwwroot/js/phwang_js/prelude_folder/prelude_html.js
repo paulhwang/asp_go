@@ -36,49 +36,12 @@ function preludeComponent(props) {
 
 function signUpComponent(props) {
     if (props.sign_up_on) {
-        return React.createElement(
-            "section",
-            { "className": "sign_up_section" },
-            H2("Account Sign Up"),
-
-            React.createElement(
-                "p",
-                null,
-                "Name:",
-                React.createElement("input", {
-                    type: "text",
-                    "className": "sign_up_name",
-                    placeholder: "Enter your account name"
-                })
-            ),
-
-            React.createElement(
-                "p",
-                null,
-                "Password:",
-                React.createElement("input", {
-                    type: "text",
-                    "className": "sign_up_password",
-                    placeholder: "Enter your password"
-                })
-            ),
-
-            React.createElement(
-                "p",
-                null,
-                "email:",
-                React.createElement("input", {
-                    type: "text",
-                    "className": "sign_up_email",
-                    placeholder: "Enter your email"
-                })
-            ),
-
-            React.createElement(
-                "button",
-                { "className": "sign_up_button" },
-                "Sign up"
-            )
+        return React.DOM.section({ className: "sign_up_section" },
+            React.DOM.h2("Account Sign Up"),
+            React.DOM.p(null, "Name:", React.DOM.input({ className: "sign_up_name", placeholder: "Enter your account name" })),
+            React.DOM.p(null, "Password:", React.DOM.input({ className: "sign_up_password", placeholder: "Enter your password" })),
+            React.DOM.p(null, "email:", React.DOM.input({ className: "sign_up_email", placeholder: "Enter your email" })),
+            React.DOM.button({ className: "sign_up_button" }, "Sign up")
         );
     }
     else {
@@ -86,16 +49,12 @@ function signUpComponent(props) {
     }
 }
 
-function Input(props) { return React.createElement("input", { type: "text", className: props.class, placeholder: props.placeholder }, null); }
-function PP(props) { return React.createElement("p", null, props.text, props.e); }
-function Section4(props) { return React.createElement("section", { className: props.class }, props.e1, props.e2, props.e3, props.e4); }
-
 function signInComponent(props) {
     if (props.sign_in_on) {
         return React.DOM.section({ className: "sign_in_section" },
             React.DOM.h2("Account Sign In"),
-            PP({ text: "Name:", e: React.DOM.input({ className: "sign_in_name", placeholder: "Enter your account name" }) }),
-            PP({ text: "Password:", e: React.DOM.input({ className: "sign_in_password", placeholder: "Enter your password" }) }),
+            React.DOM.p(null, "Name:", React.DOM.input({ className: "sign_in_name", placeholder: "Enter your account name" })),
+            React.DOM.p(null, "Password:", React.DOM.input({ className: "sign_in_password", placeholder: "Enter your password" })),
             React.DOM.button({ className: "sign_in_button" }, "Sign in" )
         );
     }
@@ -148,9 +107,9 @@ function goConfigComponent(props) {
                     React.createElement(
                         "select",
                         null,
-                        React.createElement("option", { "value": "Go" }, "Go"),
-                        React.createElement("option", { "value": "game1" }, "game1"),
-                        React.createElement("option", { "value": "game2" }, "game2")
+                        React.DOM.option( { "value": "Go" }, "Go"),
+                        React.DOM.option( { "value": "game1" }, "game1"),
+                        React.DOM.option( { "value": "game2" }, "game2")
                     ),
                     React.createElement(
                         "button",
@@ -169,9 +128,9 @@ function goConfigComponent(props) {
                         React.createElement(
                             "select",
                             { "className": "board_size" },
-                            React.createElement("option", { "value": "19" }, "19x19"),
-                            React.createElement("option", { "value": "13" }, "13x13"),
-                            React.createElement("option", { "value": "9" }, "9x9")
+                            React.DOM.option( { "value": "19" }, "19x19"),
+                            React.DOM.option( { "value": "13" }, "13x13"),
+                            React.DOM.option( { "value": "9" }, "9x9")
                         )
                     ),
 
@@ -182,8 +141,8 @@ function goConfigComponent(props) {
                         React.createElement(
                             "select",
                             { "className": "stone_color" },
-                            React.createElement("option", { "value": "black" }, "Black"),
-                            React.createElement("option", { "value": "white" }, "White"),
+                            React.DOM.option( { "value": "black" }, "Black"),
+                            React.DOM.option( { "value": "white" }, "White"),
                         )
                     ),
 
@@ -194,12 +153,12 @@ function goConfigComponent(props) {
                         React.createElement(
                             "select",
                             { "className": "komi" },
-                            React.createElement("option", { "value": "0" }, 0.5),
-                            React.createElement("option", { "value": "4" }, 4.5),
-                            React.createElement("option", { "value": "5" }, 5.5),
-                            React.createElement("option", { "value": "6" }, 6.5),
-                            React.createElement("option", { "value": "7" }, 7.5),
-                            React.createElement("option", { "value": "8" }, 8.5)
+                            React.DOM.option( { "value": "0" }, 0.5),
+                            React.DOM.option( { "value": "4" }, 4.5),
+                            React.DOM.option( { "value": "5" }, 5.5),
+                            React.DOM.option( { "value": "6" }, 6.5),
+                            React.DOM.option( { "value": "7" }, 7.5),
+                            React.DOM.option( { "value": "8" }, 8.5)
                         )
                     ),
 
@@ -210,19 +169,19 @@ function goConfigComponent(props) {
                         React.createElement(
                             "select",
                             { "className": "handicap" },
-                            React.createElement("option", { "value": "0" }, 0),
-                            React.createElement("option", { "value": "2" }, 2),
-                            React.createElement("option", { "value": "3" }, 3),
-                            React.createElement("option", { "value": "4" }, 4),
-                            React.createElement("option", { "value": "5" }, 5),
-                            React.createElement("option", { "value": "6" }, 6),
-                            React.createElement("option", { "value": "7" }, 7),
-                            React.createElement("option", { "value": "8" }, 8),
-                            React.createElement("option", { "value": "9" }, 9),
-                            React.createElement("option", { "value": "10" }, 10),
-                            React.createElement("option", { "value": "11" }, 11),
-                            React.createElement("option", { "value": "12" }, 12),
-                            React.createElement("option", { "value": "13" }, 13),
+                            React.DOM.option( { "value": "0" }, 0),
+                            React.DOM.option( { "value": "2" }, 2),
+                            React.DOM.option( { "value": "3" }, 3),
+                            React.DOM.option( { "value": "4" }, 4),
+                            React.DOM.option( { "value": "5" }, 5),
+                            React.DOM.option( { "value": "6" }, 6),
+                            React.DOM.option( { "value": "7" }, 7),
+                            React.DOM.option( { "value": "8" }, 8),
+                            React.DOM.option( { "value": "9" }, 9),
+                            React.DOM.option( { "value": "10" }, 10),
+                            React.DOM.option( { "value": "11" }, 11),
+                            React.DOM.option( { "value": "12" }, 12),
+                            React.DOM.option( { "value": "13" }, 13),
                         )
                     )
                 ),
