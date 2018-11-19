@@ -16,18 +16,15 @@ function PhwangPreludeComponentClass (props) {
         );
 }
 
-function H1(props) { return React.createElement("h1", null, props); }
-function H2(props) { return React.createElement("h2", null, props); }
 function P(props) { return React.createElement("p", { className: props.class }, props.text); }
-function Button(props) { return React.createElement("button", { className: props.class }, props.text);}
 function preludeComponent(props) {
     if (props.prelude_on) {
-        return React.createElement("section", { className: "prelude_section" },
-            H1("Let's Play Go!"),
-            P({ class: "lead", text: "Let's Play Go is a free web platform to play Go Game with people in the world." }),
-            Button({ class: "sign_up_button", text: "Sign up"} ),
-            Button({ class: "sign_in_button", text: "Sign in"} ),
-            Button({ class: "theme_button", text: "Theme"} ),
+        return React.DOM.section({ className: "prelude_section" },
+            React.DOM.h1("Let's Play Go!"),
+            React.DOM.p({ className: "lead" }, "Let's Play Go is a free web platform to play Go Game with people in the world."),
+            React.DOM.button({ className: "sign_up_button" }, "Sign iup"),
+            React.DOM.button({ className: "sign_in_button" }, "Sign in"),
+            React.DOM.button({ className: "theme_button" }, "Theme"),
             React.createElement("p", null, React.createElement("a", { "href": "http://localhost:8168/Account/AccountSignIn", "className": "btn btn-primary btn-lg" }, "Sign in")),
             //<p><a href="http://localhost:8168/Account/AccountSignUp" class="btn btn-primary btn-lg">Sign up &raquo;</a></p>
         );
@@ -94,17 +91,16 @@ function PP(props) { return React.createElement("p", null, props.text, props.e);
 function Section4(props) { return React.createElement("section", { className: props.class }, props.e1, props.e2, props.e3, props.e4); }
 
 function signInComponent(props) {
-    if (!props.sign_in_on) {
-        return null;
+    if (props.sign_in_on) {
+        return React.DOM.section({ className: "sign_in_section" },
+            React.DOM.h2("Account Sign In"),
+            PP({ text: "Name:", e: React.DOM.input({ className: "sign_in_name", placeholder: "Enter your account name" }) }),
+            PP({ text: "Password:", e: React.DOM.input({ className: "sign_in_password", placeholder: "Enter your password" }) }),
+            React.DOM.button({ className: "sign_in_button" }, "Sign in" )
+        );
     }
     else {
-        return Section4({
-            class: "sign_in_section",
-            e1: H2("Account Sign In"),
-            e2: PP({ text: "Name:", e: Input({ class: "sign_in_name", placeholder: "Enter your account name" }) }),
-            e3: PP({ text: "Password:", e: Input({ class: "sign_in_password", placeholder: "Enter your password" }) }),
-            e4: Button({ class: "sign_in_button", text: "Sign in" })
-        });
+        return null;
     }
 }
 
