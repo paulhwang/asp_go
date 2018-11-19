@@ -16,7 +16,6 @@ function PhwangPreludeComponentClass (props) {
 }
 function preludeComponent(props) {
     if (props.prelude_switch()) {
-    //if (props.prelude_on) {
         return React.DOM.section({ className: "prelude_section" },
             React.DOM.h1(null, "Let's Play Go!"),
             React.DOM.p({ className: "lead" }, "Let's Play Go is a free web platform to play Go Game with people in the world."),
@@ -32,7 +31,7 @@ function preludeComponent(props) {
     }
 }
 function signUpComponent(props) {
-    if (props.sign_up_on) {
+    if (props.sign_up_switch()) {
         return React.DOM.section({ className: "sign_up_section" },
             React.DOM.h2(null, "Account Sign Up"),
             React.DOM.p(null, "Name:", React.DOM.input({ className: "sign_up_name", placeholder: "Enter your account name" })),
@@ -47,7 +46,6 @@ function signUpComponent(props) {
 }
 function signInComponent(props) {
     if (props.sign_in_switch()) {
-    //if (props.sign_in_on) {
         return React.DOM.section({ className: "sign_in_section" },
             React.DOM.h2(null, "Account Sign In"),
             React.DOM.p(null, "Name:", React.DOM.input({ className: "sign_in_name", placeholder: "Enter your account name" })),
@@ -60,8 +58,8 @@ function signInComponent(props) {
     }
 }
 function themeComponent(props) {
-    if (props.theme_on) {
-        return React.createElement("section", { "className": "theme_section" },
+    if (props.theme_switch()) {
+       return React.createElement("section", { "className": "theme_section" },
             React.DOM.h1(null, "Select the Theme"),
             React.DOM.button( { "className": "go_button" }, "Play Go"),
         );
@@ -71,7 +69,7 @@ function themeComponent(props) {
     }
 }
 function goConfigComponent(props) {
-    if (props.go_config_on) {
+    if (props.go_config_switch()) {
         return React.createElement(
             "body",
             null,
@@ -162,7 +160,7 @@ function goConfigComponent(props) {
     }
 }
 function goGameComponent(props) {
-    if (props.go_game_on) {
+    if (props.go_game_switch()) {
         return React.DOM.body(
             null,
             React.DOM.section(
