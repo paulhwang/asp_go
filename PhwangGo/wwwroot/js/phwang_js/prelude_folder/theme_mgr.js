@@ -41,16 +41,16 @@ function ThemeMgrClass(root_object_val) {
         }
         return this.theGlobalThemeId;
     }
-    this.objectName = function () { return "ThemeMgrClass"; };
-    this.rootObject = function () { return this.theRootObject; };
-    this.phwangObject = function () { return this.rootObject().phwangObject(); };
-    this.phwangAjaxObject = function () { return this.phwangObject().phwangAjaxObject(); };
-    this.phwangAjaxProtocolObject = function () { return this.phwangAjaxObject().phwangAjaxProtocolObject(); };
+    this.objectName = () => "ThemeMgrClass";
+    this.rootObject = () => this.theRootObject;
+    this.phwangObject = () => this.rootObject().phwangObject();
+    this.phwangAjaxObject = () => this.phwangObject().phwangAjaxObject();
+    this.phwangAjaxProtocolObject = () => this.phwangAjaxObject().phwangAjaxProtocolObject();
     this.debug = function (debug_val, str1_val, str2_val) { if (debug_val) { this.logit(str1_val, str2_val); } };
     this.logit = function (str1_val, str2_val) { return this.rootObject().logit_(this.objectName() + "." + str1_val, str2_val); };
     this.abend = function (str1_val, str2_val) { return this.rootObject().abend_(this.objectName() + "." + str1_val, str2_val); };
-    this.INITIAL_THEME_ID = function () { return 2000; };
-    this.MAX_THEME_ID = function () { return 10000; }
-    this.THEME_ID_STR_SIZE = function () { return this.phwangAjaxProtocolObject().WEB_FABRIC_PROTOCOL_THEME_ID_SIZE(); };
+    this.INITIAL_THEME_ID = () => 2000;
+    this.MAX_THEME_ID = () => 10000;
+    this.THEME_ID_STR_SIZE = () => this.phwangAjaxProtocolObject().WEB_FABRIC_PROTOCOL_THEME_ID_SIZE();
     this.init__(root_object_val);
 }
