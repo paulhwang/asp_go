@@ -31,11 +31,11 @@ function PhwangClass(root_val) {
     };
     this.serverHttpHeader = function() {return "http://" + window.location.hostname + ":" + window.location.port + "/";};
     this.serverHttpsHeader = function() {return "https://" + window.location.hostname + ":" + window.location.port + "/";};
-    this.objectName = function() {return "PhwangClass";};
-    this.rootObject = function() {return this.theRootObject;};
-    this.phwangAjaxObject = function() {return this.thePhwangAjaxObject;};
-    this.linkObject = function() {return this.theLinkObject;};
-    this.phwangPortObject = function() {return this.thePhwangPortObject;};
+    this.objectName = () => "PhwangClass";
+    this.rootObject = () => this.theRootObject;
+    this.phwangAjaxObject = () => this.thePhwangAjaxObject;
+    this.linkObject = () => this.theLinkObject;
+    this.phwangPortObject = () => this.thePhwangPortObject;
     this.debug = function(debug_val, str1_val, str2_val) {if (debug_val) {this.logit(str1_val, str2_val);}};
     this.logit = function(str1_val, str2_val) {return this.LOG_IT(this.objectName() + "." + str1_val, str2_val);};
     this.abend = function(str1_val, str2_val) {return this.ABEND(this.objectName() + "." + str1_val, str2_val);};
