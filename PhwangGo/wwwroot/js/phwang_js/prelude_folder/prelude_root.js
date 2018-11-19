@@ -20,7 +20,7 @@ function PreludeRootObject() {
     this.htmlObject = () => this.theHtmlObject;
     this.ajaxResponseObject = () => this.theAjaxResponseObject;
     this.themeMgrObject = () => this.theThemeMgrObject;
-    this.debug = function(debug_val, str1_val, str2_val){if (debug_val){ this.logit(str1_val, str2_val);}};
+    this.debug = function(debug_val, str1_val, str2_val) {if (debug_val) { this.logit(str1_val, str2_val);}};
     this.logit = function(str1_val, str2_val){return this.logit_(this.objectName() + "." + str1_val, str2_val);};
     this.assert = function (val, str1_val, str2_val) { return this.assert_(val, this.objectName() + "." + str1_val, str2_val); };
     this.abend = function(str1_val, str2_val){return this.abend_(this.objectName() + "." + str1_val, str2_val);};
