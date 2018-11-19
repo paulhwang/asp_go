@@ -4,7 +4,7 @@
  */
 function LinkClass(phwang_object_val) {
     "use strict";
-    this.init__ = function(phwang_object_val) {
+    this.init__ = phwang_object_val => {
         this.thePhwangObject = phwang_object_val;
         this.thePhwangLinkStorageObject = new PhwangLinkStorageObject(this);
         this.theNameList = [];
@@ -14,19 +14,19 @@ function LinkClass(phwang_object_val) {
         this.theSessionTableArray = [null];
         this.debug(true, "init__", "linkId=" + this.linkId() + " myName=" + this.myName());
     };
-    this.myName = function() {return this.phwangLinkStorageObject().myName();};
-    this.setMyName = function(val) {this.phwangLinkStorageObject().setMyName(val);};
-    this.linkId = function() {return this.phwangLinkStorageObject().linkId();};
-    this.setLinkId = function(val) {
+    this.myName = () => this.phwangLinkStorageObject().myName();
+    this.setMyName = val => {this.phwangLinkStorageObject().setMyName(val);};
+    this.linkId = () => this.phwangLinkStorageObject().linkId();
+    this.setLinkId = val => {
         if (this.linkId()) {
             //this.abend("setLinkIdIndex", "already exist");
         }
         this.phwangLinkStorageObject().setLinkId(val);
     };
-    this.sessionIndexArray = function() { return this.theSessionIndexArray; };
-    this.sessionTableArray = function() { return this.theSessionTableArray; };
-    this.sessionTableArrayLength = function() { return this.sessionTableArray().length; };
-    this.sessionTableArrayElement = function(val) { return this.sessionTableArray()[val]; };
+    this.sessionIndexArray = () => this.theSessionIndexArray;
+    this.sessionTableArray = () => this.theSessionTableArray;
+    this.sessionTableArrayLength = () => this.sessionTableArray().length;
+    this.sessionTableArrayElement = val => this.sessionTableArray()[val];
     this.verifyLinkIdIndex = function(id_val) {
         if (this.linkId() === id_val) {
             return true;
@@ -37,7 +37,7 @@ function LinkClass(phwang_object_val) {
     this.resetLinkStorage = function() {
         this.phwangLinkStorageObject().resetLinkStorage();
     };
-    this.mallocSessionAndInsert = function (session_id_val) {
+    this.mallocSessionAndInsert = session_id_val => {
         if (this.getSession(session_id_val)) {
             this.abend("mallocSessionAndInsert", "session exists: " + session_id_val);
         }
@@ -46,11 +46,11 @@ function LinkClass(phwang_object_val) {
         this.insertSession(session);
         return session;
     };
-    this.insertSession = function(session_val) {
+    this.insertSession = session_val => {
         this.sessionIndexArray().push(session_val.sessionId());
         this.sessionTableArray().push(session_val);
     };
-    this.getSession = function (session_id_val) {
+    this.getSession = session_id_val => {
         this.debug(true, "getSession", "session_id=" + session_id_val);
         var index = this.sessionIndexArray().indexOf(session_id_val);
         if (index === -1) {
