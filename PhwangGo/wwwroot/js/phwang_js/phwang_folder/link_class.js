@@ -60,19 +60,19 @@ function LinkClass(phwang_object_val) {
             return session;
         }
     };
-    this.nameListTag = function() {return this.theNameListTag;};
+    this.nameListTag = () => this.theNameListTag;
     this.setNameListTag = function(val) {this.theNameListTag = val;};
-    this.serverNameListTag = function() {return this.theServerNameListTag;};
+    this.serverNameListTag = () => this.theServerNameListTag;
     this.setServerNameListTag = function(val) {this.theServerNameListTag = val;};
-    this.nameList = function() {return this.theNameList;};
+    this.nameList = () => this.theNameList;
     this.setNameList = function(data_val) {this.theNameList = data_val.sort()};
-    this.nameListLength = function() {return this.nameList().length;};
-    this.nameListElement = function(index_val) {return this.nameList()[index_val];};
+    this.nameListLength = () => this.nameList().length;
+    this.nameListElement = (index_val) => this.nameList()[index_val];
     this.setNameListElement = function(index_val, data_val) {this.nameList()[index_val] = data_val;};
-    this.objectName = function () { return "LinkClass";};
-    this.phwangLinkStorageObject = function() {return this.thePhwangLinkStorageObject;};
-    this.phwangObject = function() {return this.thePhwangObject;};
-    this.phwangAjaxObject = function() {return this.phwangObject().phwangAjaxObject();};
+    this.objectName = () => "LinkClass";
+    this.phwangLinkStorageObject = () => this.thePhwangLinkStorageObject;
+    this.phwangObject = () => this.thePhwangObject;
+    this.phwangAjaxObject = () => this.phwangObject().phwangAjaxObject();
     this.debug = function(debug_val, str1_val, str2_val) {if (debug_val) {this.logit(str1_val, str2_val);}};
     this.logit = function(str1_val, str2_val) {return this.phwangObject().LOG_IT(this.objectName() + "." + str1_val, str2_val);};
     this.abend = function(str1_val, str2_val) {return this.phwangObject().ABEND(this.objectName() + "." + str1_val, str2_val);};

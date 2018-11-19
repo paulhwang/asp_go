@@ -327,23 +327,23 @@ function PhwangAjaxClass(phwang_object_val) {
             ajax_object.getLinkData(link_val);
         }, 100, link_val);
     };
-    this.pendingAjaxRequestCommand = function() {return this.thePendingAjaxRequestCommand;};
-    this.pendingAjaxRequestCommandExist = function() {return (this.pendingAjaxRequestCommand() !== "");};
+    this.pendingAjaxRequestCommand = () => this.thePendingAjaxRequestCommand;
+    this.pendingAjaxRequestCommandExist = () => (this.pendingAjaxRequestCommand() !== "");
     this.clearPendingAjaxRequestCommand = function() {this.thePendingAjaxRequestCommand = "";};
     this.setPendingAjaxRequestCommand = function (command_val) {if (this.pendingAjaxRequestCommand()) {this.abend("setPendingAjaxRequestCommand", "old=" + this.pendingAjaxRequestCommand() + "new=" + command_val);} this.thePendingAjaxRequestCommand = command_val;};
-    this.switchTable = function() {return this.theSwitchTable;}
-    this.objectName = function() {return "PhwangAjaxClass";};
-    this.phwangAjaxProtocolObject = function() {return this.thePhwangAjaxProtocolObject;};
-    this.phwangAjaxStorageObject = function() {return this.thePhwangAjaxStorageObject;};
-    this.phwangAjaxEngineObject = function() {return this.thePhwangAjaxEngineObject;};
-    this.transmitQueueObject = function() {return this.theTransmitQueueObject;}
-    this.pendingSessionDataQueueObject = function() {return this.thePendingSessionDataQueueObject;}
-    this.phwangObject = function() {return this.thePhwangObject;};
-    this.rootObject = function() {return this.phwangObject().rootObject();};
-    this.linkObject = function() {return this.phwangObject().linkObject();};
-    this.phwangPortObject = function () { return this.phwangObject().phwangPortObject();};
-    this.themeMgrObject = function () { return this.rootObject().themeMgrObject(); };
-    this.preludeRenderObject = function () { return this.rootObject().preludeRenderObject(); };
+    this.switchTable = () => this.theSwitchTable;
+    this.objectName = () => "PhwangAjaxClass";
+    this.phwangAjaxProtocolObject = () => this.thePhwangAjaxProtocolObject;
+    this.phwangAjaxStorageObject = () => this.thePhwangAjaxStorageObject;
+    this.phwangAjaxEngineObject = () => this.thePhwangAjaxEngineObject;
+    this.transmitQueueObject = () => this.theTransmitQueueObject;
+    this.pendingSessionDataQueueObject = () => this.thePendingSessionDataQueueObject;
+    this.phwangObject = () => this.thePhwangObject;
+    this.rootObject = () => this.phwangObject().rootObject();
+    this.linkObject = () => this.phwangObject().linkObject();
+    this.phwangPortObject = () => this.phwangObject().phwangPortObject();
+    this.themeMgrObject = () => this.rootObject().themeMgrObject();
+    this.preludeRenderObject = () => this.rootObject().preludeRenderObject();
     this.debug = function(debug_val, str1_val, str2_val) {if (debug_val) {this.logit(str1_val, str2_val);}};
     this.logit = function(str1_val, str2_val) {return this.phwangObject().LOG_IT(this.objectName() + "." + str1_val, str2_val);};
     this.abend = function(str1_val, str2_val) {return this.phwangObject().ABEND(this.objectName() + "." + str1_val, str2_val);};
