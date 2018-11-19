@@ -2,29 +2,63 @@
   Copyrights reserved
   Written by Paul Hwang
 */
-
+var ThePreludeRenderObject;
 function PreludeRenderObject(root_object_val) {
     "use strict";
-    this.init__ = function (root_object_val){
+    this.init__ = function (root_object_val) {
+        ThePreludeRenderObject = this;
         this.theRootObject = root_object_val;
-    }
+        this.initSwitches();
+    };
+    this.initSwitches = function () {
+        this.thePreludeSwitch = false;
+        this.theSignUpSwitch = false;
+        this.theSignInSwitch = false;
+        this.theThemeSwitch = false;
+        this.theGoConfigSwitch = false;
+        this.theGoGameSwitch = false;
+    };
+    this.preludeSwitch = function () { return ThePreludeRenderObject.thePreludeSwitch; };
+    this.signUpSwitch = function () { return ThePreludeRenderObject.theSignUpSwitch; };
+    this.signInSwitch = function () {
+        ThePreludeRenderObject.debug("true", "signInSwitch", ThePreludeRenderObject.theSignInSwitch);
+        return ThePreludeRenderObject.theSignInSwitch;
+    };
+    this.themeSwitch = function () { return ThePreludeRenderObject.theThemeSwitch; };
+    this.goCOnfigSwitch = function () { return ThePreludeRenderObject.theGoConfigSwitch; };
+    this.goGameSwitch = function () { return ThePreludeRenderObject.theGoGameSwitch; };
+    this.setPreludeSwitch = function (val) { this.thePreludeSwitch = val };
+    this.setSignUpSwitch = function (val) { this.theSignUpSwitch = val };
+    this.setSignInSwitch = function (val) { this.theSignInSwitch = val };
+    this.setThemeSwitch = function (val) { this.theThemeSwitch = val };
+    this.setGoConfigSwitch = function (val) { this.theGoConfigSwitch = val };
+    this.setGoGameSwitch = function (val) { this.theGoGameSwitch = val };
+
     this.theDispalySwitch = {
+        prelude_switch: this.preludeSwitch,
+        sign_up_switch: this.signUpSwitch,
+        sign_in_switch: this.signInSwitch,
+        theme_switch: this.themeSwitch,
+        go_config_switch: this.goConfigSwitch,
+        go_game_switch: this.goGameSwitch,
         prelude_on: false,
         sign_up_on: false,
-        sign_in_on: false,
         theme_on: false,
         go_config_on: false,
         go_game_on: false
-    }
-    this.dispalySwitch = function () { return this.theDispalySwitch; }
+    };
+    this.dispalySwitch = function () {
+        return this.theDispalySwitch;
+    };
+
     this.setupPreludeSwitch = function () {
-        this.theDispalySwitch.prelude_on = true;
-        this.theDispalySwitch.sign_up_on = false;
-        this.theDispalySwitch.sign_in_on = false;
-        this.theDispalySwitch.theme_on = false;
-        this.theDispalySwitch.go_config_on = false;
-        this.theDispalySwitch.go_game_on = false;
-    }
+        this.setPreludeSwitch(true);
+        this.setSignUpSwitch(false);
+        this.setSignInSwitch(false);
+        this.setThemeSwitch(false);
+        this.setGoConfigSwitch(false);
+        this.setGoGameSwitch(false);
+    };
     this.renderPreludePage = function () {
         this.setupPreludeSwitch();
         ReactDOM.render(React.createElement(PhwangPreludeComponentClass, this.dispalySwitch()), document.getElementById("phwang_prelude"));
@@ -43,13 +77,14 @@ function PreludeRenderObject(root_object_val) {
         });
     };
     this.setupSignUpSwitch = function () {
+        this.setSignInSwitch(false);
         this.theDispalySwitch.prelude_on = false;
         this.theDispalySwitch.sign_up_on = true;
         this.theDispalySwitch.sign_in_on = false;
         this.theDispalySwitch.theme_on = false;
         this.theDispalySwitch.go_config_on = false;
         this.theDispalySwitch.go_game_on = false;
-    }
+    };
     this.renderSignUpPage = function () {
         //ReactDOM.render(React.createElement(SignUpComponentClass, null, null), document.getElementById("phwang_prelude"));
         this.setupSignUpSwitch();
@@ -61,13 +96,13 @@ function PreludeRenderObject(root_object_val) {
         });
     };
     this.setupSignInSwitch = function () {
-        this.theDispalySwitch.prelude_on = false;
-        this.theDispalySwitch.sign_up_on = false;
-        this.theDispalySwitch.sign_in_on = true;
-        this.theDispalySwitch.theme_on = false;
-        this.theDispalySwitch.go_config_on = false;
-        this.theDispalySwitch.go_game_on = false;
-    }
+        this.setPreludeSwitch(false);
+        this.setSignUpSwitch(false);
+        this.setSignInSwitch(true);
+        this.setThemeSwitch(false);
+        this.setGoConfigSwitch(false);
+        this.setGoGameSwitch(false);
+    };
     this.renderSignInPage = function () {
         //ReactDOM.render(React.createElement(SignInComponentClass, null, null), document.getElementById("phwang_prelude"));
         this.setupSignInSwitch();
@@ -85,13 +120,14 @@ function PreludeRenderObject(root_object_val) {
         });
     };
     this.setupThemeSwitch = function () {
+        this.setSignInSwitch(false);
         this.theDispalySwitch.prelude_on = false;
         this.theDispalySwitch.sign_up_on = false;
         this.theDispalySwitch.sign_in_on = false;
         this.theDispalySwitch.theme_on = true;
         this.theDispalySwitch.go_config_on = false;
         this.theDispalySwitch.go_game_on = false;
-    }
+    };
     this.renderThemePage = function () {
         this.phwangAjaxObject().startWatchDog(this.linkObject());
         //ReactDOM.render(React.createElement(ThemeComponentClass, null, null), document.getElementById("phwang_prelude"));
@@ -104,13 +140,14 @@ function PreludeRenderObject(root_object_val) {
         });
     };
     this.setupGoConfigSwitch = function () {
+        this.setSignInSwitch(false);
         this.theDispalySwitch.prelude_on = false;
         this.theDispalySwitch.sign_up_on = false;
         this.theDispalySwitch.sign_in_on = false;
         this.theDispalySwitch.theme_on = false;
         this.theDispalySwitch.go_config_on = true;
         this.theDispalySwitch.go_game_on = false;
-    }
+    };
     this.renderGoConfigPage = function () {
         this.setupGoConfigSwitch();
         ReactDOM.render(React.createElement(PhwangPreludeComponentClass, this.dispalySwitch()), document.getElementById("phwang_prelude"));
@@ -137,13 +174,14 @@ function PreludeRenderObject(root_object_val) {
         }
     };
     this.setupGoGameSwitch = function () {
+        this.setSignInSwitch(false);
         this.theDispalySwitch.prelude_on = false;
         this.theDispalySwitch.sign_up_on = false;
         this.theDispalySwitch.sign_in_on = false;
         this.theDispalySwitch.theme_on = false;
         this.theDispalySwitch.go_config_on = false;
         this.theDispalySwitch.go_game_on = true;
-    }
+    };
     this.renderGoGamePage = function (theme_id_str_val) {
         this.setupGoGameSwitch();
         ReactDOM.render(React.createElement(PhwangPreludeComponentClass, this.dispalySwitch()), document.getElementById("phwang_prelude"));

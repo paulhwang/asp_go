@@ -15,7 +15,8 @@ function PhwangPreludeComponentClass (props) {
         );
 }
 function preludeComponent(props) {
-    if (props.prelude_on) {
+    if (props.prelude_switch()) {
+    //if (props.prelude_on) {
         return React.DOM.section({ className: "prelude_section" },
             React.DOM.h1(null, "Let's Play Go!"),
             React.DOM.p({ className: "lead" }, "Let's Play Go is a free web platform to play Go Game with people in the world."),
@@ -45,7 +46,8 @@ function signUpComponent(props) {
     }
 }
 function signInComponent(props) {
-    if (props.sign_in_on) {
+    if (props.sign_in_switch()) {
+    //if (props.sign_in_on) {
         return React.DOM.section({ className: "sign_in_section" },
             React.DOM.h2(null, "Account Sign In"),
             React.DOM.p(null, "Name:", React.DOM.input({ className: "sign_in_name", placeholder: "Enter your account name" })),
