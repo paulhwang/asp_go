@@ -75,7 +75,6 @@ function PreludeRenderObject(root_object_val) {
         this.setGoGameSwitch(false);
     };
     this.renderSignUpPage = function () {
-        //ReactDOM.render(React.createElement(SignUpComponentClass, null, null), document.getElementById("phwang_prelude"));
         this.setupSignUpSwitch();
         ReactDOM.render(React.createElement(PhwangPreludeComponentClass, this.dispalySwitch()), document.getElementById("phwang_prelude"));
         var this0 = this;
@@ -93,8 +92,7 @@ function PreludeRenderObject(root_object_val) {
         this.setGoGameSwitch(false);
     };
     this.renderSignInPage = function () {
-        //ReactDOM.render(React.createElement(SignInComponentClass, null, null), document.getElementById("phwang_prelude"));
-        this.setupSignInSwitch();
+       this.setupSignInSwitch();
         ReactDOM.render(React.createElement(PhwangPreludeComponentClass, this.dispalySwitch()), document.getElementById("phwang_prelude"));
         var this0 = this;
         $(".sign_in_section .sign_in_button").on("click", function () {
@@ -118,7 +116,6 @@ function PreludeRenderObject(root_object_val) {
     };
     this.renderThemePage = function () {
         this.phwangAjaxObject().startWatchDog(this.linkObject());
-        //ReactDOM.render(React.createElement(ThemeComponentClass, null, null), document.getElementById("phwang_prelude"));
         this.setupThemeSwitch();
         ReactDOM.render(React.createElement(PhwangPreludeComponentClass, this.dispalySwitch()), document.getElementById("phwang_prelude"));
         var this0 = this;
