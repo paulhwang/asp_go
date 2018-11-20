@@ -63,6 +63,28 @@ function PreludeHtmlObject(root_object_val) {
     this.renderGoConfigComponent = () => { this.setupGoConfigSwitch(); this.randetIt(); };
     this.renderGoGameComponent = () => { this.setupGoGameSwitch(); this.randetIt(); };
 
+    this.TestAreaComponent = React.createClass({
+        getDefaultProps: function () {
+            return {
+                text: "",
+            };
+        },
+        render: function () {
+            return React.DOM.div(null,
+                React.DOM.textarea({
+                    defaultValue: this.props.text,
+                }),
+                React.DOM.h3(null, this.props.text.length)
+            )
+        }
+    });
+    this.randerTestComponent1 = () => {
+        ReactDOM.render(React.createElement(this.TestAreaComponent, { text: "Bob" }), document.getElementById("phwang_prelude"));
+    };
+    this.randerTestComponent2 = () => {
+        ReactDOM.render(React.createElement(this.TestAreaComponent, { text: "Bob" }), document.getElementById("phwang_prelude"));
+    };
+
     this.PhwangPreludeComponentClass = props => {
         //render() {
         console.log("prelude_on=" + props.prelude_on);

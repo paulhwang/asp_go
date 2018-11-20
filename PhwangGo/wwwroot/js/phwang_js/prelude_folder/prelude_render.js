@@ -8,6 +8,10 @@ function PreludeRenderObject(root_object_val) {
         this.theRootObject = root_object_val;
     };
     this.renderPreludePage = () => {
+        if (true) {
+            this.preludeHtmlObject().randerTestComponent1();
+            return;
+        }
         this.preludeHtmlObject().renderPreludeComponent();
         var this0 = this;
         $(".prelude_section .sign_up_button").on("click", function () {
