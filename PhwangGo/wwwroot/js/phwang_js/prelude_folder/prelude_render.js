@@ -171,7 +171,7 @@ function PreludeRenderObject(root_object_val) {
         var theme = this.themeMgrObject().getTheme(theme_id_str_val);
         theme.init_game();
     };
-    this.objectName = function () { return "PreludeRenderObject"; };
+    this.objectName = () => "PreludeRenderObject";
     this.rootObject = function () { return this.theRootObject; };
     this.phwangObject = function () { return this.rootObject().phwangObject(); };
     this.phwangAjaxObject = function () { return this.phwangObject().phwangAjaxObject(); };
