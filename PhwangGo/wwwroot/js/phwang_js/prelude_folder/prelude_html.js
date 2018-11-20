@@ -2,21 +2,7 @@
   Copyrights reserved
   Written by Paul Hwang
 */
-var thePreludeSwitch = false;
-var theSignUpSwitch = false;
-var theSignInSwitch = false;
-var theThemeSwitch = false;
-var theGoConfigSwitch = false;
-var theGoGameSwitch = false;
-var theDispalySwitch = {
-    prelude_switch: preludeSwitch,
-    sign_up_switch: signUpSwitch,
-    sign_in_switch: signInSwitch,
-    theme_switch: themeSwitch,
-    go_config_switch: goConfigSwitch,
-    go_game_switch: goGameSwitch,
-};
-function PhwangPreludeComponentClass (props) {
+var PhwangPreludeComponentClass = props => {
     //render() {
     console.log("prelude_on=" + props.prelude_on);
     return React.createElement("body", null,
@@ -29,7 +15,7 @@ function PhwangPreludeComponentClass (props) {
         goGameComponent(props)
         );
 }
-function preludeComponent(props) {
+var preludeComponent = props => {
     if (props.prelude_switch()) {
         return React.DOM.section({ className: "prelude_section" },
             React.DOM.h1(null, "Let's Play Go!"),
@@ -66,7 +52,7 @@ var preludeComponent1 = React.createClass({
         }
     }
 });
-function signUpComponent(props) {
+var signUpComponent = props => {
     if (props.sign_up_switch()) {
         return React.DOM.section({ className: "sign_up_section" },
             React.DOM.h2(null, "Account Sign Up"),
@@ -80,7 +66,7 @@ function signUpComponent(props) {
         return null;
     }
 }
-function signInComponent(props) {
+var signInComponent = props => {
     if (props.sign_in_switch()) {
         return React.DOM.section({ className: "sign_in_section" },
             React.DOM.h2(null, "Account Sign In"),
@@ -93,7 +79,7 @@ function signInComponent(props) {
         return null;
     }
 }
-function themeComponent(props) {
+var themeComponent = props => {
     if (props.theme_switch()) {
        return React.createElement("section", { "className": "theme_section" },
             React.DOM.h1(null, "Select the Theme"),
@@ -104,7 +90,7 @@ function themeComponent(props) {
         return null;
     }
 }
-function goConfigComponent(props) {
+var  goConfigComponent = props => {
     if (props.go_config_switch()) {
         return React.createElement(
             "body",
@@ -195,7 +181,7 @@ function goConfigComponent(props) {
         return null;
     }
 }
-function goGameComponent(props) {
+var goGameComponent = props => {
     if (props.go_game_switch()) {
         return React.DOM.body(
             null,
@@ -213,6 +199,20 @@ function goGameComponent(props) {
     }
 }
 
+var thePreludeSwitch = false;
+var theSignUpSwitch = false;
+var theSignInSwitch = false;
+var theThemeSwitch = false;
+var theGoConfigSwitch = false;
+var theGoGameSwitch = false;
+var theDispalySwitch = {
+    prelude_switch: preludeSwitch,
+    sign_up_switch: signUpSwitch,
+    sign_in_switch: signInSwitch,
+    theme_switch: themeSwitch,
+    go_config_switch: goConfigSwitch,
+    go_game_switch: goGameSwitch,
+};
 var dispalySwitch = () => theDispalySwitch;
 var preludeSwitch = () => thePreludeSwitch;
 var signUpSwitch = () => theSignUpSwitch;
@@ -240,5 +240,6 @@ var setupSignInSwitch = () => { setupSwitches(false, false, true, false, false, 
 var setupThemeSwitch = () => { setupSwitches(false, false, false, true, false, false); };
 var setupGoConfigSwitch = () => { setupSwitches(false, false, false, false, true, false); };
 var setupGoGameSwitch = () => { setupSwitches(false, false, false, false, false, true); };
+
 
 
