@@ -6,6 +6,7 @@ function PhwangPreludeComponentClass (props) {
     //render() {
     console.log("prelude_on=" + props.prelude_on);
     return React.createElement("body", null,
+        //React.createElement(preludeComponent1),
         preludeComponent(props),
         signUpComponent(props),
         signInComponent(props),
