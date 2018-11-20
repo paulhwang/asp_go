@@ -69,17 +69,28 @@ function PreludeHtmlObject(root_object_val) {
                 text: "",
             };
         },
+        getInitialState: function () {
+            return {
+                text: this.props.text,
+            };
+        },
+        _textChange: function(ev) {
+            this.setState({
+                text: ev.target.val,
+            });
+        },
         render: function () {
             return React.DOM.div(null,
                 React.DOM.textarea({
-                    defaultValue: this.props.text,
+                    value: this.props.text,
+                    onChange: this._textChange,
                 }),
                 React.DOM.h3(null, this.props.text.length)
             )
         }
     });
     this.randerTestComponent1 = () => {
-        ReactDOM.render(React.createElement(this.TestAreaComponent1, { text: "Bob" }), document.getElementById("phwang_prelude"));
+        ReactDOM.render(React.createElement(this.TestAreaComponent1, { text: "new" }), document.getElementById("phwang_prelude"));
     };
 
     this.TestAreaComponent2 = React.createClass({
