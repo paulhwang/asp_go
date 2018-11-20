@@ -63,7 +63,7 @@ function PreludeHtmlObject(root_object_val) {
     this.renderGoConfigComponent = () => { this.setupGoConfigSwitch(); this.randetIt(); };
     this.renderGoGameComponent = () => { this.setupGoGameSwitch(); this.randetIt(); };
 
-    this.TestAreaComponent = React.createClass({
+    this.TestAreaComponent1 = React.createClass({
         getDefaultProps: function () {
             return {
                 text: "",
@@ -79,10 +79,26 @@ function PreludeHtmlObject(root_object_val) {
         }
     });
     this.randerTestComponent1 = () => {
-        ReactDOM.render(React.createElement(this.TestAreaComponent, { text: "Bob" }), document.getElementById("phwang_prelude"));
+        ReactDOM.render(React.createElement(this.TestAreaComponent1, { text: "Bob" }), document.getElementById("phwang_prelude"));
     };
+
+    this.TestAreaComponent2 = React.createClass({
+        getDefaultProps: function () {
+            return {
+                text: "",
+            };
+        },
+        render: function () {
+            return React.DOM.div(null,
+                React.DOM.textarea({
+                    defaultValue: this.props.text,
+                }),
+                React.DOM.h3(null, this.props.text.length)
+            )
+        }
+    });
     this.randerTestComponent2 = () => {
-        ReactDOM.render(React.createElement(this.TestAreaComponent, { text: "Bob" }), document.getElementById("phwang_prelude"));
+        ReactDOM.render(React.createElement(this.TestAreaComponent2, { text: "David" }), document.getElementById("phwang_prelude"));
     };
 
     this.PhwangPreludeComponentClass = props => {
