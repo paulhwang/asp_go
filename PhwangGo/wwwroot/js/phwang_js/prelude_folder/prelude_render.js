@@ -32,8 +32,7 @@ function PreludeRenderObject(root_object_val) {
         this.setGoGameSwitch(false);
     };
     this.renderSignUpPage = function () {
-        this.preludeHtmlObject().setupSignUpSwitch();
-        ReactDOM.render(React.createElement(this.preludeHtmlObject().PhwangPreludeComponentClass, this.preludeHtmlObject().dispalySwitch()), document.getElementById("phwang_prelude"));
+        this.preludeHtmlObject().renderSignUpComponent();
         var this0 = this;
         $(".sign_up_section .sign_up_button").on("click", function () {
             this0.debug(true, "renderSignUpPage click function", ".sign_up_section .sign_up_button");
@@ -49,8 +48,7 @@ function PreludeRenderObject(root_object_val) {
         this.setGoGameSwitch(false);
     };
     this.renderSignInPage = function () {
-        this.preludeHtmlObject().setupSignInSwitch();
-        ReactDOM.render(React.createElement(this.preludeHtmlObject().PhwangPreludeComponentClass, this.preludeHtmlObject().dispalySwitch()), document.getElementById("phwang_prelude"));
+        this.preludeHtmlObject().renderSignInComponent();
         var this0 = this;
         $(".sign_in_section .sign_in_button").on("click", function () {
             this0.debug(true, "renderSignUpPage click function", ".sign_in_section .sign_in_button");
@@ -73,8 +71,7 @@ function PreludeRenderObject(root_object_val) {
     };
     this.renderThemePage = function () {
         this.phwangAjaxObject().startWatchDog(this.linkObject());
-        this.preludeHtmlObject().setupThemeSwitch();
-        ReactDOM.render(React.createElement(this.preludeHtmlObject().PhwangPreludeComponentClass, this.preludeHtmlObject().dispalySwitch()), document.getElementById("phwang_prelude"));
+        this.preludeHtmlObject().renderThemeComponent();
         var this0 = this;
         $(".theme_section .go_button").on("click", function () {
             this0.debug(true, "renderThemePage click function", ".theme_section .go_button");
@@ -90,8 +87,7 @@ function PreludeRenderObject(root_object_val) {
         this.setGoGameSwitch(false);
     };
     this.renderGoConfigPage = function () {
-        this.preludeHtmlObject().setupGoConfigSwitch();
-        ReactDOM.render(React.createElement(this.preludeHtmlObject().PhwangPreludeComponentClass, this.preludeHtmlObject().dispalySwitch()), document.getElementById("phwang_prelude"));
+        this.preludeHtmlObject().renderGoConfigComponent();
         this.renderNameList();
         var this0 = this;
         $(".config_section .config_button").on("click", function () {
@@ -123,9 +119,8 @@ function PreludeRenderObject(root_object_val) {
         this.setGoGameSwitch(true);
     };
     this.renderGoGamePage = function (theme_id_str_val) {
-        this.preludeHtmlObject().setupGoGameSwitch();
-        ReactDOM.render(React.createElement(this.preludeHtmlObject().PhwangPreludeComponentClass, this.preludeHtmlObject().dispalySwitch()), document.getElementById("phwang_prelude"));
-        var theme = this.themeMgrObject().getTheme(theme_id_str_val);
+        this.preludeHtmlObject().renderGoGameComponent();
+       var theme = this.themeMgrObject().getTheme(theme_id_str_val);
         theme.init_game();
     };
     this.objectName = () => "PreludeRenderObject";

@@ -57,10 +57,13 @@ function PreludeHtmlObject(root_object_val) {
     this.setupGoConfigSwitch = () => { this.setupSwitches(false, false, false, false, true, false); };
     this.setupGoGameSwitch = () => { this.setupSwitches(false, false, false, false, false, true); };
 
-    this.renderPreludeComponent = () => {
-        this.setupPreludeSwitch();
-        ReactDOM.render(React.createElement(this.PhwangPreludeComponentClass, this.dispalySwitch()), document.getElementById("phwang_prelude"));
-    };
+    this.randetIt = () => { ReactDOM.render(React.createElement(this.PhwangPreludeComponentClass, this.dispalySwitch()), document.getElementById("phwang_prelude"));}
+    this.renderPreludeComponent = () => { this.setupPreludeSwitch(); this.randetIt(); };
+    this.renderSignUpComponent = () => { this.setupSignUpSwitch(); this.randetIt(); };
+    this.renderSignInComponent = () => { this.setupSignInSwitch(); this.randetIt(); };
+    this.renderThemeComponent = () => { this.setupThemeSwitch(); this.randetIt(); };
+    this.renderGoConfigComponent = () => { this.setupGoConfigSwitch(); this.randetIt(); };
+    this.renderGoGameComponent = () => { this.setupGoGameSwitch(); this.randetIt(); };
 
     this.PhwangPreludeComponentClass = props => {
         //render() {
