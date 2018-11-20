@@ -6,6 +6,7 @@ function PreludeRootObject() {
     "use strict";
     this.init__ = function() {
         this.thePhwangObject = new PhwangClass(this);
+        this.thePreludeHtmlObject = new PreludeHtmlObject(this);
         this.thePreludeRenderObject = new PreludeRenderObject(this);
         this.phwangObject().initObject();
         this.theAjaxResponseObject = new PreludeAjaxResponseClass(this);
@@ -14,6 +15,7 @@ function PreludeRootObject() {
     };
     this.objectName = () => "PreludeRootObject";
     this.phwangObject = () => this.thePhwangObject;
+    this.preludeHtmlObject = () => this.thePreludeHtmlObject;
     this.preludeRenderObject = () => this.thePreludeRenderObject;
     this.phwangAjaxObject = () => this.phwangObject().phwangAjaxObject();
     this.phwangLinkObject = () => this.phwangObject().phwangLinkObject();
