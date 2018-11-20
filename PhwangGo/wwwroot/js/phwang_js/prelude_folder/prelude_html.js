@@ -69,8 +69,8 @@ function PreludeHtmlObject(root_object_val) {
         //render() {
         console.log("prelude_on=" + props.prelude_on);
         return React.createElement("body", null,
-            //React.createElement(preludeComponent1),
-            this.preludeComponent(props),
+            React.createElement(this.preludeComponent1, this.dispalySwitch()),
+            //this.preludeComponent(props),
             this.signUpComponent(props),
             this.signInComponent(props),
             this.themeComponent(props),
