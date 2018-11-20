@@ -64,10 +64,15 @@ function PreludeHtmlObject(root_object_val) {
     this.renderGoGameComponent = () => { this.setupGoGameSwitch(); this.randetIt(); };
 
     this.TestAreaComponent1 = React.createClass({
+        /*
         getDefaultProps: function () {
             return {
                 text: "",
             };
+        },
+        */
+        propTypes: {
+            text: React.PropTypes.string,
         },
         getInitialState: function () {
             return {
@@ -76,21 +81,21 @@ function PreludeHtmlObject(root_object_val) {
         },
         _textChange: function(ev) {
             this.setState({
-                text: ev.target.val,
+                text: ev.target.value,
             });
         },
         render: function () {
             return React.DOM.div(null,
                 React.DOM.textarea({
-                    value: this.props.text,
+                    value: this.state.text,
                     onChange: this._textChange,
                 }),
-                React.DOM.h3(null, this.props.text.length)
+                React.DOM.h3(null, this.state.text.length)
             )
         }
     });
     this.randerTestComponent1 = () => {
-        ReactDOM.render(React.createElement(this.TestAreaComponent1, { text: "new" }), document.getElementById("phwang_prelude"));
+        ReactDOM.render(React.createElement(this.TestAreaComponent1, { text: "Jack" }), document.getElementById("phwang_prelude"));
     };
 
     this.TestAreaComponent2 = React.createClass({
