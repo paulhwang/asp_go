@@ -4,7 +4,7 @@
 */
 function GoBaseObject(root_object_val, theme_id_str_val) {
     "use strict";
-    this.init__ = function() {
+    this.init__ = () => {
         this.theRootObject = root_object_val;
         this.theThemeIdStr = theme_id_str_val;
         this.theAjaxObject = new GoGameAjaxClass(this);
@@ -13,7 +13,7 @@ function GoBaseObject(root_object_val, theme_id_str_val) {
         this.debug(true, "init__", "myName=" + this.linkObject().myName() + " linkId=" + this.linkObject().linkId());
         this.debug(true, "init__", "boardSize=" + this.configObject().boardSize() + " stoneColor=" + this.configStorageObject().myColor() + " komi=" + this.configObject().komiPoint() + " handicap=" + this.configObject().handicapPoint());
     };
-    this.init_game = function() {
+    this.init_game = () => {
         this.configObject().cacheConfig();
         this.theBoardObject = new GoGameBoardObject(this);
         this.thePortObject = new GoGamePortObject(this);
@@ -22,26 +22,26 @@ function GoBaseObject(root_object_val, theme_id_str_val) {
         this.theInputObject = new GoGameInputObject(this);
         this.theDisplayObject = new GoGameDisplayObject(this);
     };
-    this.bindSession = function (session_val) {
+    this.bindSession = (session_val) => {
         session_val.setThemeObject(this.portObject());
         this.theSessionObject = session_val;
     };
-    this.objectName = function() {return "GoBaseObject"; };
-    this.rootObject = function() {return this.theRootObject; };
-    this.phwangObject = function() {return this.rootObject().phwangObject(); };
-    this.phwangAjaxObject = function() {return this.phwangObject().phwangAjaxObject(); };
-    this.linkObject = function() {return this.phwangObject().linkObject(); };
-    this.sessionObject = function () { return this.theSessionObject;}
-    this.ajaxObject = function() {return this.theAjaxObject; };
-    this.htmlObject = function() {return this.theHtmlObject; };
-    this.configStorageObject = function() {return this.theConfigStorageObject; };
-    this.inputObject = function() {return this.theInputObject; };
-    this.displayObject = function() {return this.theDisplayObject; };
-    this.configObject = function() {return this.theConfigObject; };
-    this.boardObject = function() {return this.theBoardObject; };
-    this.gameObject = function() {return this.theGameObject; };
-    this.portObject = function () { return this.thePortObject; };
-    this.themeIdStr = function () { return this.theThemeIdStr; };
+    this.objectName = () => "GoBaseObject";
+    this.rootObject = () => this.theRootObject;
+    this.phwangObject = () => this.rootObject().phwangObject();
+    this.phwangAjaxObject = () => this.phwangObject().phwangAjaxObject();
+    this.linkObject = () => this.phwangObject().linkObject();
+    this.sessionObject = () => this.theSessionObject;
+    this.ajaxObject = () => this.theAjaxObject;
+    this.htmlObject = () => this.theHtmlObject;
+    this.configStorageObject = () => this.theConfigStorageObject;
+    this.inputObject = () => this.theInputObject;
+    this.displayObject = () => this.theDisplayObject;
+    this.configObject = () => this.theConfigObject;
+    this.boardObject = () => this.theBoardObject;
+    this.gameObject = () => this.theGameObject;
+    this.portObject = () => this.thePortObject;
+    this.themeIdStr = () => this.theThemeIdStr;
     this.debug = function (debug_val, str1_val, str2_val) { if (debug_val) { this.logit(str1_val, str2_val); } };
     this.logit = function (str1_val, str2_val) { this.logit_(this.objectName() + "." + str1_val, str2_val); };
     this.assert = function (val, str1_val, str2_val) { this.assert_(val, this.objectName() + "." + str1_val, str2_val); };
