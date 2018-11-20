@@ -57,6 +57,11 @@ function PreludeHtmlObject(root_object_val) {
     this.setupGoConfigSwitch = () => { this.setupSwitches(false, false, false, false, true, false); };
     this.setupGoGameSwitch = () => { this.setupSwitches(false, false, false, false, false, true); };
 
+    this.renderPreludeComponent = () => {
+        this.setupPreludeSwitch();
+        ReactDOM.render(React.createElement(this.PhwangPreludeComponentClass, this.dispalySwitch()), document.getElementById("phwang_prelude"));
+    };
+
     this.PhwangPreludeComponentClass = props => {
         //render() {
         console.log("prelude_on=" + props.prelude_on);
@@ -263,47 +268,3 @@ function PreludeHtmlObject(root_object_val) {
     this.abend_ = function (str1_val, str2_val) { this.phwangObject().ABEND(str1_val, str2_val); };
     this.init__(root_object_val);
 }
-var thePreludeSwitch = false;
-var theSignUpSwitch = false;
-var theSignInSwitch = false;
-var theThemeSwitch = false;
-var theGoConfigSwitch = false;
-var theGoGameSwitch = false;
-var theDispalySwitch = {
-    prelude_switch: preludeSwitch,
-    sign_up_switch: signUpSwitch,
-    sign_in_switch: signInSwitch,
-    theme_switch: themeSwitch,
-    go_config_switch: goConfigSwitch,
-    go_game_switch: goGameSwitch,
-};
-var dispalySwitch = () => theDispalySwitch;
-var preludeSwitch = () => thePreludeSwitch;
-var signUpSwitch = () => theSignUpSwitch;
-var signInSwitch = () => theSignInSwitch;
-var themeSwitch = () => theThemeSwitch;
-var goConfigSwitch = () => theGoConfigSwitch;
-var goGameSwitch = () => theGoGameSwitch;
-var setPreludeSwitch = val => { thePreludeSwitch = val };
-var setSignUpSwitch = val => { theSignUpSwitch = val };
-var setSignInSwitch = val => { theSignInSwitch = val };
-var setThemeSwitch = val => { theThemeSwitch = val };
-var setGoConfigSwitch = val => { theGoConfigSwitch = val };
-var setGoGameSwitch = val => { theGoGameSwitch = val };
-var setupSwitches = (val1, val2, val3, val4, val5, val6) => {
-    this.setPreludeSwitch(val1);
-    this.setSignUpSwitch(val2);
-    this.setSignInSwitch(val3);
-    this.setThemeSwitch(val4);
-    this.setGoConfigSwitch(val5);
-    this.setGoGameSwitch(val6);
-};
-var setupPreludeSwitch = () => { setupSwitches(true, false, false, false, false, false); };
-var setupSignUpSwitch = () => { setupSwitches(false, true, false, false, false, false); };
-var setupSignInSwitch = () => { setupSwitches(false, false, true, false, false, false); };
-var setupThemeSwitch = () => { setupSwitches(false, false, false, true, false, false); };
-var setupGoConfigSwitch = () => { setupSwitches(false, false, false, false, true, false); };
-var setupGoGameSwitch = () => { setupSwitches(false, false, false, false, false, true); };
-
-
-

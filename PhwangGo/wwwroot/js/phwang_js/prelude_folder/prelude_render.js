@@ -8,8 +8,7 @@ function PreludeRenderObject(root_object_val) {
         this.theRootObject = root_object_val;
     };
     this.renderPreludePage = function () {
-        this.preludeHtmlObject().setupPreludeSwitch();
-        ReactDOM.render(React.createElement(this.preludeHtmlObject().PhwangPreludeComponentClass, this.preludeHtmlObject().dispalySwitch()), document.getElementById("phwang_prelude"));
+        this.preludeHtmlObject().renderPreludeComponent();
         var this0 = this;
         $(".prelude_section .sign_up_button").on("click", function () {
             this0.debug(true, "renderPreludePage click function", ".prelude_section .sign_up_button");
