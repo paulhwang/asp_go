@@ -2,6 +2,20 @@
   Copyrights reserved
   Written by Paul Hwang
 */
+var thePreludeSwitch = false;
+var theSignUpSwitch = false;
+var theSignInSwitch = false;
+var theThemeSwitch = false;
+var theGoConfigSwitch = false;
+var theGoGameSwitch = false;
+var theDispalySwitch = {
+    prelude_switch: preludeSwitch,
+    sign_up_switch: signUpSwitch,
+    sign_in_switch: signInSwitch,
+    theme_switch: themeSwitch,
+    go_config_switch: goConfigSwitch,
+    go_game_switch: goGameSwitch,
+};
 function PhwangPreludeComponentClass (props) {
     //render() {
     console.log("prelude_on=" + props.prelude_on);
@@ -198,4 +212,33 @@ function goGameComponent(props) {
         return null;
     }
 }
+
+var dispalySwitch = () => theDispalySwitch;
+var preludeSwitch = () => thePreludeSwitch;
+var signUpSwitch = () => theSignUpSwitch;
+var signInSwitch = () => theSignInSwitch;
+var themeSwitch = () => theThemeSwitch;
+var goConfigSwitch = () => theGoConfigSwitch;
+var goGameSwitch = () => theGoGameSwitch;
+var setPreludeSwitch = val => { thePreludeSwitch = val };
+var setSignUpSwitch = val => { theSignUpSwitch = val };
+var setSignInSwitch = val => { theSignInSwitch = val };
+var setThemeSwitch = val => { theThemeSwitch = val };
+var setGoConfigSwitch = val => { theGoConfigSwitch = val };
+var setGoGameSwitch = val => { theGoGameSwitch = val };
+var setupSwitches = (val1, val2, val3, val4, val5, val6) => {
+    this.setPreludeSwitch(val1);
+    this.setSignUpSwitch(val2);
+    this.setSignInSwitch(val3);
+    this.setThemeSwitch(val4);
+    this.setGoConfigSwitch(val5);
+    this.setGoGameSwitch(val6);
+};
+var setupPreludeSwitch = () => { setupSwitches(true, false, false, false, false, false); };
+var setupSignUpSwitch = () => { setupSwitches(false, true, false, false, false, false); };
+var setupSignInSwitch = () => { setupSwitches(false, false, true, false, false, false); };
+var setupThemeSwitch = () => { setupSwitches(false, false, false, true, false, false); };
+var setupGoConfigSwitch = () => { setupSwitches(false, false, false, false, true, false); };
+var setupGoGameSwitch = () => { setupSwitches(false, false, false, false, false, true); };
+
 
