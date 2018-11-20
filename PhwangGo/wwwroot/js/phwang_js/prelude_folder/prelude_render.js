@@ -51,7 +51,7 @@ function PreludeRenderObject(root_object_val) {
     };
     this.renderPreludePage = function () {
         this.setupPreludeSwitch();
-        ReactDOM.render(React.createElement(PhwangPreludeComponentClass, this.dispalySwitch()), document.getElementById("phwang_prelude"));
+        ReactDOM.render(React.createElement(this.preludeHtmlObject().PhwangPreludeComponentClass, this.dispalySwitch()), document.getElementById("phwang_prelude"));
         var this0 = this;
         $(".prelude_section .sign_up_button").on("click", function () {
             this0.debug(true, "renderPreludePage click function", ".prelude_section .sign_up_button");
@@ -76,7 +76,7 @@ function PreludeRenderObject(root_object_val) {
     };
     this.renderSignUpPage = function () {
         this.setupSignUpSwitch();
-        ReactDOM.render(React.createElement(PhwangPreludeComponentClass, this.dispalySwitch()), document.getElementById("phwang_prelude"));
+        ReactDOM.render(React.createElement(this.preludeHtmlObject().PhwangPreludeComponentClass, this.dispalySwitch()), document.getElementById("phwang_prelude"));
         var this0 = this;
         $(".sign_up_section .sign_up_button").on("click", function () {
             this0.debug(true, "renderSignUpPage click function", ".sign_up_section .sign_up_button");
@@ -93,7 +93,7 @@ function PreludeRenderObject(root_object_val) {
     };
     this.renderSignInPage = function () {
        this.setupSignInSwitch();
-        ReactDOM.render(React.createElement(PhwangPreludeComponentClass, this.dispalySwitch()), document.getElementById("phwang_prelude"));
+        ReactDOM.render(React.createElement(this.preludeHtmlObject().PhwangPreludeComponentClass, this.dispalySwitch()), document.getElementById("phwang_prelude"));
         var this0 = this;
         $(".sign_in_section .sign_in_button").on("click", function () {
             this0.debug(true, "renderSignUpPage click function", ".sign_in_section .sign_in_button");
@@ -117,7 +117,7 @@ function PreludeRenderObject(root_object_val) {
     this.renderThemePage = function () {
         this.phwangAjaxObject().startWatchDog(this.linkObject());
         this.setupThemeSwitch();
-        ReactDOM.render(React.createElement(PhwangPreludeComponentClass, this.dispalySwitch()), document.getElementById("phwang_prelude"));
+        ReactDOM.render(React.createElement(this.preludeHtmlObject().PhwangPreludeComponentClass, this.dispalySwitch()), document.getElementById("phwang_prelude"));
         var this0 = this;
         $(".theme_section .go_button").on("click", function () {
             this0.debug(true, "renderThemePage click function", ".theme_section .go_button");
@@ -134,7 +134,7 @@ function PreludeRenderObject(root_object_val) {
     };
     this.renderGoConfigPage = function () {
         this.setupGoConfigSwitch();
-        ReactDOM.render(React.createElement(PhwangPreludeComponentClass, this.dispalySwitch()), document.getElementById("phwang_prelude"));
+        ReactDOM.render(React.createElement(this.preludeHtmlObject().PhwangPreludeComponentClass, this.dispalySwitch()), document.getElementById("phwang_prelude"));
         this.renderNameList();
         var this0 = this;
         $(".config_section .config_button").on("click", function () {
@@ -167,12 +167,13 @@ function PreludeRenderObject(root_object_val) {
     };
     this.renderGoGamePage = function (theme_id_str_val) {
         this.setupGoGameSwitch();
-        ReactDOM.render(React.createElement(PhwangPreludeComponentClass, this.dispalySwitch()), document.getElementById("phwang_prelude"));
+        ReactDOM.render(React.createElement(this.preludeHtmlObject().PhwangPreludeComponentClass, this.dispalySwitch()), document.getElementById("phwang_prelude"));
         var theme = this.themeMgrObject().getTheme(theme_id_str_val);
         theme.init_game();
     };
     this.objectName = () => "PreludeRenderObject";
     this.rootObject = function () { return this.theRootObject; };
+    this.preludeHtmlObject = () => this.rootObject().preludeHtmlObject();
     this.phwangObject = function () { return this.rootObject().phwangObject(); };
     this.phwangAjaxObject = function () { return this.phwangObject().phwangAjaxObject(); };
     this.linkObject = function () { return this.phwangObject().linkObject(); };
