@@ -22,10 +22,10 @@ function PreludeHtmlObject(root_object_val) {
     this.dispalySwitch = () => this.theDispalySwitch;
     this.preludeSwitch = () => ThePreludeHtmlObject.thePreludeSwitch;
     this.signUpSwitch = () => ThePreludeHtmlObject.theSignUpSwitch;
-    this.signInSwitch = function () { return ThePreludeHtmlObject.theSignInSwitch; };
-    this.themeSwitch = function () { return ThePreludeHtmlObject.theThemeSwitch; };
-    this.goConfigSwitch = function () { return ThePreludeHtmlObject.theGoConfigSwitch; };
-    this.goGameSwitch = function () { return ThePreludeHtmlObject.theGoGameSwitch; };
+    this.signInSwitch = () => ThePreludeHtmlObject.theSignInSwitch;
+    this.themeSwitch = () => ThePreludeHtmlObject.theThemeSwitch;
+    this.goConfigSwitch = () => ThePreludeHtmlObject.theGoConfigSwitch;
+    this.goGameSwitch = () => ThePreludeHtmlObject.theGoGameSwitch;
     this.theDispalySwitch = {
         prelude_switch: this.preludeSwitch,
         sign_up_switch: this.signUpSwitch,
@@ -34,14 +34,12 @@ function PreludeHtmlObject(root_object_val) {
         go_config_switch: this.goConfigSwitch,
         go_game_switch: this.goGameSwitch,
     };
-    this.setPreludeSwitch = val => {
-        this.thePreludeSwitch = val
-    };
-    this.setSignUpSwitch = function (val) { this.theSignUpSwitch = val };
-    this.setSignInSwitch = function (val) { this.theSignInSwitch = val };
-    this.setThemeSwitch = function (val) { this.theThemeSwitch = val };
-    this.setGoConfigSwitch = function (val) { this.theGoConfigSwitch = val };
-    this.setGoGameSwitch = function (val) { this.theGoGameSwitch = val };
+    this.setPreludeSwitch = val => { this.thePreludeSwitch = val; };
+    this.setSignUpSwitch = val => { this.theSignUpSwitch = val; };
+    this.setSignInSwitch = val => { this.theSignInSwitch = val; };
+    this.setThemeSwitch = val => { this.theThemeSwitch = val; };
+    this.setGoConfigSwitch = val => { this.theGoConfigSwitch = val; };
+    this.setGoGameSwitch = val => { this.theGoGameSwitch = val; };
     this.setupSwitches = (val1, val2, val3, val4, val5, val6) => {
         this.setPreludeSwitch(val1);
         this.setSignUpSwitch(val2);
