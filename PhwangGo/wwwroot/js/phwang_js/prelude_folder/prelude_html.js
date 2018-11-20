@@ -2,10 +2,12 @@
   Copyrights reserved
   Written by Paul Hwang
 */
+var ThePreludeHtmlObject;
 function PreludeHtmlObject(root_object_val) {
     "use strict";
     this.init__ = root_object_val => {
         this.theRootObject = root_object_val;
+        ThePreludeHtmlObject = this;
         this.debug(true, "init__", "");
         this.initSwitches();
     };
@@ -17,6 +19,42 @@ function PreludeHtmlObject(root_object_val) {
         this.theGoConfigSwitch = false;
         this.theGoGameSwitch = false;
     };
+    this.theDispalySwitch = {
+        prelude_switch: this.preludeSwitch,
+        sign_up_switch: this.signUpSwitch,
+        sign_in_switch: this.signInSwitch,
+        theme_switch: this.themeSwitch,
+        go_config_switch: this.goConfigSwitch,
+        go_game_switch: this.goGameSwitch,
+    };
+    this.dispalySwitch = () => this.theDispalySwitch;
+     this.preludeSwitch = () => ThePreludeHtmlObject.thePreludeSwitch;
+    this.signUpSwitch = () => ThePreludeHtmlObject.theSignUpSwitch;
+    this.signInSwitch = function () { return ThePreludeHtmlObject.theSignInSwitch; };
+    this.themeSwitch = function () { return ThePreludeHtmlObject.theThemeSwitch; };
+    this.goConfigSwitch = function () { return ThePreludeHtmlObject.theGoConfigSwitch; };
+    this.goGameSwitch = function () { return ThePreludeHtmlObject.theGoGameSwitch; };
+    this.setPreludeSwitch = function (val) { this.thePreludeSwitch = val };
+    this.setSignUpSwitch = function (val) { this.theSignUpSwitch = val };
+    this.setSignInSwitch = function (val) { this.theSignInSwitch = val };
+    this.setThemeSwitch = function (val) { this.theThemeSwitch = val };
+    this.setGoConfigSwitch = function (val) { this.theGoConfigSwitch = val };
+    this.setGoGameSwitch = function (val) { this.theGoGameSwitch = val };
+    this.setupSwitches = (val1, val2, val3, val4, val5, val6) => {
+        this.setPreludeSwitch(val1);
+        this.setSignUpSwitch(val2);
+        this.setSignInSwitch(val3);
+        this.setThemeSwitch(val4);
+        this.setGoConfigSwitch(val5);
+        this.setGoGameSwitch(val6);
+    };
+    this.setupPreludeSwitch = () => { this.setupSwitches(true, false, false, false, false, false); };
+    this.setupSignUpSwitch = () => { this.setupSwitches(false, true, false, false, false, false); };
+    this.setupSignInSwitch = () => { this.setupSwitches(false, false, true, false, false, false); };
+    this.setupThemeSwitch = () => { this.setupSwitches(false, false, false, true, false, false); };
+    this.setupGoConfigSwitch = () => { this.setupSwitches(false, false, false, false, true, false); };
+    this.setupGoGameSwitch = () => { this.setupSwitches(false, false, false, false, false, true); };
+
     this.PhwangPreludeComponentClass = props => {
         //render() {
         console.log("prelude_on=" + props.prelude_on);
