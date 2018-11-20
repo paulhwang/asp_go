@@ -4,10 +4,10 @@
 */
 function PreludeRenderObject(root_object_val) {
     "use strict";
-    this.init__ = function (root_object_val) {
+    this.init__ = root_object_val => {
         this.theRootObject = root_object_val;
     };
-    this.renderPreludePage = function () {
+    this.renderPreludePage = () => {
         this.preludeHtmlObject().renderPreludeComponent();
         var this0 = this;
         $(".prelude_section .sign_up_button").on("click", function () {
@@ -23,15 +23,7 @@ function PreludeRenderObject(root_object_val) {
             this0.renderThemePage();
         });
     };
-    this.setupSignUpSwitch = function () {
-        this.setPreludeSwitch(false);
-        this.setSignUpSwitch(true);
-        this.setSignInSwitch(false);
-        this.setThemeSwitch(false);
-        this.setGoConfigSwitch(false);
-        this.setGoGameSwitch(false);
-    };
-    this.renderSignUpPage = function () {
+     this.renderSignUpPage = () => {
         this.preludeHtmlObject().renderSignUpComponent();
         var this0 = this;
         $(".sign_up_section .sign_up_button").on("click", function () {
@@ -39,15 +31,7 @@ function PreludeRenderObject(root_object_val) {
             this0.renderPreludePage();
         });
     };
-    this.setupSignInSwitch = function () {
-        this.setPreludeSwitch(false);
-        this.setSignUpSwitch(false);
-        this.setSignInSwitch(true);
-        this.setThemeSwitch(false);
-        this.setGoConfigSwitch(false);
-        this.setGoGameSwitch(false);
-    };
-    this.renderSignInPage = function () {
+    this.renderSignInPage = () => {
         this.preludeHtmlObject().renderSignInComponent();
         var this0 = this;
         $(".sign_in_section .sign_in_button").on("click", function () {
@@ -61,15 +45,7 @@ function PreludeRenderObject(root_object_val) {
             //this0.renderThemePage();
         });
     };
-    this.setupThemeSwitch = function () {
-        this.setPreludeSwitch(false);
-        this.setSignUpSwitch(false);
-        this.setSignInSwitch(false);
-        this.setThemeSwitch(true);
-        this.setGoConfigSwitch(false);
-        this.setGoGameSwitch(false);
-    };
-    this.renderThemePage = function () {
+    this.renderThemePage = () => {
         this.phwangAjaxObject().startWatchDog(this.linkObject());
         this.preludeHtmlObject().renderThemeComponent();
         var this0 = this;
@@ -78,15 +54,7 @@ function PreludeRenderObject(root_object_val) {
             this0.renderGoConfigPage();
         });
     };
-    this.setupGoConfigSwitch = function () {
-        this.setPreludeSwitch(false);
-        this.setSignUpSwitch(false);
-        this.setSignInSwitch(false);
-        this.setThemeSwitch(false);
-        this.setGoConfigSwitch(true);
-        this.setGoGameSwitch(false);
-    };
-    this.renderGoConfigPage = function () {
+    this.renderGoConfigPage = () => {
         this.preludeHtmlObject().renderGoConfigComponent();
         this.renderNameList();
         var this0 = this;
@@ -104,37 +72,29 @@ function PreludeRenderObject(root_object_val) {
         });
         //window.open(this.phwangObject().serverHttpHeader() + "Go/GoSetup", "_self");
     };
-    this.renderNameList = function () {
+    this.renderNameList = () => {
         $('.peer_name_paragraph select').empty();
         for (var i = 0; i < this.linkObject().nameListLength(); i++) {
             $('.peer_name_paragraph select').append($('<option>', { value: this.linkObject().nameListElement(i), text: this.linkObject().nameListElement(i) }));
         }
     };
-    this.setupGoGameSwitch = function () {
-        this.setPreludeSwitch(false);
-        this.setSignUpSwitch(false);
-        this.setSignInSwitch(false);
-        this.setThemeSwitch(false);
-        this.setGoConfigSwitch(false);
-        this.setGoGameSwitch(true);
-    };
-    this.renderGoGamePage = function (theme_id_str_val) {
+    this.renderGoGamePage = theme_id_str_val => {
         this.preludeHtmlObject().renderGoGameComponent();
        var theme = this.themeMgrObject().getTheme(theme_id_str_val);
         theme.init_game();
     };
     this.objectName = () => "PreludeRenderObject";
-    this.rootObject = function () { return this.theRootObject; };
+    this.rootObject = () => this.theRootObject;
     this.preludeHtmlObject = () => this.rootObject().preludeHtmlObject();
-    this.phwangObject = function () { return this.rootObject().phwangObject(); };
-    this.phwangAjaxObject = function () { return this.phwangObject().phwangAjaxObject(); };
-    this.linkObject = function () { return this.phwangObject().linkObject(); };
-    this.themeMgrObject = function () { return this.rootObject().themeMgrObject(); };
-    this.debug = function (debug_val, str1_val, str2_val) { if (debug_val) { this.logit(str1_val, str2_val); } };
-    this.logit = function (str1_val, str2_val) { return this.logit_(this.objectName() + "." + str1_val, str2_val); };
-    this.abend = function (str1_val, str2_val) { return this.abend_(this.objectName() + "." + str1_val, str2_val); };
-    this.logit_ = function (str1_val, str2_val) { this.phwangObject().LOG_IT(str1_val, str2_val); };
-    this.abend_ = function (str1_val, str2_val) { this.phwangObject().ABEND(str1_val, str2_val); };
+    this.phwangObject = () => this.rootObject().phwangObject();
+    this.phwangAjaxObject = () => this.phwangObject().phwangAjaxObject();
+    this.linkObject = () => this.phwangObject().linkObject();
+    this.themeMgrObject = () => this.rootObject().themeMgrObject();
+    this.debug = (debug_val, str1_val, str2_val) => { if (debug_val) { this.logit(str1_val, str2_val); } };
+    this.logit = (str1_val, str2_val) => { this.logit_(this.objectName() + "." + str1_val, str2_val); };
+    this.abend = (str1_val, str2_val) => { this.abend_(this.objectName() + "." + str1_val, str2_val); };
+    this.logit_ = (str1_val, str2_val) => { this.phwangObject().LOG_IT(str1_val, str2_val); };
+    this.abend_ = (str1_val, str2_val) => { this.phwangObject().ABEND(str1_val, str2_val); };
     this.init__(root_object_val);
 }
 
