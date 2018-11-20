@@ -30,6 +30,27 @@ function preludeComponent(props) {
         return null;
     }
 }
+var preludeComponent1 = React.createClass({
+    propTypes: {
+        prelude_switch: React.PropTypes.func.isRequired,
+    },
+    render: function () {
+        if (this.props.prelude_switch()) {
+            return React.DOM.section({ className: "prelude_section" },
+                React.DOM.h1(null, "Let's Play Go!"),
+                React.DOM.p({ className: "lead" }, "Let's Play Go is a free web platform to play Go Game with people in the world."),
+                React.DOM.button({ className: "sign_up_button" }, "Sign iup"),
+                React.DOM.button({ className: "sign_in_button" }, "Sign in"),
+                React.DOM.button({ className: "theme_button" }, "Theme"),
+                React.createElement("p", null, React.createElement("a", { "href": "http://localhost:8168/Account/AccountSignIn", "className": "btn btn-primary btn-lg" }, "Sign in")),
+                //<p><a href="http://localhost:8168/Account/AccountSignUp" class="btn btn-primary btn-lg">Sign up &raquo;</a></p>
+            );
+        }
+        else {
+            return null;
+        }
+    }
+});
 function signUpComponent(props) {
     if (props.sign_up_switch()) {
         return React.DOM.section({ className: "sign_up_section" },
