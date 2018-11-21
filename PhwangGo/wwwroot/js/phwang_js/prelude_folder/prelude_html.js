@@ -62,19 +62,22 @@ function PreludeHtmlObject(root_object_val) {
     this.renderThemeComponent = () => { this.setupThemeSwitch(); this.randetIt(); };
     this.renderGoConfigComponent = () => { this.setupGoConfigSwitch(); this.randetIt(); };
     this.renderGoGameComponent = () => { this.setupGoGameSwitch(); this.randetIt(); };
-    this.PhwangPreludeComponentClass = props => {
-        //render() {
-        console.log("prelude_on=" + props.prelude_on);
-        return React.createElement("body", null,
-            React.createElement(this.preludeComponent1, this.dispalySwitch()),
-            //this.preludeComponent(props),
-            this.signUpComponent(props),
-            this.signInComponent(props),
-            this.themeComponent(props),
-            this.goConfigComponent(props),
-            this.goGameComponent(props)
-        );
-    }
+
+    this.PhwangPreludeComponentClass = React.createClass({
+        render: function () {
+            var this0 = ThePreludeHtmlObject;
+            this0.debug(true, "PhwangPreludeComponentClass=", "start");
+            return React.createElement("body", null,
+                React.createElement(this0.preludeComponent1, this.props),
+                //this0.preludeComponent(this.props),
+                this0.signUpComponent(this.props),
+                this0.signInComponent(this.props),
+                this0.themeComponent(this.props),
+                this0.goConfigComponent(this.props),
+                this0.goGameComponent(this.props)
+            );
+        }
+    });
     this.preludeComponent = props => {
         if (props.prelude_switch()) {
             return React.DOM.section({ className: "prelude_section" },
