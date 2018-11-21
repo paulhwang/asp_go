@@ -6,15 +6,21 @@ function PreludeRootObject() {
     "use strict";
     this.init__ = function() {
         this.thePhwangObject = new PhwangClass(this);
+        this.theTestHtmlObject = new TestHtmlObject(this);
+        this.theBaseHtmlObject = new BaseHtmlObject(this);
         this.thePreludeHtmlObject = new PreludeHtmlObject(this);
         this.thePreludeRenderObject = new PreludeRenderObject(this);
         this.phwangObject().initObject();
         this.theAjaxResponseObject = new PreludeAjaxResponseClass(this);
         this.theThemeMgrObject = new ThemeMgrClass(this);
+        //this.testHtmlObject().randerTestComponent1();
+        //this.baseHtmlObject().randerBaseComponent();
         this.preludeRenderObject().renderPreludePage();
     };
     this.objectName = () => "PreludeRootObject";
     this.phwangObject = () => this.thePhwangObject;
+    this.testHtmlObject = () => this.theTestHtmlObject;
+    this.baseHtmlObject = () => this.theBaseHtmlObject;
     this.preludeHtmlObject = () => this.thePreludeHtmlObject;
     this.preludeRenderObject = () => this.thePreludeRenderObject;
     this.phwangAjaxObject = () => this.phwangObject().phwangAjaxObject();
