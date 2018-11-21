@@ -66,10 +66,10 @@ function PreludeHtmlObject(root_object_val) {
     this.PhwangPreludeComponentClass = React.createClass({
         render: function () {
             var this0 = ThePreludeHtmlObject;
-            this0.debug(true, "PhwangPreludeComponentClass=", "start");
+            this0.debug(true, "PhwangPreludeComponentClass", "start");
             return React.createElement("body", null,
-                React.createElement(this0.preludeComponent1, this.props),
-                //this0.preludeComponent(this.props),
+                React.createElement(this0.preludeComponent, this.props),
+                //this0.preludeComponent_old(this.props),
                 this0.signUpComponent(this.props),
                 this0.signInComponent(this.props),
                 this0.themeComponent(this.props),
@@ -78,7 +78,7 @@ function PreludeHtmlObject(root_object_val) {
             );
         }
     });
-    this.preludeComponent = props => {
+    this.preludeComponent_old = props => {
         if (props.prelude_switch()) {
             return React.DOM.section({ className: "prelude_section" },
                 React.DOM.h1(null, "Let's Play Go!"),
@@ -94,20 +94,27 @@ function PreludeHtmlObject(root_object_val) {
             return null;
         }
     }
-    this.preludeComponent1 = React.createClass({
+    this.preludeComponent = React.createClass({
         propTypes: {
             prelude_switch: React.PropTypes.func.isRequired,
         },
+        _onClick: function () {
+            var this0 = ThePreludeHtmlObject;
+            console.log("preludeComponent   _onClick");
+
+            this0.debug(true, "preludeComponent", "_onClick");
+
+        },
         render: function () {
+            var this0 = ThePreludeHtmlObject;
+            this0.debug(true, "preludeComponent", "start");
             if (this.props.prelude_switch()) {
                 return React.DOM.section({ className: "prelude_section" },
                     React.DOM.h1(null, "Let's Play Go!"),
                     React.DOM.p({ className: "lead" }, "Let's Play Go is a free web platform to play Go Game with people in the world."),
                     React.DOM.button({ className: "sign_up_button" }, "Sign iup"),
-                    React.DOM.button({ className: "sign_in_button" }, "Sign in"),
+                    React.DOM.button({ className: "sign_in_button", onClick: this._onClick }, "Sign in"),
                     React.DOM.button({ className: "theme_button" }, "Theme"),
-                    React.createElement("p", null, React.createElement("a", { "href": "http://localhost:8168/Account/AccountSignIn", "className": "btn btn-primary btn-lg" }, "Sign in")),
-                    //<p><a href="http://localhost:8168/Account/AccountSignUp" class="btn btn-primary btn-lg">Sign up &raquo;</a></p>
                 );
             }
             else {
