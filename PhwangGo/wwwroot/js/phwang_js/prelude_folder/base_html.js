@@ -11,7 +11,7 @@ function BaseHtmlObject(root_object_val) {
         this.debug(true, "init__", "");
     };
     this.randerBaseComponent = () => {
-        ReactDOM.render(React.createElement(this.GoConfigComponent, null), document.getElementById("phwang_prelude"));
+        ReactDOM.render(React.createElement(this.GoGameComponent, null), document.getElementById("phwang_prelude"));
     };
    this.BaseComponent = React.createClass({
         sign_up_onClick: function () {
@@ -93,96 +93,97 @@ function BaseHtmlObject(root_object_val) {
         render: function () {
             var this0 = TheBaseHtmlObject;
             this0.debug(true, "GoConfigComponent", "start");
-            return React.DOM.body(null,
+            return React.DOM.section(
+                { "className": "config_section" },
                 React.DOM.h2(null, "GoSetup"),
-
+                React.DOM.p(
+                    { "className": "peer_name_paragraph" },
+                    "Peer Name:",
+                    React.DOM.select(
+                        { "name": "opponent" },
+                        null
+                    )
+                ),
+                React.DOM.p(
+                    { "className": "peer_game_paragraph" },
+                    "Game",
+                    React.DOM.select(
+                        null,
+                        React.DOM.option({ "value": "Go" }, "Go"),
+                        React.DOM.option({ "value": "game1" }, "game1"),
+                        React.DOM.option({ "value": "game2" }, "game2")
+                    ),
+                    React.DOM.button(null, "Select"),
+                ),
                 React.DOM.section(
-                    { "className": "config_section" },
+                    { "className": "go_config_section" },
                     React.DOM.p(
-                        { "className": "peer_name_paragraph" },
-                        "Peer Name:",
+                        null,
+                        "Board Size:",
                         React.DOM.select(
-                            { "name": "opponent" },
-                            null
+                            { "className": "board_size" },
+                            React.DOM.option({ "value": "19" }, "19x19"),
+                            React.DOM.option({ "value": "13" }, "13x13"),
+                            React.DOM.option({ "value": "9" }, "9x9"),
                         )
                     ),
                     React.DOM.p(
-                        { "className": "peer_game_paragraph" },
-                        "Game",
+                        null,
+                        "Stone Color:",
                         React.DOM.select(
-                            null,
-                            React.DOM.option({ "value": "Go" }, "Go"),
-                            React.DOM.option({ "value": "game1" }, "game1"),
-                            React.DOM.option({ "value": "game2" }, "game2")
-                        ),
-                        React.DOM.button(null, "Select"),
-                    ),
-                    React.DOM.section(
-                        { "className": "go_config_section" },
-                        React.DOM.p(
-                            null,
-                            "Board Size:",
-                            React.DOM.select(
-                                { "className": "board_size" },
-                                React.DOM.option({ "value": "19" }, "19x19"),
-                                React.DOM.option({ "value": "13" }, "13x13"),
-                                React.DOM.option({ "value": "9" }, "9x9"),
-                            )
-                        ),
-                        React.DOM.p(
-                            null,
-                            "Stone Color:",
-                            React.DOM.select(
-                                { "className": "stone_color" },
-                                React.DOM.option({ "value": "black" }, "Black"),
-                                React.DOM.option({ "value": "white" }, "White"),
-                            )
-                        ),
-                        React.DOM.p(
-                            null,
-                            "Komi:",
-                            React.DOM.select(
-                                { "className": "komi" },
-                                React.DOM.option({ "value": "0" }, 0.5),
-                                React.DOM.option({ "value": "4" }, 4.5),
-                                React.DOM.option({ "value": "5" }, 5.5),
-                                React.DOM.option({ "value": "6" }, 6.5),
-                                React.DOM.option({ "value": "7" }, 7.5),
-                                React.DOM.option({ "value": "8" }, 8.5),
-                            )
-                        ),
-                        React.DOM.p(
-                            null,
-                            "Handicap:",
-                            React.DOM.select(
-                                { "className": "handicap" },
-                                React.DOM.option({ "value": "0" }, 0),
-                                React.DOM.option({ "value": "2" }, 2),
-                                React.DOM.option({ "value": "3" }, 3),
-                                React.DOM.option({ "value": "4" }, 4),
-                                React.DOM.option({ "value": "5" }, 5),
-                                React.DOM.option({ "value": "6" }, 6),
-                                React.DOM.option({ "value": "7" }, 7),
-                                React.DOM.option({ "value": "8" }, 8),
-                                React.DOM.option({ "value": "9" }, 9),
-                                React.DOM.option({ "value": "10" }, 10),
-                                React.DOM.option({ "value": "11" }, 11),
-                                React.DOM.option({ "value": "12" }, 12),
-                                React.DOM.option({ "value": "13" }, 13),
-                            )
+                            { "className": "stone_color" },
+                            React.DOM.option({ "value": "black" }, "Black"),
+                            React.DOM.option({ "value": "white" }, "White"),
                         )
                     ),
-                    React.DOM.button({ "className": "config_button", onClick: this.play_onClick }, "Play"),
-                )
-            );
+                    React.DOM.p(
+                        null,
+                        "Komi:",
+                        React.DOM.select(
+                            { "className": "komi" },
+                            React.DOM.option({ "value": "0" }, 0.5),
+                            React.DOM.option({ "value": "4" }, 4.5),
+                            React.DOM.option({ "value": "5" }, 5.5),
+                            React.DOM.option({ "value": "6" }, 6.5),
+                            React.DOM.option({ "value": "7" }, 7.5),
+                            React.DOM.option({ "value": "8" }, 8.5),
+                        )
+                    ),
+                    React.DOM.p(
+                        null,
+                        "Handicap:",
+                        React.DOM.select(
+                            { "className": "handicap" },
+                            React.DOM.option({ "value": "0" }, 0),
+                            React.DOM.option({ "value": "2" }, 2),
+                            React.DOM.option({ "value": "3" }, 3),
+                            React.DOM.option({ "value": "4" }, 4),
+                            React.DOM.option({ "value": "5" }, 5),
+                            React.DOM.option({ "value": "6" }, 6),
+                            React.DOM.option({ "value": "7" }, 7),
+                            React.DOM.option({ "value": "8" }, 8),
+                            React.DOM.option({ "value": "9" }, 9),
+                            React.DOM.option({ "value": "10" }, 10),
+                            React.DOM.option({ "value": "11" }, 11),
+                            React.DOM.option({ "value": "12" }, 12),
+                            React.DOM.option({ "value": "13" }, 13),
+                        )
+                    )
+                ),
+                React.DOM.button({ "className": "config_button", onClick: this.play_onClick }, "Play"),
+           );
         }
     });
     this.GoGameComponent = React.createClass({
         render: function () {
             var this0 = TheBaseHtmlObject;
             this0.debug(true, "GoGameComponent", "start");
-            return React.createElement("section", { "className": "theme_section" },
-                React.DOM.h1(null, "Select the Theme"),
+            return React.DOM.body(null,
+                React.DOM.section(null,
+                    React.DOM.canvas({ id: "go_canvas" })),
+                React.DOM.section(null,
+                    React.DOM.p({ "id": "black_score" }, "Black 0"),
+                    React.DOM.p({ "id": "white_score" }, "White 0")),
             );
         }
     });
