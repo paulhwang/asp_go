@@ -8,7 +8,7 @@ function PreludeRenderObject(root_object_val) {
         this.theRootObject = root_object_val;
     };
     this.renderPreludePage = () => {
-        if (true) {
+        if (false) {
             this.preludeHtmlObject().randerTestComponent1();
             return;
         }
