@@ -14,14 +14,10 @@ function BaseHtmlObject(root_object_val) {
         ReactDOM.render(React.createElement(this.BaseComponent, null), document.getElementById("phwang_prelude"));
     };
     this.BaseComponent = React.createClass({
-        sign_up_onClick: function () {
-            var this0 = TheBaseHtmlObject;
-            this0.debug(true, "PreludeComponent", "sign_up_onClick");
-        },
         render: function () {
             var this0 = TheBaseHtmlObject;
             this0.debug(true, "BaseComponent", "start");
-            return React.createElement("body", null,
+            return React.DOM.section(null,
                 React.createElement(this0.PreludeComponent, null),
                 React.createElement(this0.SignUpComponent, null),
                 React.createElement(this0.SignInComponent, null),
