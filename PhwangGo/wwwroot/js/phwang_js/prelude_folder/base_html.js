@@ -11,24 +11,42 @@ function BaseHtmlObject(root_object_val) {
         this.debug(true, "init__", "");
     };
     this.randerBaseComponent = () => {
-        ReactDOM.render(React.createElement(this.GoGameComponent, null), document.getElementById("phwang_prelude"));
+        ReactDOM.render(React.createElement(this.BaseComponent, null), document.getElementById("phwang_prelude"));
     };
-   this.BaseComponent = React.createClass({
+    this.BaseComponent = React.createClass({
         sign_up_onClick: function () {
             var this0 = TheBaseHtmlObject;
-            this0.debug(true, "BaseComponent", "sign_up_onClick");
-        },
-        sign_in_onClick: function () {
-            var this0 = TheBaseHtmlObject;
-            this0.debug(true, "BaseComponent", "sign_in_onClick");
-        },
-        theme_onClick: function () {
-            var this0 = TheBaseHtmlObject;
-            this0.debug(true, "BaseComponent", "theme_onClick");
+            this0.debug(true, "PreludeComponent", "sign_up_onClick");
         },
         render: function () {
             var this0 = TheBaseHtmlObject;
             this0.debug(true, "BaseComponent", "start");
+            return React.createElement("body", null,
+                React.createElement(this0.PreludeComponent, null),
+                React.createElement(this0.SignUpComponent, null),
+                React.createElement(this0.SignInComponent, null),
+                React.createElement(this0.ThemeComponent, null),
+                React.createElement(this0.GoConfigComponent, null),
+                React.createElement(this0.GoGameComponent, null),
+            );
+        }
+    });
+   this.PreludeComponent = React.createClass({
+        sign_up_onClick: function () {
+            var this0 = TheBaseHtmlObject;
+            this0.debug(true, "PreludeComponent", "sign_up_onClick");
+        },
+        sign_in_onClick: function () {
+            var this0 = TheBaseHtmlObject;
+            this0.debug(true, "PreludeComponent", "sign_in_onClick");
+        },
+        theme_onClick: function () {
+            var this0 = TheBaseHtmlObject;
+            this0.debug(true, "PreludeComponent", "theme_onClick");
+        },
+        render: function () {
+            var this0 = TheBaseHtmlObject;
+            this0.debug(true, "PreludeComponent", "start");
             return React.DOM.section({ className: "prelude_section" },
                 React.DOM.h1(null, "Let's Play Go!"),
                 React.DOM.p({ className: "lead" }, "Let's Play Go is a free web platform to play Go Game with people in the world."),
