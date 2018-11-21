@@ -10,26 +10,182 @@ function BaseHtmlObject(root_object_val) {
         TheBaseHtmlObject = this;
         this.debug(true, "init__", "");
     };
-    this.TestAreaComponent0 = React.createClass({
-        _onClick: function () {
+    this.randerBaseComponent = () => {
+        ReactDOM.render(React.createElement(this.GoConfigComponent, null), document.getElementById("phwang_prelude"));
+    };
+   this.BaseComponent = React.createClass({
+        sign_up_onClick: function () {
             var this0 = TheBaseHtmlObject;
-            this0.debug(true, "preludeComponent", "_onClick");
+            this0.debug(true, "BaseComponent", "sign_up_onClick");
+        },
+        sign_in_onClick: function () {
+            var this0 = TheBaseHtmlObject;
+            this0.debug(true, "BaseComponent", "sign_in_onClick");
+        },
+        theme_onClick: function () {
+            var this0 = TheBaseHtmlObject;
+            this0.debug(true, "BaseComponent", "theme_onClick");
         },
         render: function () {
-            var this0 = ThePreludeHtmlObject;
-            this0.debug(true, "preludeComponent", "start");
+            var this0 = TheBaseHtmlObject;
+            this0.debug(true, "BaseComponent", "start");
             return React.DOM.section({ className: "prelude_section" },
                 React.DOM.h1(null, "Let's Play Go!"),
                 React.DOM.p({ className: "lead" }, "Let's Play Go is a free web platform to play Go Game with people in the world."),
-                React.DOM.button({ className: "sign_up_button" }, "Sign iup"),
-                React.DOM.button({ className: "sign_in_button", onClick: this._onClick }, "Sign in"),
-                React.DOM.button({ className: "theme_button" }, "Theme"),
+                React.DOM.button({ className: "sign_up_button", onClick: this.sign_up_onClick  }, "Sign iup"),
+                React.DOM.button({ className: "sign_in_button", onClick: this.sign_in_onClick }, "Sign in"),
+                React.DOM.button({ className: "theme_button", onClick: this.theme_onClick  }, "Theme"),
             );
         }
     });
-    this.randerBaseComponent = () => {
-        ReactDOM.render(React.createElement(this.TestAreaComponent0, { text: "Jose" }), document.getElementById("phwang_prelude"));
-    };
+    this.SignUpComponent = React.createClass({
+        sign_up_onClick: function () {
+            var this0 = TheBaseHtmlObject;
+            this0.debug(true, "SignUpComponent", "sign_up_onClick");
+        },
+        render: function () {
+            var this0 = TheBaseHtmlObject;
+            this0.debug(true, "SignUpComponent", "start");
+            return React.DOM.section({ className: "sign_up_section" },
+                React.DOM.h2(null, "Account Sign Up"),
+                React.DOM.p(null, "Name:", React.DOM.input({ className: "sign_up_name", placeholder: "Enter your account name" })),
+                React.DOM.p(null, "Password:", React.DOM.input({ className: "sign_up_password", placeholder: "Enter your password" })),
+                React.DOM.p(null, "email:", React.DOM.input({ className: "sign_up_email", placeholder: "Enter your email" })),
+                React.DOM.button({ className: "sign_up_button", onClick: this.sign_up_onClick }, "Sign up"),
+            );
+        }
+    });
+    this.SignInComponent = React.createClass({
+        sign_in_onClick: function () {
+            var this0 = TheBaseHtmlObject;
+            this0.debug(true, "SignInComponent", "sign_in_onClick");
+        },
+        render: function () {
+            var this0 = TheBaseHtmlObject;
+            this0.debug(true, "signInComponent", "start");
+            return React.DOM.section({ className: "sign_in_section" },
+                React.DOM.h2(null, "Account Sign In"),
+                React.DOM.p(null, "Name:", React.DOM.input({ className: "sign_in_name", placeholder: "Enter your account name" })),
+                React.DOM.p(null, "Password:", React.DOM.input({ className: "sign_in_password", placeholder: "Enter your password" })),
+                React.DOM.button({ className: "sign_in_button", onClick: this.sign_in_onClick }, "Sign in"),
+            );
+        }
+    });
+    this.ThemeComponent = React.createClass({
+        play_go_onClick: function () {
+            var this0 = TheBaseHtmlObject;
+            this0.debug(true, "ThemeComponent", "play_go_onClick");
+        },
+        render: function () {
+            var this0 = TheBaseHtmlObject;
+            this0.debug(true, "ThemeComponent", "start");
+            return React.createElement("section", { "className": "theme_section" },
+                React.DOM.h1(null, "Select the Theme"),
+                React.DOM.button({ "className": "go_button", onClick: this.play_go_onClick }, "Play Go"),
+            );
+        }
+    });
+    this.GoConfigComponent = React.createClass({
+        play_onClick: function () {
+            var this0 = TheBaseHtmlObject;
+            this0.debug(true, "GoConfigComponent", "play_onClick");
+        },
+        render: function () {
+            var this0 = TheBaseHtmlObject;
+            this0.debug(true, "GoConfigComponent", "start");
+            return React.DOM.body(null,
+                React.DOM.h2(null, "GoSetup"),
+
+                React.DOM.section(
+                    { "className": "config_section" },
+                    React.DOM.p(
+                        { "className": "peer_name_paragraph" },
+                        "Peer Name:",
+                        React.DOM.select(
+                            { "name": "opponent" },
+                            null
+                        )
+                    ),
+                    React.DOM.p(
+                        { "className": "peer_game_paragraph" },
+                        "Game",
+                        React.DOM.select(
+                            null,
+                            React.DOM.option({ "value": "Go" }, "Go"),
+                            React.DOM.option({ "value": "game1" }, "game1"),
+                            React.DOM.option({ "value": "game2" }, "game2")
+                        ),
+                        React.DOM.button(null, "Select"),
+                    ),
+                    React.DOM.section(
+                        { "className": "go_config_section" },
+                        React.DOM.p(
+                            null,
+                            "Board Size:",
+                            React.DOM.select(
+                                { "className": "board_size" },
+                                React.DOM.option({ "value": "19" }, "19x19"),
+                                React.DOM.option({ "value": "13" }, "13x13"),
+                                React.DOM.option({ "value": "9" }, "9x9"),
+                            )
+                        ),
+                        React.DOM.p(
+                            null,
+                            "Stone Color:",
+                            React.DOM.select(
+                                { "className": "stone_color" },
+                                React.DOM.option({ "value": "black" }, "Black"),
+                                React.DOM.option({ "value": "white" }, "White"),
+                            )
+                        ),
+                        React.DOM.p(
+                            null,
+                            "Komi:",
+                            React.DOM.select(
+                                { "className": "komi" },
+                                React.DOM.option({ "value": "0" }, 0.5),
+                                React.DOM.option({ "value": "4" }, 4.5),
+                                React.DOM.option({ "value": "5" }, 5.5),
+                                React.DOM.option({ "value": "6" }, 6.5),
+                                React.DOM.option({ "value": "7" }, 7.5),
+                                React.DOM.option({ "value": "8" }, 8.5),
+                            )
+                        ),
+                        React.DOM.p(
+                            null,
+                            "Handicap:",
+                            React.DOM.select(
+                                { "className": "handicap" },
+                                React.DOM.option({ "value": "0" }, 0),
+                                React.DOM.option({ "value": "2" }, 2),
+                                React.DOM.option({ "value": "3" }, 3),
+                                React.DOM.option({ "value": "4" }, 4),
+                                React.DOM.option({ "value": "5" }, 5),
+                                React.DOM.option({ "value": "6" }, 6),
+                                React.DOM.option({ "value": "7" }, 7),
+                                React.DOM.option({ "value": "8" }, 8),
+                                React.DOM.option({ "value": "9" }, 9),
+                                React.DOM.option({ "value": "10" }, 10),
+                                React.DOM.option({ "value": "11" }, 11),
+                                React.DOM.option({ "value": "12" }, 12),
+                                React.DOM.option({ "value": "13" }, 13),
+                            )
+                        )
+                    ),
+                    React.DOM.button({ "className": "config_button", onClick: this.play_onClick }, "Play"),
+                )
+            );
+        }
+    });
+    this.GoGameComponent = React.createClass({
+        render: function () {
+            var this0 = TheBaseHtmlObject;
+            this0.debug(true, "GoGameComponent", "start");
+            return React.createElement("section", { "className": "theme_section" },
+                React.DOM.h1(null, "Select the Theme"),
+            );
+        }
+    });
     this.objectName = () => "BaseHtmlObject";
     this.rootObject = () => this.theRootObject;
     this.phwangObject = () => this.rootObject().phwangObject();

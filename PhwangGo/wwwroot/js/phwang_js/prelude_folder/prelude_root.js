@@ -14,8 +14,8 @@ function PreludeRootObject() {
         this.theAjaxResponseObject = new PreludeAjaxResponseClass(this);
         this.theThemeMgrObject = new ThemeMgrClass(this);
         //this.testHtmlObject().randerTestComponent1();
-        //this.baseHtmlObject().randerBaseComponent();
-        this.preludeRenderObject().renderPreludePage();
+        this.baseHtmlObject().randerBaseComponent();
+        //this.preludeRenderObject().renderPreludePage();
     };
     this.objectName = () => "PreludeRootObject";
     this.phwangObject = () => this.thePhwangObject;
