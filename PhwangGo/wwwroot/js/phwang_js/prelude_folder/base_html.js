@@ -11,7 +11,13 @@ function BaseHtmlObject(root_object_val) {
         this.debug(true, "init__", "");
     };
     this.randerBaseComponent = () => {
-        ReactDOM.render(React.createElement(this.BaseComponent, null), document.getElementById("phwang_prelude"));
+        this.thePreludeComponent = ReactDOM.render(React.createElement(this.PreludeComponent, null), document.getElementById("prelude_base"));
+        this.theSignUpComponent = ReactDOM.render(React.createElement(this.SignUpComponent, null), document.getElementById("sign_up_base"));
+        this.theSignInComponent = ReactDOM.render(React.createElement(this.SignInComponent, null), document.getElementById("sign_in_base"));
+        this.theThemeComponent = ReactDOM.render(React.createElement(this.ThemeComponent, null), document.getElementById("theme_base"));
+        this.theGoConfigComponent = ReactDOM.render(React.createElement(this.GoConfigComponent, null), document.getElementById("go_config_base"));
+        this.theGoGameComponent = ReactDOM.render(React.createElement(this.GoGameComponent, null), document.getElementById("go_game_base"));
+        //ReactDOM.render(React.createElement(this.BaseComponent, null), document.getElementById("phwang_prelude"));
     };
     this.BaseComponent = React.createClass({
         render: function () {
@@ -27,7 +33,32 @@ function BaseHtmlObject(root_object_val) {
             );
         }
     });
-   this.PreludeComponent = React.createClass({
+    this.PreludeComponent = React.createClass({
+        componentWillUpdate: function () {
+            var this0 = TheBaseHtmlObject;
+            this0.debug(true, "PreludeComponent", "componentWillUpdate");
+            console.log("componentWillUpdate", arguments);
+        },
+        componentDidUpdate: function () {
+            var this0 = TheBaseHtmlObject;
+            this0.debug(true, "PreludeComponent", "componentDidUpdate");
+            console.log("componentDidUpdate", arguments);
+        },
+        componentWillMount: function () {
+            var this0 = TheBaseHtmlObject;
+            this0.debug(true, "PreludeComponent", "componentWillMount");
+            console.log("componentWillMount", arguments);
+        },
+        componentDidMount: function () {
+            var this0 = TheBaseHtmlObject;
+            this0.debug(true, "PreludeComponent", "componentDidMount");
+            console.log("componentDidMount", arguments);
+        },
+        componentWillUnmount: function () {
+            var this0 = TheBaseHtmlObject;
+            this0.debug(true, "PreludeComponent", "componentWillUnmount");
+            console.log("componentWillUnmount", arguments);
+        },
         sign_up_onClick: function () {
             var this0 = TheBaseHtmlObject;
             this0.debug(true, "PreludeComponent", "sign_up_onClick");
