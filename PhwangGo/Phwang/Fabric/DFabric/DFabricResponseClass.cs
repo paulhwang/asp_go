@@ -64,10 +64,10 @@ namespace Phwang.Fabric
             public string my_name { get; set; }
 
             [DataMember]
-            public int link_id { get; set; }
+            public string link_id { get; set; }
         }
 
-        public string GenerateSetupLinkResponse(int link_id_var, string my_name_var)
+        public string GenerateSetupLinkResponse(string link_id_var, string my_name_var)
         {
             SetupLinkResponseFormatClass raw_data = new SetupLinkResponseFormatClass { my_name = my_name_var, link_id = link_id_var };
 

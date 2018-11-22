@@ -29,7 +29,7 @@ function PhwangAjaxClass(phwang_object_val) {
             return;
         }
         if ((response.command !== this.phwangAjaxProtocolObject().SETUP_LINK_COMMAND()) && (!this.linkObject().verifyLinkIdIndex(data.link_id))) {
-            this.abend("parseAndSwitchAjaxResponse", "link_id=" + data.link_id);
+            this.abend("parseAndSwitchAjaxResponse", "command=" + response.command + " link_id=" + data.link_id + " linkId=" + this.linkObject().linkId());
             return;
         }
         var func = this.switchTable()[response.command];

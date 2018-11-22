@@ -126,7 +126,7 @@ namespace Phwang.Fabric
             }
 
             LinkClass link = this.LinkMgrObject().MallocLink(format_data.my_name);
-            string response_data = this.dFabricResponseObject.GenerateSetupLinkResponse(link.LinkId(), link.MyName());
+            string response_data = this.dFabricResponseObject.GenerateSetupLinkResponse(link.LinkIdStr(), link.MyName());
             return response_data;
         }
 
