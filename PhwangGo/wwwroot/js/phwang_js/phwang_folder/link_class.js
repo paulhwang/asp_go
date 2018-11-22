@@ -13,29 +13,23 @@ function LinkClass(phwang_object_val) {
         this.theSessionTableArray = [null];
         this.debug(true, "init__", "linkId=" + this.linkId() + " myName=" + this.myName());
     };
-    this.resetLinkStorage = function () {
+    this.resetLinkStorage = () => {
         this.resetLinkId();
         this.resetMyName();
         this.resetPassWord();
     };
-    this.myName = function () { return this.theMyName; };
-    this.setMyName = function (val) { this.theMyName = val; };
-    this.resetMyName = function () { this.setMyName(""); };
-    this.resetPassWord = function () { this.setPassWord(""); };
-    this.linkId = function () { return this.theLinkId; };
-    this.setLinkId = function (val) { this.theLinkId = val; };
-    this.resetLinkId = function () { this.setLinkId(""); };
+    this.myName = () => this.theMyName;
+    this.setMyName = val => { this.theMyName = val; };
+    this.resetMyName = () => this.setMyName("");
+    this.resetPassWord = () => this.setPassWord("");
+    this.linkId = () => this.theLinkId;
+    this.setLinkId = val => { this.theLinkId = val; };
+    this.resetLinkId = () => { this.setLinkId(""); };
     this.sessionIndexArray = () => this.theSessionIndexArray;
     this.sessionTableArray = () => this.theSessionTableArray;
     this.sessionTableArrayLength = () => this.sessionTableArray().length;
     this.sessionTableArrayElement = val => this.sessionTableArray()[val];
-    this.verifyLinkIdIndex = function(id_val) {
-        if (this.linkId() === id_val) {
-            return true;
-        } else {
-            return false;
-        }
-    };
+    this.verifyLinkIdIndex = id_val => { if (this.linkId() === id_val) return true; else return false; };
     this.mallocSessionAndInsert = session_id_val => {
         if (this.getSession(session_id_val)) {
             this.abend("mallocSessionAndInsert", "session exists: " + session_id_val);
@@ -73,6 +67,6 @@ function LinkClass(phwang_object_val) {
     this.phwangAjaxObject = () => this.phwangObject().phwangAjaxObject();
     this.debug = (debug_val, str1_val, str2_val) => {if (debug_val) {this.logit(str1_val, str2_val);}};
     this.logit = (str1_val, str2_val) => this.phwangObject().LOG_IT(this.objectName() + "." + str1_val, str2_val);
-    this.abend = function(str1_val, str2_val) {return this.phwangObject().ABEND(this.objectName() + "." + str1_val, str2_val);};
+    this.abend = (str1_val, str2_val)=>  {return this.phwangObject().ABEND(this.objectName() + "." + str1_val, str2_val);};
     this.init__(phwang_object_val);
 }
