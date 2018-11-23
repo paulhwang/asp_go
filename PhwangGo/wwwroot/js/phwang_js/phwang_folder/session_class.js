@@ -2,7 +2,7 @@
  * Copyrights phwang
  * Written by Paul Hwang
  */
-function PhwangSessionClass(link_object_val) {
+function PhwangSessionClass (link_object_val) {
     "use strict";
     this.init__ = link_object_val => {
         this.theLinkObject = link_object_val;

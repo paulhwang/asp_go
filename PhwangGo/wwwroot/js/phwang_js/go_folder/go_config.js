@@ -2,7 +2,7 @@
  * Copyrights phwang
  * Written by Paul Hwang
  */
-function GoConfigObject(root_val) {
+function GoConfigObject (root_val) {
     "use strict";
     this.init__ = root_val => {
         this.theRootObject = root_val;
@@ -76,7 +76,7 @@ function GoConfigObject(root_val) {
     this.init__(root_val);
 }
 var GO = new GoDefineObject;
-function GoDefineObject() {
+function GoDefineObject () {
     this.EMPTY_STONE = () => 0;
     this.BLACK_STONE = () => 1;
     this.WHITE_STONE = () => 2;

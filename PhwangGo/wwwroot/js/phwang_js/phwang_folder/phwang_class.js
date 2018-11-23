@@ -3,16 +3,16 @@
   Written by Paul Hwang
 */
 
-function PhwangClass(root_val) {
+function PhwangClass (root_val) {
     "use strict";
-    this.init__ = function(root_val) {this.theRootObject = root_val;};
-    this.initObject = function() {
+    this.init__ = root_val => {this.theRootObject = root_val;};
+    this.initObject = () => {
         this.thePhwangAjaxObject = new PhwangAjaxClass(this);
         this.theLinkObject = new LinkClass(this);
         this.thePhwangPortObject = new PhwangPortClass(this);
         this.debug(true, "initObject", "");
     };
-    this.decodeNumber = function(input_val, size_val) {
+    this.decodeNumber = (input_val, size_val) => {
         var output = 0;
         for (var index = 0; index < size_val; index++) {
             output *= 10;
@@ -20,7 +20,7 @@ function PhwangClass(root_val) {
         }
         return output;
     };
-    this.encodeNumber = function (number_val, size_val) {
+    this.encodeNumber = (number_val, size_val) => {
         var str = number_val.toString();
         var buf = "";
         for (var i = str.length; i < size_val; i++) {
@@ -29,22 +29,22 @@ function PhwangClass(root_val) {
         buf = buf + str;
         return buf;
     };
-    this.serverHttpHeader = function() {return "http://" + window.location.hostname + ":" + window.location.port + "/";};
-    this.serverHttpsHeader = function() {return "https://" + window.location.hostname + ":" + window.location.port + "/";};
+    this.serverHttpHeader = () => "http://" + window.location.hostname + ":" + window.location.port + "/";
+    this.serverHttpsHeader = () => "https://" + window.location.hostname + ":" + window.location.port + "/";
     this.objectName = () => "PhwangClass";
     this.rootObject = () => this.theRootObject;
     this.phwangAjaxObject = () => this.thePhwangAjaxObject;
     this.linkObject = () => this.theLinkObject;
     this.phwangPortObject = () => this.thePhwangPortObject;
-    this.debug = function(debug_val, str1_val, str2_val) {if (debug_val) {this.logit(str1_val, str2_val);}};
-    this.logit = function(str1_val, str2_val) {return this.LOG_IT(this.objectName() + "." + str1_val, str2_val);};
-    this.abend = function(str1_val, str2_val) {return this.ABEND(this.objectName() + "." + str1_val, str2_val);};
-    this.LOG_IT = function (str1_val, str2_val) { window.console.log(str1_val + "() " + str2_val); };
-    this.ASSERT = function (val, str1_val, str2_val) { if((val == null) || (val == "undefined")) this.ABEND(str1_val, str2_val + "(" + val + ")"); };
-    this.ABEND = function(str1_val, str2_val) {window.console.log("***ABEND*** " + str1_val + "() " + str2_val); window.alert("***ABEND*** " + str1_val + "() " + str2_val); var x = junk;};
+    this.debug = (debug_val, str1_val, str2_val) => { if (debug_val) {this.logit(str1_val, str2_val);}};
+    this.logit = (str1_val, str2_val) => { this.LOG_IT(this.objectName() + "." + str1_val, str2_val);};
+    this.abend = (str1_val, str2_val) => { this.ABEND(this.objectName() + "." + str1_val, str2_val);};
+    this.LOG_IT = (str1_val, str2_val) => { window.console.log(str1_val + "() " + str2_val); };
+    this.ASSERT = (val, str1_val, str2_val) => { if((val == null) || (val == "undefined")) this.ABEND(str1_val, str2_val + "(" + val + ")"); };
+    this.ABEND = (str1_val, str2_val) => {window.console.log("***ABEND*** " + str1_val + "() " + str2_val); window.alert("***ABEND*** " + str1_val + "() " + str2_val); var x = junk;};
     this.init__(root_val);
 }
-function PhwangPortClass(phwang_object_val) {
+function PhwangPortClass (phwang_object_val) {
     "use strict";
     this.init__ = function (phwang_object_val) {this.thePhwangObject = phwang_object_val;};
     this.receiveSetupLinkResponse = function(result_val) {this.rootObject().ajaxResponseObject().receiveSetupLinkResponse(result_val);};

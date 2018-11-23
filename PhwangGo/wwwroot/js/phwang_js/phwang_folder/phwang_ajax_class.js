@@ -391,7 +391,7 @@ function PhwangAjaxEngineClass (phwang_ajax_object_val) {
     this.incrementAjaxPacketId = () => {this.phwangAjaxObject().incrementAjaxPacketId();};
     this.init__(phwang_ajax_object_val);
 }
-function PhwangAjaxProtocolClass() {
+function PhwangAjaxProtocolClass () {
     "use strict";
     this.SETUP_LINK_COMMAND = () => "setup_link";
     this.CLEAR_LINK_COMMAND = () => "clear_link";

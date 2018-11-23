@@ -2,7 +2,7 @@
  * Copyrights phwang
  * Written by Paul Hwang
  */
-function LinkClass(phwang_object_val) {
+function LinkClass (phwang_object_val) {
     "use strict";
     this.init__ = phwang_object_val => {
         this.thePhwangObject = phwang_object_val;
@@ -67,6 +67,6 @@ function LinkClass(phwang_object_val) {
     this.phwangAjaxObject = () => this.phwangObject().phwangAjaxObject();
     this.debug = (debug_val, str1_val, str2_val) => { if (debug_val) {this.logit(str1_val, str2_val);}};
     this.logit = (str1_val, str2_val) => this.phwangObject().LOG_IT(this.objectName() + "." + str1_val, str2_val);
-    this.abend = (str1_val, str2_val)=>  { return this.phwangObject().ABEND(this.objectName() + "." + str1_val, str2_val);};
+    this.abend = (str1_val, str2_val)=> { this.phwangObject().ABEND(this.objectName() + "." + str1_val, str2_val);};
     this.init__(phwang_object_val);
 }
