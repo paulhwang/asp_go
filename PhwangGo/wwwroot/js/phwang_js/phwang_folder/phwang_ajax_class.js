@@ -7,12 +7,13 @@ function PhwangAjaxClass(phwang_object_val) {
     this.init__ = function(phwang_object_val) {
         this.thePhwangObject = phwang_object_val;
         this.thePhwangAjaxProtocolObject = new PhwangAjaxProtocolClass();
-        this.thePhwangAjaxStorageObject = new PhwangAjaxStorageObject(this);
+        //this.thePhwangAjaxStorageObject = new PhwangAjaxStorageObject(this);
         this.theTransmitQueueObject = new PhwangQueueClass(this.phwangObject());
         this.thePendingSessionDataQueueObject = new PhwangQueueClass(this.phwangObject());
         this.thePhwangAjaxEngineObject = new PhwangAjaxEngineClass(this);
         this.initSwitchTable();
         this.clearPendingAjaxRequestCommand();
+        this.theAjaxPacketId = 0;
         this.debug(false, "init__", "");
     };
     this.parseAndSwitchAjaxResponse = function(json_response_val) {
@@ -330,12 +331,11 @@ function PhwangAjaxClass(phwang_object_val) {
     };
     this.pendingAjaxRequestCommand = () => this.thePendingAjaxRequestCommand;
     this.pendingAjaxRequestCommandExist = () => (this.pendingAjaxRequestCommand() !== "");
-    this.clearPendingAjaxRequestCommand = function() {this.thePendingAjaxRequestCommand = "";};
-    this.setPendingAjaxRequestCommand = function (command_val) {if (this.pendingAjaxRequestCommand()) {this.abend("setPendingAjaxRequestCommand", "old=" + this.pendingAjaxRequestCommand() + "new=" + command_val);} this.thePendingAjaxRequestCommand = command_val;};
+    this.clearPendingAjaxRequestCommand = () => {this.thePendingAjaxRequestCommand = "";};
+    this.setPendingAjaxRequestCommand = command_val => {if (this.pendingAjaxRequestCommand()) {this.abend("setPendingAjaxRequestCommand", "old=" + this.pendingAjaxRequestCommand() + "new=" + command_val);} this.thePendingAjaxRequestCommand = command_val;};
     this.switchTable = () => this.theSwitchTable;
     this.objectName = () => "PhwangAjaxClass";
     this.phwangAjaxProtocolObject = () => this.thePhwangAjaxProtocolObject;
-    this.phwangAjaxStorageObject = () => this.thePhwangAjaxStorageObject;
     this.phwangAjaxEngineObject = () => this.thePhwangAjaxEngineObject;
     this.transmitQueueObject = () => this.theTransmitQueueObject;
     this.pendingSessionDataQueueObject = () => this.thePendingSessionDataQueueObject;
@@ -345,11 +345,11 @@ function PhwangAjaxClass(phwang_object_val) {
     this.phwangPortObject = () => this.phwangObject().phwangPortObject();
     this.themeMgrObject = () => this.rootObject().themeMgrObject();
     this.preludeRenderObject = () => this.rootObject().preludeRenderObject();
-    this.debug = function(debug_val, str1_val, str2_val) {if (debug_val) {this.logit(str1_val, str2_val);}};
-    this.logit = function(str1_val, str2_val) {return this.phwangObject().LOG_IT(this.objectName() + "." + str1_val, str2_val);};
-    this.abend = function(str1_val, str2_val) {return this.phwangObject().ABEND(this.objectName() + "." + str1_val, str2_val);};
-    this.ajaxPacketId = function() {return this.phwangAjaxStorageObject().ajaxPacketId();};
-    this.incrementAjaxPacketId = function() {this.phwangAjaxStorageObject().incrementAjaxPacketId();};
+    this.debug = (debug_val, str1_val, str2_val) => { if (debug_val) {this.logit(str1_val, str2_val);}};
+    this.logit = (str1_val, str2_val) => { this.phwangObject().LOG_IT(this.objectName() + "." + str1_val, str2_val);};
+    this.abend = (str1_val, str2_val) => { this.phwangObject().ABEND(this.objectName() + "." + str1_val, str2_val);};
+    this.ajaxPacketId = () => "" + this.theAjaxPacketId;
+    this.incrementAjaxPacketId = () => { this.theAjaxPacketId++; };
     this.init__(phwang_object_val);
 }
 function PhwangAjaxEngineClass(phwang_ajax_object_val) {
@@ -393,52 +393,25 @@ function PhwangAjaxEngineClass(phwang_ajax_object_val) {
     this.incrementAjaxPacketId = function() {this.phwangAjaxObject().incrementAjaxPacketId();};
     this.init__(phwang_ajax_object_val);
 }
-function PhwangAjaxStorageObject(phwang_ajax_object_val) {
-    "use strict";
-    this.storage = function() {return localStorage;};
-    this.init__ = function (phwang_ajax_object_val) {
-        this.thePhwangAjaxObject = phwang_ajax_object_val;
-        this.resetAjaxStorage();
-    };
-    this.resetAjaxStorage = function() {
-        this.resetAjaxPacketId();
-    };
-    this.resetAjaxPacketId = function() {if (this.ajaxPacketId() === undefined) {this.storage().ajax_packet_id = 0;}};
-    this.ajaxPacketId = function() {return this.storage().ajax_packet_id;};
-    this.incrementAjaxPacketId = function() {
-        var i = Number(this.storage().ajax_packet_id) + 1;
-        if (i !== 1 + Number(this.storage().ajax_packet_id)) {
-            this.abend("incrementAjaxPacketId", "fix it");
-        }
-        this.storage().ajax_packet_id = i;
-    };
-    this.objectName = function() {return "PhwangAjaxStorageObject";};
-    this.phwangAjaxObject = function() {return this.thePhwangAjaxObject;};
-    this.phwangObject = function() {return this.phwangAjaxObject().phwangObject();};
-    this.debug = function(debug_val, str1_val, str2_val) {if (debug_val) {this.logit(str1_val, str2_val);}};
-    this.logit = function(str1_val, str2_val) {return this.phwangObject().LOG_IT(this.objectName() + "." + str1_val, str2_val);};
-    this.abend = function(str1_val, str2_val) {return this.phwangObject().ABEND(this.objectName() + "." + str1_val, str2_val);};
-    this.init__(phwang_ajax_object_val);
-}
 function PhwangAjaxProtocolClass() {
     "use strict";
-    this.SETUP_LINK_COMMAND = function() {return "setup_link";}
-    this.CLEAR_LINK_COMMAND = function() {return "clear_link";}
-    this.GET_LINK_DATA_COMMAND = function() {return "get_link_data";}
-    this.GET_NAME_LIST_COMMAND = function() {return "get_name_list";}
-    this.SETUP_SESSION_COMMAND = function() {return "setup_session";}
-    this.CLEAR_SESSION_COMMAND = function() {return "clear_session";}
-    this.SETUP_SESSION2_COMMAND = function() {return "setup_session2";}
-    this.SETUP_SESSION3_COMMAND = function() {return "setup_session3";}
-    this.PUT_SESSION_DATA_COMMAND = function() {return "put_session_data";}
-    this.GET_SESSION_DATA_COMMAND = function() {return "get_session_data";}
-    this.WEB_FABRIC_PROTOCOL_RESPOND_IS_GET_LINK_DATA_PENDING_SESSION = function() {return 'S';}
-    this.WEB_FABRIC_PROTOCOL_RESPOND_IS_GET_LINK_DATA_PENDING_SESSION3 = function() {return 'T';}
-    this.WEB_FABRIC_PROTOCOL_RESPOND_IS_GET_LINK_DATA_PENDING_DATA = function() {return 'D';}
-    this.WEB_FABRIC_PROTOCOL_RESPOND_IS_GET_LINK_DATA_NAME_LIST = function() {return 'N';}
-    this.WEB_FABRIC_PROTOCOL_NAME_LIST_TAG_SIZE = function() {return 3;}
-    this.WEB_FABRIC_PROTOCOL_THEME_ID_SIZE = function () { return 4; }
-    this.WEB_FABRIC_PROTOCOL_LINK_ID_SIZE = function() {return 4;}
-    this.WEB_FABRIC_PROTOCOL_SESSION_ID_SIZE = function() {return 4;}
-    this.WEB_FABRIC_PROTOCOL_LINK_SESSION_ID_SIZE = function() {return this.WEB_FABRIC_PROTOCOL_LINK_ID_SIZE() + this.WEB_FABRIC_PROTOCOL_SESSION_ID_SIZE();}
+    this.SETUP_LINK_COMMAND = () => "setup_link";
+    this.CLEAR_LINK_COMMAND = () => "clear_link";
+    this.GET_LINK_DATA_COMMAND = () => "get_link_data";
+    this.GET_NAME_LIST_COMMAND = () => "get_name_list";
+    this.SETUP_SESSION_COMMAND = () => "setup_session";
+    this.CLEAR_SESSION_COMMAND = () => "clear_session";
+    this.SETUP_SESSION2_COMMAND = () => "setup_session2";
+    this.SETUP_SESSION3_COMMAND = () => "setup_session3";
+    this.PUT_SESSION_DATA_COMMAND = () => "put_session_data";
+    this.GET_SESSION_DATA_COMMAND = () => "get_session_data";
+    this.WEB_FABRIC_PROTOCOL_RESPOND_IS_GET_LINK_DATA_PENDING_SESSION = () => 'S';
+    this.WEB_FABRIC_PROTOCOL_RESPOND_IS_GET_LINK_DATA_PENDING_SESSION3 = () => 'T';
+    this.WEB_FABRIC_PROTOCOL_RESPOND_IS_GET_LINK_DATA_PENDING_DATA = () => 'D';
+    this.WEB_FABRIC_PROTOCOL_RESPOND_IS_GET_LINK_DATA_NAME_LIST = () => 'N';
+    this.WEB_FABRIC_PROTOCOL_NAME_LIST_TAG_SIZE = () => 3;
+    this.WEB_FABRIC_PROTOCOL_THEME_ID_SIZE = () => 4;
+    this.WEB_FABRIC_PROTOCOL_LINK_ID_SIZE = () => 4;
+    this.WEB_FABRIC_PROTOCOL_SESSION_ID_SIZE = () => 4;
+    this.WEB_FABRIC_PROTOCOL_LINK_SESSION_ID_SIZE = () => this.WEB_FABRIC_PROTOCOL_LINK_ID_SIZE() + this.WEB_FABRIC_PROTOCOL_SESSION_ID_SIZE();
 }
