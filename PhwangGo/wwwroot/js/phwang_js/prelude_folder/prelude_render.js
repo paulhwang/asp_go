@@ -18,10 +18,6 @@ function PreludeRenderObject(root_object_val) {
             this0.debug(true, "renderPreludePage click function", ".prelude_section .sign_in_button");
             this0.renderSignInPage();
         });
-        $(".prelude_section .theme_button").on("click", function () {
-            this0.debug(true, "renderPreludePage click function", ".prelude_section .theme_button");
-            this0.renderThemePage();
-        });
     };
      this.renderSignUpPage = () => {
         this.preludeHtmlObject().renderSignUpComponent();

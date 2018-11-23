@@ -67,7 +67,7 @@ function PreludeHtmlObject (root_object_val) {
         render: function () {
             var this0 = ThePreludeHtmlObject;
             this0.debug(true, "PhwangPreludeComponentClass", "start");
-            return React.createElement("body", null,
+            return React.DOM.section(null,
                 React.createElement(this0.preludeComponent, this.props),
                 this0.signUpComponent(this.props),
                 this0.signInComponent(this.props),
@@ -83,7 +83,7 @@ function PreludeHtmlObject (root_object_val) {
         },
         _onClick: function () {
             var this0 = ThePreludeHtmlObject;
-            this0.debug(true, "preludeComponent", "_onClick");
+            this0.debug(true, "preludeComponent", "_onClick================================================");
         },
         render: function () {
             var this0 = ThePreludeHtmlObject;
@@ -94,7 +94,6 @@ function PreludeHtmlObject (root_object_val) {
                     React.DOM.p({ className: "lead" }, "Let's Play Go is a free web platform to play Go Game with people in the world."),
                     React.DOM.button({ className: "sign_up_button" }, "Sign iup"),
                     React.DOM.button({ className: "sign_in_button", onClick: this._onClick }, "Sign in"),
-                    React.DOM.button({ className: "theme_button" }, "Theme"),
                 );
             }
             else {
