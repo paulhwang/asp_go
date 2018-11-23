@@ -159,13 +159,8 @@ function PreludeHtmlObject(root_object_val) {
     }
     this.goConfigComponent = props => {
         if (props.go_config_switch()) {
-            return React.createElement(
-                "body",
-                null,
-                React.DOM.h2(null, "GoSetup"),
-
-                React.DOM.section(
-                    { "className": "config_section" },
+            return React.DOM.section( { "className": "config_section" },
+                    React.DOM.h2(null, "GoSetup"),
                     React.DOM.p(
                         { "className": "peer_name_paragraph" },
                         "Peer Name:",
@@ -241,7 +236,6 @@ function PreludeHtmlObject(root_object_val) {
                         )
                     ),
                     React.DOM.button({ "className": "config_button" }, "Connect"),
-                )
             );
         }
         else {
@@ -250,13 +244,10 @@ function PreludeHtmlObject(root_object_val) {
     }
     this.goGameComponent = props => {
         if (props.go_game_switch()) {
-            return React.DOM.body(
-                null,
-                React.DOM.section(
-                    null,
+            return React.DOM.section(null,
+                React.DOM.section(null,
                     React.DOM.canvas({ id: "go_canvas" })),
-                React.DOM.section(
-                    null,
+                React.DOM.section(null,
                     React.DOM.p({ "id": "black_score" }, "Black 0"),
                     React.DOM.p({ "id": "white_score" }, "White 0")),
             );
