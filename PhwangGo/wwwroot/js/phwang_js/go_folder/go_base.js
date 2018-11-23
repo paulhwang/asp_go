@@ -8,10 +8,9 @@ function GoBaseObject(root_object_val, theme_id_str_val) {
         this.theRootObject = root_object_val;
         this.theThemeIdStr = theme_id_str_val;
         this.theAjaxObject = new GoGameAjaxClass(this);
-        this.theConfigStorageObject = new GoConfigStorageObject(this);
         this.theConfigObject = new GoConfigObject(this);
         this.debug(true, "init__", "myName=" + this.linkObject().myName() + " linkId=" + this.linkObject().linkId());
-        this.debug(true, "init__", "boardSize=" + this.configObject().boardSize() + " stoneColor=" + this.configStorageObject().myColor() + " komi=" + this.configObject().komiPoint() + " handicap=" + this.configObject().handicapPoint());
+        this.debug(true, "init__", "boardSize=" + this.configObject().boardSize() + " stoneColor=" + this.configObject().myColor() + " komi=" + this.configObject().komiPoint() + " handicap=" + this.configObject().handicapPoint());
     };
     this.init_game = () => {
         this.configObject().cacheConfig();
@@ -34,7 +33,6 @@ function GoBaseObject(root_object_val, theme_id_str_val) {
     this.sessionObject = () => this.theSessionObject;
     this.ajaxObject = () => this.theAjaxObject;
     this.htmlObject = () => this.theHtmlObject;
-    this.configStorageObject = () => this.theConfigStorageObject;
     this.inputObject = () => this.theInputObject;
     this.displayObject = () => this.theDisplayObject;
     this.configObject = () => this.theConfigObject;

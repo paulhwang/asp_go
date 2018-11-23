@@ -247,7 +247,7 @@ namespace Phwang.Fabric
         public class SetupSessionRequestFormat
         {
             [DataMember]
-            public int link_id { get; set; }
+            public string link_id { get; set; }
 
             [DataMember]
             public string his_name { get; set; }
@@ -272,7 +272,7 @@ namespace Phwang.Fabric
             string theme_id_str = format_data.theme_data.Substring(0, Protocols.FabricFrontEndProtocolClass.BROWSER_THEME_ID_SIZE);
             string theme_data = format_data.theme_data.Substring(Protocols.FabricFrontEndProtocolClass.BROWSER_THEME_ID_SIZE);
 
-            LinkClass link = this.LinkMgrObject().GetLinkById(format_data.link_id);
+            LinkClass link = this.LinkMgrObject().GetLinkByIdStr(format_data.link_id);
             SessionClass session = link.MallocSession();
             session.SetBrowserThemeIdStr(theme_id_str);
             GroupClass group = this.GroupMgrObject().MallocGroup(theme_data);
@@ -317,7 +317,7 @@ namespace Phwang.Fabric
             return response_data;
         }
 
-        private string errorProcessSetupSession(int link_id_val, string error_msg_val)
+        private string errorProcessSetupSession(string link_id_val, string error_msg_val)
         {
             return error_msg_val;
         }

@@ -10,39 +10,12 @@ function GoConfigObject(root_val) {
         this.debug(true, "init__", "myColor=" + this.myColor() + " boardSize=" + this.boardSize() + " hisName=" + this.hisName() + " handicapPoint=" + this.handicapPoint() + " komiPoint=" + this.komiPoint());
     };
     this.cacheConfig = function() {
-        this.setBoardSize(this.configStorageObject().boardSize());
-        this.setMyColor(this.configStorageObject().myColor());
+        //this.setBoardSize(this.configStorageObject().boardSize());
+        this.theBoardSize = 19;
+        //this.setMyColor(this.configStorageObject().myColor());
         this.setPlayBothSides();
     }
-    this.playBothSides = function() {return this.thePlayBothSides;};
-    this.setPlayBothSides = function() {this.thePlayBothSides = (this.linkObject().myName() === this.hisName());};
-    this.boardSize = function() {return this.theBoardSize;};
-    this.setBoardSize = function(val) {this.theBoardSize = val;};
-    this.myColor = function() {return this.theMyColor;};
-    this.setMyColor = function(val) {this.theMyColor = val;};
-    this.hisColor = function() {if (this.myColor() === GO.BLACK_STONE()) {return GO.WHITE_STONE();} else {return GO.BLACK_STONE();}};
-    this.hisName = function() {return this.configStorageObject().hisName();};
-    this.handicapPoint = function() {return this.configStorageObject().handicapPoint();};
-    this.komiPoint = function() {return this.configStorageObject().komiPoint();};
-    this.realKomiPoint = function() {if (!this.komiPoint()) {return 0;} return this.komiPoint() + 0.5;};
-    this.isValidCoordinates = function(x_val, y_val) {return this.isValidCoordinate(x_val) && this.isValidCoordinate(y_val);};
-    this.isValidCoordinate = function(coordinate_val) {return (0 <= coordinate_val) && (coordinate_val < this.boardSize());};
-    this.objectName = function () { return "GoConfigObject";};
-    this.rootObject = function() {return this.theRootObject;};
-    this.configStorageObject = function() {return this.rootObject().configStorageObject();};
-    this.linkObject = function() {return this.rootObject().linkObject();};
-    this.debug = function(debug_val, str1_val, str2_val) {if (debug_val) {this.logit(str1_val, str2_val);}};
-    this.logit = function(str1_val, str2_val) {this.rootObject().logit_(this.objectName() + "." + str1_val, str2_val);};
-    this.abend = function(str1_val, str2_val) {this.rootObject().abend_(this.objectName() + "." + str1_val, str2_val);};
-    this.init__(root_val);
-}
-function GoConfigStorageObject(root_val) {
-    "use strict";
-    this.init__ = function (root_val) {
-        this.theRootObject = root_val;
-        this.debug(true, "init__", "myColor=" + this.myColor() + " boardSize=" + this.boardSize() + " hisName=" + this.hisName() + " handicapPoint=" + this.handicapPoint() + " komiPoint=" + this.komiPoint());
-    };
-    this.decodeConfig = function(encoded_val) {
+    this.decodeConfig = function (encoded_val) {
         this.debug(true, "decodeConfig", encoded_val);
         if ((encoded_val === undefined) || (encoded_val === "")) {
             this.setBoardSize(19);
@@ -65,11 +38,11 @@ function GoConfigStorageObject(root_val) {
         data += encoded_val.charAt(index++) - '0';
         this.setKomiPoint(data);
         data = encoded_val.charAt(index++) - '0';
-        this.setMyColor_(data);
+        this.setMyColor(data);
         this.setHisName(encoded_val.slice(index));
         this.debug(true, "decodeConfig", "myColor=" + this.myColor() + " boardSize=" + this.boardSize() + " hisName=" + this.hisName() + " handicapPoint=" + this.handicapPoint() + " komiPoint=" + this.komiPoint());
     };
-    this.encodeConfig = function(my_name_val) {
+    this.encodeConfig = function (my_name_val) {
         var len = 11 + my_name_val.length;
         var buf = "G";
         if (len < 100) buf = buf + 0; if (len < 10) buf = buf + 0; buf = buf + len;
@@ -80,6 +53,38 @@ function GoConfigStorageObject(root_val) {
         buf = buf + my_name_val;
         return buf;
     };
+    this.playBothSides = function() {return this.thePlayBothSides;};
+    this.setPlayBothSides = function() {this.thePlayBothSides = (this.linkObject().myName() === this.hisName());};
+    this.boardSize = function() {return this.theBoardSize;};
+    this.setBoardSize = function(val) {this.theBoardSize = val;};
+    this.myColor = function () { return this.theMyColor; };
+    this.setMyColor = function (val) { this.theMyColor = val; };
+    this.setMyColorRaw = function (val) { if (val === "black") { this.theMyColor = GO.BLACK_STONE(); } else if (val === "white") { this.theMyColor = GO.WHITE_STONE(); } else { this.abend("setMyColorRaw", val); } };
+    this.hisColor = function () { if (this.myColor() === GO.BLACK_STONE()) { return GO.WHITE_STONE(); } else { return GO.BLACK_STONE(); } };
+    this.setHisName = val => { this.theHisName = val; };
+    this.hisName = function() {return this.theHisName;};
+    this.handicapPoint = function() {return this.theHandicapPoint;};
+    this.setHandicapPoint = val => { this.theHandicapPoint = val; }
+    this.komiPoint = function () { return this.theKomiPoint;};
+    this.setKomiPoint = val => { this.theKomiPoint = val; }
+    this.realKomiPoint = function() {if (!this.komiPoint()) {return 0;} return this.komiPoint() + 0.5;};
+    this.isValidCoordinates = function(x_val, y_val) {return this.isValidCoordinate(x_val) && this.isValidCoordinate(y_val);};
+    this.isValidCoordinate = function(coordinate_val) {return (0 <= coordinate_val) && (coordinate_val < this.boardSize());};
+    this.objectName = function () { return "GoConfigObject";};
+    this.rootObject = function() {return this.theRootObject;};
+    this.linkObject = function() {return this.rootObject().linkObject();};
+    this.debug = function(debug_val, str1_val, str2_val) {if (debug_val) {this.logit(str1_val, str2_val);}};
+    this.logit = function(str1_val, str2_val) {this.rootObject().logit_(this.objectName() + "." + str1_val, str2_val);};
+    this.abend = function(str1_val, str2_val) {this.rootObject().abend_(this.objectName() + "." + str1_val, str2_val);};
+    this.init__(root_val);
+}
+/*
+function GoConfigStorageObject(root_val) {
+    "use strict";
+    this.init__ = function (root_val) {
+        this.theRootObject = root_val;
+        //this.debug(true, "init__", "myColor=" + this.myColor() + " boardSize=" + this.configObject().boardSize() + " hisName=" + this.hisName() + " handicapPoint=" + this.handicapPoint() + " komiPoint=" + this.komiPoint());
+    };
     this.storage = function() {return sessionStorage;};
     this.myColor = function() {return Number(this.storage().go_my_color);};
     this.setMyColor = function(val) {if (val === "black") {this.storage().go_my_color = GO.BLACK_STONE();} else if (val === "white") {this.storage().go_my_color = GO.WHITE_STONE();} else {this.abend("setMyColor", val);}};
@@ -87,8 +92,6 @@ function GoConfigStorageObject(root_val) {
     this.hisColor = function() {if (this.myColor() === GO.BLACK_STONE()) {return GO.WHITE_STONE();} else {return GO.BLACK_STONE();}};
     this.hisName = function() {return this.storage().go_his_name;};
     this.setHisName = function(val) {this.storage().go_his_name = val;};
-    this.boardSize = function() {return Number(this.storage().go_board_size);};
-    this.setBoardSize = function(val) {this.storage().go_board_size = val;};
     this.handicapPoint = function() {return Number(this.storage().go_handicap_point);};
     this.setHandicapPoint = function(val) {this.storage().go_handicap_point = val;};
     this.komiPoint = function() {return Number(this.storage().go_komi_point);};
@@ -96,12 +99,14 @@ function GoConfigStorageObject(root_val) {
     this.goEncodedConfig = function() {return this.storage().go_encoded_config;};
     this.setGoEncodedConfig = function(val) {this.storage().go_encoded_config = val;};
     this.objectName = function() {return "GoConfigStorageObject";};
-    this.rootObject = function() {return this.theRootObject;};
+    this.rootObject = function () { return this.theRootObject; };
+    this.configObject = function () { return this.rootObject().configObject();}
     this.debug = function (debug_val, str1_val, str2_val) {if (debug_val) {this.logit(str1_val, str2_val);}};
     this.logit = function (str1_val, str2_val) {this.rootObject().logit_(this.objectName() + "." + str1_val, str2_val);};
     this.abend = function (str1_val, str2_val) {this.rootObject().abend_(this.objectName() + "." + str1_val, str2_val);};
     this.init__(root_val);
 }
+*/
 var GO = new GoDefineObject;
 function GoDefineObject() {
     this.EMPTY_STONE = function() {return 0;};

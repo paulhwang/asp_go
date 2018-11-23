@@ -16,6 +16,7 @@ function PhwangAjaxClass(phwang_object_val) {
         this.debug(false, "init__", "");
     };
     this.parseAndSwitchAjaxResponse = function(json_response_val) {
+        this.debug(true, "parseAndSwitchAjaxResponse", "json_response_val=" + json_response_val);
         var response = JSON.parse(json_response_val);
         if (response.command !== this.phwangAjaxProtocolObject().GET_LINK_DATA_COMMAND()) {
             this.debug(true, "parseAndSwitchAjaxResponse", "command=" + response.command + " data=" + response.data);
@@ -110,7 +111,7 @@ function PhwangAjaxClass(phwang_object_val) {
                         var theme_data = data.slice(0, config_len);
                         this.debug(true, "getLinkDataResponse", "theme_data=" + theme_data);
                         var theme = this.themeMgrObject().mallocThemeAndInsert();
-                        theme.configStorageObject().decodeConfig(theme_data);
+                        theme.configObject().decodeConfig(theme_data);
                         data = data.slice(config_len);
                         this.setupSession2(this.linkObject(), theme_data, session_id, theme.themeIdStr());
                         continue;

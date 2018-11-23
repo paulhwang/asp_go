@@ -60,14 +60,14 @@ function PreludeRenderObject(root_object_val) {
         var this0 = this;
         $(".config_section .config_button").on("click", function () {
             var theme = this0.themeMgrObject().mallocThemeAndInsert();
-            theme.configStorageObject().setHisName($(".peer_name_paragraph select").val());
-            theme.configStorageObject().setMyColor($(".config_section .go_config_section .stone_color").val());
-            theme.configStorageObject().setBoardSize($(".config_section .go_config_section .board_size").val());
-            theme.configStorageObject().setKomiPoint($(".config_section .go_config_section .komi").val());
-            theme.configStorageObject().setHandicapPoint($(".config_section .go_config_section .handicap").val());
-            var encoded_config = theme.configStorageObject().encodeConfig(this0.linkObject().myName());
-            this0.debug(true, "setupHtmlInput", "boardSize=" + theme.configStorageObject().boardSize() + " myColor=" + theme.configStorageObject().myColor() + " komi=" + theme.configStorageObject().komiPoint() + " handicap=" + theme.configStorageObject().handicapPoint());
-            this0.phwangAjaxObject().setupSession(this0.linkObject(), theme.configStorageObject().hisName(), theme.themeIdStr() + encoded_config);
+            theme.configObject().setHisName($(".peer_name_paragraph select").val());
+            theme.configObject().setMyColorRaw($(".config_section .go_config_section .stone_color").val());
+            theme.configObject().setBoardSize($(".config_section .go_config_section .board_size").val());
+            theme.configObject().setKomiPoint($(".config_section .go_config_section .komi").val());
+            theme.configObject().setHandicapPoint($(".config_section .go_config_section .handicap").val());
+            var encoded_config = theme.configObject().encodeConfig(this0.linkObject().myName());
+            this0.debug(true, "setupHtmlInput", "boardSize=" + theme.configObject().boardSize() + " myColor=" + theme.configObject().myColor() + " komi=" + theme.configObject().komiPoint() + " handicap=" + theme.configObject().handicapPoint());
+            this0.phwangAjaxObject().setupSession(this0.linkObject(), theme.configObject().hisName(), theme.themeIdStr() + encoded_config);
             //this0.renderGoGamePage();
         });
         //window.open(this.phwangObject().serverHttpHeader() + "Go/GoSetup", "_self");
