@@ -81,9 +81,9 @@ function PreludeHtmlObject (root_object_val) {
         propTypes: {
             prelude_switch: React.PropTypes.func.isRequired,
         },
-        _onClick: function () {
+        signInOnClick: function () {
             var this0 = ThePreludeHtmlObject;
-            this0.debug(true, "preludeComponent", "_onClick================================================");
+            this0.debug(true, "preludeComponent", "signInOnClick");
         },
         render: function () {
             var this0 = ThePreludeHtmlObject;
@@ -93,7 +93,7 @@ function PreludeHtmlObject (root_object_val) {
                     React.DOM.h1(null, "Let's Play Go!"),
                     React.DOM.p({ className: "lead" }, "Let's Play Go is a free web platform to play Go Game with people in the world."),
                     React.DOM.button({ className: "sign_up_button" }, "Sign iup"),
-                    React.DOM.button({ className: "sign_in_button", onClick: this._onClick }, "Sign in"),
+                    React.DOM.button({ className: "sign_in_button", onClick: this.signInOnClick }, "Sign in"),
                 );
             }
             else {
