@@ -3,7 +3,7 @@
   Written by Paul Hwang
 */
 var ThePreludeHtmlObject;
-function PreludeHtmlObject(root_object_val) {
+function PreludeHtmlObject (root_object_val) {
     "use strict";
     this.init__ = root_object_val => {
         this.theRootObject = root_object_val;
@@ -69,7 +69,6 @@ function PreludeHtmlObject(root_object_val) {
             this0.debug(true, "PhwangPreludeComponentClass", "start");
             return React.createElement("body", null,
                 React.createElement(this0.preludeComponent, this.props),
-                //this0.preludeComponent_old(this.props),
                 this0.signUpComponent(this.props),
                 this0.signInComponent(this.props),
                 this0.themeComponent(this.props),
@@ -78,22 +77,6 @@ function PreludeHtmlObject(root_object_val) {
             );
         }
     });
-    this.preludeComponent_old = props => {
-        if (props.prelude_switch()) {
-            return React.DOM.section({ className: "prelude_section" },
-                React.DOM.h1(null, "Let's Play Go!"),
-                React.DOM.p({ className: "lead" }, "Let's Play Go is a free web platform to play Go Game with people in the world."),
-                React.DOM.button({ className: "sign_up_button" }, "Sign iup"),
-                React.DOM.button({ className: "sign_in_button" }, "Sign in"),
-                React.DOM.button({ className: "theme_button" }, "Theme"),
-                React.createElement("p", null, React.createElement("a", { "href": "http://localhost:8168/Account/AccountSignIn", "className": "btn btn-primary btn-lg" }, "Sign in")),
-                //<p><a href="http://localhost:8168/Account/AccountSignUp" class="btn btn-primary btn-lg">Sign up &raquo;</a></p>
-            );
-        }
-        else {
-            return null;
-        }
-    }
     this.preludeComponent = React.createClass({
         propTypes: {
             prelude_switch: React.PropTypes.func.isRequired,
@@ -165,7 +148,6 @@ function PreludeHtmlObject(root_object_val) {
                     "Peer Name:",
                     React.DOM.select(
                         { "name": "opponent" },
-                        null
                     )
                 ),
                 React.DOM.p({ "className": "peer_game_paragraph" },
@@ -173,7 +155,7 @@ function PreludeHtmlObject(root_object_val) {
                     React.DOM.select(null,
                         React.DOM.option({ "value": "Go" }, "Go"),
                         React.DOM.option({ "value": "game1" }, "game1"),
-                        React.DOM.option({ "value": "game2" }, "game2")
+                        React.DOM.option({ "value": "game2" }, "game2"),
                     ),
                     React.DOM.button(null, "Select"),
                 ),
@@ -254,3 +236,21 @@ function PreludeHtmlObject(root_object_val) {
     this.abend_ = (str1_val, str2_val) => { this.phwangObject().ABEND(str1_val, str2_val); };
     this.init__(root_object_val);
 }
+/*
+this.preludeComponent_old = props => {
+    if (props.prelude_switch()) {
+        return React.DOM.section({ className: "prelude_section" },
+            React.DOM.h1(null, "Let's Play Go!"),
+            React.DOM.p({ className: "lead" }, "Let's Play Go is a free web platform to play Go Game with people in the world."),
+            React.DOM.button({ className: "sign_up_button" }, "Sign iup"),
+            React.DOM.button({ className: "sign_in_button" }, "Sign in"),
+            React.DOM.button({ className: "theme_button" }, "Theme"),
+            React.createElement("p", null, React.createElement("a", { "href": "http://localhost:8168/Account/AccountSignIn", "className": "btn btn-primary btn-lg" }, "Sign in")),
+            //<p><a href="http://localhost:8168/Account/AccountSignUp" class="btn btn-primary btn-lg">Sign up &raquo;</a></p>
+        );
+    }
+    else {
+        return null;
+    }
+}
+*/
