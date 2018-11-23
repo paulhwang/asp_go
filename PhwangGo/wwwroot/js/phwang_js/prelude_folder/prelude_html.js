@@ -81,6 +81,35 @@ function PreludeHtmlObject (root_object_val) {
         propTypes: {
             prelude_switch: React.PropTypes.func.isRequired,
         },
+        componentWillUpdate: function () {
+            var this0 = TheBaseHtmlObject;
+            this0.debug(true, "PreludeComponent", "componentWillUpdate");
+            console.log("componentWillUpdate", arguments);
+        },
+        componentDidUpdate: function () {
+            var this0 = TheBaseHtmlObject;
+            this0.debug(true, "PreludeComponent", "componentDidUpdate");
+            console.log("componentDidUpdate", arguments);
+        },
+        componentWillMount: function () {
+            var this0 = TheBaseHtmlObject;
+            this0.debug(true, "PreludeComponent", "componentWillMount");
+            console.log("componentWillMount", arguments);
+        },
+        componentDidMount: function () {
+            var this0 = TheBaseHtmlObject;
+            this0.debug(true, "PreludeComponent", "componentDidMount");
+            console.log("componentDidMount", arguments);
+        },
+        componentWillUnmount: function () {
+            var this0 = TheBaseHtmlObject;
+            this0.debug(true, "PreludeComponent", "componentWillUnmount");
+            console.log("componentWillUnmount", arguments);
+        },
+        signUpOnClick: function () {
+            var this0 = TheBaseHtmlObject;
+            this0.debug(true, "PreludeComponent", "signUpOnClick");
+        },
         signInOnClick: function () {
             var this0 = ThePreludeHtmlObject;
             this0.debug(true, "preludeComponent", "signInOnClick");
@@ -92,7 +121,7 @@ function PreludeHtmlObject (root_object_val) {
                 return React.DOM.section({ className: "prelude_section" },
                     React.DOM.h1(null, "Let's Play Go!"),
                     React.DOM.p({ className: "lead" }, "Let's Play Go is a free web platform to play Go Game with people in the world."),
-                    React.DOM.button({ className: "sign_up_button" }, "Sign iup"),
+                    React.DOM.button({ className: "sign_up_button", onClick: this.signUpOnClick }, "Sign up"),
                     React.DOM.button({ className: "sign_in_button", onClick: this.signInOnClick }, "Sign in"),
                 );
             }
