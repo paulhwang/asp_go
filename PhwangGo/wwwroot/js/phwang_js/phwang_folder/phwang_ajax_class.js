@@ -2,12 +2,11 @@
   Copyrights reserved
   Written by Paul Hwang
 */
-function PhwangAjaxClass(phwang_object_val) {
+function PhwangAjaxClass (phwang_object_val) {
     "use strict";
-    this.init__ = function(phwang_object_val) {
+    this.init__ = phwang_object_val => {
         this.thePhwangObject = phwang_object_val;
         this.thePhwangAjaxProtocolObject = new PhwangAjaxProtocolClass();
-        //this.thePhwangAjaxStorageObject = new PhwangAjaxStorageObject(this);
         this.theTransmitQueueObject = new PhwangQueueClass(this.phwangObject());
         this.thePendingSessionDataQueueObject = new PhwangQueueClass(this.phwangObject());
         this.thePhwangAjaxEngineObject = new PhwangAjaxEngineClass(this);
@@ -16,7 +15,7 @@ function PhwangAjaxClass(phwang_object_val) {
         this.theAjaxPacketId = 0;
         this.debug(false, "init__", "");
     };
-    this.parseAndSwitchAjaxResponse = function(json_response_val) {
+    this.parseAndSwitchAjaxResponse = json_response_val => {
         this.debug(true, "parseAndSwitchAjaxResponse", "json_response_val=" + json_response_val);
         var response = JSON.parse(json_response_val);
         if (response.command !== this.phwangAjaxProtocolObject().GET_LINK_DATA_COMMAND()) {
@@ -42,7 +41,7 @@ function PhwangAjaxClass(phwang_object_val) {
         this.clearPendingAjaxRequestCommand();
         func.bind(this)(response.data);
     };
-    this.initSwitchTable = function() {
+    this.initSwitchTable = () => {
         this.theSwitchTable = {
             "setup_link": this.setupLinkResponse,
             "get_link_data": this.getLinkDataResponse,
@@ -54,7 +53,7 @@ function PhwangAjaxClass(phwang_object_val) {
             "put_session_data": this.putSessionDataResponse,
         };
     };
-    this.setupLink = function(link_val, password_val) {
+    this.setupLink = (link_val, password_val) => {
         var output = JSON.stringify({
             command: this.phwangAjaxProtocolObject().SETUP_LINK_COMMAND(),
             packet_id: this.ajaxPacketId(),
@@ -66,13 +65,13 @@ function PhwangAjaxClass(phwang_object_val) {
         this.debug(true, "setupLink", "output=" + output);
         this.transmitAjaxRequest(output);
     };
-    this.setupLinkResponse = function(input_val) {
+    this.setupLinkResponse = input_val => {
         this.debug(true, "setupLinkResponse", "input_val=" + input_val);
         var data = JSON.parse(input_val);
         this.linkObject().setLinkId(data.link_id);
         this.phwangPortObject().receiveSetupLinkResponse();
     };
-    this.getLinkData = function(link_val) {
+    this.getLinkData = link_val => {
         var output = JSON.stringify({
             command: this.phwangAjaxProtocolObject().GET_LINK_DATA_COMMAND(),
             packet_id: this.ajaxPacketId(),
@@ -83,7 +82,7 @@ function PhwangAjaxClass(phwang_object_val) {
         this.debug(false, "getLinkData", "output=" + output);
         this.transmitAjaxRequest(output);
     };
-    this.getLinkDataResponse = function(input_val) {
+    this.getLinkDataResponse = input_val => {
         this.debug(false, "getLinkDataResponse", "input_val=" + input_val);
         var input = JSON.parse(input_val);
         if (input) {
@@ -144,7 +143,7 @@ function PhwangAjaxClass(phwang_object_val) {
             }
         }
     };
-    this.getNameList = function(link_val) {
+    this.getNameList = link_val => {
         var output = JSON.stringify({
             command: this.phwangAjaxProtocolObject().GET_NAME_LIST_COMMAND(),
             packet_id: this.ajaxPacketId(),
@@ -156,7 +155,7 @@ function PhwangAjaxClass(phwang_object_val) {
         this.debug(true, "getNameList", "output=" + output);
         this.transmitAjaxRequest(output);
     };
-    this.getNameListResponse = function(input_val) {
+    this.getNameListResponse = input_val => {
         this.debug(true, "getNameListResponse", "input_val=" + input_val);
         var data = JSON.parse(input_val);
         if (data) {
@@ -174,7 +173,7 @@ function PhwangAjaxClass(phwang_object_val) {
             }
         }
     };
-    this.setupSession = function(link_val, his_name_val, theme_data_val) {
+    this.setupSession = (link_val, his_name_val, theme_data_val) => {
         var output = JSON.stringify({
             command: this.phwangAjaxProtocolObject().SETUP_SESSION_COMMAND(),
             packet_id: this.ajaxPacketId(),
@@ -187,14 +186,14 @@ function PhwangAjaxClass(phwang_object_val) {
         this.debug(true, "setupSession", "output=" + output);
         this.transmitAjaxRequest(output);
     };
-    this.setupSessionResponse = function(input_val) {
+    this.setupSessionResponse = input_val => {
         this.debug(true, "setupSessionResponse", "input_val=" + input_val);
         var data = JSON.parse(input_val);
         if (data) {
             this.phwangPortObject().receiveSetupSessionResponse(data.result);
         }
     };
-    this.setupSession2 = function(link_val, theme_data_val, session_id_val, theme_id_str_val) {
+    this.setupSession2 = (link_val, theme_data_val, session_id_val, theme_id_str_val) => {
         var output = JSON.stringify({
             command: this.phwangAjaxProtocolObject().SETUP_SESSION2_COMMAND(),
             packet_id: this.ajaxPacketId(),
@@ -209,7 +208,7 @@ function PhwangAjaxClass(phwang_object_val) {
         this.debug(true, "setupSession2", "output=" + output);
         this.transmitAjaxRequest(output);
     };
-    this.setupSession2Response = function(json_data_val) {
+    this.setupSession2Response = json_data_val => {
         this.debug(true, "setupSession2Response", "data=" + json_data_val);
         var data = JSON.parse(json_data_val);
         if (!data) {
@@ -219,7 +218,7 @@ function PhwangAjaxClass(phwang_object_val) {
         this.debug(true, "setupSession2Response", "link_id=" + data.link_id + " session_id=" + data.session_id + " theme_id_str=" + data.theme_id_str);
         this.phwangPortObject().receiveSetupSession2Response();
     };
-    this.setupSession3 = function(link_val, session_id_val) {
+    this.setupSession3 = (link_val, session_id_val) => {
         var output = JSON.stringify({
             command: this.phwangAjaxProtocolObject().SETUP_SESSION3_COMMAND(),
             packet_id: this.ajaxPacketId(),
@@ -231,7 +230,7 @@ function PhwangAjaxClass(phwang_object_val) {
         this.debug(true, "setupSession3", "output=" + output);
         this.transmitAjaxRequest(output);
     };
-    this.setupSession3Response = function(json_data_val) {
+    this.setupSession3Response = json_data_val => {
         this.debug(true, "setupSession3Response", "data=" + json_data_val);
         var data = JSON.parse(json_data_val);
         if (data) {
@@ -243,7 +242,7 @@ function PhwangAjaxClass(phwang_object_val) {
             theme.bindSession(session);
         }
     };
-    this.putSessionData = function(session_val, data_val) {
+    this.putSessionData = (session_val, data_val) => {
         var output = JSON.stringify({
             command: this.phwangAjaxProtocolObject().PUT_SESSION_DATA_COMMAND(),
             packet_id: this.ajaxPacketId(),
@@ -258,7 +257,7 @@ function PhwangAjaxClass(phwang_object_val) {
         this.debug(true, "putSessionData", "output=" + output);
         this.transmitAjaxRequest(output);
     };
-    this.putSessionDataResponse = function(json_data_val) {
+    this.putSessionDataResponse = json_data_val => {
         this.debug(false, "putSessionDataResponse", "data=" + json_data_val);
         var data = JSON.parse(json_data_val);
     };
@@ -274,7 +273,7 @@ function PhwangAjaxClass(phwang_object_val) {
         this.debug(false, "getSessionData", "output=" + output);
         this.transmitAjaxRequest(output);
     };
-    this.getSessionDataResponse = function(json_data_val) {
+    this.getSessionDataResponse = json_data_val => {
         this.debug(true, "getSessionDataResponse", "data=" + json_data_val);
         var data = JSON.parse(json_data_val);
         if (data) {
@@ -288,14 +287,14 @@ function PhwangAjaxClass(phwang_object_val) {
             }
         }
     };
-    this.transmitAjaxRequest = function(output_val) {
+    this.transmitAjaxRequest = output_val => {
         if (this.pendingAjaxRequestCommandExist()) {
             this.transmitQueueObject().enqueueData(output_val);
             return;
         }
         this.xmtAjaxRequest(output_val);
     };
-    this.xmtAjaxRequest = function (output_val) {
+    this.xmtAjaxRequest = output_val => {
         var output = JSON.parse(output_val);
         if (output.command !== this.phwangAjaxProtocolObject().GET_LINK_DATA_COMMAND()) {
             this.debug(true, "xmtAjaxRequest", "output=" + output_val);
@@ -303,7 +302,7 @@ function PhwangAjaxClass(phwang_object_val) {
         this.setPendingAjaxRequestCommand(output.command);
         this.phwangAjaxEngineObject().sendAjaxRequest(output_val);
     };
-    this.startWatchDog = function(link_val) {
+    this.startWatchDog = link_val => {
         setInterval(function (link_val) {
             var ajax_object = link_val.phwangAjaxObject();
             if (ajax_object.pendingAjaxRequestCommandExist()) {
@@ -352,27 +351,27 @@ function PhwangAjaxClass(phwang_object_val) {
     this.incrementAjaxPacketId = () => { this.theAjaxPacketId++; };
     this.init__(phwang_object_val);
 }
-function PhwangAjaxEngineClass(phwang_ajax_object_val) {
+function PhwangAjaxEngineClass (phwang_ajax_object_val) {
     "use strict";
-    this.ajaxRoute = function() {return "/Ajax/AjaxGetRequest/";};
-    this.jsonContext = function() {return "application/json; charset=utf-8";}
-    this.plainTextContext = function() {return "text/plain; charset=utf-8";}
-    this.init__ = function(phwang_ajax_object_val) {
+    this.ajaxRoute = () => "/Ajax/AjaxGetRequest/";
+    this.jsonContext = () => "application/json; charset=utf-8";
+    this.plainTextContext = () => "text/plain; charset=utf-8";
+    this.init__ = phwang_ajax_object_val => {
         this.thePhwangAjaxObject = phwang_ajax_object_val;
         this.theHttpGetRequest = new XMLHttpRequest();
         this.startAjaxResponseProcess();
         this.debug(false, "init__", "");
     };
-    this.startAjaxResponseProcess = function() {
+    this.startAjaxResponseProcess = () => {
         var this0 = this;
-        this.httpGetRequest().onreadystatechange = function() {
+        this.httpGetRequest().onreadystatechange = () => {
             if ((this0.httpGetRequest().readyState === 4) &&
                 (this0.httpGetRequest().status === 200)) {
                 this0.phwangAjaxObject().parseAndSwitchAjaxResponse(this0.httpGetRequest().responseText);
             }
         };
     };
-    this.sendAjaxRequest = function(output_val) {
+    this.sendAjaxRequest = output_val => {
         this.httpGetRequest().open("GET", this.ajaxRoute(), true);
         this.httpGetRequest().setRequestHeader("X-Requested-With", "XMLHttpRequest");
         this.httpGetRequest().setRequestHeader("Content-Type", this.jsonContext());
@@ -381,16 +380,15 @@ function PhwangAjaxEngineClass(phwang_ajax_object_val) {
         this.incrementAjaxPacketId();
         this.httpGetRequest().send(null);
     };
-    this.objectName = function() {return "PhwangAjaxEngineClass";};
-    this.phwangAjaxObject = function() {return this.thePhwangAjaxObject;};
-    this.httpGetRequest = function() {return this.theHttpGetRequest;};
-    this.phwangAjaxStorageObject = function() {return this.phwangAjaxObject().phwangAjaxStorageObject();};
-    this.phwangObject = function() {return this.phwangAjaxObject().phwangObject();};
-    this.debug = function(debug_val, str1_val, str2_val) {if (debug_val) {this.logit(str1_val, str2_val);}};
-    this.logit = function(str1_val, str2_val) {return this.phwangObject().LOG_IT(this.objectName() + "." + str1_val, str2_val);};
-    this.abend = function(str1_val, str2_val) {return this.phwangObject().ABEND(this.objectName() + "." + str1_val, str2_val);};
-    this.ajaxPacketId = function() {return this.phwangAjaxObject().ajaxPacketId();};
-    this.incrementAjaxPacketId = function() {this.phwangAjaxObject().incrementAjaxPacketId();};
+    this.objectName = () => "PhwangAjaxEngineClass";
+    this.phwangAjaxObject = () => this.thePhwangAjaxObject;
+    this.httpGetRequest = () => this.theHttpGetRequest;
+    this.phwangObject = () => this.phwangAjaxObject().phwangObject();
+    this.debug = (debug_val, str1_val, str2_val) => { if (debug_val) {this.logit(str1_val, str2_val);}};
+    this.logit = (str1_val, str2_val) => { this.phwangObject().LOG_IT(this.objectName() + "." + str1_val, str2_val);};
+    this.abend = (str1_val, str2_val) => { this.phwangObject().ABEND(this.objectName() + "." + str1_val, str2_val);};
+    this.ajaxPacketId = () => this.phwangAjaxObject().ajaxPacketId();
+    this.incrementAjaxPacketId = () => {this.phwangAjaxObject().incrementAjaxPacketId();};
     this.init__(phwang_ajax_object_val);
 }
 function PhwangAjaxProtocolClass() {
