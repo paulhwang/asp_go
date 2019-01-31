@@ -12,12 +12,15 @@ namespace Phwang.Models
             System.Data.IDbConnection connection = null;
             System.Data.IDbCommand cmd = new System.Data.SqlClient.SqlCommand("SELECT * FROM Accounts");
             cmd.Connection = connection;
+            //connection.Open();
 
-            throw new NotImplementedException();
+            return null;
+
         }
 
         public void Create(AccountClass item_val)
         {
+            throw new NotImplementedException();
 
         }
 

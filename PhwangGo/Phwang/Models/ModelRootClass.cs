@@ -13,10 +13,12 @@ namespace Phwang.Models
         public ModelRootClass()
         {
             this.accountModelOject = new Models.AccountModellClass();
-            //this.accountsData = this.accountModelOject.AccountOperation.Get();
+            this.accountsData = this.accountModelOject.AccountOperation.Get();
 
-            //reach (AccountClass account in this.accountsData)
-                //Console.WriteLine("aaaaaaaaaaaaaaaaaaaaaaaaaaa");
+            /*
+            foreach (AccountClass account in this.accountsData)
+                Console.WriteLine("aaaaaaaaaaaaaaaaaaaaaaaaaaa");
+                */
         }
     }
 }
