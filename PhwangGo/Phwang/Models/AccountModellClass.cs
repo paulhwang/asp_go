@@ -9,7 +9,7 @@ namespace Phwang.Models
     {
         private DataOperationInterface<AccountClass> accountOperation = null;
 
-        public DataOperationInterface<AccountClass> Accounts
+        public DataOperationInterface<AccountClass> AccountOperation
         {
             get
             {
