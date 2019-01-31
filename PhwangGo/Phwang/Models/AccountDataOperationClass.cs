@@ -24,17 +24,18 @@ namespace Phwang.Models
 
         public void Create(AccountClass item_val)
         {
-            throw new NotImplementedException();
 
         }
 
         public void Update(AccountClass item_val)
         {
+            throw new NotImplementedException();
 
         }
 
         public void Delete(AccountClass item_val)
         {
+            throw new NotImplementedException();
 
         }
     }

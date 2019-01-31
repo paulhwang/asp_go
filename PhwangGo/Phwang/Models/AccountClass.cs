@@ -8,19 +8,17 @@ namespace Phwang.Models
 
     public class AccountClass
     {
-        private string accountId { get; }
+        private string accountId { get; set; }
         private string passWord { get; }
-
-        /*
-        public AccountClass(string account_id_val)
-        {
-            this.accountId = account_id_val;
-        }
-        */
 
         public string AccountId()
         {
             return this.accountId;
+        }
+
+        public void SetAccountId(string account_id_val)
+        {
+            this.accountId = account_id_val;
         }
     }
 }
