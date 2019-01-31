@@ -7,6 +7,11 @@ namespace Phwang.Models
 {
     public class AccountDataOperationClass : DataOperationInterface<AccountClass>
     {
+        public IEnumerable<AccountClass> Get()
+        {
+            throw new NotImplementedException();
+        }
+
         public void Create(AccountClass item_val)
         {
 
