@@ -13,6 +13,9 @@ namespace Phwang.Models
         public ModelRootClass()
         {
             this.accountModelOject = new Models.AccountModellClass();
+
+            //AccountClass account = new AccountClass("phwang");
+           // this.accountModelOject.AccountOperation.Create(account);
             this.accountsData = this.accountModelOject.AccountOperation.Get();
 
             /*
