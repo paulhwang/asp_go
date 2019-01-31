@@ -9,7 +9,10 @@ namespace Phwang.Models
     {
         public IEnumerable<AccountClass> Get()
         {
+            System.Data.IDbConnection connection = null;
             System.Data.IDbCommand cmd = new System.Data.SqlClient.SqlCommand("SELECT * FROM Accounts");
+            cmd.Connection = connection;
+
             throw new NotImplementedException();
         }
 
