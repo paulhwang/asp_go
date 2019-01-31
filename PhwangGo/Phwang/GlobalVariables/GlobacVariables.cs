@@ -11,6 +11,7 @@ namespace Phwang.GlobalVariables
         static public Fabric.FabricRootClass fabricRootObject { get; set; }
         static public Theme.ThemeRootClass themeRootObject { get; set; }
         static public Engine.EngineRootClass engineRootObject { get; set; }
+        static public Models.AccountModellClass accountModelOject;
 
         public static void Initilization()
         {
@@ -20,6 +21,8 @@ namespace Phwang.GlobalVariables
                 frontEndRootObject = new FrontEnd.FrontEndRootClass();
                 themeRootObject = new Theme.ThemeRootClass();
                 engineRootObject = new Engine.EngineRootClass();
+
+                accountModelOject = new Models.AccountModellClass();
             }
         }
 
