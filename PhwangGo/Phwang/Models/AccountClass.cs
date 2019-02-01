@@ -11,10 +11,7 @@ namespace Phwang.Models
         private string accountId { get; set; }
         private string passWord { get; }
 
-        public string AccountId()
-        {
-            return this.accountId;
-        }
+        public string AccountId() { return this.accountId; }
 
         public void SetAccountId(string account_id_val)
         {
