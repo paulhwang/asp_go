@@ -12,5 +12,18 @@ namespace Phwang.Models
         {
         }
         public virtual DbSet<AccountTableClass> Accounts { get; set; }
+
+        protected void onModelCreating(ModelBuilder model_builder_val)
+        {
+            var account_table = model_builder_val.Entity<AccountTableClass>().ToTable("phwang");
+
+            account_table.Property(c => c.Id)
+                .IsRequired()
+                .HasColumnType("bigint");
+
+            base.OnModelCreating(model_builder_val);
+            
+
+        }
     }
 }

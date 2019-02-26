@@ -7,5 +7,6 @@ namespace Phwang.Models
 {
     public class AccountTableClass
     {
+        public int Id;
     }
 }
