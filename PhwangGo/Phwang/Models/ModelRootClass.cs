@@ -7,22 +7,27 @@ namespace Phwang.Models
 {
     public class ModelRootClass
     {
-        private AccountModellClass accountModelOject { get; }
-        private IEnumerable<AccountClass> accountsData { get; }
+        DbContextClass dbContextObject { get; }
 
         public ModelRootClass()
         {
-            this.accountModelOject = new Models.AccountModellClass();
-
-            AccountClass account = new AccountClass();
-            account.SetAccountId("phwang");
-            this.accountModelOject.AccountOperation.Create(account);
-            this.accountsData = this.accountModelOject.AccountOperation.Get();
+            this.dbContextObject = new DbContextClass();
+        }
 
             /*
-            foreach (AccountClass account in this.accountsData)
-                Console.WriteLine("aaaaaaaaaaaaaaaaaaaaaaaaaaa");
-                */
+            private AccountModellClass accountModelOject { get; }
+            private IEnumerable<AccountClass> accountsData { get; }
+
+            public ModelRootClass()
+            {
+                return;
+                this.accountModelOject = new Models.AccountModellClass();
+
+                AccountClass account = new AccountClass();
+                account.SetAccountId("phwang");
+                this.accountModelOject.AccountOperation.Create(account);
+                this.accountsData = this.accountModelOject.AccountOperation.Get();
+            }
+            */
         }
     }
-}

@@ -9,7 +9,7 @@ namespace Phwang.Models
     {
         private string connectionString = @"Server=(localdb)\v11.0;
                                             Integrated Security=true;
-                                            AttachDbFileName=" + Environment.CurrentDirectory + @"\Go.mdf;";
+                                            AttachDbFileName=" + Environment.CurrentDirectory + @"\GoData.mdf;";
 
         public IEnumerable<AccountClass> Get()
         {
@@ -18,6 +18,7 @@ namespace Phwang.Models
             cmd.Connection = connection;
             //connection.Open();
 
+            connection.Close();
             return null;
 
         }
